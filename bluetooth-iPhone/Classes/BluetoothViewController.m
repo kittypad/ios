@@ -199,7 +199,9 @@
 		   bank, @"kBank",
 		   cardnumber, @"kCardnumber",
 		   money, @"kMoney", nil];
-	NSString * myString=[msg JSONRepresentation];
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:msg options:NSJSONWritingPrettyPrinted error:nil];
+	NSString * myString=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	NSLog(@"%@", myString);
 	
 	
@@ -224,11 +226,11 @@
 {
     // Read the bytes in data and perform an application-specific action, then free the NSData object
 
-	NSString* aStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	//NSString* aStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
     //receiverTextView.text =aStr;
 	
-	NSDictionary *ndata = [[aStr JSONValue] retain];
+	NSDictionary *ndata = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
 	
 	NSLog(@"接受数据: %@", ndata);
 	
