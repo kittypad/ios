@@ -21,8 +21,12 @@
 
 
 @synthesize connectionButton;
+extern id CTTelephonyCenterGetDefault(void);
+extern void CTTelephonyCenterAddObserver(id,id,CFNotificationCallback,NSString*,void*,int);
 
-
+static void callback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo)
+{
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -58,7 +62,7 @@
 	[self.view addSubview:slideToCancel.view];
 	
 	
-
+    CTTelephonyCenterAddObserver(CTTelephonyCenterGetDefault(), NULL, &callback, NULL, NULL, CFNotificationSuspensionBehaviorHold);
 	
 	[super viewDidLoad];
 
