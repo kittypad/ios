@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0AE35AA41803F46600941705 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE35AA31803F46600941705 /* CoreTelephony.framework */; };
+		0AF5C9531804E32300851F78 /* ContactMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF5C9521804E32300851F78 /* ContactMethod.m */; };
+		0AF5C9561804E36800851F78 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF5C9551804E36800851F78 /* RegexKitLite.m */; };
+		0AF5C9591804E48500851F78 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF5C9571804E48400851F78 /* AddressBook.framework */; };
+		0AF5C95A1804E48500851F78 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF5C9581804E48400851F78 /* AddressBookUI.framework */; };
 		1D3623260D0F684500981E51 /* BluetoothAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* BluetoothAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -44,6 +48,12 @@
 
 /* Begin PBXFileReference section */
 		0AE35AA31803F46600941705 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		0AF5C9511804E32300851F78 /* ContactMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactMethod.h; sourceTree = "<group>"; };
+		0AF5C9521804E32300851F78 /* ContactMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactMethod.m; sourceTree = "<group>"; };
+		0AF5C9541804E36800851F78 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		0AF5C9551804E36800851F78 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		0AF5C9571804E48400851F78 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		0AF5C9581804E48400851F78 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* BluetoothAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* BluetoothAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothAppDelegate.m; sourceTree = "<group>"; };
@@ -89,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AF5C9591804E48500851F78 /* AddressBook.framework in Frameworks */,
+				0AF5C95A1804E48500851F78 /* AddressBookUI.framework in Frameworks */,
 				0AE35AA41803F46600941705 /* CoreTelephony.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -103,7 +115,11 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0AF5C9541804E36800851F78 /* RegexKitLite.h */,
+				0AF5C9551804E36800851F78 /* RegexKitLite.m */,
 				1D3623240D0F684500981E51 /* BluetoothAppDelegate.h */,
+				0AF5C9511804E32300851F78 /* ContactMethod.h */,
+				0AF5C9521804E32300851F78 /* ContactMethod.m */,
 				1D3623250D0F684500981E51 /* BluetoothAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* BluetoothViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* BluetoothViewController.m */,
@@ -157,6 +173,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AF5C9571804E48400851F78 /* AddressBook.framework */,
+				0AF5C9581804E48400851F78 /* AddressBookUI.framework */,
 				0AE35AA31803F46600941705 /* CoreTelephony.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -279,9 +297,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AF5C9561804E36800851F78 /* RegexKitLite.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* BluetoothAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* BluetoothViewController.m in Sources */,
+				0AF5C9531804E32300851F78 /* ContactMethod.m in Sources */,
 				EBE37F5713FE3581008444DD /* SlideToCancelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +323,7 @@
 				INFOPLIST_FILE = "Bluetooth-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Bluetooth;
 				PROVISIONING_PROFILE = "38109E21-2A53-4373-80CA-67F479288572";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38109E21-2A53-4373-80CA-67F479288572";
@@ -322,6 +343,7 @@
 				INFOPLIST_FILE = "Bluetooth-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Bluetooth;
 				PROVISIONING_PROFILE = "38109E21-2A53-4373-80CA-67F479288572";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38109E21-2A53-4373-80CA-67F479288572";

@@ -7,7 +7,8 @@
 //
 
 #import "BluetoothViewController.h"
-
+#import "ContactMethod.h"
+#import <CoreTelephony/CTCallCenter.h>
 @implementation BluetoothViewController
 
 @synthesize currentSession;
@@ -26,6 +27,81 @@ extern void CTTelephonyCenterAddObserver(id,id,CFNotificationCallback,NSString*,
 
 static void callback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo)
 {
+    NSString *notifyname=(NSString *)name;
+    
+    if ([notifyname isEqualToString:@"kCTMessageReceivedNotification"])//received SMS
+    {
+        if (!userInfo) return;
+        
+        
+        NSDictionary *info = (NSDictionary *)userInfo;
+        CFNumberRef msgID = (CFNumberRef)[info objectForKey:@"kCTMessageIdKey"];
+        int result;
+        CFNumberGetValue((CFNumberRef)msgID, kCFNumberSInt32Type, &result);
+        if (msgID)
+        {
+            CFNumberGetValue((CFNumberRef)msgID, kCFNumberSInt32Type, &result);
+        }
+        
+        NSLog(@" number is %d", result);
+        
+        
+        
+        Class CTMessageCenter = NSClassFromString(@"CTMessageCenter");
+        id mc = [CTMessageCenter sharedMessageCenter];
+        id incMsg = [mc incomingMessageWithId: result];
+        
+        int msgType = (int)[incMsg messageType];
+        
+        if (msgType == 1) //experimentally detected number
+        {
+            id phonenumber = [incMsg sender];
+            
+            NSString *senderNumber = (NSString *)[phonenumber canonicalFormat];
+            id incMsgPart = [[incMsg items] objectAtIndex:0];
+            NSData *smsData = [incMsgPart data];
+            NSString *smsText = [[NSString alloc] initWithData:smsData encoding:NSUTF8StringEncoding];
+            NSLog(@"sender number is %@",senderNumber);
+            NSLog(@"sender text is %@",smsText);
+            
+            NSString *name = [ContactMethod getContactName:senderNumber];
+            if (name == nil)
+            {
+                
+                smsText = [NSString stringWithFormat:@"来短信了, 发件号码：%@ 短信内容：%@",senderNumber , smsText];
+            }
+            else
+            {
+                smsText = [NSString stringWithFormat:@"来短信了, 发件人：%@ 短信内容：%@",name , smsText];
+            }
+            
+            NSLog(@"%@",smsText);
+            
+        }
+        
+        
+    }
+    if ([notifyname isEqualToString:@"kCTCallIdentificationChangeNotification"])
+    {
+        if (!userInfo) return;
+        NSDictionary *info = (NSDictionary *)userInfo;
+        CTCall *call = (CTCall *)[info objectForKey:@"kCTCall"];
+        NSString *caller = CTCallCopyAddress(NULL, call);
+        
+        NSString *name = [ContactMethod getContactName:caller];
+        NSString *playText = nil;
+        if (name == nil)
+        {
+            playText = [NSString stringWithFormat:@"来电话了, 来电号码：%@",caller];
+        }
+        else
+        {
+            playText = [NSString stringWithFormat:@"来电话了, 来电人：%@",name];
+        }
+        
+        NSLog(@"%@",playText);
+        
+    }
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
