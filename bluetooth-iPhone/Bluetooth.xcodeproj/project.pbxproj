@@ -348,8 +348,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: wang zeng (F938LBL6VQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wang zeng (F938LBL6VQ)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -360,8 +360,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Bluetooth;
-				PROVISIONING_PROFILE = "38109E21-2A53-4373-80CA-67F479288572";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38109E21-2A53-4373-80CA-67F479288572";
+				PROVISIONING_PROFILE = "B1CB5E8D-6DD6-4AF2-BF75-0E882BA9A63C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B1CB5E8D-6DD6-4AF2-BF75-0E882BA9A63C";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -370,8 +370,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: wang zeng (F938LBL6VQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wang zeng (F938LBL6VQ)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Classes/Application/Bluetooth-Prefix.pch";
@@ -380,8 +380,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Bluetooth;
-				PROVISIONING_PROFILE = "38109E21-2A53-4373-80CA-67F479288572";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38109E21-2A53-4373-80CA-67F479288572";
+				PROVISIONING_PROFILE = "B1CB5E8D-6DD6-4AF2-BF75-0E882BA9A63C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B1CB5E8D-6DD6-4AF2-BF75-0E882BA9A63C";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
