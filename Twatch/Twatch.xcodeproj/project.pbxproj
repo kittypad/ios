@@ -15,6 +15,7 @@
 		427BEF531806A71F004AFB8C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BEF521806A71F004AFB8C /* AppDelegate.m */; };
 		427BEF551806A71F004AFB8C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 427BEF541806A71F004AFB8C /* Images.xcassets */; };
 		427BEF7A1806A8F5004AFB8C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BEF791806A8F5004AFB8C /* RootViewController.m */; };
+		427BEF7D1806AD8B004AFB8C /* SimulateHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BEF7C1806AD8B004AFB8C /* SimulateHomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		427BEF5B1806A71F004AFB8C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		427BEF781806A8F5004AFB8C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = ViewController/RootViewController.h; sourceTree = "<group>"; };
 		427BEF791806A8F5004AFB8C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = ViewController/RootViewController.m; sourceTree = "<group>"; };
+		427BEF7B1806AD8B004AFB8C /* SimulateHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimulateHomeViewController.h; path = ViewController/SimulateHomeViewController.h; sourceTree = "<group>"; };
+		427BEF7C1806AD8B004AFB8C /* SimulateHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimulateHomeViewController.m; path = ViewController/SimulateHomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 			children = (
 				427BEF781806A8F5004AFB8C /* RootViewController.h */,
 				427BEF791806A8F5004AFB8C /* RootViewController.m */,
+				427BEF7B1806AD8B004AFB8C /* SimulateHomeViewController.h */,
+				427BEF7C1806AD8B004AFB8C /* SimulateHomeViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 				427BEF531806A71F004AFB8C /* AppDelegate.m in Sources */,
 				427BEF4F1806A71F004AFB8C /* main.m in Sources */,
 				427BEF7A1806A8F5004AFB8C /* RootViewController.m in Sources */,
+				427BEF7D1806AD8B004AFB8C /* SimulateHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

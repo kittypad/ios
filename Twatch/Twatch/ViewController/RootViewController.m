@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "SimulateHomeViewController.h"
 
 @interface RootViewController (private)
 
@@ -53,12 +54,13 @@
 
 - (void)simulateBtnPressed:(id)sender
 {
-    NSLog(@"haha");
+    SimulateHomeViewController *vc = [[SimulateHomeViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)scanBtnPressed:(id)sender
 {
-    NSLog(@"heihei");
+    
 }
 
 @end
