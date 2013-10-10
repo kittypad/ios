@@ -7,8 +7,11 @@
 //
 
 #import "SimulateHomeViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SimulateHomeViewController ()
+
+@property (nonatomic, strong) UIView *watchView;
 
 @end
 
@@ -26,7 +29,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.watchView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Watch_Width, Watch_Height)];
+    self.watchView.center = self.view.center;
+    self.watchView.backgroundColor = [UIColor redColor];
+    self.watchView.layer.masksToBounds = YES;
+    [self.view addSubview:self.watchView];
 }
 
 - (void)didReceiveMemoryWarning
