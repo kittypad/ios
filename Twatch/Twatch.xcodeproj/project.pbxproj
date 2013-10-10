@@ -84,6 +84,7 @@
 				427BEF711806A75A004AFB8C /* ViewController */,
 				427BEF771806A88B004AFB8C /* Resources */,
 				427BEF491806A71F004AFB8C /* Supporting Files */,
+				427BEF541806A71F004AFB8C /* Images.xcassets */,
 			);
 			path = Twatch;
 			sourceTree = "<group>";
@@ -97,7 +98,6 @@
 				427BEF501806A71F004AFB8C /* Twatch-Prefix.pch */,
 				427BEF511806A71F004AFB8C /* AppDelegate.h */,
 				427BEF521806A71F004AFB8C /* AppDelegate.m */,
-				427BEF541806A71F004AFB8C /* Images.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
