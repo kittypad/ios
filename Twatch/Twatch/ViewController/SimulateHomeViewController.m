@@ -11,7 +11,9 @@
 
 @interface SimulateHomeViewController ()
 
-@property (nonatomic, strong) UIView *watchView;
+//watchBackgroundView本身显示表盘的左右列表，列表被上面的watchView遮住，左右滑动watchView，底部的左右列表显示出来。
+//底部和顶部界面作为watchBackgroundView的subView，使用pangesture进行上下拖动
+@property (nonatomic, strong) UIView *watchBackgroundView;
 
 @end
 
@@ -31,11 +33,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.watchView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Watch_Width, Watch_Height)];
-    self.watchView.center = self.view.center;
-    self.watchView.backgroundColor = [UIColor redColor];
-    self.watchView.layer.masksToBounds = YES;
-    [self.view addSubview:self.watchView];
+    self.watchBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Watch_Width, Watch_Height)];
+    self.watchBackgroundView.center = self.view.center;
+    self.watchBackgroundView.backgroundColor = [UIColor redColor];
+    self.watchBackgroundView.layer.masksToBounds = YES;
+    [self.view addSubview:self.watchBackgroundView];
 }
 
 - (void)didReceiveMemoryWarning

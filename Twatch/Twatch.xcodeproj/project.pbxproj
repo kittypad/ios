@@ -19,6 +19,7 @@
 		DDEC67D51806E97F00F3DD7A /* SimulateHomeViewController+PullDown.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC67D41806E97F00F3DD7A /* SimulateHomeViewController+PullDown.m */; };
 		DDEC67DB1806F90900F3DD7A /* PullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC67DA1806F90900F3DD7A /* PullDownView.m */; };
 		DDEC67DE1806F92500F3DD7A /* PullUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC67DD1806F92500F3DD7A /* PullUpView.m */; };
+		DDEC67E11807010200F3DD7A /* WatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC67E01807010200F3DD7A /* WatchView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		DDEC67DA1806F90900F3DD7A /* PullDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullDownView.m; sourceTree = "<group>"; };
 		DDEC67DC1806F92500F3DD7A /* PullUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullUpView.h; sourceTree = "<group>"; };
 		DDEC67DD1806F92500F3DD7A /* PullUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullUpView.m; sourceTree = "<group>"; };
+		DDEC67DF1807010200F3DD7A /* WatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchView.h; sourceTree = "<group>"; };
+		DDEC67E01807010200F3DD7A /* WatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 				DDEC67DA1806F90900F3DD7A /* PullDownView.m */,
 				DDEC67DC1806F92500F3DD7A /* PullUpView.h */,
 				DDEC67DD1806F92500F3DD7A /* PullUpView.m */,
+				DDEC67DF1807010200F3DD7A /* WatchView.h */,
+				DDEC67E01807010200F3DD7A /* WatchView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDEC67E11807010200F3DD7A /* WatchView.m in Sources */,
 				DDEC67D51806E97F00F3DD7A /* SimulateHomeViewController+PullDown.m in Sources */,
 				DDEC67DB1806F90900F3DD7A /* PullDownView.m in Sources */,
 				427BEF531806A71F004AFB8C /* AppDelegate.m in Sources */,
