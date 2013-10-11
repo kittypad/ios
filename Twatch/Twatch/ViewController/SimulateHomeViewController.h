@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class WatchView;
+
 @interface SimulateHomeViewController : UIViewController
-{
-    UIImageView *_backgroundView;
-    UIScrollView *_scrollView;
-}
+
+@property (nonatomic, strong) WatchView *watchView;
 
 @end

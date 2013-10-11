@@ -1,20 +1,20 @@
 //
-//  PullUpView.m
+//  AppsView.m
 //  Twatch
 //
-//  Created by yixiaoluo on 13-10-10.
-//  Copyright (c) 2013年 龚涛. All rights reserved.
+//  Created by 龚涛 on 10/11/13.
+//  Copyright (c) 2013 龚涛. All rights reserved.
 //
 
-#import "PullUpView.h"
+#import "AppsView.h"
 
-@implementation PullUpView
+@implementation AppsView
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
