@@ -31,13 +31,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     
-    self.watchBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Watch_Width, Watch_Height)];
-    self.watchBackgroundView.center = self.view.center;
-    self.watchBackgroundView.backgroundColor = [UIColor redColor];
-    self.watchBackgroundView.layer.masksToBounds = YES;
-    [self.view addSubview:self.watchBackgroundView];
+    NSLog(@"%f,%f", self.view.frame.size.width, self.view.frame.size.height);
+    
+//    self.view.backgroundColor = [UIColor whiteColor];
+//    
+//    self.watchBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Watch_Width, Watch_Height)];
+//    self.watchBackgroundView.center = self.view.center;
+//    self.watchBackgroundView.backgroundColor = [UIColor redColor];
+//    self.watchBackgroundView.layer.masksToBounds = YES;
+//    [self.view addSubview:self.watchBackgroundView];
 }
 
 - (void)didReceiveMemoryWarning

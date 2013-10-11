@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SimulateHomeViewController : UIViewController
+{
+    UIImageView *_backgroundView;
+    UIScrollView *_scrollView;
+}
 
 @end
