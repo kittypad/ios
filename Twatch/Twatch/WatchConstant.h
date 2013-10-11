@@ -9,9 +9,10 @@
 #ifndef Twatch_WatchConstant_h
 #define Twatch_WatchConstant_h
 
-#define Watch_Height     240
-#define Watch_Width      240
+#define Watch_Height     270.0
+#define Watch_Width      270.0
 
-
+#define Watch_PullDown_Height       20.0
+#define Watch_PullUp_Height         20.0
 
 #endif

@@ -17,6 +17,12 @@
 {
     UIImageView *_backgroundView;
     UIScrollView *_scrollView;
+    UIView *_pullView;
+    
+    CGFloat _lastY;
+    CGFloat _desY;
+    BOOL _isAnimating;
+    BOOL _isUp;
 }
 
 @property (nonatomic, strong) DialView *dialView;

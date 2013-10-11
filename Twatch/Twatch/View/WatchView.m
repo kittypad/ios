@@ -8,6 +8,13 @@
 
 #import "WatchView.h"
 
+@interface WatchView (Private)
+
+- (void)pan:(UIPanGestureRecognizer *)gesture;
+
+@end
+
+
 @implementation WatchView
 
 - (id)initWithFrame:(CGRect)frame
@@ -57,13 +64,55 @@
         
         UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
         [self addGestureRecognizer:gesture];
+        
+        _isAnimating = NO;
     }
     return self;
 }
 
 - (void)pan:(UIPanGestureRecognizer *)gesture
 {
-    
+//    CGPoint p = [gesture locationInView:self];
+//    if (p.y<0 || p.y>self.frame.size.height || _isAnimating) {
+//        return;
+//    }
+//    if (UIGestureRecognizerStateBegan == gesture.state) {
+//        if (_notificationView.frame.origin.y >= -2.0) {
+//            if (p.y > self.frame.size.height-self.pullUpHeight) {
+//                _pullView = _notificationView;
+//                _desY = -self.frame.size.height;
+//                _isUp = YES;
+//            }
+//        }
+//        else if (_switchWatchView.frame.origin.y <= 2.0) {
+//            if (p.y > self.frame.size.height-self.pullDownHeight) {
+//                _pullView = _switchWatchView;
+//                _desY = self.frame.size.height;
+//                _isUp = NO;
+//            }
+//        }
+//        else if (p.y < self.pullDownHeight) {
+//            _pullView = _notificationView;
+//            _desY = 0.0;
+//            _isUp = NO;
+//        }
+//        else if (p.y > self.frame.size.height-self.pullUpHeight) {
+//            _pullView = _switchWatchView;
+//            _desY = 0.0;
+//            _isUp = YES;
+//        }
+//    }
+//    else if (!_pullView) {
+//        return;
+//    }
+//    else if ((UIGestureRecognizerStateEnded == gesture.state) &&
+//             (UIGestureRecognizerStateCancelled == gesture.state)) {
+//        
+//    }
+//    else {
+//        
+//    }
+//    _lastY = p.y;
 }
 
 @end
