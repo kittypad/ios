@@ -18,6 +18,8 @@
     UIImageView *_backgroundView;
     UIScrollView *_scrollView;
     UIView *_pullView;
+    UIView *_topView;
+    UIView *_bottomView;
     
     CGFloat _lastY;
     CGFloat _desY;
