@@ -12,6 +12,8 @@
 
 - (void)pullUp:(UIPanGestureRecognizer *)gesture;
 - (void)pullDown:(UIPanGestureRecognizer *)gesture;
+- (void)pullUpFinished;
+- (void)pullDownFinished;
 
 @end
 
@@ -57,19 +59,20 @@
         subViewFrame.origin.x = 0.0;
         subViewFrame.origin.y = -bounds.size.height;
         subViewFrame.size.height = bounds.size.height+Watch_PullDown_Height;
-        
         _topView = [[UIView alloc] initWithFrame:subViewFrame];
-        _topView.backgroundColor = [UIColor grayColor];
+        _topView.backgroundColor = [UIColor clearColor];
         [self addSubview:_topView];
         
         _notificationView = [[NotificationView alloc] initWithFrame:bounds];
         [_topView addSubview:_notificationView];
         
+        //通知界面的上拉View
         UIView *pullUpView1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, bounds.size.height-Watch_PullUp_Height, bounds.size.width, Watch_PullUp_Height)];
         [_topView addSubview:pullUpView1];
         UIPanGestureRecognizer *g1 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pullUp:)];
         [pullUpView1 addGestureRecognizer:g1];
         
+        //通知界面的下拉View
         UIView *pullDownView1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, bounds.size.height, bounds.size.width, Watch_PullDown_Height)];
         [_topView addSubview:pullDownView1];
         UIPanGestureRecognizer *g3 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pullDown:)];
@@ -78,9 +81,8 @@
         //切换手表样式界面
         subViewFrame.origin.y = bounds.size.height-Watch_PullUp_Height;
         subViewFrame.size.height = bounds.size.height+Watch_PullUp_Height;
-        
         _bottomView = [[UIView alloc] initWithFrame:subViewFrame];
-        _bottomView.backgroundColor = [UIColor grayColor];
+        _bottomView.backgroundColor = [UIColor clearColor];
         [self addSubview:_bottomView];
         
         subViewFrame = bounds;
@@ -88,11 +90,13 @@
         _switchWatchView = [[SwitchWatchView alloc] initWithFrame:subViewFrame];
         [_bottomView addSubview:_switchWatchView];
         
+        //切换手表样式界面的上拉View
         UIView *pullUpView2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, bounds.size.width, Watch_PullUp_Height)];
         [_bottomView addSubview:pullUpView2];
         UIPanGestureRecognizer *g2 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pullUp:)];
         [pullUpView2 addGestureRecognizer:g2];
         
+        //切换手表样式界面的下拉View
         UIView *pullDownView2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, Watch_PullUp_Height, bounds.size.width, Watch_PullDown_Height)];
         [_bottomView addSubview:pullDownView2];
         UIPanGestureRecognizer *g4 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pullDown:)];
@@ -108,6 +112,9 @@
     CGPoint p = [gesture locationInView:self];
 //    NSLog(@"%f", p.y);
     if (p.y<0 || p.y>self.frame.size.height || _isAnimating) {
+        if (_pullView) {
+            [self pullUpFinished];
+        }
         return;
     }
     if (UIGestureRecognizerStateBegan == gesture.state) {
@@ -118,36 +125,7 @@
     }
     else if ((UIGestureRecognizerStateEnded == gesture.state) ||
              (UIGestureRecognizerStateCancelled == gesture.state)) {
-        CGRect frame = _pullView.frame;
-        if (_topView == _pullView) {
-            if (frame.origin.y<-Watch_PullUp_Height) {
-                _desY = -self.frame.size.height;
-            }
-            else {
-                _desY = 0.0;
-                _bottomView.hidden = NO;
-            }
-        }
-        else {
-            if (frame.origin.y<self.frame.size.height-2*Watch_PullUp_Height) {
-                _desY = -Watch_PullUp_Height;
-            }
-            else {
-                _desY = self.frame.size.height-Watch_PullUp_Height;
-                _topView.hidden = NO;
-            }
-        }
-        _isAnimating = YES;
-        [UIView animateWithDuration:0.3
-                         animations:^(void){
-                             CGRect frame = _pullView.frame;
-                             frame.origin.y = _desY;
-                             _pullView.frame = frame;
-                         }
-                         completion:^(BOOL finished){
-                             _isAnimating = NO;
-                         }];
-        _pullView = nil;
+        [self pullUpFinished];
     }
     else {
         CGRect frame = _pullView.frame;
@@ -159,7 +137,98 @@
 
 - (void)pullDown:(UIPanGestureRecognizer *)gesture
 {
-    
+    CGPoint p = [gesture locationInView:self];
+    //    NSLog(@"%f", p.y);
+    if (p.y<0 || p.y>self.frame.size.height || _isAnimating) {
+        if (_pullView) {
+            [self pullDownFinished];
+        }
+        return;
+    }
+    if (UIGestureRecognizerStateBegan == gesture.state) {
+        _pullView = gesture.view.superview;
+        if (_topView == _pullView) {
+            _bottomView.hidden = YES;
+        }
+    }
+    else if ((UIGestureRecognizerStateEnded == gesture.state) ||
+             (UIGestureRecognizerStateCancelled == gesture.state)) {
+        [self pullDownFinished];
+    }
+    else {
+        CGRect frame = _pullView.frame;
+        frame.origin.y += p.y-_lastY;
+        _pullView.frame = frame;
+    }
+    _lastY = p.y;
+}
+
+- (void)pullUpFinished
+{
+    CGRect frame = _pullView.frame;
+    if (_topView == _pullView) {
+        if (frame.origin.y<-Watch_PullUp_Height) {
+            _desY = -self.frame.size.height;
+            _bottomView.hidden = NO;
+        }
+        else {
+            _desY = 0.0;
+        }
+    }
+    else {
+        if (frame.origin.y<self.frame.size.height-2*Watch_PullUp_Height) {
+            _desY = -Watch_PullUp_Height;
+        }
+        else {
+            _desY = self.frame.size.height-Watch_PullUp_Height;
+            _topView.hidden = NO;
+        }
+    }
+    _isAnimating = YES;
+    [UIView animateWithDuration:0.3
+                     animations:^(void){
+                         CGRect frame = _pullView.frame;
+                         frame.origin.y = _desY;
+                         _pullView.frame = frame;
+                     }
+                     completion:^(BOOL finished){
+                         _isAnimating = NO;
+                     }];
+    _pullView = nil;
+}
+
+- (void)pullDownFinished
+{
+    CGRect frame = _pullView.frame;
+    if (_topView == _pullView) {
+        if (frame.origin.y>-self.frame.size.height+Watch_PullDown_Height) {
+            _desY = 0.0;
+        }
+        else {
+            _desY = -self.frame.size.height;
+            _bottomView.hidden = NO;
+        }
+    }
+    else {
+        if (frame.origin.y>-Watch_PullUp_Height+Watch_PullDown_Height) {
+            _desY = self.frame.size.height-Watch_PullUp_Height;
+            _topView.hidden = NO;
+        }
+        else {
+            _desY = -Watch_PullUp_Height;
+        }
+    }
+    _isAnimating = YES;
+    [UIView animateWithDuration:0.3
+                     animations:^(void){
+                         CGRect frame = _pullView.frame;
+                         frame.origin.y = _desY;
+                         _pullView.frame = frame;
+                     }
+                     completion:^(BOOL finished){
+                         _isAnimating = NO;
+                     }];
+    _pullView = nil;
 }
 
 @end
