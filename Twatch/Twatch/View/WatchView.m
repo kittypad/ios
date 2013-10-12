@@ -110,7 +110,7 @@
 - (void)pullUp:(UIPanGestureRecognizer *)gesture
 {
     CGPoint p = [gesture locationInView:self];
-//    NSLog(@"%f", p.y);
+    //手指滑出手表界面或动画正在进行时结束上拉
     if (p.y<0 || p.y>self.frame.size.height || _isAnimating) {
         if (_pullView) {
             [self pullUpFinished];
@@ -119,6 +119,7 @@
     }
     if (UIGestureRecognizerStateBegan == gesture.state) {
         _pullView = gesture.view.superview;
+        //通知切换表盘界面出现时，通知界面隐藏
         if (_bottomView == _pullView) {
             _topView.hidden = YES;
         }
@@ -138,7 +139,7 @@
 - (void)pullDown:(UIPanGestureRecognizer *)gesture
 {
     CGPoint p = [gesture locationInView:self];
-    //    NSLog(@"%f", p.y);
+    //手指滑出手表界面或动画正在进行时结束下拉
     if (p.y<0 || p.y>self.frame.size.height || _isAnimating) {
         if (_pullView) {
             [self pullDownFinished];
@@ -147,6 +148,7 @@
     }
     if (UIGestureRecognizerStateBegan == gesture.state) {
         _pullView = gesture.view.superview;
+        //通知界面出现时，切换表盘界面隐藏
         if (_topView == _pullView) {
             _bottomView.hidden = YES;
         }
