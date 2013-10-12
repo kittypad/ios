@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    SettingAppType = 100,
+}AppsType;
+
 @interface AppsView : UIView
+
+- (void)playVideo:(id)sender;
 
 @end

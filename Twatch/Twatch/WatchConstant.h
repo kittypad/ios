@@ -9,6 +9,9 @@
 #ifndef Twatch_WatchConstant_h
 #define Twatch_WatchConstant_h
 
+#define PlayAppsVideoNotification @"PlayAppsVideoNotification"
+#define PlayAppsVideoDidPlayFinishedNotification @"PlayAppsVideoDidPlayFinishedNotification"
+
 #define Watch_Height     270.0
 #define Watch_Width      270.0
 

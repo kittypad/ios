@@ -8,13 +8,14 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "TMNavigationController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UINavigationController *rootViewController = [[UINavigationController alloc] initWithRootViewController:[[RootViewController alloc] initWithNibName:nil bundle:nil]];
+    TMNavigationController *rootViewController = [[TMNavigationController alloc] initWithRootViewController:[[RootViewController alloc] initWithNibName:nil bundle:nil]];
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     return YES;
