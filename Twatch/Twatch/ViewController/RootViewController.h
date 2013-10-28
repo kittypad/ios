@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DEAPeripheralTableViewCell.h"
 
 @interface RootViewController : UIViewController
-{
-    UIButton *_simulateButton;
-    UIButton *_scanButton;
-}
+
+/// TableViewCell for a connectable peripheral.
+@property (strong, nonatomic) IBOutlet DEAPeripheralTableViewCell *tvCell;
+
+/// TableView for found peripherals
+@property (strong, nonatomic) IBOutlet UITableView *peripheralsTableView;
+
+@property (nonatomic, strong) UIButton *scanButton;
 
 @end

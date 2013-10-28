@@ -7,44 +7,101 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A16E8BB18114C6200DAFAE5 /* ClockView.m */; };
+		0A16E8BE18114D6600DAFAE5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */; };
+		0A46EA91180D7C0B00E7A6C1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */; };
 		427BEF431806A71F004AFB8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF421806A71F004AFB8C /* Foundation.framework */; };
 		427BEF451806A71F004AFB8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF441806A71F004AFB8C /* CoreGraphics.framework */; };
 		427BEF471806A71F004AFB8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF461806A71F004AFB8C /* UIKit.framework */; };
-		427BEF4D1806A71F004AFB8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 427BEF4B1806A71F004AFB8C /* InfoPlist.strings */; };
-		427BEF4F1806A71F004AFB8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BEF4E1806A71F004AFB8C /* main.m */; };
-		427BEF531806A71F004AFB8C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BEF521806A71F004AFB8C /* AppDelegate.m */; };
-		427BEF551806A71F004AFB8C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 427BEF541806A71F004AFB8C /* Images.xcassets */; };
 		427BEF7A1806A8F5004AFB8C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BEF791806A8F5004AFB8C /* RootViewController.m */; };
-		427BEF7D1806AD8B004AFB8C /* SimulateHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BEF7C1806AD8B004AFB8C /* SimulateHomeViewController.m */; };
 		42B5C9231808F85900D2FB27 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B5C9221808F85900D2FB27 /* MediaPlayer.framework */; };
 		42B5C9271809198B00D2FB27 /* TMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B5C9261809198B00D2FB27 /* TMNavigationController.m */; };
 		42B5C92F1809295B00D2FB27 /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B5C92E1809295B00D2FB27 /* MovieViewController.m */; };
 		42BBD88218079B330094E39D /* DialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88118079B330094E39D /* DialView.m */; };
 		42BBD88518079B550094E39D /* AppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88418079B550094E39D /* AppsView.m */; };
 		42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88718079B7B0094E39D /* CommonAppsView.m */; };
-		42BBD88B1807A0170094E39D /* NotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88A1807A0170094E39D /* NotificationView.m */; };
-		42BBD88E1807A06C0094E39D /* SwitchWatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88D1807A06C0094E39D /* SwitchWatchView.m */; };
 		42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD8901807A4BE0094E39D /* AllAppsView.m */; };
+		D6E9D71A1816BF2600819346 /* RootViewController+BottomNavigationbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E9D7191816BF2600819346 /* RootViewController+BottomNavigationbar.m */; };
+		DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */; };
+		DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA1180AC0FC0001C200 /* PSTCollectionView.m */; };
+		DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA3180AC0FC0001C200 /* PSTCollectionViewCell.m */; };
+		DD1BFBBD180AC0FC0001C200 /* PSTCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA6180AC0FC0001C200 /* PSTCollectionViewController.m */; };
+		DD1BFBBE180AC0FC0001C200 /* PSTCollectionViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA8180AC0FC0001C200 /* PSTCollectionViewData.m */; };
+		DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBAA180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m */; };
+		DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBAC180AC0FC0001C200 /* PSTCollectionViewItemKey.m */; };
+		DD1BFBC1180AC0FC0001C200 /* PSTCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBAF180AC0FC0001C200 /* PSTCollectionViewLayout.m */; };
+		DD1BFBC2180AC0FC0001C200 /* PSTCollectionViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBB1180AC0FC0001C200 /* PSTCollectionViewUpdateItem.m */; };
+		DD1BFBC3180AC0FC0001C200 /* PSTGridLayoutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBB3180AC0FC0001C200 /* PSTGridLayoutInfo.m */; };
+		DD1BFBC4180AC0FC0001C200 /* PSTGridLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBB5180AC0FC0001C200 /* PSTGridLayoutItem.m */; };
+		DD1BFBC5180AC0FC0001C200 /* PSTGridLayoutRow.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBB7180AC0FC0001C200 /* PSTGridLayoutRow.m */; };
+		DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBB9180AC0FC0001C200 /* PSTGridLayoutSection.m */; };
+		DD1BFBCA180AC1FD0001C200 /* SwitchWatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBC9180AC1FD0001C200 /* SwitchWatchView.m */; };
+		DD1BFBCD180AC24E0001C200 /* WatchVell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBCC180AC24E0001C200 /* WatchVell.m */; };
+		DD1BFBD0180AC7280001C200 /* FactoryMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBCF180AC7280001C200 /* FactoryMethods.m */; };
+		DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBD5180AD5D90001C200 /* NotificationView.m */; };
+		DD1BFBD9180AD6020001C200 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBD8180AD6020001C200 /* NotificationCell.m */; };
+		DD247F4818124A9200D9E6D4 /* DEABaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247EF418124A9200D9E6D4 /* DEABaseViewController.m */; };
+		DD247F4918124A9200D9E6D4 /* DEAPeripheralsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247EF618124A9200D9E6D4 /* DEAPeripheralsViewController.m */; };
+		DD247F4A18124A9200D9E6D4 /* DEASensorTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247EF818124A9200D9E6D4 /* DEASensorTagViewController.m */; };
+		DD247F4B18124A9200D9E6D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD247EF918124A9200D9E6D4 /* Images.xcassets */; };
+		DD247F4C18124A9200D9E6D4 /* DEACentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247EFC18124A9200D9E6D4 /* DEACentralManager.m */; };
+		DD247F4D18124A9200D9E6D4 /* DEASensorTag.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247EFF18124A9200D9E6D4 /* DEASensorTag.m */; };
+		DD247F4E18124A9200D9E6D4 /* DEASensorTagUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0118124A9200D9E6D4 /* DEASensorTagUtils.m */; };
+		DD247F4F18124A9200D9E6D4 /* DEAAccelerometerService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0418124A9200D9E6D4 /* DEAAccelerometerService.m */; };
+		DD247F5018124A9200D9E6D4 /* DEABarometerService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0618124A9200D9E6D4 /* DEABarometerService.m */; };
+		DD247F5118124A9200D9E6D4 /* DEABaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0818124A9200D9E6D4 /* DEABaseService.m */; };
+		DD247F5218124A9200D9E6D4 /* DEADeviceInfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0A18124A9200D9E6D4 /* DEADeviceInfoService.m */; };
+		DD247F5318124A9200D9E6D4 /* DEAGyroscopeService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0C18124A9200D9E6D4 /* DEAGyroscopeService.m */; };
+		DD247F5418124A9200D9E6D4 /* DEAHumidityService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0E18124A9200D9E6D4 /* DEAHumidityService.m */; };
+		DD247F5518124A9200D9E6D4 /* DEAMagnetometerService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1018124A9200D9E6D4 /* DEAMagnetometerService.m */; };
+		DD247F5618124A9200D9E6D4 /* DEASimpleKeysService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1218124A9200D9E6D4 /* DEASimpleKeysService.m */; };
+		DD247F5718124A9200D9E6D4 /* DEATemperatureService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1418124A9200D9E6D4 /* DEATemperatureService.m */; };
+		DD247F5818124A9200D9E6D4 /* TISensorTag.c in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1518124A9200D9E6D4 /* TISensorTag.c */; };
+		DD247F5918124A9200D9E6D4 /* DEAPeripheralTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1918124A9200D9E6D4 /* DEAPeripheralTableViewCell.m */; };
+		DD247F5A18124A9200D9E6D4 /* DEAAccelerometerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1D18124A9200D9E6D4 /* DEAAccelerometerViewCell.m */; };
+		DD247F5B18124A9200D9E6D4 /* DEABarometerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1F18124A9200D9E6D4 /* DEABarometerViewCell.m */; };
+		DD247F5C18124A9200D9E6D4 /* DEADeviceInfoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2118124A9200D9E6D4 /* DEADeviceInfoViewCell.m */; };
+		DD247F5D18124A9200D9E6D4 /* DEAGyroscopeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2318124A9200D9E6D4 /* DEAGyroscopeViewCell.m */; };
+		DD247F5E18124A9200D9E6D4 /* DEAHumidityViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2518124A9200D9E6D4 /* DEAHumidityViewCell.m */; };
+		DD247F5F18124A9200D9E6D4 /* DEAMagnetometerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2718124A9200D9E6D4 /* DEAMagnetometerViewCell.m */; };
+		DD247F6018124A9200D9E6D4 /* DEASimpleKeysViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2918124A9200D9E6D4 /* DEASimpleKeysViewCell.m */; };
+		DD247F6118124A9200D9E6D4 /* DEATemperatureViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2B18124A9200D9E6D4 /* DEATemperatureViewCell.m */; };
+		DD247F6218124A9200D9E6D4 /* DEADefaultTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2E18124A9200D9E6D4 /* DEADefaultTheme.m */; };
+		DD247F6318124A9200D9E6D4 /* DEATheme.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3018124A9200D9E6D4 /* DEATheme.m */; };
+		DD247F6418124A9200D9E6D4 /* DEAPeripheralsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD247F3218124A9200D9E6D4 /* DEAPeripheralsViewController.xib */; };
+		DD247F6518124A9200D9E6D4 /* DEAPeripheralTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD247F3318124A9200D9E6D4 /* DEAPeripheralTableViewCell.xib */; };
+		DD247F6618124A9200D9E6D4 /* DEASensorTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD247F3418124A9200D9E6D4 /* DEASensorTagViewController.xib */; };
+		DD247F6718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m */; };
+		DD247F6818124A9200D9E6D4 /* YMS128.c in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3818124A9200D9E6D4 /* YMS128.c */; };
+		DD247F6918124A9200D9E6D4 /* YMSCBCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3B18124A9200D9E6D4 /* YMSCBCentralManager.m */; };
+		DD247F6A18124A9200D9E6D4 /* YMSCBCharacteristic.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3D18124A9200D9E6D4 /* YMSCBCharacteristic.m */; };
+		DD247F6B18124A9200D9E6D4 /* YMSCBDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3F18124A9200D9E6D4 /* YMSCBDescriptor.m */; };
+		DD247F6C18124A9200D9E6D4 /* YMSCBPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F4118124A9200D9E6D4 /* YMSCBPeripheral.m */; };
+		DD247F6D18124A9200D9E6D4 /* YMSCBService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F4318124A9200D9E6D4 /* YMSCBService.m */; };
+		DD247F6E18124A9200D9E6D4 /* YMSCBStoredPeripherals.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F4518124A9200D9E6D4 /* YMSCBStoredPeripherals.m */; };
+		DD247F6F18124A9200D9E6D4 /* YMSCBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F4718124A9200D9E6D4 /* YMSCBUtils.m */; };
+		DD247F7518126A5000D9E6D4 /* RootViewController+ScanPeripharals.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7418126A5000D9E6D4 /* RootViewController+ScanPeripharals.m */; };
+		DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7818126A8500D9E6D4 /* AppDelegate.m */; };
+		DD247F8018126A8500D9E6D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD247F7918126A8500D9E6D4 /* InfoPlist.strings */; };
+		DD247F8118126A8500D9E6D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7B18126A8500D9E6D4 /* main.m */; };
+		DD247F8418126A9C00D9E6D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD247F8318126A9C00D9E6D4 /* Images.xcassets */; };
+		DD2480611816DD0000D9E6D4 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2480601816DD0000D9E6D4 /* ShopViewController.m */; };
+		DD2480641816E5A600D9E6D4 /* ShopViewController+NaivBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2480631816E5A600D9E6D4 /* ShopViewController+NaivBar.m */; };
 		DDEC67E11807010200F3DD7A /* WatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC67E01807010200F3DD7A /* WatchView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A16E8BA18114C6200DAFAE5 /* ClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClockView.h; path = WatchTypeView/ClockView.h; sourceTree = "<group>"; };
+		0A16E8BB18114C6200DAFAE5 /* ClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClockView.m; path = WatchTypeView/ClockView.m; sourceTree = "<group>"; };
+		0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		427BEF3F1806A71F004AFB8C /* Twatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		427BEF421806A71F004AFB8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		427BEF441806A71F004AFB8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		427BEF461806A71F004AFB8C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		427BEF4A1806A71F004AFB8C /* Twatch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Twatch-Info.plist"; sourceTree = "<group>"; };
-		427BEF4C1806A71F004AFB8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		427BEF4E1806A71F004AFB8C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		427BEF501806A71F004AFB8C /* Twatch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Twatch-Prefix.pch"; sourceTree = "<group>"; };
-		427BEF511806A71F004AFB8C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		427BEF521806A71F004AFB8C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		427BEF541806A71F004AFB8C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		427BEF5B1806A71F004AFB8C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		427BEF781806A8F5004AFB8C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = ViewController/RootViewController.h; sourceTree = "<group>"; };
 		427BEF791806A8F5004AFB8C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = ViewController/RootViewController.m; sourceTree = "<group>"; };
-		427BEF7B1806AD8B004AFB8C /* SimulateHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimulateHomeViewController.h; path = ViewController/SimulateHomeViewController.h; sourceTree = "<group>"; };
-		427BEF7C1806AD8B004AFB8C /* SimulateHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimulateHomeViewController.m; path = ViewController/SimulateHomeViewController.m; sourceTree = "<group>"; };
 		42B5C91E1808EE7E00D2FB27 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		42B5C91F1808EE7E00D2FB27 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		42B5C9221808F85900D2FB27 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -58,13 +115,139 @@
 		42BBD88418079B550094E39D /* AppsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppsView.m; sourceTree = "<group>"; };
 		42BBD88618079B7B0094E39D /* CommonAppsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAppsView.h; sourceTree = "<group>"; };
 		42BBD88718079B7B0094E39D /* CommonAppsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAppsView.m; sourceTree = "<group>"; };
-		42BBD8891807A0170094E39D /* NotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationView.h; sourceTree = "<group>"; };
-		42BBD88A1807A0170094E39D /* NotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationView.m; sourceTree = "<group>"; };
-		42BBD88C1807A06C0094E39D /* SwitchWatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchWatchView.h; sourceTree = "<group>"; };
-		42BBD88D1807A06C0094E39D /* SwitchWatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchWatchView.m; sourceTree = "<group>"; };
 		42BBD88F1807A4BE0094E39D /* AllAppsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAppsView.h; sourceTree = "<group>"; };
 		42BBD8901807A4BE0094E39D /* AllAppsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAppsView.m; sourceTree = "<group>"; };
-		DDEC67D61806F74C00F3DD7A /* WatchConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchConstant.h; sourceTree = "<group>"; };
+		D6E9D7181816BF2600819346 /* RootViewController+BottomNavigationbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RootViewController+BottomNavigationbar.h"; path = "ViewController/RootViewController+BottomNavigationbar.h"; sourceTree = "<group>"; };
+		D6E9D7191816BF2600819346 /* RootViewController+BottomNavigationbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RootViewController+BottomNavigationbar.m"; path = "ViewController/RootViewController+BottomNavigationbar.m"; sourceTree = "<group>"; };
+		DD1BFB9E180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
+		DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+PSTCollectionViewAdditions.m"; sourceTree = "<group>"; };
+		DD1BFBA0180AC0FC0001C200 /* PSTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionView.h; sourceTree = "<group>"; };
+		DD1BFBA1180AC0FC0001C200 /* PSTCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionView.m; sourceTree = "<group>"; };
+		DD1BFBA2180AC0FC0001C200 /* PSTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewCell.h; sourceTree = "<group>"; };
+		DD1BFBA3180AC0FC0001C200 /* PSTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewCell.m; sourceTree = "<group>"; };
+		DD1BFBA4180AC0FC0001C200 /* PSTCollectionViewCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewCommon.h; sourceTree = "<group>"; };
+		DD1BFBA5180AC0FC0001C200 /* PSTCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewController.h; sourceTree = "<group>"; };
+		DD1BFBA6180AC0FC0001C200 /* PSTCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewController.m; sourceTree = "<group>"; };
+		DD1BFBA7180AC0FC0001C200 /* PSTCollectionViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewData.h; sourceTree = "<group>"; };
+		DD1BFBA8180AC0FC0001C200 /* PSTCollectionViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewData.m; sourceTree = "<group>"; };
+		DD1BFBA9180AC0FC0001C200 /* PSTCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		DD1BFBAA180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		DD1BFBAB180AC0FC0001C200 /* PSTCollectionViewItemKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewItemKey.h; sourceTree = "<group>"; };
+		DD1BFBAC180AC0FC0001C200 /* PSTCollectionViewItemKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewItemKey.m; sourceTree = "<group>"; };
+		DD1BFBAD180AC0FC0001C200 /* PSTCollectionViewLayout+Internals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PSTCollectionViewLayout+Internals.h"; sourceTree = "<group>"; };
+		DD1BFBAE180AC0FC0001C200 /* PSTCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewLayout.h; sourceTree = "<group>"; };
+		DD1BFBAF180AC0FC0001C200 /* PSTCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewLayout.m; sourceTree = "<group>"; };
+		DD1BFBB0180AC0FC0001C200 /* PSTCollectionViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionViewUpdateItem.h; sourceTree = "<group>"; };
+		DD1BFBB1180AC0FC0001C200 /* PSTCollectionViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTCollectionViewUpdateItem.m; sourceTree = "<group>"; };
+		DD1BFBB2180AC0FC0001C200 /* PSTGridLayoutInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutInfo.h; sourceTree = "<group>"; };
+		DD1BFBB3180AC0FC0001C200 /* PSTGridLayoutInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutInfo.m; sourceTree = "<group>"; };
+		DD1BFBB4180AC0FC0001C200 /* PSTGridLayoutItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutItem.h; sourceTree = "<group>"; };
+		DD1BFBB5180AC0FC0001C200 /* PSTGridLayoutItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutItem.m; sourceTree = "<group>"; };
+		DD1BFBB6180AC0FC0001C200 /* PSTGridLayoutRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutRow.h; sourceTree = "<group>"; };
+		DD1BFBB7180AC0FC0001C200 /* PSTGridLayoutRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutRow.m; sourceTree = "<group>"; };
+		DD1BFBB8180AC0FC0001C200 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
+		DD1BFBB9180AC0FC0001C200 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
+		DD1BFBC8180AC1FD0001C200 /* SwitchWatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchWatchView.h; sourceTree = "<group>"; };
+		DD1BFBC9180AC1FD0001C200 /* SwitchWatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchWatchView.m; sourceTree = "<group>"; };
+		DD1BFBCB180AC24E0001C200 /* WatchVell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchVell.h; sourceTree = "<group>"; };
+		DD1BFBCC180AC24E0001C200 /* WatchVell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchVell.m; sourceTree = "<group>"; };
+		DD1BFBCE180AC7280001C200 /* FactoryMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FactoryMethods.h; sourceTree = "<group>"; };
+		DD1BFBCF180AC7280001C200 /* FactoryMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FactoryMethods.m; sourceTree = "<group>"; };
+		DD1BFBD4180AD5D90001C200 /* NotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationView.h; sourceTree = "<group>"; };
+		DD1BFBD5180AD5D90001C200 /* NotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationView.m; sourceTree = "<group>"; };
+		DD1BFBD7180AD6020001C200 /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCell.h; sourceTree = "<group>"; };
+		DD1BFBD8180AD6020001C200 /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCell.m; sourceTree = "<group>"; };
+		DD247EF318124A9200D9E6D4 /* DEABaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEABaseViewController.h; sourceTree = "<group>"; };
+		DD247EF418124A9200D9E6D4 /* DEABaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEABaseViewController.m; sourceTree = "<group>"; };
+		DD247EF518124A9200D9E6D4 /* DEAPeripheralsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAPeripheralsViewController.h; sourceTree = "<group>"; };
+		DD247EF618124A9200D9E6D4 /* DEAPeripheralsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAPeripheralsViewController.m; sourceTree = "<group>"; };
+		DD247EF718124A9200D9E6D4 /* DEASensorTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEASensorTagViewController.h; sourceTree = "<group>"; };
+		DD247EF818124A9200D9E6D4 /* DEASensorTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEASensorTagViewController.m; sourceTree = "<group>"; };
+		DD247EF918124A9200D9E6D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DD247EFB18124A9200D9E6D4 /* DEACentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEACentralManager.h; sourceTree = "<group>"; };
+		DD247EFC18124A9200D9E6D4 /* DEACentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEACentralManager.m; sourceTree = "<group>"; };
+		DD247EFE18124A9200D9E6D4 /* DEASensorTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEASensorTag.h; sourceTree = "<group>"; };
+		DD247EFF18124A9200D9E6D4 /* DEASensorTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEASensorTag.m; sourceTree = "<group>"; };
+		DD247F0018124A9200D9E6D4 /* DEASensorTagUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEASensorTagUtils.h; sourceTree = "<group>"; };
+		DD247F0118124A9200D9E6D4 /* DEASensorTagUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEASensorTagUtils.m; sourceTree = "<group>"; };
+		DD247F0318124A9200D9E6D4 /* DEAAccelerometerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAAccelerometerService.h; sourceTree = "<group>"; };
+		DD247F0418124A9200D9E6D4 /* DEAAccelerometerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAAccelerometerService.m; sourceTree = "<group>"; };
+		DD247F0518124A9200D9E6D4 /* DEABarometerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEABarometerService.h; sourceTree = "<group>"; };
+		DD247F0618124A9200D9E6D4 /* DEABarometerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEABarometerService.m; sourceTree = "<group>"; };
+		DD247F0718124A9200D9E6D4 /* DEABaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEABaseService.h; sourceTree = "<group>"; };
+		DD247F0818124A9200D9E6D4 /* DEABaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEABaseService.m; sourceTree = "<group>"; };
+		DD247F0918124A9200D9E6D4 /* DEADeviceInfoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEADeviceInfoService.h; sourceTree = "<group>"; };
+		DD247F0A18124A9200D9E6D4 /* DEADeviceInfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEADeviceInfoService.m; sourceTree = "<group>"; };
+		DD247F0B18124A9200D9E6D4 /* DEAGyroscopeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAGyroscopeService.h; sourceTree = "<group>"; };
+		DD247F0C18124A9200D9E6D4 /* DEAGyroscopeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAGyroscopeService.m; sourceTree = "<group>"; };
+		DD247F0D18124A9200D9E6D4 /* DEAHumidityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAHumidityService.h; sourceTree = "<group>"; };
+		DD247F0E18124A9200D9E6D4 /* DEAHumidityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAHumidityService.m; sourceTree = "<group>"; };
+		DD247F0F18124A9200D9E6D4 /* DEAMagnetometerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAMagnetometerService.h; sourceTree = "<group>"; };
+		DD247F1018124A9200D9E6D4 /* DEAMagnetometerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAMagnetometerService.m; sourceTree = "<group>"; };
+		DD247F1118124A9200D9E6D4 /* DEASimpleKeysService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEASimpleKeysService.h; sourceTree = "<group>"; };
+		DD247F1218124A9200D9E6D4 /* DEASimpleKeysService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEASimpleKeysService.m; sourceTree = "<group>"; };
+		DD247F1318124A9200D9E6D4 /* DEATemperatureService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEATemperatureService.h; sourceTree = "<group>"; };
+		DD247F1418124A9200D9E6D4 /* DEATemperatureService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEATemperatureService.m; sourceTree = "<group>"; };
+		DD247F1518124A9200D9E6D4 /* TISensorTag.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TISensorTag.c; sourceTree = "<group>"; };
+		DD247F1618124A9200D9E6D4 /* TISensorTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISensorTag.h; sourceTree = "<group>"; };
+		DD247F1818124A9200D9E6D4 /* DEAPeripheralTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAPeripheralTableViewCell.h; sourceTree = "<group>"; };
+		DD247F1918124A9200D9E6D4 /* DEAPeripheralTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAPeripheralTableViewCell.m; sourceTree = "<group>"; };
+		DD247F1A18124A9200D9E6D4 /* DEAStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAStyleSheet.h; sourceTree = "<group>"; };
+		DD247F1C18124A9200D9E6D4 /* DEAAccelerometerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAAccelerometerViewCell.h; sourceTree = "<group>"; };
+		DD247F1D18124A9200D9E6D4 /* DEAAccelerometerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAAccelerometerViewCell.m; sourceTree = "<group>"; };
+		DD247F1E18124A9200D9E6D4 /* DEABarometerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEABarometerViewCell.h; sourceTree = "<group>"; };
+		DD247F1F18124A9200D9E6D4 /* DEABarometerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEABarometerViewCell.m; sourceTree = "<group>"; };
+		DD247F2018124A9200D9E6D4 /* DEADeviceInfoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEADeviceInfoViewCell.h; sourceTree = "<group>"; };
+		DD247F2118124A9200D9E6D4 /* DEADeviceInfoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEADeviceInfoViewCell.m; sourceTree = "<group>"; };
+		DD247F2218124A9200D9E6D4 /* DEAGyroscopeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAGyroscopeViewCell.h; sourceTree = "<group>"; };
+		DD247F2318124A9200D9E6D4 /* DEAGyroscopeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAGyroscopeViewCell.m; sourceTree = "<group>"; };
+		DD247F2418124A9200D9E6D4 /* DEAHumidityViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAHumidityViewCell.h; sourceTree = "<group>"; };
+		DD247F2518124A9200D9E6D4 /* DEAHumidityViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAHumidityViewCell.m; sourceTree = "<group>"; };
+		DD247F2618124A9200D9E6D4 /* DEAMagnetometerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAMagnetometerViewCell.h; sourceTree = "<group>"; };
+		DD247F2718124A9200D9E6D4 /* DEAMagnetometerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAMagnetometerViewCell.m; sourceTree = "<group>"; };
+		DD247F2818124A9200D9E6D4 /* DEASimpleKeysViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEASimpleKeysViewCell.h; sourceTree = "<group>"; };
+		DD247F2918124A9200D9E6D4 /* DEASimpleKeysViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEASimpleKeysViewCell.m; sourceTree = "<group>"; };
+		DD247F2A18124A9200D9E6D4 /* DEATemperatureViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEATemperatureViewCell.h; sourceTree = "<group>"; };
+		DD247F2B18124A9200D9E6D4 /* DEATemperatureViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEATemperatureViewCell.m; sourceTree = "<group>"; };
+		DD247F2D18124A9200D9E6D4 /* DEADefaultTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEADefaultTheme.h; sourceTree = "<group>"; };
+		DD247F2E18124A9200D9E6D4 /* DEADefaultTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEADefaultTheme.m; sourceTree = "<group>"; };
+		DD247F2F18124A9200D9E6D4 /* DEATheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEATheme.h; sourceTree = "<group>"; };
+		DD247F3018124A9200D9E6D4 /* DEATheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEATheme.m; sourceTree = "<group>"; };
+		DD247F3218124A9200D9E6D4 /* DEAPeripheralsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DEAPeripheralsViewController.xib; sourceTree = "<group>"; };
+		DD247F3318124A9200D9E6D4 /* DEAPeripheralTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DEAPeripheralTableViewCell.xib; sourceTree = "<group>"; };
+		DD247F3418124A9200D9E6D4 /* DEASensorTagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DEASensorTagViewController.xib; sourceTree = "<group>"; };
+		DD247F3618124A9200D9E6D4 /* NSMutableArray+fifoQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+fifoQueue.h"; sourceTree = "<group>"; };
+		DD247F3718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+fifoQueue.m"; sourceTree = "<group>"; };
+		DD247F3818124A9200D9E6D4 /* YMS128.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = YMS128.c; sourceTree = "<group>"; };
+		DD247F3918124A9200D9E6D4 /* YMS128.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMS128.h; sourceTree = "<group>"; };
+		DD247F3A18124A9200D9E6D4 /* YMSCBCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBCentralManager.h; sourceTree = "<group>"; };
+		DD247F3B18124A9200D9E6D4 /* YMSCBCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBCentralManager.m; sourceTree = "<group>"; };
+		DD247F3C18124A9200D9E6D4 /* YMSCBCharacteristic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBCharacteristic.h; sourceTree = "<group>"; };
+		DD247F3D18124A9200D9E6D4 /* YMSCBCharacteristic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBCharacteristic.m; sourceTree = "<group>"; };
+		DD247F3E18124A9200D9E6D4 /* YMSCBDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBDescriptor.h; sourceTree = "<group>"; };
+		DD247F3F18124A9200D9E6D4 /* YMSCBDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBDescriptor.m; sourceTree = "<group>"; };
+		DD247F4018124A9200D9E6D4 /* YMSCBPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBPeripheral.h; sourceTree = "<group>"; };
+		DD247F4118124A9200D9E6D4 /* YMSCBPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBPeripheral.m; sourceTree = "<group>"; };
+		DD247F4218124A9200D9E6D4 /* YMSCBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBService.h; sourceTree = "<group>"; };
+		DD247F4318124A9200D9E6D4 /* YMSCBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBService.m; sourceTree = "<group>"; };
+		DD247F4418124A9200D9E6D4 /* YMSCBStoredPeripherals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBStoredPeripherals.h; sourceTree = "<group>"; };
+		DD247F4518124A9200D9E6D4 /* YMSCBStoredPeripherals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBStoredPeripherals.m; sourceTree = "<group>"; };
+		DD247F4618124A9200D9E6D4 /* YMSCBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBUtils.h; sourceTree = "<group>"; };
+		DD247F4718124A9200D9E6D4 /* YMSCBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBUtils.m; sourceTree = "<group>"; };
+		DD247F7318126A5000D9E6D4 /* RootViewController+ScanPeripharals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RootViewController+ScanPeripharals.h"; path = "ViewController/RootViewController+ScanPeripharals.h"; sourceTree = "<group>"; };
+		DD247F7418126A5000D9E6D4 /* RootViewController+ScanPeripharals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RootViewController+ScanPeripharals.m"; path = "ViewController/RootViewController+ScanPeripharals.m"; sourceTree = "<group>"; };
+		DD247F7718126A8500D9E6D4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DD247F7818126A8500D9E6D4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DD247F7A18126A8500D9E6D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DD247F7B18126A8500D9E6D4 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DD247F7C18126A8500D9E6D4 /* Twatch-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Twatch-Info.plist"; sourceTree = "<group>"; };
+		DD247F7D18126A8500D9E6D4 /* Twatch-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Twatch-Prefix.pch"; sourceTree = "<group>"; };
+		DD247F7E18126A8500D9E6D4 /* WatchConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchConstant.h; sourceTree = "<group>"; };
+		DD247F8318126A9C00D9E6D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
+		DD24805F1816DD0000D9E6D4 /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
+		DD2480601816DD0000D9E6D4 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
+		DD2480621816E5A600D9E6D4 /* ShopViewController+NaivBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShopViewController+NaivBar.h"; sourceTree = "<group>"; };
+		DD2480631816E5A600D9E6D4 /* ShopViewController+NaivBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShopViewController+NaivBar.m"; sourceTree = "<group>"; };
 		DDEC67DF1807010200F3DD7A /* WatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchView.h; sourceTree = "<group>"; };
 		DDEC67E01807010200F3DD7A /* WatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +257,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A16E8BE18114D6600DAFAE5 /* QuartzCore.framework in Frameworks */,
+				0A46EA91180D7C0B00E7A6C1 /* GameKit.framework in Frameworks */,
 				42B5C9231808F85900D2FB27 /* MediaPlayer.framework in Frameworks */,
 				427BEF451806A71F004AFB8C /* CoreGraphics.framework in Frameworks */,
 				427BEF471806A71F004AFB8C /* UIKit.framework in Frameworks */,
@@ -84,10 +269,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A16E8B918114BB900DAFAE5 /* WatchTypeView */ = {
+			isa = PBXGroup;
+			children = (
+				0A16E8BA18114C6200DAFAE5 /* ClockView.h */,
+				0A16E8BB18114C6200DAFAE5 /* ClockView.m */,
+			);
+			name = WatchTypeView;
+			sourceTree = "<group>";
+		};
 		427BEF361806A71F004AFB8C = {
 			isa = PBXGroup;
 			children = (
 				427BEF481806A71F004AFB8C /* Twatch */,
+				DD247F7618126A8500D9E6D4 /* Supporting Files */,
 				427BEF411806A71F004AFB8C /* Frameworks */,
 				427BEF401806A71F004AFB8C /* Products */,
 			);
@@ -104,6 +299,8 @@
 		427BEF411806A71F004AFB8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */,
+				0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */,
 				42B5C9221808F85900D2FB27 /* MediaPlayer.framework */,
 				42B5C91E1808EE7E00D2FB27 /* AVFoundation.framework */,
 				42B5C91F1808EE7E00D2FB27 /* CoreVideo.framework */,
@@ -121,25 +318,10 @@
 				427BEF711806A75A004AFB8C /* ViewController */,
 				DDEC67D71806F8E600F3DD7A /* Model */,
 				DDEC67D81806F8E600F3DD7A /* View */,
+				DD1BFB9C180AC0FC0001C200 /* ThirdParty */,
 				427BEF771806A88B004AFB8C /* Resources */,
-				427BEF491806A71F004AFB8C /* Supporting Files */,
-				427BEF541806A71F004AFB8C /* Images.xcassets */,
 			);
 			path = Twatch;
-			sourceTree = "<group>";
-		};
-		427BEF491806A71F004AFB8C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				427BEF4A1806A71F004AFB8C /* Twatch-Info.plist */,
-				427BEF4B1806A71F004AFB8C /* InfoPlist.strings */,
-				427BEF4E1806A71F004AFB8C /* main.m */,
-				427BEF501806A71F004AFB8C /* Twatch-Prefix.pch */,
-				427BEF511806A71F004AFB8C /* AppDelegate.h */,
-				427BEF521806A71F004AFB8C /* AppDelegate.m */,
-				DDEC67D61806F74C00F3DD7A /* WatchConstant.h */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		427BEF711806A75A004AFB8C /* ViewController */ = {
@@ -149,10 +331,16 @@
 				42B5C9261809198B00D2FB27 /* TMNavigationController.m */,
 				427BEF781806A8F5004AFB8C /* RootViewController.h */,
 				427BEF791806A8F5004AFB8C /* RootViewController.m */,
-				427BEF7B1806AD8B004AFB8C /* SimulateHomeViewController.h */,
-				427BEF7C1806AD8B004AFB8C /* SimulateHomeViewController.m */,
+				DD247F7318126A5000D9E6D4 /* RootViewController+ScanPeripharals.h */,
+				DD247F7418126A5000D9E6D4 /* RootViewController+ScanPeripharals.m */,
+				D6E9D7181816BF2600819346 /* RootViewController+BottomNavigationbar.h */,
+				D6E9D7191816BF2600819346 /* RootViewController+BottomNavigationbar.m */,
 				42B5C92D1809295B00D2FB27 /* MovieViewController.h */,
 				42B5C92E1809295B00D2FB27 /* MovieViewController.m */,
+				DD24805F1816DD0000D9E6D4 /* ShopViewController.h */,
+				DD2480601816DD0000D9E6D4 /* ShopViewController.m */,
+				DD2480621816E5A600D9E6D4 /* ShopViewController+NaivBar.h */,
+				DD2480631816E5A600D9E6D4 /* ShopViewController+NaivBar.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -160,13 +348,261 @@
 		427BEF771806A88B004AFB8C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD247F8318126A9C00D9E6D4 /* Images.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		DD1BFB9C180AC0FC0001C200 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				DD247E8E1812498900D9E6D4 /* PeripheralManager */,
+				DD1BFB9D180AC0FC0001C200 /* PSTCollectionView */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		DD1BFB9D180AC0FC0001C200 /* PSTCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				DD1BFB9E180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.h */,
+				DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */,
+				DD1BFBA0180AC0FC0001C200 /* PSTCollectionView.h */,
+				DD1BFBA1180AC0FC0001C200 /* PSTCollectionView.m */,
+				DD1BFBA2180AC0FC0001C200 /* PSTCollectionViewCell.h */,
+				DD1BFBA3180AC0FC0001C200 /* PSTCollectionViewCell.m */,
+				DD1BFBA4180AC0FC0001C200 /* PSTCollectionViewCommon.h */,
+				DD1BFBA5180AC0FC0001C200 /* PSTCollectionViewController.h */,
+				DD1BFBA6180AC0FC0001C200 /* PSTCollectionViewController.m */,
+				DD1BFBA7180AC0FC0001C200 /* PSTCollectionViewData.h */,
+				DD1BFBA8180AC0FC0001C200 /* PSTCollectionViewData.m */,
+				DD1BFBA9180AC0FC0001C200 /* PSTCollectionViewFlowLayout.h */,
+				DD1BFBAA180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m */,
+				DD1BFBAB180AC0FC0001C200 /* PSTCollectionViewItemKey.h */,
+				DD1BFBAC180AC0FC0001C200 /* PSTCollectionViewItemKey.m */,
+				DD1BFBAD180AC0FC0001C200 /* PSTCollectionViewLayout+Internals.h */,
+				DD1BFBAE180AC0FC0001C200 /* PSTCollectionViewLayout.h */,
+				DD1BFBAF180AC0FC0001C200 /* PSTCollectionViewLayout.m */,
+				DD1BFBB0180AC0FC0001C200 /* PSTCollectionViewUpdateItem.h */,
+				DD1BFBB1180AC0FC0001C200 /* PSTCollectionViewUpdateItem.m */,
+				DD1BFBB2180AC0FC0001C200 /* PSTGridLayoutInfo.h */,
+				DD1BFBB3180AC0FC0001C200 /* PSTGridLayoutInfo.m */,
+				DD1BFBB4180AC0FC0001C200 /* PSTGridLayoutItem.h */,
+				DD1BFBB5180AC0FC0001C200 /* PSTGridLayoutItem.m */,
+				DD1BFBB6180AC0FC0001C200 /* PSTGridLayoutRow.h */,
+				DD1BFBB7180AC0FC0001C200 /* PSTGridLayoutRow.m */,
+				DD1BFBB8180AC0FC0001C200 /* PSTGridLayoutSection.h */,
+				DD1BFBB9180AC0FC0001C200 /* PSTGridLayoutSection.m */,
+			);
+			path = PSTCollectionView;
+			sourceTree = "<group>";
+		};
+		DD1BFBC7180AC1FD0001C200 /* TheViewPulledUp */ = {
+			isa = PBXGroup;
+			children = (
+				DD1BFBC8180AC1FD0001C200 /* SwitchWatchView.h */,
+				DD1BFBC9180AC1FD0001C200 /* SwitchWatchView.m */,
+				DD1BFBCB180AC24E0001C200 /* WatchVell.h */,
+				DD1BFBCC180AC24E0001C200 /* WatchVell.m */,
+			);
+			path = TheViewPulledUp;
+			sourceTree = "<group>";
+		};
+		DD1BFBD3180AD5D90001C200 /* TheViewPulledDown */ = {
+			isa = PBXGroup;
+			children = (
+				DD1BFBD4180AD5D90001C200 /* NotificationView.h */,
+				DD1BFBD5180AD5D90001C200 /* NotificationView.m */,
+				DD1BFBD7180AD6020001C200 /* NotificationCell.h */,
+				DD1BFBD8180AD6020001C200 /* NotificationCell.m */,
+			);
+			path = TheViewPulledDown;
+			sourceTree = "<group>";
+		};
+		DD247E8E1812498900D9E6D4 /* PeripheralManager */ = {
+			isa = PBXGroup;
+			children = (
+				DD247EF118124A9200D9E6D4 /* View */,
+				DD247F3518124A9200D9E6D4 /* YmsCoreBluetooth */,
+			);
+			path = PeripheralManager;
+			sourceTree = "<group>";
+		};
+		DD247EF118124A9200D9E6D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD247EF218124A9200D9E6D4 /* Controllers */,
+				DD247EF918124A9200D9E6D4 /* Images.xcassets */,
+				DD247EFA18124A9200D9E6D4 /* Services */,
+				DD247F1718124A9200D9E6D4 /* UI */,
+				DD247F3118124A9200D9E6D4 /* XIBs */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD247EF218124A9200D9E6D4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD247EF318124A9200D9E6D4 /* DEABaseViewController.h */,
+				DD247EF418124A9200D9E6D4 /* DEABaseViewController.m */,
+				DD247EF518124A9200D9E6D4 /* DEAPeripheralsViewController.h */,
+				DD247EF618124A9200D9E6D4 /* DEAPeripheralsViewController.m */,
+				DD247EF718124A9200D9E6D4 /* DEASensorTagViewController.h */,
+				DD247EF818124A9200D9E6D4 /* DEASensorTagViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DD247EFA18124A9200D9E6D4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DD247EFB18124A9200D9E6D4 /* DEACentralManager.h */,
+				DD247EFC18124A9200D9E6D4 /* DEACentralManager.m */,
+				DD247EFD18124A9200D9E6D4 /* SensorTag */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DD247EFD18124A9200D9E6D4 /* SensorTag */ = {
+			isa = PBXGroup;
+			children = (
+				DD247EFE18124A9200D9E6D4 /* DEASensorTag.h */,
+				DD247EFF18124A9200D9E6D4 /* DEASensorTag.m */,
+				DD247F0018124A9200D9E6D4 /* DEASensorTagUtils.h */,
+				DD247F0118124A9200D9E6D4 /* DEASensorTagUtils.m */,
+				DD247F0218124A9200D9E6D4 /* Services */,
+				DD247F1518124A9200D9E6D4 /* TISensorTag.c */,
+				DD247F1618124A9200D9E6D4 /* TISensorTag.h */,
+			);
+			path = SensorTag;
+			sourceTree = "<group>";
+		};
+		DD247F0218124A9200D9E6D4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DD247F0318124A9200D9E6D4 /* DEAAccelerometerService.h */,
+				DD247F0418124A9200D9E6D4 /* DEAAccelerometerService.m */,
+				DD247F0518124A9200D9E6D4 /* DEABarometerService.h */,
+				DD247F0618124A9200D9E6D4 /* DEABarometerService.m */,
+				DD247F0718124A9200D9E6D4 /* DEABaseService.h */,
+				DD247F0818124A9200D9E6D4 /* DEABaseService.m */,
+				DD247F0918124A9200D9E6D4 /* DEADeviceInfoService.h */,
+				DD247F0A18124A9200D9E6D4 /* DEADeviceInfoService.m */,
+				DD247F0B18124A9200D9E6D4 /* DEAGyroscopeService.h */,
+				DD247F0C18124A9200D9E6D4 /* DEAGyroscopeService.m */,
+				DD247F0D18124A9200D9E6D4 /* DEAHumidityService.h */,
+				DD247F0E18124A9200D9E6D4 /* DEAHumidityService.m */,
+				DD247F0F18124A9200D9E6D4 /* DEAMagnetometerService.h */,
+				DD247F1018124A9200D9E6D4 /* DEAMagnetometerService.m */,
+				DD247F1118124A9200D9E6D4 /* DEASimpleKeysService.h */,
+				DD247F1218124A9200D9E6D4 /* DEASimpleKeysService.m */,
+				DD247F1318124A9200D9E6D4 /* DEATemperatureService.h */,
+				DD247F1418124A9200D9E6D4 /* DEATemperatureService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DD247F1718124A9200D9E6D4 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DD247F1818124A9200D9E6D4 /* DEAPeripheralTableViewCell.h */,
+				DD247F1918124A9200D9E6D4 /* DEAPeripheralTableViewCell.m */,
+				DD247F1A18124A9200D9E6D4 /* DEAStyleSheet.h */,
+				DD247F1B18124A9200D9E6D4 /* Sensors */,
+				DD247F2C18124A9200D9E6D4 /* Themes */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		DD247F1B18124A9200D9E6D4 /* Sensors */ = {
+			isa = PBXGroup;
+			children = (
+				DD247F1C18124A9200D9E6D4 /* DEAAccelerometerViewCell.h */,
+				DD247F1D18124A9200D9E6D4 /* DEAAccelerometerViewCell.m */,
+				DD247F1E18124A9200D9E6D4 /* DEABarometerViewCell.h */,
+				DD247F1F18124A9200D9E6D4 /* DEABarometerViewCell.m */,
+				DD247F2018124A9200D9E6D4 /* DEADeviceInfoViewCell.h */,
+				DD247F2118124A9200D9E6D4 /* DEADeviceInfoViewCell.m */,
+				DD247F2218124A9200D9E6D4 /* DEAGyroscopeViewCell.h */,
+				DD247F2318124A9200D9E6D4 /* DEAGyroscopeViewCell.m */,
+				DD247F2418124A9200D9E6D4 /* DEAHumidityViewCell.h */,
+				DD247F2518124A9200D9E6D4 /* DEAHumidityViewCell.m */,
+				DD247F2618124A9200D9E6D4 /* DEAMagnetometerViewCell.h */,
+				DD247F2718124A9200D9E6D4 /* DEAMagnetometerViewCell.m */,
+				DD247F2818124A9200D9E6D4 /* DEASimpleKeysViewCell.h */,
+				DD247F2918124A9200D9E6D4 /* DEASimpleKeysViewCell.m */,
+				DD247F2A18124A9200D9E6D4 /* DEATemperatureViewCell.h */,
+				DD247F2B18124A9200D9E6D4 /* DEATemperatureViewCell.m */,
+			);
+			path = Sensors;
+			sourceTree = "<group>";
+		};
+		DD247F2C18124A9200D9E6D4 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				DD247F2D18124A9200D9E6D4 /* DEADefaultTheme.h */,
+				DD247F2E18124A9200D9E6D4 /* DEADefaultTheme.m */,
+				DD247F2F18124A9200D9E6D4 /* DEATheme.h */,
+				DD247F3018124A9200D9E6D4 /* DEATheme.m */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		DD247F3118124A9200D9E6D4 /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				DD247F3218124A9200D9E6D4 /* DEAPeripheralsViewController.xib */,
+				DD247F3318124A9200D9E6D4 /* DEAPeripheralTableViewCell.xib */,
+				DD247F3418124A9200D9E6D4 /* DEASensorTagViewController.xib */,
+			);
+			path = XIBs;
+			sourceTree = "<group>";
+		};
+		DD247F3518124A9200D9E6D4 /* YmsCoreBluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				DD247F3618124A9200D9E6D4 /* NSMutableArray+fifoQueue.h */,
+				DD247F3718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m */,
+				DD247F3818124A9200D9E6D4 /* YMS128.c */,
+				DD247F3918124A9200D9E6D4 /* YMS128.h */,
+				DD247F3A18124A9200D9E6D4 /* YMSCBCentralManager.h */,
+				DD247F3B18124A9200D9E6D4 /* YMSCBCentralManager.m */,
+				DD247F3C18124A9200D9E6D4 /* YMSCBCharacteristic.h */,
+				DD247F3D18124A9200D9E6D4 /* YMSCBCharacteristic.m */,
+				DD247F3E18124A9200D9E6D4 /* YMSCBDescriptor.h */,
+				DD247F3F18124A9200D9E6D4 /* YMSCBDescriptor.m */,
+				DD247F4018124A9200D9E6D4 /* YMSCBPeripheral.h */,
+				DD247F4118124A9200D9E6D4 /* YMSCBPeripheral.m */,
+				DD247F4218124A9200D9E6D4 /* YMSCBService.h */,
+				DD247F4318124A9200D9E6D4 /* YMSCBService.m */,
+				DD247F4418124A9200D9E6D4 /* YMSCBStoredPeripherals.h */,
+				DD247F4518124A9200D9E6D4 /* YMSCBStoredPeripherals.m */,
+				DD247F4618124A9200D9E6D4 /* YMSCBUtils.h */,
+				DD247F4718124A9200D9E6D4 /* YMSCBUtils.m */,
+			);
+			path = YmsCoreBluetooth;
+			sourceTree = "<group>";
+		};
+		DD247F7618126A8500D9E6D4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DD247F7718126A8500D9E6D4 /* AppDelegate.h */,
+				DD247F7818126A8500D9E6D4 /* AppDelegate.m */,
+				DD247F7918126A8500D9E6D4 /* InfoPlist.strings */,
+				DD247F7B18126A8500D9E6D4 /* main.m */,
+				DD247F7C18126A8500D9E6D4 /* Twatch-Info.plist */,
+				DD247F7D18126A8500D9E6D4 /* Twatch-Prefix.pch */,
+				DD247F7E18126A8500D9E6D4 /* WatchConstant.h */,
+			);
+			name = "Supporting Files";
+			path = "Twatch/Supporting Files";
 			sourceTree = "<group>";
 		};
 		DDEC67D71806F8E600F3DD7A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DD1BFBCE180AC7280001C200 /* FactoryMethods.h */,
+				DD1BFBCF180AC7280001C200 /* FactoryMethods.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -174,6 +610,9 @@
 		DDEC67D81806F8E600F3DD7A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0A16E8B918114BB900DAFAE5 /* WatchTypeView */,
+				DD1BFBD3180AD5D90001C200 /* TheViewPulledDown */,
+				DD1BFBC7180AC1FD0001C200 /* TheViewPulledUp */,
 				DDEC67DF1807010200F3DD7A /* WatchView.h */,
 				DDEC67E01807010200F3DD7A /* WatchView.m */,
 				42BBD88018079B330094E39D /* DialView.h */,
@@ -184,10 +623,6 @@
 				42BBD8901807A4BE0094E39D /* AllAppsView.m */,
 				42BBD88618079B7B0094E39D /* CommonAppsView.h */,
 				42BBD88718079B7B0094E39D /* CommonAppsView.m */,
-				42BBD8891807A0170094E39D /* NotificationView.h */,
-				42BBD88A1807A0170094E39D /* NotificationView.m */,
-				42BBD88C1807A06C0094E39D /* SwitchWatchView.h */,
-				42BBD88D1807A06C0094E39D /* SwitchWatchView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,8 +678,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				427BEF4D1806A71F004AFB8C /* InfoPlist.strings in Resources */,
-				427BEF551806A71F004AFB8C /* Images.xcassets in Resources */,
+				DD247F4B18124A9200D9E6D4 /* Images.xcassets in Resources */,
+				DD247F6618124A9200D9E6D4 /* DEASensorTagViewController.xib in Resources */,
+				DD247F6418124A9200D9E6D4 /* DEAPeripheralsViewController.xib in Resources */,
+				DD247F6518124A9200D9E6D4 /* DEAPeripheralTableViewCell.xib in Resources */,
+				DD247F8418126A9C00D9E6D4 /* Images.xcassets in Resources */,
+				DD247F8018126A8500D9E6D4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,29 +694,85 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD1BFBC4180AC0FC0001C200 /* PSTGridLayoutItem.m in Sources */,
+				DD247F5F18124A9200D9E6D4 /* DEAMagnetometerViewCell.m in Sources */,
+				DD247F5118124A9200D9E6D4 /* DEABaseService.m in Sources */,
+				DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */,
+				DD1BFBD9180AD6020001C200 /* NotificationCell.m in Sources */,
 				42BBD88518079B550094E39D /* AppsView.m in Sources */,
-				42BBD88B1807A0170094E39D /* NotificationView.m in Sources */,
+				DD1BFBBE180AC0FC0001C200 /* PSTCollectionViewData.m in Sources */,
+				DD247F5618124A9200D9E6D4 /* DEASimpleKeysService.m in Sources */,
+				DD247F6718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m in Sources */,
+				DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */,
+				DD1BFBC2180AC0FC0001C200 /* PSTCollectionViewUpdateItem.m in Sources */,
+				DD247F6B18124A9200D9E6D4 /* YMSCBDescriptor.m in Sources */,
+				DD247F4D18124A9200D9E6D4 /* DEASensorTag.m in Sources */,
+				DD247F7518126A5000D9E6D4 /* RootViewController+ScanPeripharals.m in Sources */,
+				DD247F4E18124A9200D9E6D4 /* DEASensorTagUtils.m in Sources */,
+				DD1BFBBD180AC0FC0001C200 /* PSTCollectionViewController.m in Sources */,
+				DD1BFBCD180AC24E0001C200 /* WatchVell.m in Sources */,
 				42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */,
+				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
+				DD247F5718124A9200D9E6D4 /* DEATemperatureService.m in Sources */,
+				DD247F4C18124A9200D9E6D4 /* DEACentralManager.m in Sources */,
+				DD247F6018124A9200D9E6D4 /* DEASimpleKeysViewCell.m in Sources */,
+				DD1BFBD0180AC7280001C200 /* FactoryMethods.m in Sources */,
+				DD247F5818124A9200D9E6D4 /* TISensorTag.c in Sources */,
+				DD2480611816DD0000D9E6D4 /* ShopViewController.m in Sources */,
 				42BBD88218079B330094E39D /* DialView.m in Sources */,
+				DD247F4918124A9200D9E6D4 /* DEAPeripheralsViewController.m in Sources */,
+				DD247F5018124A9200D9E6D4 /* DEABarometerService.m in Sources */,
 				42B5C9271809198B00D2FB27 /* TMNavigationController.m in Sources */,
 				DDEC67E11807010200F3DD7A /* WatchView.m in Sources */,
 				42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */,
-				427BEF531806A71F004AFB8C /* AppDelegate.m in Sources */,
-				427BEF4F1806A71F004AFB8C /* main.m in Sources */,
+				DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */,
+				DD247F5418124A9200D9E6D4 /* DEAHumidityService.m in Sources */,
+				DD1BFBCA180AC1FD0001C200 /* SwitchWatchView.m in Sources */,
+				DD247F5A18124A9200D9E6D4 /* DEAAccelerometerViewCell.m in Sources */,
+				DD247F6E18124A9200D9E6D4 /* YMSCBStoredPeripherals.m in Sources */,
+				DD1BFBC1180AC0FC0001C200 /* PSTCollectionViewLayout.m in Sources */,
+				DD247F6818124A9200D9E6D4 /* YMS128.c in Sources */,
+				DD247F5518124A9200D9E6D4 /* DEAMagnetometerService.m in Sources */,
+				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
+				DD247F6318124A9200D9E6D4 /* DEATheme.m in Sources */,
+				D6E9D71A1816BF2600819346 /* RootViewController+BottomNavigationbar.m in Sources */,
+				DD247F4A18124A9200D9E6D4 /* DEASensorTagViewController.m in Sources */,
+				DD247F6918124A9200D9E6D4 /* YMSCBCentralManager.m in Sources */,
+				DD247F5D18124A9200D9E6D4 /* DEAGyroscopeViewCell.m in Sources */,
+				DD247F4818124A9200D9E6D4 /* DEABaseViewController.m in Sources */,
+				DD247F6C18124A9200D9E6D4 /* YMSCBPeripheral.m in Sources */,
 				42B5C92F1809295B00D2FB27 /* MovieViewController.m in Sources */,
+				DD247F5E18124A9200D9E6D4 /* DEAHumidityViewCell.m in Sources */,
+				DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */,
+				DD247F6118124A9200D9E6D4 /* DEATemperatureViewCell.m in Sources */,
+				DD247F5C18124A9200D9E6D4 /* DEADeviceInfoViewCell.m in Sources */,
+				DD247F4F18124A9200D9E6D4 /* DEAAccelerometerService.m in Sources */,
+				DD247F5B18124A9200D9E6D4 /* DEABarometerViewCell.m in Sources */,
+				DD247F6218124A9200D9E6D4 /* DEADefaultTheme.m in Sources */,
 				427BEF7A1806A8F5004AFB8C /* RootViewController.m in Sources */,
-				42BBD88E1807A06C0094E39D /* SwitchWatchView.m in Sources */,
-				427BEF7D1806AD8B004AFB8C /* SimulateHomeViewController.m in Sources */,
+				DD247F6D18124A9200D9E6D4 /* YMSCBService.m in Sources */,
+				DD247F5218124A9200D9E6D4 /* DEADeviceInfoService.m in Sources */,
+				DD1BFBC3180AC0FC0001C200 /* PSTGridLayoutInfo.m in Sources */,
+				DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
+				DD247F6A18124A9200D9E6D4 /* YMSCBCharacteristic.m in Sources */,
+				DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */,
+				DD2480641816E5A600D9E6D4 /* ShopViewController+NaivBar.m in Sources */,
+				DD1BFBC5180AC0FC0001C200 /* PSTGridLayoutRow.m in Sources */,
+				DD247F5318124A9200D9E6D4 /* DEAGyroscopeService.m in Sources */,
+				DD247F5918124A9200D9E6D4 /* DEAPeripheralTableViewCell.m in Sources */,
+				DD247F6F18124A9200D9E6D4 /* YMSCBUtils.m in Sources */,
+				DD247F8118126A8500D9E6D4 /* main.m in Sources */,
+				0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		427BEF4B1806A71F004AFB8C /* InfoPlist.strings */ = {
+		DD247F7918126A8500D9E6D4 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				427BEF4C1806A71F004AFB8C /* en */,
+				DD247F7A18126A8500D9E6D4 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -364,9 +859,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Twatch/Twatch-Prefix.pch";
-				INFOPLIST_FILE = "Twatch/Twatch-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				GCC_PREFIX_HEADER = "Twatch/Supporting Files/Twatch-Prefix.pch";
+				INFOPLIST_FILE = "Twatch/Supporting Files/Twatch-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -379,9 +874,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Twatch/Twatch-Prefix.pch";
-				INFOPLIST_FILE = "Twatch/Twatch-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				GCC_PREFIX_HEADER = "Twatch/Supporting Files/Twatch-Prefix.pch";
+				INFOPLIST_FILE = "Twatch/Supporting Files/Twatch-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

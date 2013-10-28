@@ -10,6 +10,9 @@
 
 typedef enum {
     SettingAppType = 100,
+    MusicAppType,
+    RunningAppType,
+    WeatherAppType
 }AppsType;
 
 @interface AppsView : UIView

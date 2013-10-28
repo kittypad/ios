@@ -14,13 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor redColor];
-        
-        UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(10.0, 10.0, 50.0, 30.0)];
-        [settingButton setTitle:@"设置" forState:UIControlStateNormal];
-        [settingButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
-        settingButton.tag = SettingAppType;
-        [self addSubview:settingButton];
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

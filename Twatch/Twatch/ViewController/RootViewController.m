@@ -7,12 +7,16 @@
 //
 
 #import "RootViewController.h"
-#import "SimulateHomeViewController.h"
+#import "RootViewController+ScanPeripharals.h"
+#import "RootViewController+BottomNavigationbar.h"
+#import <QuartzCore/QuartzCore.h>
+#import "WatchView.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import "MovieViewController.h"
 
-@interface RootViewController (private)
+@interface RootViewController ()
 
-- (void)simulateBtnPressed:(id)sender;
-- (void)scanBtnPressed:(id)sender;
+@property (nonatomic, strong) WatchView *watchView;
 
 @end
 
@@ -32,18 +36,27 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBarHidden = YES;
-    self.view.backgroundColor = [UIColor greenColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"rooView_bg.png"]];
     
-    _simulateButton = [[UIButton alloc] initWithFrame:CGRectMake(70.0, 300.0, 55.0, 30.0)];
-    [_simulateButton setTitle:@"模拟" forState:UIControlStateNormal];
-    [_simulateButton addTarget:self action:@selector(simulateBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_simulateButton];
+    UIImage *img = [UIImage imageNamed:@"simulator.png"];
+    UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
+    bgView.image = img;
+    bgView.center = self.view.center;
+    [self.view addSubview:bgView];
     
-    _scanButton = [[UIButton alloc] initWithFrame:CGRectMake(195.0, 300.0, 55.0, 30.0)];
-    [_scanButton setTitle:@"扫描" forState:UIControlStateNormal];
-    [_scanButton addTarget:self action:@selector(scanBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_scanButton];
+    self.watchView = [[WatchView alloc] initWithFrame:CGRectMake(0, 0, Watch_Width, Watch_Height)];
+    self.watchView.center = self.view.center;
+    self.watchView.frame = CGRectOffset(self.watchView.frame, -2, -2);
+    self.watchView.layer.masksToBounds = YES;
+    [self.view addSubview:self.watchView];
+    bgView.center = CGPointMake(self.view.center.x, self.view.center.y + 5);
     
+    [self prepareBottomNavigationbar];
+    [self prepareCentralManager];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAppsVideo:) name:PlayAppsVideoNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayDidFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,15 +65,28 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)simulateBtnPressed:(id)sender
+- (void)playAppsVideo:(NSNotification *)notice
 {
-    SimulateHomeViewController *vc = [[SimulateHomeViewController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
+    NSString *name = [notice.userInfo objectForKey:@"name"];
+    NSString *type = [notice.userInfo objectForKey:@"type"];
+    if (name && name.length>0 && type && type.length>0) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:type];
+        NSLog(@"%@", path);
+        if (path && path.length>0) {
+            NSURL *url = [NSURL fileURLWithPath:path];
+            MovieViewController *_moviePlayerViewController = [[MovieViewController alloc] initWithContentURL:url];
+            [self presentViewController:_moviePlayerViewController animated:YES completion:^(void){}];
+        }
+    }
 }
 
-- (void)scanBtnPressed:(id)sender
+- (void)videoPlayDidFinished:(NSNotification *)notice
 {
-    
+    [self dismissViewControllerAnimated:YES completion:^(void){}];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 @end

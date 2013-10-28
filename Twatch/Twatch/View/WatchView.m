@@ -8,7 +8,7 @@
 
 #import "WatchView.h"
 
-@interface WatchView (Private)
+@interface WatchView ()
 
 - (void)pullUp:(UIPanGestureRecognizer *)gesture;
 - (void)pullDown:(UIPanGestureRecognizer *)gesture;
@@ -19,7 +19,6 @@
 
 
 @implementation WatchView
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -36,7 +35,7 @@
         _scrollView.pagingEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.bounces = NO;
-        _scrollView.backgroundColor = [UIColor purpleColor];
+        _scrollView.backgroundColor = [UIColor clearColor];
         [self addSubview:_scrollView];
         
         CGRect subViewFrame = bounds;
@@ -49,6 +48,8 @@
         //表盘界面
         _dialView = [[DialView alloc] initWithFrame:subViewFrame];
         [_scrollView addSubview:_dialView];
+        [_dialView updateWatchViewWithType:WatchType_plate];
+        
         subViewFrame.origin.x += subViewFrame.size.width;
         
         //所有Apps界面
@@ -65,6 +66,9 @@
         
         _notificationView = [[NotificationView alloc] initWithFrame:bounds];
         [_topView addSubview:_notificationView];
+        _notificationView.selectANotificationBlock = ^(id notificationInfo){
+            NSLog(@"选择了通知: %@", notificationInfo);
+        };
         
         //通知界面的上拉View
         UIView *pullUpView1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, bounds.size.height-Watch_PullUp_Height, bounds.size.width, Watch_PullUp_Height)];
@@ -89,6 +93,24 @@
         subViewFrame.origin.y = Watch_PullUp_Height;
         _switchWatchView = [[SwitchWatchView alloc] initWithFrame:subViewFrame];
         [_bottomView addSubview:_switchWatchView];
+        
+        __weak typeof(self) weakself = self;
+        __weak typeof(_topView) top = _topView;
+        __weak typeof(_bottomView) bottom = _bottomView;
+        _switchWatchView.selectAWatchBlock = ^(SwitchWatchView *view, WatchType type){
+            if (weakself.dialView.currentType == type){
+                NSLog(@"重复选择了手表样式 : %d", type); return;
+            }
+            
+            NSLog(@"选择了手表样式 : %d", type);
+            [weakself.dialView updateWatchViewWithType:type];
+            
+            top.hidden = NO; bottom.hidden = NO;
+            
+            [UIView animateWithDuration:.3 animations:^{
+                bottom.frame = CGRectChangeY(bottom.frame, weakself.frame.size.height-Watch_PullUp_Height);
+            }];
+        };
         
         //切换手表样式界面的上拉View
         UIView *pullUpView2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, bounds.size.width, Watch_PullUp_Height)];
