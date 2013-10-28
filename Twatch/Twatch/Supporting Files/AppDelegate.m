@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #import "TMNavigationController.h"
+#import <ShareSDK/ShareSDK.h>
+#import "WXApi.h"
 
 @implementation AppDelegate
 
@@ -21,7 +23,61 @@
     TMNavigationController *rootViewController = [[TMNavigationController alloc] initWithRootViewController:[[RootViewController alloc] initWithNibName:nil bundle:nil]];
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
+    
+    [self prepareShareData];
+    
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
+{
+    return [ShareSDK handleOpenURL:url
+                        wxDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [ShareSDK handleOpenURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation
+                        wxDelegate:self];
+}
+
+- (void)prepareShareData
+{
+    [ShareSDK registerApp:@"b2a621782b0"];
+    
+    //添加微信应用
+    [ShareSDK connectWeChatWithAppId:@"wx601a43912ee66d19"        //此参数为申请的微信AppID
+                           wechatCls:[WXApi class]];
+    
+    //添加新浪微博应用
+    [ShareSDK connectSinaWeiboWithAppKey:@"177815352"
+                               appSecret:@"83ce845e210aeb0ed385c0419697647d"
+                             redirectUri:@"http://appgo.cn"];
+    
+    //添加腾讯微博应用
+    [ShareSDK connectTencentWeiboWithAppKey:@"801307650"
+                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
+                                redirectUri:@"http://www.sharesdk.cn"];
+    
+    //添加QQ空间应用
+    [ShareSDK connectQZoneWithAppKey:@"100598779"
+                           appSecret:@"2b282d0cc0c399ddbaf5faae52dcc302"];
+    
+    
+    //添加豆瓣应用
+    [ShareSDK connectDoubanWithAppKey:@"04a1fdd6456d88a60de5f982d04899f2"
+                            appSecret:@"c64b32838dde229f"
+                          redirectUri:@"http://dev.kumoway.com/braininference/infos.php"];
+    
+    //添加人人网应用
+    [ShareSDK connectRenRenWithAppKey:@"fc5b8aed373c4c27a05b712acba0f8c3"
+                            appSecret:@"f29df781abdd4f49beca5a2194676ca4"];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
