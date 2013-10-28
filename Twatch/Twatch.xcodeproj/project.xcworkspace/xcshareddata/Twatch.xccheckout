@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>D17C542B-7A88-4B00-9C0E-961E3AE4367A</string>
+	<string>7C4C4355-7486-4795-AA33-549C77408CDC</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Twatch</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>34FFE4EF-30FD-45B4-98C5-89A720294951</key>
-		<string>https://code.csdn.net/u012406932/twatch.git</string>
+		<key>64F3BB05-F3B1-4D96-A924-73C2EC5B303B</key>
+		<string>https://github.com/kittypad/ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Twatch/Twatch.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>34FFE4EF-30FD-45B4-98C5-89A720294951</key>
+		<key>64F3BB05-F3B1-4D96-A924-73C2EC5B303B</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://code.csdn.net/u012406932/twatch.git</string>
+	<string>https://github.com/kittypad/ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>34FFE4EF-30FD-45B4-98C5-89A720294951</string>
+	<string>64F3BB05-F3B1-4D96-A924-73C2EC5B303B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>34FFE4EF-30FD-45B4-98C5-89A720294951</string>
+			<string>64F3BB05-F3B1-4D96-A924-73C2EC5B303B</string>
 			<key>IDESourceControlWCCName</key>
-			<string>twatch</string>
+			<string>ios-bluetooth</string>
 		</dict>
 	</array>
 </dict>
