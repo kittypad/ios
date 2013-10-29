@@ -9,11 +9,13 @@
 #import "RootViewController.h"
 #import "RootViewController+ScanPeripharals.h"
 #import "RootViewController+BottomNavigationbar.h"
+#import "RootViewController+SettingView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "WatchView.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "MovieViewController.h"
 #import <ShareSDK/ShareSDK.h>
+#import "SettingView.h"
 
 @interface RootViewController ()
 
@@ -39,16 +41,22 @@
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"rooView_bg.png"]];
     
-    UIImage *img = [UIImage imageNamed:@"simulator.png"];
+    UIImage *img = [UIImage imageNamed:@"蓝2.png"];
     UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
-    bgView.image = img;
     bgView.center = self.view.center;
     [self.view addSubview:bgView];
-    
-    UIButton *settingButton = [FactoryMethods buttonWWithNormalImage:@"icon_40.png" hiliteImage:@"icon_40.png" target:self selector:@selector(settingBUttonClicked:)];
-    settingButton.center = CGPointMake(CGRectGetWidth(self.view.frame)- CGRectGetWidth(settingButton.frame) - 10, CGRectGetHeight(settingButton.frame)+15);
-    [self.view addSubview:settingButton];
-    
+    [[NSNotificationCenter defaultCenter] addObserverForName:WatchStyleStatusChangeNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        NSInteger style = [[NSUserDefaults standardUserDefaults] integerForKey:WatchStyleStatus];
+        if (style == wBlack) {
+            bgView.image = [UIImage imageNamed:@"黑2.png"];
+        }else if (style == wRed){
+            bgView.image = [UIImage imageNamed:@"红2.png"];
+        }else if (style == wBlue){
+            bgView.image = [UIImage imageNamed:@"蓝2.png"];
+        }
+    }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
+
     self.watchView = [[WatchView alloc] initWithFrame:CGRectMake(0, 0, Watch_Width, Watch_Height)];
     self.watchView.center = self.view.center;
     self.watchView.frame = CGRectOffset(self.watchView.frame, -2, -2);
@@ -59,6 +67,8 @@
     [self prepareBottomNavigationbar];
     [self prepareCentralManager];
     
+    [self prepareSettingView];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAppsVideo:) name:PlayAppsVideoNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayDidFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
@@ -91,7 +101,7 @@
 }
 
 - (void)settingBUttonClicked:(UIButton *)sender
-{
+{/*
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"icon_120"  ofType:@"png"];
     
     //定义菜单分享列表
@@ -123,7 +133,7 @@
                                 {
                                     NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
                                 }
-                            }];
+                            }];*/
 }
 
 - (void)dealloc

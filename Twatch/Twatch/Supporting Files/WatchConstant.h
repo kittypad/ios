@@ -12,6 +12,10 @@
 #define PlayAppsVideoNotification @"PlayAppsVideoNotification"
 #define PlayAppsVideoDidPlayFinishedNotification @"PlayAppsVideoDidPlayFinishedNotification"
 
+#define WatchStyleStatus  @"watch style saved in local "
+#define WatchStyleStatusChangeNotification  @"watch style change notification"
+
+
 #define Watch_Height     320.0
 #define Watch_Width      240.0
 
@@ -19,5 +23,10 @@
 #define Watch_PullUp_Height         30.0
 
 #define RGB(r,g,b,a) ([UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)])
+
+//检测是否iPhone5
+#define IS_IPHONE_5    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define IS_IOS7        ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0)
 
 #endif

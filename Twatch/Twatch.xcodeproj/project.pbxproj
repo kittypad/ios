@@ -120,6 +120,9 @@
 		DD56A6F1181EB4DE0088AB49 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A6F0181EB4DE0088AB49 /* libsqlite3.dylib */; };
 		DD56A6F3181EB4E90088AB49 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A6F2181EB4E90088AB49 /* CoreTelephony.framework */; };
 		DD56A6F5181EB5420088AB49 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A6F4181EB5420088AB49 /* MessageUI.framework */; };
+		DD56A6F9181FE6FC0088AB49 /* SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A6F8181FE6FC0088AB49 /* SettingView.m */; };
+		DD56A6FC181FE9800088AB49 /* RootViewController+SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A6FB181FE9800088AB49 /* RootViewController+SettingView.m */; };
+		DD56A702181FFC150088AB49 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A701181FFC150088AB49 /* SettingCell.m */; };
 		DDEC67E11807010200F3DD7A /* WatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC67E01807010200F3DD7A /* WatchView.m */; };
 /* End PBXBuildFile section */
 
@@ -320,6 +323,12 @@
 		DD56A6F0181EB4DE0088AB49 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DD56A6F2181EB4E90088AB49 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		DD56A6F4181EB5420088AB49 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		DD56A6F7181FE6FC0088AB49 /* SettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingView.h; sourceTree = "<group>"; };
+		DD56A6F8181FE6FC0088AB49 /* SettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingView.m; sourceTree = "<group>"; };
+		DD56A6FA181FE9800088AB49 /* RootViewController+SettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RootViewController+SettingView.h"; path = "ViewController/RootViewController+SettingView.h"; sourceTree = "<group>"; };
+		DD56A6FB181FE9800088AB49 /* RootViewController+SettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RootViewController+SettingView.m"; path = "ViewController/RootViewController+SettingView.m"; sourceTree = "<group>"; };
+		DD56A700181FFC150088AB49 /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
+		DD56A701181FFC150088AB49 /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
 		DDEC67DF1807010200F3DD7A /* WatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchView.h; sourceTree = "<group>"; };
 		DDEC67E01807010200F3DD7A /* WatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -436,6 +445,8 @@
 				42B5C9261809198B00D2FB27 /* TMNavigationController.m */,
 				427BEF781806A8F5004AFB8C /* RootViewController.h */,
 				427BEF791806A8F5004AFB8C /* RootViewController.m */,
+				DD56A6FA181FE9800088AB49 /* RootViewController+SettingView.h */,
+				DD56A6FB181FE9800088AB49 /* RootViewController+SettingView.m */,
 				DD247F7318126A5000D9E6D4 /* RootViewController+ScanPeripharals.h */,
 				DD247F7418126A5000D9E6D4 /* RootViewController+ScanPeripharals.m */,
 				D6E9D7181816BF2600819346 /* RootViewController+BottomNavigationbar.h */,
@@ -806,6 +817,17 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		DD56A6F6181FE6C50088AB49 /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				DD56A6F7181FE6FC0088AB49 /* SettingView.h */,
+				DD56A6F8181FE6FC0088AB49 /* SettingView.m */,
+				DD56A700181FFC150088AB49 /* SettingCell.h */,
+				DD56A701181FFC150088AB49 /* SettingCell.m */,
+			);
+			path = SettingView;
+			sourceTree = "<group>";
+		};
 		DDEC67D71806F8E600F3DD7A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -818,6 +840,7 @@
 		DDEC67D81806F8E600F3DD7A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DD56A6F6181FE6C50088AB49 /* SettingView */,
 				0A16E8B918114BB900DAFAE5 /* WatchTypeView */,
 				DD1BFBD3180AD5D90001C200 /* TheViewPulledDown */,
 				DD1BFBC7180AC1FD0001C200 /* TheViewPulledUp */,
@@ -919,6 +942,7 @@
 				DD1BFBBE180AC0FC0001C200 /* PSTCollectionViewData.m in Sources */,
 				DD247F5618124A9200D9E6D4 /* DEASimpleKeysService.m in Sources */,
 				DD247F6718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m in Sources */,
+				DD56A6F9181FE6FC0088AB49 /* SettingView.m in Sources */,
 				DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */,
 				DD1BFBC2180AC0FC0001C200 /* PSTCollectionViewUpdateItem.m in Sources */,
 				DD247F6B18124A9200D9E6D4 /* YMSCBDescriptor.m in Sources */,
@@ -947,6 +971,7 @@
 				DD247F5A18124A9200D9E6D4 /* DEAAccelerometerViewCell.m in Sources */,
 				DD247F6E18124A9200D9E6D4 /* YMSCBStoredPeripherals.m in Sources */,
 				DD1BFBC1180AC0FC0001C200 /* PSTCollectionViewLayout.m in Sources */,
+				DD56A702181FFC150088AB49 /* SettingCell.m in Sources */,
 				DD247F6818124A9200D9E6D4 /* YMS128.c in Sources */,
 				DD247F5518124A9200D9E6D4 /* DEAMagnetometerService.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
@@ -962,6 +987,7 @@
 				DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */,
 				DD247F6118124A9200D9E6D4 /* DEATemperatureViewCell.m in Sources */,
 				DD247F5C18124A9200D9E6D4 /* DEADeviceInfoViewCell.m in Sources */,
+				DD56A6FC181FE9800088AB49 /* RootViewController+SettingView.m in Sources */,
 				DD247F4F18124A9200D9E6D4 /* DEAAccelerometerService.m in Sources */,
 				DD247F5B18124A9200D9E6D4 /* DEABarometerViewCell.m in Sources */,
 				DD247F6218124A9200D9E6D4 /* DEADefaultTheme.m in Sources */,
