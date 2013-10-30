@@ -21,7 +21,7 @@
     
     UIButton *goBackButton = [FactoryMethods buttonWWithNormalImage:@"back.png" hiliteImage:@"back-push.png" target:self selector:@selector(goBack)];
     [goBackButton setTitle:self.backName forState:UIControlStateNormal];
-    [goBackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [goBackButton setTitleColor:RGB(150, 154, 158, 1) forState:UIControlStateNormal];
     goBackButton.frame = CGRectChangeOrigin(goBackButton.frame, 10, 30);
     goBackButton.titleLabel.font = [UIFont systemFontOfSize:GoBackNameSize];
     [self.view addSubview:goBackButton];
