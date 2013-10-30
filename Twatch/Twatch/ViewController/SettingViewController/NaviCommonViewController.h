@@ -10,4 +10,6 @@
 
 @interface NaviCommonViewController : UIViewController
 
+@property (nonatomic, copy) NSString *backName;
+
 @end

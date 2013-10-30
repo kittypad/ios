@@ -25,10 +25,14 @@
     NSArray *classNames = [NSArray arrayWithObjects:@"_360ViewController", @"TryViewController",
                            @"SignViewController",@"ShareAccountViewController",
                            @"MoreSettingViewController", nil];
-    
+    NSArray *backNames = [NSArray arrayWithObjects:@"360°全景视图", @"手表试戴",
+                           @"专属刻字",@"账号绑定",
+                           @"更多设置", nil];
+
     __weak typeof(self) weakself = self;
     settingView.settingActionHandle = ^(int i){
-        UIViewController *vc = [[NSClassFromString(classNames[i]) alloc] init];
+        NaviCommonViewController *vc = [[NSClassFromString(classNames[i]) alloc] init];
+        vc.backName = backNames[i];
         [weakself.navigationController pushViewController:vc animated:YES];
     };
 }
