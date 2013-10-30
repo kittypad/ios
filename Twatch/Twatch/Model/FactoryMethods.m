@@ -108,5 +108,4 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height)
 	
 	return [UIColor colorWithRed:(float)(redInt_/255.0f) green:(float)(greenInt_/255.0f) blue:(float)(blueInt_/255.0f) alpha:1.0f];
 }
-
 @end

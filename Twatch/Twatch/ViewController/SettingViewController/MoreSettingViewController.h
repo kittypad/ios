@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "NaviCommonViewController.h"
 
-@interface MoreSettingViewController : NaviCommonViewController
+@interface MoreSettingViewController : NaviCommonViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end

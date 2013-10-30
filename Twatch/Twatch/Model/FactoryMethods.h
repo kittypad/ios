@@ -32,3 +32,6 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height);
 + (id)getColor:(NSString *) hexColor;
 
 @end
+
+
+
