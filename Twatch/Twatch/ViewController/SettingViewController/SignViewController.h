@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NaviCommonViewController.h"
 
-@interface SignViewController : UIViewController
+@interface SignViewController : NaviCommonViewController
 
 @end

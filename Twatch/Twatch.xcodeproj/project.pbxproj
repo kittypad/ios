@@ -9,20 +9,15 @@
 /* Begin PBXBuildFile section */
 		0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A16E8BB18114C6200DAFAE5 /* ClockView.m */; };
 		0A16E8BE18114D6600DAFAE5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */; };
-		0A25DC2718212CCF00FAA6F2 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A25DC2618212CCF00FAA6F2 /* SignViewController.m */; };
 		0A46EA91180D7C0B00E7A6C1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */; };
 		427BEF431806A71F004AFB8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF421806A71F004AFB8C /* Foundation.framework */; };
 		427BEF451806A71F004AFB8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF441806A71F004AFB8C /* CoreGraphics.framework */; };
 		427BEF471806A71F004AFB8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF461806A71F004AFB8C /* UIKit.framework */; };
-		427BEF7A1806A8F5004AFB8C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BEF791806A8F5004AFB8C /* RootViewController.m */; };
 		42B5C9231808F85900D2FB27 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B5C9221808F85900D2FB27 /* MediaPlayer.framework */; };
-		42B5C9271809198B00D2FB27 /* TMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B5C9261809198B00D2FB27 /* TMNavigationController.m */; };
-		42B5C92F1809295B00D2FB27 /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B5C92E1809295B00D2FB27 /* MovieViewController.m */; };
 		42BBD88218079B330094E39D /* DialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88118079B330094E39D /* DialView.m */; };
 		42BBD88518079B550094E39D /* AppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88418079B550094E39D /* AppsView.m */; };
 		42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88718079B7B0094E39D /* CommonAppsView.m */; };
 		42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD8901807A4BE0094E39D /* AllAppsView.m */; };
-		D6E9D71A1816BF2600819346 /* RootViewController+BottomNavigationbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E9D7191816BF2600819346 /* RootViewController+BottomNavigationbar.m */; };
 		DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */; };
 		DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA1180AC0FC0001C200 /* PSTCollectionView.m */; };
 		DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA3180AC0FC0001C200 /* PSTCollectionViewCell.m */; };
@@ -81,13 +76,10 @@
 		DD247F6D18124A9200D9E6D4 /* YMSCBService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F4318124A9200D9E6D4 /* YMSCBService.m */; };
 		DD247F6E18124A9200D9E6D4 /* YMSCBStoredPeripherals.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F4518124A9200D9E6D4 /* YMSCBStoredPeripherals.m */; };
 		DD247F6F18124A9200D9E6D4 /* YMSCBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F4718124A9200D9E6D4 /* YMSCBUtils.m */; };
-		DD247F7518126A5000D9E6D4 /* RootViewController+ScanPeripharals.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7418126A5000D9E6D4 /* RootViewController+ScanPeripharals.m */; };
 		DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7818126A8500D9E6D4 /* AppDelegate.m */; };
 		DD247F8018126A8500D9E6D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD247F7918126A8500D9E6D4 /* InfoPlist.strings */; };
 		DD247F8118126A8500D9E6D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7B18126A8500D9E6D4 /* main.m */; };
 		DD247F8418126A9C00D9E6D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD247F8318126A9C00D9E6D4 /* Images.xcassets */; };
-		DD2480611816DD0000D9E6D4 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2480601816DD0000D9E6D4 /* ShopViewController.m */; };
-		DD2480641816E5A600D9E6D4 /* ShopViewController+NaivBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2480631816E5A600D9E6D4 /* ShopViewController+NaivBar.m */; };
 		DD56A6CE181EB3AF0088AB49 /* DouBanConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A6A6181EB3AF0088AB49 /* DouBanConnection.framework */; };
 		DD56A6CF181EB3AF0088AB49 /* QQConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A6A7181EB3AF0088AB49 /* QQConnection.framework */; };
 		DD56A6D0181EB3AF0088AB49 /* QZoneConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A6A8181EB3AF0088AB49 /* QZoneConnection.framework */; };
@@ -122,8 +114,21 @@
 		DD56A6F3181EB4E90088AB49 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A6F2181EB4E90088AB49 /* CoreTelephony.framework */; };
 		DD56A6F5181EB5420088AB49 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A6F4181EB5420088AB49 /* MessageUI.framework */; };
 		DD56A6F9181FE6FC0088AB49 /* SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A6F8181FE6FC0088AB49 /* SettingView.m */; };
-		DD56A6FC181FE9800088AB49 /* RootViewController+SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A6FB181FE9800088AB49 /* RootViewController+SettingView.m */; };
 		DD56A702181FFC150088AB49 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A701181FFC150088AB49 /* SettingCell.m */; };
+		DD56A70D1821434A0088AB49 /* RootViewController+BottomNavigationbar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A7061821434A0088AB49 /* RootViewController+BottomNavigationbar.m */; };
+		DD56A70E1821434A0088AB49 /* RootViewController+ScanPeripharals.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A7081821434A0088AB49 /* RootViewController+ScanPeripharals.m */; };
+		DD56A70F1821434A0088AB49 /* RootViewController+SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A70A1821434A0088AB49 /* RootViewController+SettingView.m */; };
+		DD56A7101821434A0088AB49 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A70C1821434A0088AB49 /* RootViewController.m */; };
+		DD56A719182143920088AB49 /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A713182143920088AB49 /* MovieViewController.m */; };
+		DD56A71A182143920088AB49 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A716182143920088AB49 /* SignViewController.m */; };
+		DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A71D1821441A0088AB49 /* _360ViewController.m */; };
+		DD56A7201821441A0088AB49 /* _360ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A71E1821441A0088AB49 /* _360ViewController.xib */; };
+		DD56A724182144490088AB49 /* TryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A722182144490088AB49 /* TryViewController.m */; };
+		DD56A725182144490088AB49 /* TryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A723182144490088AB49 /* TryViewController.xib */; };
+		DD56A7281821448E0088AB49 /* TMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A7271821448E0088AB49 /* TMNavigationController.m */; };
+		DD56A72D182146010088AB49 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A72A182146010088AB49 /* ShopViewController.m */; };
+		DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */; };
+		DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A730182146800088AB49 /* NaviCommonViewController.m */; };
 		DDEC67E11807010200F3DD7A /* WatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC67E01807010200F3DD7A /* WatchView.m */; };
 /* End PBXBuildFile section */
 
@@ -131,23 +136,15 @@
 		0A16E8BA18114C6200DAFAE5 /* ClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClockView.h; path = WatchTypeView/ClockView.h; sourceTree = "<group>"; };
 		0A16E8BB18114C6200DAFAE5 /* ClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClockView.m; path = WatchTypeView/ClockView.m; sourceTree = "<group>"; };
 		0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		0A25DC2518212CCF00FAA6F2 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignViewController.h; path = ViewController/SignViewController.h; sourceTree = "<group>"; };
-		0A25DC2618212CCF00FAA6F2 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignViewController.m; path = ViewController/SignViewController.m; sourceTree = "<group>"; };
 		0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		427BEF3F1806A71F004AFB8C /* Twatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		427BEF421806A71F004AFB8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		427BEF441806A71F004AFB8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		427BEF461806A71F004AFB8C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		427BEF5B1806A71F004AFB8C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		427BEF781806A8F5004AFB8C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = ViewController/RootViewController.h; sourceTree = "<group>"; };
-		427BEF791806A8F5004AFB8C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = ViewController/RootViewController.m; sourceTree = "<group>"; };
 		42B5C91E1808EE7E00D2FB27 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		42B5C91F1808EE7E00D2FB27 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		42B5C9221808F85900D2FB27 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		42B5C9251809198B00D2FB27 /* TMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMNavigationController.h; path = ViewController/TMNavigationController.h; sourceTree = "<group>"; };
-		42B5C9261809198B00D2FB27 /* TMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMNavigationController.m; path = ViewController/TMNavigationController.m; sourceTree = "<group>"; };
-		42B5C92D1809295B00D2FB27 /* MovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieViewController.h; path = ViewController/MovieViewController.h; sourceTree = "<group>"; };
-		42B5C92E1809295B00D2FB27 /* MovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieViewController.m; path = ViewController/MovieViewController.m; sourceTree = "<group>"; };
 		42BBD88018079B330094E39D /* DialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialView.h; sourceTree = "<group>"; };
 		42BBD88118079B330094E39D /* DialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialView.m; sourceTree = "<group>"; };
 		42BBD88318079B550094E39D /* AppsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsView.h; sourceTree = "<group>"; };
@@ -156,8 +153,6 @@
 		42BBD88718079B7B0094E39D /* CommonAppsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAppsView.m; sourceTree = "<group>"; };
 		42BBD88F1807A4BE0094E39D /* AllAppsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAppsView.h; sourceTree = "<group>"; };
 		42BBD8901807A4BE0094E39D /* AllAppsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAppsView.m; sourceTree = "<group>"; };
-		D6E9D7181816BF2600819346 /* RootViewController+BottomNavigationbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RootViewController+BottomNavigationbar.h"; path = "ViewController/RootViewController+BottomNavigationbar.h"; sourceTree = "<group>"; };
-		D6E9D7191816BF2600819346 /* RootViewController+BottomNavigationbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RootViewController+BottomNavigationbar.m"; path = "ViewController/RootViewController+BottomNavigationbar.m"; sourceTree = "<group>"; };
 		DD1BFB9E180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
 		DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+PSTCollectionViewAdditions.m"; sourceTree = "<group>"; };
 		DD1BFBA0180AC0FC0001C200 /* PSTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionView.h; sourceTree = "<group>"; };
@@ -273,8 +268,6 @@
 		DD247F4518124A9200D9E6D4 /* YMSCBStoredPeripherals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBStoredPeripherals.m; sourceTree = "<group>"; };
 		DD247F4618124A9200D9E6D4 /* YMSCBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBUtils.h; sourceTree = "<group>"; };
 		DD247F4718124A9200D9E6D4 /* YMSCBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBUtils.m; sourceTree = "<group>"; };
-		DD247F7318126A5000D9E6D4 /* RootViewController+ScanPeripharals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RootViewController+ScanPeripharals.h"; path = "ViewController/RootViewController+ScanPeripharals.h"; sourceTree = "<group>"; };
-		DD247F7418126A5000D9E6D4 /* RootViewController+ScanPeripharals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RootViewController+ScanPeripharals.m"; path = "ViewController/RootViewController+ScanPeripharals.m"; sourceTree = "<group>"; };
 		DD247F7718126A8500D9E6D4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DD247F7818126A8500D9E6D4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DD247F7A18126A8500D9E6D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -283,10 +276,6 @@
 		DD247F7D18126A8500D9E6D4 /* Twatch-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Twatch-Prefix.pch"; sourceTree = "<group>"; };
 		DD247F7E18126A8500D9E6D4 /* WatchConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchConstant.h; sourceTree = "<group>"; };
 		DD247F8318126A9C00D9E6D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
-		DD24805F1816DD0000D9E6D4 /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
-		DD2480601816DD0000D9E6D4 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
-		DD2480621816E5A600D9E6D4 /* ShopViewController+NaivBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShopViewController+NaivBar.h"; sourceTree = "<group>"; };
-		DD2480631816E5A600D9E6D4 /* ShopViewController+NaivBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShopViewController+NaivBar.m"; sourceTree = "<group>"; };
 		DD56A6A6181EB3AF0088AB49 /* DouBanConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DouBanConnection.framework; sourceTree = "<group>"; };
 		DD56A6A7181EB3AF0088AB49 /* QQConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QQConnection.framework; sourceTree = "<group>"; };
 		DD56A6A8181EB3AF0088AB49 /* QZoneConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QZoneConnection.framework; sourceTree = "<group>"; };
@@ -328,10 +317,34 @@
 		DD56A6F4181EB5420088AB49 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DD56A6F7181FE6FC0088AB49 /* SettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingView.h; sourceTree = "<group>"; };
 		DD56A6F8181FE6FC0088AB49 /* SettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingView.m; sourceTree = "<group>"; };
-		DD56A6FA181FE9800088AB49 /* RootViewController+SettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RootViewController+SettingView.h"; path = "ViewController/RootViewController+SettingView.h"; sourceTree = "<group>"; };
-		DD56A6FB181FE9800088AB49 /* RootViewController+SettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RootViewController+SettingView.m"; path = "ViewController/RootViewController+SettingView.m"; sourceTree = "<group>"; };
 		DD56A700181FFC150088AB49 /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
 		DD56A701181FFC150088AB49 /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
+		DD56A7051821434A0088AB49 /* RootViewController+BottomNavigationbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RootViewController+BottomNavigationbar.h"; sourceTree = "<group>"; };
+		DD56A7061821434A0088AB49 /* RootViewController+BottomNavigationbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RootViewController+BottomNavigationbar.m"; sourceTree = "<group>"; };
+		DD56A7071821434A0088AB49 /* RootViewController+ScanPeripharals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RootViewController+ScanPeripharals.h"; sourceTree = "<group>"; };
+		DD56A7081821434A0088AB49 /* RootViewController+ScanPeripharals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RootViewController+ScanPeripharals.m"; sourceTree = "<group>"; };
+		DD56A7091821434A0088AB49 /* RootViewController+SettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RootViewController+SettingView.h"; sourceTree = "<group>"; };
+		DD56A70A1821434A0088AB49 /* RootViewController+SettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RootViewController+SettingView.m"; sourceTree = "<group>"; };
+		DD56A70B1821434A0088AB49 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		DD56A70C1821434A0088AB49 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		DD56A712182143920088AB49 /* MovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieViewController.h; sourceTree = "<group>"; };
+		DD56A713182143920088AB49 /* MovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieViewController.m; sourceTree = "<group>"; };
+		DD56A715182143920088AB49 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignViewController.h; sourceTree = "<group>"; };
+		DD56A716182143920088AB49 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignViewController.m; sourceTree = "<group>"; };
+		DD56A71C1821441A0088AB49 /* _360ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _360ViewController.h; sourceTree = "<group>"; };
+		DD56A71D1821441A0088AB49 /* _360ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _360ViewController.m; sourceTree = "<group>"; };
+		DD56A71E1821441A0088AB49 /* _360ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = _360ViewController.xib; sourceTree = "<group>"; };
+		DD56A721182144490088AB49 /* TryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TryViewController.h; sourceTree = "<group>"; };
+		DD56A722182144490088AB49 /* TryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryViewController.m; sourceTree = "<group>"; };
+		DD56A723182144490088AB49 /* TryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TryViewController.xib; sourceTree = "<group>"; };
+		DD56A7261821448E0088AB49 /* TMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMNavigationController.h; sourceTree = "<group>"; };
+		DD56A7271821448E0088AB49 /* TMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMNavigationController.m; sourceTree = "<group>"; };
+		DD56A729182146010088AB49 /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
+		DD56A72A182146010088AB49 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
+		DD56A72B182146010088AB49 /* ShopViewController+NaivBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShopViewController+NaivBar.h"; sourceTree = "<group>"; };
+		DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShopViewController+NaivBar.m"; sourceTree = "<group>"; };
+		DD56A72F182146800088AB49 /* NaviCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaviCommonViewController.h; sourceTree = "<group>"; };
+		DD56A730182146800088AB49 /* NaviCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaviCommonViewController.m; sourceTree = "<group>"; };
 		DDEC67DF1807010200F3DD7A /* WatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchView.h; sourceTree = "<group>"; };
 		DDEC67E01807010200F3DD7A /* WatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -432,38 +445,14 @@
 		427BEF481806A71F004AFB8C /* Twatch */ = {
 			isa = PBXGroup;
 			children = (
-				427BEF711806A75A004AFB8C /* ViewController */,
+				DD56A7041821434A0088AB49 /* RootViewController */,
+				DD56A711182143920088AB49 /* ViewController */,
 				DDEC67D71806F8E600F3DD7A /* Model */,
 				DDEC67D81806F8E600F3DD7A /* View */,
 				DD1BFB9C180AC0FC0001C200 /* ThirdParty */,
 				427BEF771806A88B004AFB8C /* Resources */,
 			);
 			path = Twatch;
-			sourceTree = "<group>";
-		};
-		427BEF711806A75A004AFB8C /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				42B5C9251809198B00D2FB27 /* TMNavigationController.h */,
-				42B5C9261809198B00D2FB27 /* TMNavigationController.m */,
-				427BEF781806A8F5004AFB8C /* RootViewController.h */,
-				427BEF791806A8F5004AFB8C /* RootViewController.m */,
-				DD56A6FA181FE9800088AB49 /* RootViewController+SettingView.h */,
-				DD56A6FB181FE9800088AB49 /* RootViewController+SettingView.m */,
-				DD247F7318126A5000D9E6D4 /* RootViewController+ScanPeripharals.h */,
-				DD247F7418126A5000D9E6D4 /* RootViewController+ScanPeripharals.m */,
-				D6E9D7181816BF2600819346 /* RootViewController+BottomNavigationbar.h */,
-				D6E9D7191816BF2600819346 /* RootViewController+BottomNavigationbar.m */,
-				42B5C92D1809295B00D2FB27 /* MovieViewController.h */,
-				42B5C92E1809295B00D2FB27 /* MovieViewController.m */,
-				DD24805F1816DD0000D9E6D4 /* ShopViewController.h */,
-				DD2480601816DD0000D9E6D4 /* ShopViewController.m */,
-				DD2480621816E5A600D9E6D4 /* ShopViewController+NaivBar.h */,
-				DD2480631816E5A600D9E6D4 /* ShopViewController+NaivBar.m */,
-				0A25DC2518212CCF00FAA6F2 /* SignViewController.h */,
-				0A25DC2618212CCF00FAA6F2 /* SignViewController.m */,
-			);
-			name = ViewController;
 			sourceTree = "<group>";
 		};
 		427BEF771806A88B004AFB8C /* Resources */ = {
@@ -833,6 +822,54 @@
 			path = SettingView;
 			sourceTree = "<group>";
 		};
+		DD56A7041821434A0088AB49 /* RootViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DD56A7261821448E0088AB49 /* TMNavigationController.h */,
+				DD56A7271821448E0088AB49 /* TMNavigationController.m */,
+				DD56A7051821434A0088AB49 /* RootViewController+BottomNavigationbar.h */,
+				DD56A7061821434A0088AB49 /* RootViewController+BottomNavigationbar.m */,
+				DD56A7071821434A0088AB49 /* RootViewController+ScanPeripharals.h */,
+				DD56A7081821434A0088AB49 /* RootViewController+ScanPeripharals.m */,
+				DD56A7091821434A0088AB49 /* RootViewController+SettingView.h */,
+				DD56A70A1821434A0088AB49 /* RootViewController+SettingView.m */,
+				DD56A70B1821434A0088AB49 /* RootViewController.h */,
+				DD56A70C1821434A0088AB49 /* RootViewController.m */,
+			);
+			path = RootViewController;
+			sourceTree = "<group>";
+		};
+		DD56A711182143920088AB49 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DD56A714182143920088AB49 /* SettingViewController */,
+				DD56A712182143920088AB49 /* MovieViewController.h */,
+				DD56A713182143920088AB49 /* MovieViewController.m */,
+				DD56A729182146010088AB49 /* ShopViewController.h */,
+				DD56A72A182146010088AB49 /* ShopViewController.m */,
+				DD56A72B182146010088AB49 /* ShopViewController+NaivBar.h */,
+				DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DD56A714182143920088AB49 /* SettingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DD56A72F182146800088AB49 /* NaviCommonViewController.h */,
+				DD56A730182146800088AB49 /* NaviCommonViewController.m */,
+				DD56A71C1821441A0088AB49 /* _360ViewController.h */,
+				DD56A71D1821441A0088AB49 /* _360ViewController.m */,
+				DD56A71E1821441A0088AB49 /* _360ViewController.xib */,
+				DD56A721182144490088AB49 /* TryViewController.h */,
+				DD56A722182144490088AB49 /* TryViewController.m */,
+				DD56A723182144490088AB49 /* TryViewController.xib */,
+				DD56A715182143920088AB49 /* SignViewController.h */,
+				DD56A716182143920088AB49 /* SignViewController.m */,
+			);
+			path = SettingViewController;
+			sourceTree = "<group>";
+		};
 		DDEC67D71806F8E600F3DD7A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -919,6 +956,7 @@
 				DD56A6E6181EB3B00088AB49 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
 				DD247F4B18124A9200D9E6D4 /* Images.xcassets in Resources */,
 				DD247F6618124A9200D9E6D4 /* DEASensorTagViewController.xib in Resources */,
+				DD56A7201821441A0088AB49 /* _360ViewController.xib in Resources */,
 				DD247F6418124A9200D9E6D4 /* DEAPeripheralsViewController.xib in Resources */,
 				DD247F6518124A9200D9E6D4 /* DEAPeripheralTableViewCell.xib in Resources */,
 				DD247F8418126A9C00D9E6D4 /* Images.xcassets in Resources */,
@@ -928,6 +966,7 @@
 				DD247F8018126A8500D9E6D4 /* InfoPlist.strings in Resources */,
 				DD56A6D7181EB3B00088AB49 /* ShareSDKLocalizable.strings in Resources */,
 				DD56A6D8181EB3B00088AB49 /* Resource.bundle in Resources */,
+				DD56A725182144490088AB49 /* TryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -942,9 +981,11 @@
 				DD247F5F18124A9200D9E6D4 /* DEAMagnetometerViewCell.m in Sources */,
 				DD247F5118124A9200D9E6D4 /* DEABaseService.m in Sources */,
 				DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */,
+				DD56A70F1821434A0088AB49 /* RootViewController+SettingView.m in Sources */,
 				DD1BFBD9180AD6020001C200 /* NotificationCell.m in Sources */,
 				42BBD88518079B550094E39D /* AppsView.m in Sources */,
 				DD1BFBBE180AC0FC0001C200 /* PSTCollectionViewData.m in Sources */,
+				DD56A70D1821434A0088AB49 /* RootViewController+BottomNavigationbar.m in Sources */,
 				DD247F5618124A9200D9E6D4 /* DEASimpleKeysService.m in Sources */,
 				DD247F6718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m in Sources */,
 				DD56A6F9181FE6FC0088AB49 /* SettingView.m in Sources */,
@@ -952,25 +993,28 @@
 				DD1BFBC2180AC0FC0001C200 /* PSTCollectionViewUpdateItem.m in Sources */,
 				DD247F6B18124A9200D9E6D4 /* YMSCBDescriptor.m in Sources */,
 				DD247F4D18124A9200D9E6D4 /* DEASensorTag.m in Sources */,
-				DD247F7518126A5000D9E6D4 /* RootViewController+ScanPeripharals.m in Sources */,
+				DD56A719182143920088AB49 /* MovieViewController.m in Sources */,
 				DD247F4E18124A9200D9E6D4 /* DEASensorTagUtils.m in Sources */,
+				DD56A72D182146010088AB49 /* ShopViewController.m in Sources */,
 				DD1BFBBD180AC0FC0001C200 /* PSTCollectionViewController.m in Sources */,
-				0A25DC2718212CCF00FAA6F2 /* SignViewController.m in Sources */,
 				DD1BFBCD180AC24E0001C200 /* WatchVell.m in Sources */,
 				42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */,
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
+				DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */,
 				DD247F5718124A9200D9E6D4 /* DEATemperatureService.m in Sources */,
 				DD247F4C18124A9200D9E6D4 /* DEACentralManager.m in Sources */,
 				DD247F6018124A9200D9E6D4 /* DEASimpleKeysViewCell.m in Sources */,
 				DD1BFBD0180AC7280001C200 /* FactoryMethods.m in Sources */,
 				DD247F5818124A9200D9E6D4 /* TISensorTag.c in Sources */,
-				DD2480611816DD0000D9E6D4 /* ShopViewController.m in Sources */,
+				DD56A7101821434A0088AB49 /* RootViewController.m in Sources */,
 				42BBD88218079B330094E39D /* DialView.m in Sources */,
 				DD247F4918124A9200D9E6D4 /* DEAPeripheralsViewController.m in Sources */,
 				DD247F5018124A9200D9E6D4 /* DEABarometerService.m in Sources */,
-				42B5C9271809198B00D2FB27 /* TMNavigationController.m in Sources */,
+				DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */,
+				DD56A71A182143920088AB49 /* SignViewController.m in Sources */,
 				DDEC67E11807010200F3DD7A /* WatchView.m in Sources */,
 				42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */,
+				DD56A724182144490088AB49 /* TryViewController.m in Sources */,
 				DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */,
 				DD247F5418124A9200D9E6D4 /* DEAHumidityService.m in Sources */,
 				DD1BFBCA180AC1FD0001C200 /* SwitchWatchView.m in Sources */,
@@ -980,31 +1024,29 @@
 				DD56A702181FFC150088AB49 /* SettingCell.m in Sources */,
 				DD247F6818124A9200D9E6D4 /* YMS128.c in Sources */,
 				DD247F5518124A9200D9E6D4 /* DEAMagnetometerService.m in Sources */,
+				DD56A70E1821434A0088AB49 /* RootViewController+ScanPeripharals.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
 				DD247F6318124A9200D9E6D4 /* DEATheme.m in Sources */,
-				D6E9D71A1816BF2600819346 /* RootViewController+BottomNavigationbar.m in Sources */,
 				DD247F4A18124A9200D9E6D4 /* DEASensorTagViewController.m in Sources */,
 				DD247F6918124A9200D9E6D4 /* YMSCBCentralManager.m in Sources */,
 				DD247F5D18124A9200D9E6D4 /* DEAGyroscopeViewCell.m in Sources */,
 				DD247F4818124A9200D9E6D4 /* DEABaseViewController.m in Sources */,
 				DD247F6C18124A9200D9E6D4 /* YMSCBPeripheral.m in Sources */,
-				42B5C92F1809295B00D2FB27 /* MovieViewController.m in Sources */,
 				DD247F5E18124A9200D9E6D4 /* DEAHumidityViewCell.m in Sources */,
 				DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */,
+				DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */,
 				DD247F6118124A9200D9E6D4 /* DEATemperatureViewCell.m in Sources */,
 				DD247F5C18124A9200D9E6D4 /* DEADeviceInfoViewCell.m in Sources */,
-				DD56A6FC181FE9800088AB49 /* RootViewController+SettingView.m in Sources */,
 				DD247F4F18124A9200D9E6D4 /* DEAAccelerometerService.m in Sources */,
 				DD247F5B18124A9200D9E6D4 /* DEABarometerViewCell.m in Sources */,
 				DD247F6218124A9200D9E6D4 /* DEADefaultTheme.m in Sources */,
-				427BEF7A1806A8F5004AFB8C /* RootViewController.m in Sources */,
 				DD247F6D18124A9200D9E6D4 /* YMSCBService.m in Sources */,
 				DD247F5218124A9200D9E6D4 /* DEADeviceInfoService.m in Sources */,
 				DD1BFBC3180AC0FC0001C200 /* PSTGridLayoutInfo.m in Sources */,
 				DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
+				DD56A7281821448E0088AB49 /* TMNavigationController.m in Sources */,
 				DD247F6A18124A9200D9E6D4 /* YMSCBCharacteristic.m in Sources */,
 				DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */,
-				DD2480641816E5A600D9E6D4 /* ShopViewController+NaivBar.m in Sources */,
 				DD1BFBC5180AC0FC0001C200 /* PSTGridLayoutRow.m in Sources */,
 				DD247F5318124A9200D9E6D4 /* DEAGyroscopeService.m in Sources */,
 				DD247F5918124A9200D9E6D4 /* DEAPeripheralTableViewCell.m in Sources */,

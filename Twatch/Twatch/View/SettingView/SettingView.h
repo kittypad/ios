@@ -8,16 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum _WatchStyle{
-    wBlack = 0,
-    wRed,
-    wBlue
-}WatchStyle;
-
-
+typedef void(^ SettingActionHandle) (int i);
 
 @interface SettingView : UIView<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic) BOOL settingHasPullOut;
+@property (nonatomic)       BOOL                settingHasPullOut;
+@property (nonatomic, copy) SettingActionHandle settingActionHandle;
 
 @end

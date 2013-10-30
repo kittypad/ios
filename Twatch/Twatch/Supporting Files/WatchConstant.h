@@ -28,4 +28,15 @@
 
 #define IS_IOS7        ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0)
 
+
+
+
+
+typedef enum _WatchStyle{
+    wBlack = 0,
+    wRed,
+    wBlue
+}WatchStyle;
+
+
 #endif

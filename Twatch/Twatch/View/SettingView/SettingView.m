@@ -201,40 +201,24 @@ static NSString *SettingViewCellId = @"SettingCell";
     switch (indexPath.section)
     {
         case 0:
-        {
-            if (indexPath.row == 1)
-            {
-                //点击切换至刻字
-//                [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
-            }
-            else
-            {
-            }
-        }
+            self.settingActionHandle(indexPath.row);
             break;
         case 1:
         {
             SettingCell *cell = (SettingCell *)[tableView cellForRowAtIndexPath:indexPath];
-            if (indexPath.section == 1) {
-                self.lastSelectCell.isSelected = NO;
-                self.lastSelectCell = cell;
-                cell.isSelected = !cell.isSelected;
-                
-                [[NSUserDefaults standardUserDefaults] setInteger:indexPath.row forKey:WatchStyleStatus];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
-            }
+            self.lastSelectCell.isSelected = NO;
+            self.lastSelectCell = cell;
+            cell.isSelected = !cell.isSelected;
+            
+            [[NSUserDefaults standardUserDefaults] setInteger:indexPath.row forKey:WatchStyleStatus];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
         }
-            break;
-
-        case 2:
             break;
         default:
             break;
     }
-    
-
 }
 
 
