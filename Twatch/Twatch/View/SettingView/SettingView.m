@@ -42,6 +42,7 @@ static NSString *SettingViewCellId = @"SettingCell";
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.rowHeight = 45;
+        tableView.scrollEnabled = NO;
         tableView.backgroundColor = [UIColor getColor:@"F3F8FE"];
         tableView.separatorColor = [UIColor clearColor];
         [tableView registerClass:[SettingCell class] forCellReuseIdentifier:SettingViewCellId];
@@ -215,6 +216,9 @@ static NSString *SettingViewCellId = @"SettingCell";
             
             [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
         }
+            break;
+        case 2:
+            self.settingActionHandle(indexPath.row+3);
             break;
         default:
             break;

@@ -8,9 +8,12 @@
 
 #import "RootViewController+SettingView.h"
 #import "SettingView.h"
+
 #import "_360ViewController.h"
 #import "TryViewController.h"
 #import "SignViewController.h"
+#import "ShareAccountViewController.h"
+#import "MoreSettingViewController.h"
 
 @implementation RootViewController (SettingView)
 
@@ -19,7 +22,9 @@
     SettingView *settingView = [[SettingView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame) - 37, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
     [self.view addSubview:settingView];
     
-    NSArray *classNames = [NSArray arrayWithObjects:@"_360ViewController", @"TryViewController", @"SignViewController", nil];
+    NSArray *classNames = [NSArray arrayWithObjects:@"_360ViewController", @"TryViewController",
+                           @"SignViewController",@"ShareAccountViewController",
+                           @"MoreSettingViewController", nil];
     
     __weak typeof(self) weakself = self;
     settingView.settingActionHandle = ^(int i){

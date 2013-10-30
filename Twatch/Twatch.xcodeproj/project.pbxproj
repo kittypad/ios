@@ -129,6 +129,10 @@
 		DD56A72D182146010088AB49 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A72A182146010088AB49 /* ShopViewController.m */; };
 		DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */; };
 		DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A730182146800088AB49 /* NaviCommonViewController.m */; };
+		DD56A73518214B8C0088AB49 /* ShareAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A73318214B8C0088AB49 /* ShareAccountViewController.m */; };
+		DD56A73618214B8C0088AB49 /* ShareAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A73418214B8C0088AB49 /* ShareAccountViewController.xib */; };
+		DD56A73F18214BE30088AB49 /* MoreSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A73D18214BE30088AB49 /* MoreSettingViewController.m */; };
+		DD56A74018214BE30088AB49 /* MoreSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A73E18214BE30088AB49 /* MoreSettingViewController.xib */; };
 		DDEC67E11807010200F3DD7A /* WatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC67E01807010200F3DD7A /* WatchView.m */; };
 /* End PBXBuildFile section */
 
@@ -345,6 +349,12 @@
 		DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShopViewController+NaivBar.m"; sourceTree = "<group>"; };
 		DD56A72F182146800088AB49 /* NaviCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaviCommonViewController.h; sourceTree = "<group>"; };
 		DD56A730182146800088AB49 /* NaviCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaviCommonViewController.m; sourceTree = "<group>"; };
+		DD56A73218214B8C0088AB49 /* ShareAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAccountViewController.h; sourceTree = "<group>"; };
+		DD56A73318214B8C0088AB49 /* ShareAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAccountViewController.m; sourceTree = "<group>"; };
+		DD56A73418214B8C0088AB49 /* ShareAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareAccountViewController.xib; sourceTree = "<group>"; };
+		DD56A73C18214BE30088AB49 /* MoreSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreSettingViewController.h; sourceTree = "<group>"; };
+		DD56A73D18214BE30088AB49 /* MoreSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreSettingViewController.m; sourceTree = "<group>"; };
+		DD56A73E18214BE30088AB49 /* MoreSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreSettingViewController.xib; sourceTree = "<group>"; };
 		DDEC67DF1807010200F3DD7A /* WatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchView.h; sourceTree = "<group>"; };
 		DDEC67E01807010200F3DD7A /* WatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -866,6 +876,12 @@
 				DD56A723182144490088AB49 /* TryViewController.xib */,
 				DD56A715182143920088AB49 /* SignViewController.h */,
 				DD56A716182143920088AB49 /* SignViewController.m */,
+				DD56A73218214B8C0088AB49 /* ShareAccountViewController.h */,
+				DD56A73318214B8C0088AB49 /* ShareAccountViewController.m */,
+				DD56A73418214B8C0088AB49 /* ShareAccountViewController.xib */,
+				DD56A73C18214BE30088AB49 /* MoreSettingViewController.h */,
+				DD56A73D18214BE30088AB49 /* MoreSettingViewController.m */,
+				DD56A73E18214BE30088AB49 /* MoreSettingViewController.xib */,
 			);
 			path = SettingViewController;
 			sourceTree = "<group>";
@@ -966,6 +982,8 @@
 				DD247F8018126A8500D9E6D4 /* InfoPlist.strings in Resources */,
 				DD56A6D7181EB3B00088AB49 /* ShareSDKLocalizable.strings in Resources */,
 				DD56A6D8181EB3B00088AB49 /* Resource.bundle in Resources */,
+				DD56A74018214BE30088AB49 /* MoreSettingViewController.xib in Resources */,
+				DD56A73618214B8C0088AB49 /* ShareAccountViewController.xib in Resources */,
 				DD56A725182144490088AB49 /* TryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1025,6 +1043,8 @@
 				DD247F6818124A9200D9E6D4 /* YMS128.c in Sources */,
 				DD247F5518124A9200D9E6D4 /* DEAMagnetometerService.m in Sources */,
 				DD56A70E1821434A0088AB49 /* RootViewController+ScanPeripharals.m in Sources */,
+				DD56A73F18214BE30088AB49 /* MoreSettingViewController.m in Sources */,
+				DD56A73518214B8C0088AB49 /* ShareAccountViewController.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
 				DD247F6318124A9200D9E6D4 /* DEATheme.m in Sources */,
 				DD247F4A18124A9200D9E6D4 /* DEASensorTagViewController.m in Sources */,
