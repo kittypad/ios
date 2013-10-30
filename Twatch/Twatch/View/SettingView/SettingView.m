@@ -27,6 +27,9 @@ static NSString *SettingViewCellId = @"SettingCell";
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+//        [self setBackgroundColor:[UIColor getColor:@"F3F8FE"]];
+        
         // Initialization code
         UIButton *settingButton = [FactoryMethods buttonWWithNormalImage:@"设置-默认.png" hiliteImage:@"设置.png" target:self selector:@selector(settingBUttonClicked:)];
         [settingButton addTarget:self action:@selector(settingBUttonClicked:) forControlEvents:UIControlEventTouchDragInside];
@@ -39,9 +42,12 @@ static NSString *SettingViewCellId = @"SettingCell";
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.rowHeight = 45;
-        tableView.backgroundColor = RGB(243, 248, 254, 1);
+        tableView.backgroundColor = [UIColor getColor:@"F3F8FE"];
         tableView.separatorColor = [UIColor clearColor];
         [tableView registerClass:[SettingCell class] forCellReuseIdentifier:SettingViewCellId];
+        tableView.layer.borderWidth = 0.5;
+        UIColor *color = [UIColor getColor:@"ffffff"];
+        tableView.layer.borderColor = color.CGColor;
         [self addSubview:tableView];
 
         UISwipeGestureRecognizer *pan = [[UISwipeGestureRecognizer alloc] initWithTarget:self
@@ -87,27 +93,53 @@ static NSString *SettingViewCellId = @"SettingCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) return IS_IOS7 ? 20 : 0;
-    else return 35;
+    else return 32.5f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 2) {
-        return 3;
-    }else return 1;
+    switch (section) {
+        case 0:
+            return 3;
+        case 1:
+            return 3;
+        case 2:
+            return 2;
+            
+        default:
+            break;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SettingViewCellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont systemFontOfSize:16];
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.textLabel.textColor = [UIColor getColor:@"292929"];
 
     UIImageView *color = nil;
-    if (indexPath.section == 1) {
-        ((SettingCell *)cell).isSelected = YES;
-        cell.textLabel.text = @"240 * 320";
-    }else if (indexPath.section == 2){
+    if (indexPath.section == 0) {
+        ((SettingCell *)cell).selectionImageView.image = nil;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        switch (indexPath.row)
+        {
+            case 0:
+                cell.textLabel.text = @"360º 全景视图";
+                break;
+            case 1:
+                cell.textLabel.text = @"手表试戴";
+                break;
+            case 2:
+                cell.textLabel.text = @"专属刻字";
+                break;
+                
+            default:
+                break;
+        }
+
+    }else if (indexPath.section == 1){
         UIImage *img = [UIImage imageNamed:@"黑.png"];
         color = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
         color.center = CGPointMake(61, tableView.rowHeight/2);
@@ -129,9 +161,24 @@ static NSString *SettingViewCellId = @"SettingCell";
             self.lastSelectCell = (SettingCell *)cell;
         }
     }
+    else if (indexPath.section == 2){
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        ((SettingCell *)cell).selectionImageView.image = nil;
+        switch (indexPath.row)
+        {
+            case 0:
+                cell.textLabel.text = @"账号绑定";
+                break;
+            case 1:
+                cell.textLabel.text = @"设置";
+                break;
+            default:
+                break;
+        }    }
+    
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(15, tableView.rowHeight - .5, CGRectGetWidth(tableView.frame) - 15, .5)];
-    line.backgroundColor = RGB(239, 239, 239, 1);
+    line.backgroundColor = [UIColor getColor:@"e2e1e4"];
     [cell addSubview:line];
     
     return cell;
@@ -145,28 +192,49 @@ static NSString *SettingViewCellId = @"SettingCell";
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 1) {
-        return @"屏幕尺寸";
-    }else if (section == 2){
         return @"外壳颜色";
     }else return @"";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) return;
-    
-    SettingCell *cell = (SettingCell *)[tableView cellForRowAtIndexPath:indexPath];
-    if (indexPath.section == 2) {
-        self.lastSelectCell.isSelected = NO;
-        self.lastSelectCell = cell;
+    switch (indexPath.section)
+    {
+        case 0:
+        {
+            if (indexPath.row == 1)
+            {
+                //点击切换至刻字
+//                [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
+            }
+            else
+            {
+            }
+        }
+            break;
+        case 1:
+        {
+            SettingCell *cell = (SettingCell *)[tableView cellForRowAtIndexPath:indexPath];
+            if (indexPath.section == 1) {
+                self.lastSelectCell.isSelected = NO;
+                self.lastSelectCell = cell;
+                cell.isSelected = !cell.isSelected;
+                
+                [[NSUserDefaults standardUserDefaults] setInteger:indexPath.row forKey:WatchStyleStatus];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
+            }
+        }
+            break;
+
+        case 2:
+            break;
+        default:
+            break;
     }
     
-    cell.isSelected = !cell.isSelected;
-    
-    [[NSUserDefaults standardUserDefaults] setInteger:indexPath.row forKey:WatchStyleStatus];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
+
 }
 
 

@@ -25,3 +25,10 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height);
 + (UIButton *)buttonWWithTitle:(NSString *)title normalColor:(UIColor *)normal hiliteColor:(UIColor *)hilite target:(id)target selector:(SEL)sel;
 
 @end
+
+@interface UIColor(extend)
+
+// 将十六进制的颜色值转为objective-c的颜色
++ (id)getColor:(NSString *) hexColor;
+
+@end

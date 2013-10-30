@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A16E8BB18114C6200DAFAE5 /* ClockView.m */; };
 		0A16E8BE18114D6600DAFAE5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */; };
+		0A25DC2718212CCF00FAA6F2 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A25DC2618212CCF00FAA6F2 /* SignViewController.m */; };
 		0A46EA91180D7C0B00E7A6C1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */; };
 		427BEF431806A71F004AFB8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF421806A71F004AFB8C /* Foundation.framework */; };
 		427BEF451806A71F004AFB8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF441806A71F004AFB8C /* CoreGraphics.framework */; };
@@ -130,6 +131,8 @@
 		0A16E8BA18114C6200DAFAE5 /* ClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClockView.h; path = WatchTypeView/ClockView.h; sourceTree = "<group>"; };
 		0A16E8BB18114C6200DAFAE5 /* ClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClockView.m; path = WatchTypeView/ClockView.m; sourceTree = "<group>"; };
 		0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0A25DC2518212CCF00FAA6F2 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignViewController.h; path = ViewController/SignViewController.h; sourceTree = "<group>"; };
+		0A25DC2618212CCF00FAA6F2 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignViewController.m; path = ViewController/SignViewController.m; sourceTree = "<group>"; };
 		0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		427BEF3F1806A71F004AFB8C /* Twatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		427BEF421806A71F004AFB8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -457,6 +460,8 @@
 				DD2480601816DD0000D9E6D4 /* ShopViewController.m */,
 				DD2480621816E5A600D9E6D4 /* ShopViewController+NaivBar.h */,
 				DD2480631816E5A600D9E6D4 /* ShopViewController+NaivBar.m */,
+				0A25DC2518212CCF00FAA6F2 /* SignViewController.h */,
+				0A25DC2618212CCF00FAA6F2 /* SignViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -950,6 +955,7 @@
 				DD247F7518126A5000D9E6D4 /* RootViewController+ScanPeripharals.m in Sources */,
 				DD247F4E18124A9200D9E6D4 /* DEASensorTagUtils.m in Sources */,
 				DD1BFBBD180AC0FC0001C200 /* PSTCollectionViewController.m in Sources */,
+				0A25DC2718212CCF00FAA6F2 /* SignViewController.m in Sources */,
 				DD1BFBCD180AC24E0001C200 /* WatchVell.m in Sources */,
 				42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */,
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,

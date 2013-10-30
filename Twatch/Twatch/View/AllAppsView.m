@@ -18,7 +18,7 @@
         
         UIButton *settingButton = [[UIButton alloc] initWithFrame:rect];
         [settingButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
-        [settingButton setImage:[UIImage imageNamed:@"设置.png"] forState:UIControlStateNormal];
+        [settingButton setImage:[UIImage imageNamed:@"setting.png"] forState:UIControlStateNormal];
         settingButton.tag = SettingAppType;
         [self addSubview:settingButton];
         rect.origin.x += rect.size.width+10.0;

@@ -11,5 +11,6 @@
 @interface SettingCell : UITableViewCell
 
 @property (nonatomic) BOOL isSelected;
+@property (nonatomic, strong)  UIImageView  *selectionImageView;
 
 @end

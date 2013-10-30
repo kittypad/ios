@@ -10,7 +10,7 @@
 
 @interface SettingCell ()
 
-@property (nonatomic, strong)  UIImageView  *selectionImageView;
+
 
 @end
 
