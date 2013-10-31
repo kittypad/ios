@@ -12,7 +12,7 @@
 #import "_360ViewController.h"
 #import "TryViewController.h"
 #import "SignViewController.h"
-#import "ShareAccountViewController.h"
+#import "AGAuthViewController.h"
 #import "MoreSettingViewController.h"
 
 @implementation RootViewController (SettingView)
@@ -23,7 +23,7 @@
     [self.view addSubview:settingView];
     
     NSArray *classNames = [NSArray arrayWithObjects:@"_360ViewController", @"TryViewController",
-                           @"SignViewController",@"ShareAccountViewController",
+                           @"SignViewController",@"AGAuthViewController",
                            @"MoreSettingViewController", nil];
     NSArray *backNames = [NSArray arrayWithObjects:@"360°全景视图", @"手表试戴",
                            @"专属刻字",@"账号绑定",

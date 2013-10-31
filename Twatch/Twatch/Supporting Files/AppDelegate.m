@@ -11,6 +11,8 @@
 #import "TMNavigationController.h"
 #import <ShareSDK/ShareSDK.h>
 #import "WXApi.h"
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 
 @implementation AppDelegate
 
@@ -66,8 +68,10 @@
     
     //添加QQ空间应用
     [ShareSDK connectQZoneWithAppKey:@"100598779"
-                           appSecret:@"2b282d0cc0c399ddbaf5faae52dcc302"];
-    
+                           appSecret:@"aed9b0303e3ed1e27bae87c33761161d"
+                   qqApiInterfaceCls:[QQApiInterface class]
+                     tencentOAuthCls:[TencentOAuth class]];
+
     
     //添加豆瓣应用
     [ShareSDK connectDoubanWithAppKey:@"04a1fdd6456d88a60de5f982d04899f2"
@@ -75,8 +79,8 @@
                           redirectUri:@"http://dev.kumoway.com/braininference/infos.php"];
     
     //添加人人网应用
-    [ShareSDK connectRenRenWithAppKey:@"fc5b8aed373c4c27a05b712acba0f8c3"
-                            appSecret:@"f29df781abdd4f49beca5a2194676ca4"];
+    [ShareSDK connectRenRenWithAppKey:@"872839531cd843839f01b9974ce4307e"
+                            appSecret:@"3f73d4a45de34115b9e84f7430cabba7"];
     
 }
 

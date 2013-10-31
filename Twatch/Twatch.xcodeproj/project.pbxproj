@@ -93,8 +93,6 @@
 		DD56A72D182146010088AB49 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A72A182146010088AB49 /* ShopViewController.m */; };
 		DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */; };
 		DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A730182146800088AB49 /* NaviCommonViewController.m */; };
-		DD56A73518214B8C0088AB49 /* ShareAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A73318214B8C0088AB49 /* ShareAccountViewController.m */; };
-		DD56A73618214B8C0088AB49 /* ShareAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A73418214B8C0088AB49 /* ShareAccountViewController.xib */; };
 		DD56A73F18214BE30088AB49 /* MoreSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A73D18214BE30088AB49 /* MoreSettingViewController.m */; };
 		DD56A74018214BE30088AB49 /* MoreSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A73E18214BE30088AB49 /* MoreSettingViewController.xib */; };
 		DD56A743182287410088AB49 /* FVImageSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A742182287400088AB49 /* FVImageSequence.m */; };
@@ -134,6 +132,9 @@
 		DD56A78A182287C10088AB49 /* Seq_v04_640x378_7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DD56A766182287C10088AB49 /* Seq_v04_640x378_7.jpg */; };
 		DD56A78B182287C10088AB49 /* Seq_v04_640x378_8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DD56A767182287C10088AB49 /* Seq_v04_640x378_8.jpg */; };
 		DD56A78C182287C10088AB49 /* Seq_v04_640x378_9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DD56A768182287C10088AB49 /* Seq_v04_640x378_9.jpg */; };
+		DD56A79418229ADE0088AB49 /* AGAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A79018229ADE0088AB49 /* AGAuthViewController.m */; };
+		DD56A79518229ADE0088AB49 /* AGShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A79318229ADE0088AB49 /* AGShareCell.m */; };
+		DD56A79818229CC00088AB49 /* AGViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A79618229CC00088AB49 /* AGViewDelegate.m */; };
 		DDEC67E11807010200F3DD7A /* WatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC67E01807010200F3DD7A /* WatchView.m */; };
 /* End PBXBuildFile section */
 
@@ -279,9 +280,6 @@
 		DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShopViewController+NaivBar.m"; sourceTree = "<group>"; };
 		DD56A72F182146800088AB49 /* NaviCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaviCommonViewController.h; sourceTree = "<group>"; };
 		DD56A730182146800088AB49 /* NaviCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaviCommonViewController.m; sourceTree = "<group>"; };
-		DD56A73218214B8C0088AB49 /* ShareAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareAccountViewController.h; sourceTree = "<group>"; };
-		DD56A73318214B8C0088AB49 /* ShareAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAccountViewController.m; sourceTree = "<group>"; };
-		DD56A73418214B8C0088AB49 /* ShareAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareAccountViewController.xib; sourceTree = "<group>"; };
 		DD56A73C18214BE30088AB49 /* MoreSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreSettingViewController.h; sourceTree = "<group>"; };
 		DD56A73D18214BE30088AB49 /* MoreSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreSettingViewController.m; sourceTree = "<group>"; };
 		DD56A73E18214BE30088AB49 /* MoreSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreSettingViewController.xib; sourceTree = "<group>"; };
@@ -323,6 +321,12 @@
 		DD56A766182287C10088AB49 /* Seq_v04_640x378_7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Seq_v04_640x378_7.jpg; sourceTree = "<group>"; };
 		DD56A767182287C10088AB49 /* Seq_v04_640x378_8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Seq_v04_640x378_8.jpg; sourceTree = "<group>"; };
 		DD56A768182287C10088AB49 /* Seq_v04_640x378_9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Seq_v04_640x378_9.jpg; sourceTree = "<group>"; };
+		DD56A79018229ADE0088AB49 /* AGAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAuthViewController.m; sourceTree = "<group>"; };
+		DD56A79118229ADE0088AB49 /* AGAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGAuthViewController.h; sourceTree = "<group>"; };
+		DD56A79218229ADE0088AB49 /* AGShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGShareCell.h; sourceTree = "<group>"; };
+		DD56A79318229ADE0088AB49 /* AGShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGShareCell.m; sourceTree = "<group>"; };
+		DD56A79618229CC00088AB49 /* AGViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGViewDelegate.m; sourceTree = "<group>"; };
+		DD56A79718229CC00088AB49 /* AGViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGViewDelegate.h; sourceTree = "<group>"; };
 		DDEC67DF1807010200F3DD7A /* WatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchView.h; sourceTree = "<group>"; };
 		DDEC67E01807010200F3DD7A /* WatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -528,6 +532,12 @@
 		DD56A6A4181EB3AF0088AB49 /* ShareSDK_v2.5.1 */ = {
 			isa = PBXGroup;
 			children = (
+				DD56A79618229CC00088AB49 /* AGViewDelegate.m */,
+				DD56A79718229CC00088AB49 /* AGViewDelegate.h */,
+				DD56A79018229ADE0088AB49 /* AGAuthViewController.m */,
+				DD56A79118229ADE0088AB49 /* AGAuthViewController.h */,
+				DD56A79218229ADE0088AB49 /* AGShareCell.h */,
+				DD56A79318229ADE0088AB49 /* AGShareCell.m */,
 				DD56A6A5181EB3AF0088AB49 /* Connection */,
 				DD56A6AE181EB3AF0088AB49 /* Core */,
 				DD56A6B5181EB3AF0088AB49 /* Extend */,
@@ -682,9 +692,6 @@
 				DD56A723182144490088AB49 /* TryViewController.xib */,
 				DD56A715182143920088AB49 /* SignViewController.h */,
 				DD56A716182143920088AB49 /* SignViewController.m */,
-				DD56A73218214B8C0088AB49 /* ShareAccountViewController.h */,
-				DD56A73318214B8C0088AB49 /* ShareAccountViewController.m */,
-				DD56A73418214B8C0088AB49 /* ShareAccountViewController.xib */,
 				DD56A73C18214BE30088AB49 /* MoreSettingViewController.h */,
 				DD56A73D18214BE30088AB49 /* MoreSettingViewController.m */,
 				DD56A73E18214BE30088AB49 /* MoreSettingViewController.xib */,
@@ -864,7 +871,6 @@
 				DD56A770182287C10088AB49 /* Seq_v04_640x378_15.jpg in Resources */,
 				DD56A6D8181EB3B00088AB49 /* Resource.bundle in Resources */,
 				DD56A74018214BE30088AB49 /* MoreSettingViewController.xib in Resources */,
-				DD56A73618214B8C0088AB49 /* ShareAccountViewController.xib in Resources */,
 				0A51A6251822878000DE7DD3 /* FeedBackViewController.xib in Resources */,
 				DD56A725182144490088AB49 /* TryViewController.xib in Resources */,
 				0AB8BB66182278C0002255C2 /* AboutViewController.xib in Resources */,
@@ -909,6 +915,7 @@
 				42BBD88218079B330094E39D /* DialView.m in Sources */,
 				DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */,
 				DD56A71A182143920088AB49 /* SignViewController.m in Sources */,
+				DD56A79518229ADE0088AB49 /* AGShareCell.m in Sources */,
 				DDEC67E11807010200F3DD7A /* WatchView.m in Sources */,
 				42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */,
 				DD56A724182144490088AB49 /* TryViewController.m in Sources */,
@@ -916,8 +923,9 @@
 				DD1BFBCA180AC1FD0001C200 /* SwitchWatchView.m in Sources */,
 				DD1BFBC1180AC0FC0001C200 /* PSTCollectionViewLayout.m in Sources */,
 				DD56A702181FFC150088AB49 /* SettingCell.m in Sources */,
+				DD56A79818229CC00088AB49 /* AGViewDelegate.m in Sources */,
+				DD56A79418229ADE0088AB49 /* AGAuthViewController.m in Sources */,
 				DD56A73F18214BE30088AB49 /* MoreSettingViewController.m in Sources */,
-				DD56A73518214B8C0088AB49 /* ShareAccountViewController.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
 				DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */,
 				DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */,

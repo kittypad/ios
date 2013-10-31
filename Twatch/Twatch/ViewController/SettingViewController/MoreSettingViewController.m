@@ -9,6 +9,9 @@
 #import "MoreSettingViewController.h"
 #import "AboutViewController.h"
 #import "FeedBackViewController.h"
+#import <ShareSDK/ShareSDK.h>
+#import "AGViewDelegate.h"
+
 @interface MoreSettingViewController ()
 
 @end
@@ -125,6 +128,56 @@
         FeedBackViewController *feedback = [[FeedBackViewController alloc] init];
         feedback.backName = @"意见反馈";
         [self.navigationController pushViewController:feedback animated:YES];
+    }else if (indexPath.row == 3){
+        id delegate = [[AGViewDelegate alloc] init];
+        id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES
+                                                             allowCallback:YES
+                                                             authViewStyle:SSAuthViewStyleFullScreenPopup
+                                                              viewDelegate:nil
+                                                   authManagerViewDelegate:delegate];
+        
+        //在授权页面中添加关注官方微博
+        [authOptions setFollowAccounts:[NSDictionary dictionaryWithObjectsAndKeys:
+                                        [ShareSDK userFieldWithType:SSUserFieldTypeName value:@"ShareSDK"],
+                                        SHARE_TYPE_NUMBER(ShareTypeSinaWeibo),
+                                        nil]];
+        
+        [ShareSDK followUserWithType:ShareTypeSinaWeibo
+                               field:@"ShareSDK"
+                           fieldType:SSUserFieldTypeName
+                         authOptions:authOptions
+                        viewDelegate:delegate
+                              result:^(SSResponseState state, id<ISSUserInfo> userInfo, id<ICMErrorInfo> error) {
+                                  NSString *msg = nil;
+                                  if (state == SSResponseStateSuccess)
+                                  {
+                                      msg = @"关注成功";
+                                  }
+                                  else if (state == SSResponseStateFail)
+                                  {
+                                      switch ([error errorCode])
+                                      {
+                                          case 20506:
+                                              msg = @"已关注";
+                                              break;
+                                              
+                                          default:
+                                              msg = [NSString stringWithFormat:@"关注失败:%@", error.errorDescription];
+                                              break;
+                                      }
+                                  }
+                                  
+                                  if (msg)
+                                  {
+                                      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                                          message:msg
+                                                                                         delegate:nil
+                                                                                cancelButtonTitle:@"知道了"
+                                                                                otherButtonTitles:nil];
+                                      [alertView show];
+                                  }
+                              }];
+
     }
 
 }
