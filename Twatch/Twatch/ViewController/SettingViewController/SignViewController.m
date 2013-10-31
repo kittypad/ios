@@ -100,8 +100,9 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *temp = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    if (temp.length > 5) {
-        textField.text = [temp substringToIndex:5];
+//    NSLog(@"%d",[self convertToInt:temp]);
+    if ([self convertToInt:temp] > 5) {
+//        textField.text = [temp substringToIndex:5];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"亲,惜字如金哦" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
         [alert show];
@@ -110,7 +111,22 @@
     }
     return YES;
 }
-
+- (int)convertToInt:(NSString*)strtemp {
+    
+    int strlength = 0;
+    char* p = (char*)[strtemp cStringUsingEncoding:NSUnicodeStringEncoding];
+    for (int i=0 ; i<[strtemp lengthOfBytesUsingEncoding:NSUnicodeStringEncoding] ;i++) {
+        if (*p) {
+            p++;
+            strlength++;
+        }
+        else {
+            p++;
+        }
+    }
+    return (strlength+1)/2;
+    
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];

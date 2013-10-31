@@ -10,6 +10,11 @@
 		0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A16E8BB18114C6200DAFAE5 /* ClockView.m */; };
 		0A16E8BE18114D6600DAFAE5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */; };
 		0A46EA91180D7C0B00E7A6C1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */; };
+		0A51A6241822878000DE7DD3 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A6221822878000DE7DD3 /* FeedBackViewController.m */; };
+		0A51A6251822878000DE7DD3 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A51A6231822878000DE7DD3 /* FeedBackViewController.xib */; };
+		0A51A628182289AE00DE7DD3 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A627182289AE00DE7DD3 /* UIPlaceHolderTextView.m */; };
+		0AB8BB65182278C0002255C2 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8BB63182278C0002255C2 /* AboutViewController.m */; };
+		0AB8BB66182278C0002255C2 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB8BB64182278C0002255C2 /* AboutViewController.xib */; };
 		427BEF431806A71F004AFB8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF421806A71F004AFB8C /* Foundation.framework */; };
 		427BEF451806A71F004AFB8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF441806A71F004AFB8C /* CoreGraphics.framework */; };
 		427BEF471806A71F004AFB8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF461806A71F004AFB8C /* UIKit.framework */; };
@@ -141,6 +146,14 @@
 		0A16E8BB18114C6200DAFAE5 /* ClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClockView.m; path = WatchTypeView/ClockView.m; sourceTree = "<group>"; };
 		0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		0A51A6211822878000DE7DD3 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		0A51A6221822878000DE7DD3 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		0A51A6231822878000DE7DD3 /* FeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackViewController.xib; sourceTree = "<group>"; };
+		0A51A626182289AE00DE7DD3 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
+		0A51A627182289AE00DE7DD3 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		0AB8BB62182278C0002255C2 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		0AB8BB63182278C0002255C2 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		0AB8BB64182278C0002255C2 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		427BEF3F1806A71F004AFB8C /* Twatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		427BEF421806A71F004AFB8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		427BEF441806A71F004AFB8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -824,6 +837,8 @@
 		DD56A6F6181FE6C50088AB49 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
+				0A51A626182289AE00DE7DD3 /* UIPlaceHolderTextView.h */,
+				0A51A627182289AE00DE7DD3 /* UIPlaceHolderTextView.m */,
 				DD56A6F7181FE6FC0088AB49 /* SettingView.h */,
 				DD56A6F8181FE6FC0088AB49 /* SettingView.m */,
 				DD56A700181FFC150088AB49 /* SettingCell.h */,
@@ -882,6 +897,12 @@
 				DD56A73C18214BE30088AB49 /* MoreSettingViewController.h */,
 				DD56A73D18214BE30088AB49 /* MoreSettingViewController.m */,
 				DD56A73E18214BE30088AB49 /* MoreSettingViewController.xib */,
+				0AB8BB62182278C0002255C2 /* AboutViewController.h */,
+				0AB8BB63182278C0002255C2 /* AboutViewController.m */,
+				0AB8BB64182278C0002255C2 /* AboutViewController.xib */,
+				0A51A6211822878000DE7DD3 /* FeedBackViewController.h */,
+				0A51A6221822878000DE7DD3 /* FeedBackViewController.m */,
+				0A51A6231822878000DE7DD3 /* FeedBackViewController.xib */,
 			);
 			path = SettingViewController;
 			sourceTree = "<group>";
@@ -984,7 +1005,9 @@
 				DD56A6D8181EB3B00088AB49 /* Resource.bundle in Resources */,
 				DD56A74018214BE30088AB49 /* MoreSettingViewController.xib in Resources */,
 				DD56A73618214B8C0088AB49 /* ShareAccountViewController.xib in Resources */,
+				0A51A6251822878000DE7DD3 /* FeedBackViewController.xib in Resources */,
 				DD56A725182144490088AB49 /* TryViewController.xib in Resources */,
+				0AB8BB66182278C0002255C2 /* AboutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1065,7 +1088,9 @@
 				DD1BFBC3180AC0FC0001C200 /* PSTGridLayoutInfo.m in Sources */,
 				DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				DD56A7281821448E0088AB49 /* TMNavigationController.m in Sources */,
+				0A51A628182289AE00DE7DD3 /* UIPlaceHolderTextView.m in Sources */,
 				DD247F6A18124A9200D9E6D4 /* YMSCBCharacteristic.m in Sources */,
+				0A51A6241822878000DE7DD3 /* FeedBackViewController.m in Sources */,
 				DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */,
 				DD1BFBC5180AC0FC0001C200 /* PSTGridLayoutRow.m in Sources */,
 				DD247F5318124A9200D9E6D4 /* DEAGyroscopeService.m in Sources */,
@@ -1073,6 +1098,7 @@
 				DD247F6F18124A9200D9E6D4 /* YMSCBUtils.m in Sources */,
 				DD247F8118126A8500D9E6D4 /* main.m in Sources */,
 				0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */,
+				0AB8BB65182278C0002255C2 /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

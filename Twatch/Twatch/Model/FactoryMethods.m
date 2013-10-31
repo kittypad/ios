@@ -84,6 +84,16 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height)
     return button;
 }
 
++ (UILabel *)labelWithTitle:(NSString *)title textFont:(UIFont *)font normalColor:(UIColor *)normal backColor:(UIColor *)backColor
+{
+    UILabel *label = [[UILabel alloc] init];
+    label.text = title;
+    label.font = font;
+    label.textColor = normal;
+    label.backgroundColor = backColor;
+    return label;
+}
+
 @end
 
 @implementation UIColor(extend)

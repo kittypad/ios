@@ -28,7 +28,7 @@
 
 #define IS_IOS7        ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0)
 
-#define GoBackNameSize  18
+#define GoBackNameSize  15
 
 
 

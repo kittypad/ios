@@ -7,7 +7,8 @@
 //
 
 #import "MoreSettingViewController.h"
-
+#import "AboutViewController.h"
+#import "FeedBackViewController.h"
 @interface MoreSettingViewController ()
 
 @end
@@ -65,7 +66,7 @@
     attentButton.titleLabel.textColor = [UIColor blueColor];
     
     CGSize size = [@"关注" sizeWithFont:[UIFont systemFontOfSize:12.0]];
-    attentButton.frame = CGRectMake(CGRectGetWidth(cell.frame) - CGRectGetWidth(attentButton.frame) - size.width - 10, 5, CGRectGetWidth(attentButton.frame) + size.width, CGRectGetHeight(attentButton.frame));
+    attentButton.frame = CGRectMake(CGRectGetWidth(cell.frame) - CGRectGetWidth(attentButton.frame) - size.width - 10, (CGRectGetHeight(cell.frame) - CGRectGetHeight(attentButton.frame))/2, CGRectGetWidth(attentButton.frame) + size.width, CGRectGetHeight(attentButton.frame));
 
     
     switch (indexPath.row) {
@@ -111,6 +112,21 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)section
 {
     return 45;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        AboutViewController *about = [[AboutViewController alloc] init];
+        about.backName = @"关于我们";
+        [self.navigationController pushViewController:about animated:YES];
+    }
+    else if(indexPath.row == 2)
+    {
+        FeedBackViewController *feedback = [[FeedBackViewController alloc] init];
+        feedback.backName = @"意见反馈";
+        [self.navigationController pushViewController:feedback animated:YES];
+    }
+
 }
 -(void)attention: (id)sender
 {

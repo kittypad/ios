@@ -24,6 +24,8 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height);
 + (UIButton *)buttonWWithTitle:(NSString *)title normalBg:(NSString *)bg hiliteBg:(NSString *)hbg target:(id)target selector:(SEL)sel;
 + (UIButton *)buttonWWithTitle:(NSString *)title normalColor:(UIColor *)normal hiliteColor:(UIColor *)hilite target:(id)target selector:(SEL)sel;
 
++ (UILabel *)labelWithTitle:(NSString *)title textFont:(UIFont *)font normalColor:(UIColor *)normal backColor:(UIColor *)backColor;
+
 @end
 
 @interface UIColor(extend)
