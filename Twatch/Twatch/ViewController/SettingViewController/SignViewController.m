@@ -14,12 +14,12 @@
 @end
 
 @implementation InsetsTextField
-//控制 placeHolder 的位置，左右缩 20
+//控制 placeHolder 的位置，左右缩 5
 - (CGRect)textRectForBounds:(CGRect)bounds {
     return CGRectInset( bounds , 5 , 0 );
 }
 
-// 控制文本的位置，左右缩 20
+// 控制文本的位置，左右缩 5
 - (CGRect)editingRectForBounds:(CGRect)bounds {
     return CGRectInset( bounds , 5 , 0 );
 }
@@ -71,6 +71,30 @@
 
     [bgView addSubview:signtextfield];
     self.signtextfield = signtextfield;
+    
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+
+-(void)keyboardWillShow:(NSNotification*)notification{
+    //调整UI位置
+    NSTimeInterval animationDuration = 0.25f;
+    [UIView beginAnimations:@"move" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    self.view.frame = CGRectMake(0, -90, 320, self.view.frame.size.height);
+    [UIView commitAnimations];
+}
+
+- (void)keyboardWillHide:(NSNotification *)aNotification
+{
+    NSTimeInterval animationDuration = 0.25f;
+    [UIView beginAnimations:@"move" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    self.view.center=CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+    
+    [UIView commitAnimations];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -86,25 +110,10 @@
     }
     return YES;
 }
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [UIView beginAnimations:@"move" context:nil];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationDuration:0.22];
-    self.view.frame = CGRectMake(0, -90, 320, self.view.frame.size.height);
-    [UIView commitAnimations];
-}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    NSTimeInterval animationDuration = 0.25f;
-    [UIView beginAnimations:@"ResizeView" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    self.view.center=CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
-    
-    [UIView commitAnimations];
     [textField resignFirstResponder];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     return YES;
     
 }
