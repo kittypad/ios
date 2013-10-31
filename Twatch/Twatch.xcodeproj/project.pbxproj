@@ -41,46 +41,6 @@
 		DD1BFBD0180AC7280001C200 /* FactoryMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBCF180AC7280001C200 /* FactoryMethods.m */; };
 		DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBD5180AD5D90001C200 /* NotificationView.m */; };
 		DD1BFBD9180AD6020001C200 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBD8180AD6020001C200 /* NotificationCell.m */; };
-		DD247F4818124A9200D9E6D4 /* DEABaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247EF418124A9200D9E6D4 /* DEABaseViewController.m */; };
-		DD247F4918124A9200D9E6D4 /* DEAPeripheralsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247EF618124A9200D9E6D4 /* DEAPeripheralsViewController.m */; };
-		DD247F4A18124A9200D9E6D4 /* DEASensorTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247EF818124A9200D9E6D4 /* DEASensorTagViewController.m */; };
-		DD247F4B18124A9200D9E6D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD247EF918124A9200D9E6D4 /* Images.xcassets */; };
-		DD247F4C18124A9200D9E6D4 /* DEACentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247EFC18124A9200D9E6D4 /* DEACentralManager.m */; };
-		DD247F4D18124A9200D9E6D4 /* DEASensorTag.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247EFF18124A9200D9E6D4 /* DEASensorTag.m */; };
-		DD247F4E18124A9200D9E6D4 /* DEASensorTagUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0118124A9200D9E6D4 /* DEASensorTagUtils.m */; };
-		DD247F4F18124A9200D9E6D4 /* DEAAccelerometerService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0418124A9200D9E6D4 /* DEAAccelerometerService.m */; };
-		DD247F5018124A9200D9E6D4 /* DEABarometerService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0618124A9200D9E6D4 /* DEABarometerService.m */; };
-		DD247F5118124A9200D9E6D4 /* DEABaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0818124A9200D9E6D4 /* DEABaseService.m */; };
-		DD247F5218124A9200D9E6D4 /* DEADeviceInfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0A18124A9200D9E6D4 /* DEADeviceInfoService.m */; };
-		DD247F5318124A9200D9E6D4 /* DEAGyroscopeService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0C18124A9200D9E6D4 /* DEAGyroscopeService.m */; };
-		DD247F5418124A9200D9E6D4 /* DEAHumidityService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F0E18124A9200D9E6D4 /* DEAHumidityService.m */; };
-		DD247F5518124A9200D9E6D4 /* DEAMagnetometerService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1018124A9200D9E6D4 /* DEAMagnetometerService.m */; };
-		DD247F5618124A9200D9E6D4 /* DEASimpleKeysService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1218124A9200D9E6D4 /* DEASimpleKeysService.m */; };
-		DD247F5718124A9200D9E6D4 /* DEATemperatureService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1418124A9200D9E6D4 /* DEATemperatureService.m */; };
-		DD247F5818124A9200D9E6D4 /* TISensorTag.c in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1518124A9200D9E6D4 /* TISensorTag.c */; };
-		DD247F5918124A9200D9E6D4 /* DEAPeripheralTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1918124A9200D9E6D4 /* DEAPeripheralTableViewCell.m */; };
-		DD247F5A18124A9200D9E6D4 /* DEAAccelerometerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1D18124A9200D9E6D4 /* DEAAccelerometerViewCell.m */; };
-		DD247F5B18124A9200D9E6D4 /* DEABarometerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F1F18124A9200D9E6D4 /* DEABarometerViewCell.m */; };
-		DD247F5C18124A9200D9E6D4 /* DEADeviceInfoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2118124A9200D9E6D4 /* DEADeviceInfoViewCell.m */; };
-		DD247F5D18124A9200D9E6D4 /* DEAGyroscopeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2318124A9200D9E6D4 /* DEAGyroscopeViewCell.m */; };
-		DD247F5E18124A9200D9E6D4 /* DEAHumidityViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2518124A9200D9E6D4 /* DEAHumidityViewCell.m */; };
-		DD247F5F18124A9200D9E6D4 /* DEAMagnetometerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2718124A9200D9E6D4 /* DEAMagnetometerViewCell.m */; };
-		DD247F6018124A9200D9E6D4 /* DEASimpleKeysViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2918124A9200D9E6D4 /* DEASimpleKeysViewCell.m */; };
-		DD247F6118124A9200D9E6D4 /* DEATemperatureViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2B18124A9200D9E6D4 /* DEATemperatureViewCell.m */; };
-		DD247F6218124A9200D9E6D4 /* DEADefaultTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F2E18124A9200D9E6D4 /* DEADefaultTheme.m */; };
-		DD247F6318124A9200D9E6D4 /* DEATheme.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3018124A9200D9E6D4 /* DEATheme.m */; };
-		DD247F6418124A9200D9E6D4 /* DEAPeripheralsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD247F3218124A9200D9E6D4 /* DEAPeripheralsViewController.xib */; };
-		DD247F6518124A9200D9E6D4 /* DEAPeripheralTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD247F3318124A9200D9E6D4 /* DEAPeripheralTableViewCell.xib */; };
-		DD247F6618124A9200D9E6D4 /* DEASensorTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD247F3418124A9200D9E6D4 /* DEASensorTagViewController.xib */; };
-		DD247F6718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m */; };
-		DD247F6818124A9200D9E6D4 /* YMS128.c in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3818124A9200D9E6D4 /* YMS128.c */; };
-		DD247F6918124A9200D9E6D4 /* YMSCBCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3B18124A9200D9E6D4 /* YMSCBCentralManager.m */; };
-		DD247F6A18124A9200D9E6D4 /* YMSCBCharacteristic.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3D18124A9200D9E6D4 /* YMSCBCharacteristic.m */; };
-		DD247F6B18124A9200D9E6D4 /* YMSCBDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F3F18124A9200D9E6D4 /* YMSCBDescriptor.m */; };
-		DD247F6C18124A9200D9E6D4 /* YMSCBPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F4118124A9200D9E6D4 /* YMSCBPeripheral.m */; };
-		DD247F6D18124A9200D9E6D4 /* YMSCBService.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F4318124A9200D9E6D4 /* YMSCBService.m */; };
-		DD247F6E18124A9200D9E6D4 /* YMSCBStoredPeripherals.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F4518124A9200D9E6D4 /* YMSCBStoredPeripherals.m */; };
-		DD247F6F18124A9200D9E6D4 /* YMSCBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F4718124A9200D9E6D4 /* YMSCBUtils.m */; };
 		DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7818126A8500D9E6D4 /* AppDelegate.m */; };
 		DD247F8018126A8500D9E6D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD247F7918126A8500D9E6D4 /* InfoPlist.strings */; };
 		DD247F8118126A8500D9E6D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7B18126A8500D9E6D4 /* main.m */; };
@@ -121,7 +81,6 @@
 		DD56A6F9181FE6FC0088AB49 /* SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A6F8181FE6FC0088AB49 /* SettingView.m */; };
 		DD56A702181FFC150088AB49 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A701181FFC150088AB49 /* SettingCell.m */; };
 		DD56A70D1821434A0088AB49 /* RootViewController+BottomNavigationbar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A7061821434A0088AB49 /* RootViewController+BottomNavigationbar.m */; };
-		DD56A70E1821434A0088AB49 /* RootViewController+ScanPeripharals.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A7081821434A0088AB49 /* RootViewController+ScanPeripharals.m */; };
 		DD56A70F1821434A0088AB49 /* RootViewController+SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A70A1821434A0088AB49 /* RootViewController+SettingView.m */; };
 		DD56A7101821434A0088AB49 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A70C1821434A0088AB49 /* RootViewController.m */; };
 		DD56A719182143920088AB49 /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A713182143920088AB49 /* MovieViewController.m */; };
@@ -245,83 +204,6 @@
 		DD1BFBD5180AD5D90001C200 /* NotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationView.m; sourceTree = "<group>"; };
 		DD1BFBD7180AD6020001C200 /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCell.h; sourceTree = "<group>"; };
 		DD1BFBD8180AD6020001C200 /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCell.m; sourceTree = "<group>"; };
-		DD247EF318124A9200D9E6D4 /* DEABaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEABaseViewController.h; sourceTree = "<group>"; };
-		DD247EF418124A9200D9E6D4 /* DEABaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEABaseViewController.m; sourceTree = "<group>"; };
-		DD247EF518124A9200D9E6D4 /* DEAPeripheralsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAPeripheralsViewController.h; sourceTree = "<group>"; };
-		DD247EF618124A9200D9E6D4 /* DEAPeripheralsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAPeripheralsViewController.m; sourceTree = "<group>"; };
-		DD247EF718124A9200D9E6D4 /* DEASensorTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEASensorTagViewController.h; sourceTree = "<group>"; };
-		DD247EF818124A9200D9E6D4 /* DEASensorTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEASensorTagViewController.m; sourceTree = "<group>"; };
-		DD247EF918124A9200D9E6D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DD247EFB18124A9200D9E6D4 /* DEACentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEACentralManager.h; sourceTree = "<group>"; };
-		DD247EFC18124A9200D9E6D4 /* DEACentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEACentralManager.m; sourceTree = "<group>"; };
-		DD247EFE18124A9200D9E6D4 /* DEASensorTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEASensorTag.h; sourceTree = "<group>"; };
-		DD247EFF18124A9200D9E6D4 /* DEASensorTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEASensorTag.m; sourceTree = "<group>"; };
-		DD247F0018124A9200D9E6D4 /* DEASensorTagUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEASensorTagUtils.h; sourceTree = "<group>"; };
-		DD247F0118124A9200D9E6D4 /* DEASensorTagUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEASensorTagUtils.m; sourceTree = "<group>"; };
-		DD247F0318124A9200D9E6D4 /* DEAAccelerometerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAAccelerometerService.h; sourceTree = "<group>"; };
-		DD247F0418124A9200D9E6D4 /* DEAAccelerometerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAAccelerometerService.m; sourceTree = "<group>"; };
-		DD247F0518124A9200D9E6D4 /* DEABarometerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEABarometerService.h; sourceTree = "<group>"; };
-		DD247F0618124A9200D9E6D4 /* DEABarometerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEABarometerService.m; sourceTree = "<group>"; };
-		DD247F0718124A9200D9E6D4 /* DEABaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEABaseService.h; sourceTree = "<group>"; };
-		DD247F0818124A9200D9E6D4 /* DEABaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEABaseService.m; sourceTree = "<group>"; };
-		DD247F0918124A9200D9E6D4 /* DEADeviceInfoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEADeviceInfoService.h; sourceTree = "<group>"; };
-		DD247F0A18124A9200D9E6D4 /* DEADeviceInfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEADeviceInfoService.m; sourceTree = "<group>"; };
-		DD247F0B18124A9200D9E6D4 /* DEAGyroscopeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAGyroscopeService.h; sourceTree = "<group>"; };
-		DD247F0C18124A9200D9E6D4 /* DEAGyroscopeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAGyroscopeService.m; sourceTree = "<group>"; };
-		DD247F0D18124A9200D9E6D4 /* DEAHumidityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAHumidityService.h; sourceTree = "<group>"; };
-		DD247F0E18124A9200D9E6D4 /* DEAHumidityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAHumidityService.m; sourceTree = "<group>"; };
-		DD247F0F18124A9200D9E6D4 /* DEAMagnetometerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAMagnetometerService.h; sourceTree = "<group>"; };
-		DD247F1018124A9200D9E6D4 /* DEAMagnetometerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAMagnetometerService.m; sourceTree = "<group>"; };
-		DD247F1118124A9200D9E6D4 /* DEASimpleKeysService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEASimpleKeysService.h; sourceTree = "<group>"; };
-		DD247F1218124A9200D9E6D4 /* DEASimpleKeysService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEASimpleKeysService.m; sourceTree = "<group>"; };
-		DD247F1318124A9200D9E6D4 /* DEATemperatureService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEATemperatureService.h; sourceTree = "<group>"; };
-		DD247F1418124A9200D9E6D4 /* DEATemperatureService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEATemperatureService.m; sourceTree = "<group>"; };
-		DD247F1518124A9200D9E6D4 /* TISensorTag.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TISensorTag.c; sourceTree = "<group>"; };
-		DD247F1618124A9200D9E6D4 /* TISensorTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISensorTag.h; sourceTree = "<group>"; };
-		DD247F1818124A9200D9E6D4 /* DEAPeripheralTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAPeripheralTableViewCell.h; sourceTree = "<group>"; };
-		DD247F1918124A9200D9E6D4 /* DEAPeripheralTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAPeripheralTableViewCell.m; sourceTree = "<group>"; };
-		DD247F1A18124A9200D9E6D4 /* DEAStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAStyleSheet.h; sourceTree = "<group>"; };
-		DD247F1C18124A9200D9E6D4 /* DEAAccelerometerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAAccelerometerViewCell.h; sourceTree = "<group>"; };
-		DD247F1D18124A9200D9E6D4 /* DEAAccelerometerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAAccelerometerViewCell.m; sourceTree = "<group>"; };
-		DD247F1E18124A9200D9E6D4 /* DEABarometerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEABarometerViewCell.h; sourceTree = "<group>"; };
-		DD247F1F18124A9200D9E6D4 /* DEABarometerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEABarometerViewCell.m; sourceTree = "<group>"; };
-		DD247F2018124A9200D9E6D4 /* DEADeviceInfoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEADeviceInfoViewCell.h; sourceTree = "<group>"; };
-		DD247F2118124A9200D9E6D4 /* DEADeviceInfoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEADeviceInfoViewCell.m; sourceTree = "<group>"; };
-		DD247F2218124A9200D9E6D4 /* DEAGyroscopeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAGyroscopeViewCell.h; sourceTree = "<group>"; };
-		DD247F2318124A9200D9E6D4 /* DEAGyroscopeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAGyroscopeViewCell.m; sourceTree = "<group>"; };
-		DD247F2418124A9200D9E6D4 /* DEAHumidityViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAHumidityViewCell.h; sourceTree = "<group>"; };
-		DD247F2518124A9200D9E6D4 /* DEAHumidityViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAHumidityViewCell.m; sourceTree = "<group>"; };
-		DD247F2618124A9200D9E6D4 /* DEAMagnetometerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAMagnetometerViewCell.h; sourceTree = "<group>"; };
-		DD247F2718124A9200D9E6D4 /* DEAMagnetometerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAMagnetometerViewCell.m; sourceTree = "<group>"; };
-		DD247F2818124A9200D9E6D4 /* DEASimpleKeysViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEASimpleKeysViewCell.h; sourceTree = "<group>"; };
-		DD247F2918124A9200D9E6D4 /* DEASimpleKeysViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEASimpleKeysViewCell.m; sourceTree = "<group>"; };
-		DD247F2A18124A9200D9E6D4 /* DEATemperatureViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEATemperatureViewCell.h; sourceTree = "<group>"; };
-		DD247F2B18124A9200D9E6D4 /* DEATemperatureViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEATemperatureViewCell.m; sourceTree = "<group>"; };
-		DD247F2D18124A9200D9E6D4 /* DEADefaultTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEADefaultTheme.h; sourceTree = "<group>"; };
-		DD247F2E18124A9200D9E6D4 /* DEADefaultTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEADefaultTheme.m; sourceTree = "<group>"; };
-		DD247F2F18124A9200D9E6D4 /* DEATheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEATheme.h; sourceTree = "<group>"; };
-		DD247F3018124A9200D9E6D4 /* DEATheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEATheme.m; sourceTree = "<group>"; };
-		DD247F3218124A9200D9E6D4 /* DEAPeripheralsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DEAPeripheralsViewController.xib; sourceTree = "<group>"; };
-		DD247F3318124A9200D9E6D4 /* DEAPeripheralTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DEAPeripheralTableViewCell.xib; sourceTree = "<group>"; };
-		DD247F3418124A9200D9E6D4 /* DEASensorTagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DEASensorTagViewController.xib; sourceTree = "<group>"; };
-		DD247F3618124A9200D9E6D4 /* NSMutableArray+fifoQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+fifoQueue.h"; sourceTree = "<group>"; };
-		DD247F3718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+fifoQueue.m"; sourceTree = "<group>"; };
-		DD247F3818124A9200D9E6D4 /* YMS128.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = YMS128.c; sourceTree = "<group>"; };
-		DD247F3918124A9200D9E6D4 /* YMS128.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMS128.h; sourceTree = "<group>"; };
-		DD247F3A18124A9200D9E6D4 /* YMSCBCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBCentralManager.h; sourceTree = "<group>"; };
-		DD247F3B18124A9200D9E6D4 /* YMSCBCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBCentralManager.m; sourceTree = "<group>"; };
-		DD247F3C18124A9200D9E6D4 /* YMSCBCharacteristic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBCharacteristic.h; sourceTree = "<group>"; };
-		DD247F3D18124A9200D9E6D4 /* YMSCBCharacteristic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBCharacteristic.m; sourceTree = "<group>"; };
-		DD247F3E18124A9200D9E6D4 /* YMSCBDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBDescriptor.h; sourceTree = "<group>"; };
-		DD247F3F18124A9200D9E6D4 /* YMSCBDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBDescriptor.m; sourceTree = "<group>"; };
-		DD247F4018124A9200D9E6D4 /* YMSCBPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBPeripheral.h; sourceTree = "<group>"; };
-		DD247F4118124A9200D9E6D4 /* YMSCBPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBPeripheral.m; sourceTree = "<group>"; };
-		DD247F4218124A9200D9E6D4 /* YMSCBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBService.h; sourceTree = "<group>"; };
-		DD247F4318124A9200D9E6D4 /* YMSCBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBService.m; sourceTree = "<group>"; };
-		DD247F4418124A9200D9E6D4 /* YMSCBStoredPeripherals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBStoredPeripherals.h; sourceTree = "<group>"; };
-		DD247F4518124A9200D9E6D4 /* YMSCBStoredPeripherals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBStoredPeripherals.m; sourceTree = "<group>"; };
-		DD247F4618124A9200D9E6D4 /* YMSCBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBUtils.h; sourceTree = "<group>"; };
-		DD247F4718124A9200D9E6D4 /* YMSCBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBUtils.m; sourceTree = "<group>"; };
 		DD247F7718126A8500D9E6D4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DD247F7818126A8500D9E6D4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DD247F7A18126A8500D9E6D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -375,8 +257,6 @@
 		DD56A701181FFC150088AB49 /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
 		DD56A7051821434A0088AB49 /* RootViewController+BottomNavigationbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RootViewController+BottomNavigationbar.h"; sourceTree = "<group>"; };
 		DD56A7061821434A0088AB49 /* RootViewController+BottomNavigationbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RootViewController+BottomNavigationbar.m"; sourceTree = "<group>"; };
-		DD56A7071821434A0088AB49 /* RootViewController+ScanPeripharals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RootViewController+ScanPeripharals.h"; sourceTree = "<group>"; };
-		DD56A7081821434A0088AB49 /* RootViewController+ScanPeripharals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RootViewController+ScanPeripharals.m"; sourceTree = "<group>"; };
 		DD56A7091821434A0088AB49 /* RootViewController+SettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RootViewController+SettingView.h"; sourceTree = "<group>"; };
 		DD56A70A1821434A0088AB49 /* RootViewController+SettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RootViewController+SettingView.m"; sourceTree = "<group>"; };
 		DD56A70B1821434A0088AB49 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -568,7 +448,6 @@
 				DD56A741182287400088AB49 /* FVImageSequence.h */,
 				DD56A742182287400088AB49 /* FVImageSequence.m */,
 				DD56A6A4181EB3AF0088AB49 /* ShareSDK_v2.5.1 */,
-				DD247E8E1812498900D9E6D4 /* PeripheralManager */,
 				DD1BFB9D180AC0FC0001C200 /* PSTCollectionView */,
 			);
 			path = ThirdParty;
@@ -629,170 +508,6 @@
 				DD1BFBD8180AD6020001C200 /* NotificationCell.m */,
 			);
 			path = TheViewPulledDown;
-			sourceTree = "<group>";
-		};
-		DD247E8E1812498900D9E6D4 /* PeripheralManager */ = {
-			isa = PBXGroup;
-			children = (
-				DD247EF118124A9200D9E6D4 /* View */,
-				DD247F3518124A9200D9E6D4 /* YmsCoreBluetooth */,
-			);
-			path = PeripheralManager;
-			sourceTree = "<group>";
-		};
-		DD247EF118124A9200D9E6D4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				DD247EF218124A9200D9E6D4 /* Controllers */,
-				DD247EF918124A9200D9E6D4 /* Images.xcassets */,
-				DD247EFA18124A9200D9E6D4 /* Services */,
-				DD247F1718124A9200D9E6D4 /* UI */,
-				DD247F3118124A9200D9E6D4 /* XIBs */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		DD247EF218124A9200D9E6D4 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				DD247EF318124A9200D9E6D4 /* DEABaseViewController.h */,
-				DD247EF418124A9200D9E6D4 /* DEABaseViewController.m */,
-				DD247EF518124A9200D9E6D4 /* DEAPeripheralsViewController.h */,
-				DD247EF618124A9200D9E6D4 /* DEAPeripheralsViewController.m */,
-				DD247EF718124A9200D9E6D4 /* DEASensorTagViewController.h */,
-				DD247EF818124A9200D9E6D4 /* DEASensorTagViewController.m */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		DD247EFA18124A9200D9E6D4 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				DD247EFB18124A9200D9E6D4 /* DEACentralManager.h */,
-				DD247EFC18124A9200D9E6D4 /* DEACentralManager.m */,
-				DD247EFD18124A9200D9E6D4 /* SensorTag */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		DD247EFD18124A9200D9E6D4 /* SensorTag */ = {
-			isa = PBXGroup;
-			children = (
-				DD247EFE18124A9200D9E6D4 /* DEASensorTag.h */,
-				DD247EFF18124A9200D9E6D4 /* DEASensorTag.m */,
-				DD247F0018124A9200D9E6D4 /* DEASensorTagUtils.h */,
-				DD247F0118124A9200D9E6D4 /* DEASensorTagUtils.m */,
-				DD247F0218124A9200D9E6D4 /* Services */,
-				DD247F1518124A9200D9E6D4 /* TISensorTag.c */,
-				DD247F1618124A9200D9E6D4 /* TISensorTag.h */,
-			);
-			path = SensorTag;
-			sourceTree = "<group>";
-		};
-		DD247F0218124A9200D9E6D4 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				DD247F0318124A9200D9E6D4 /* DEAAccelerometerService.h */,
-				DD247F0418124A9200D9E6D4 /* DEAAccelerometerService.m */,
-				DD247F0518124A9200D9E6D4 /* DEABarometerService.h */,
-				DD247F0618124A9200D9E6D4 /* DEABarometerService.m */,
-				DD247F0718124A9200D9E6D4 /* DEABaseService.h */,
-				DD247F0818124A9200D9E6D4 /* DEABaseService.m */,
-				DD247F0918124A9200D9E6D4 /* DEADeviceInfoService.h */,
-				DD247F0A18124A9200D9E6D4 /* DEADeviceInfoService.m */,
-				DD247F0B18124A9200D9E6D4 /* DEAGyroscopeService.h */,
-				DD247F0C18124A9200D9E6D4 /* DEAGyroscopeService.m */,
-				DD247F0D18124A9200D9E6D4 /* DEAHumidityService.h */,
-				DD247F0E18124A9200D9E6D4 /* DEAHumidityService.m */,
-				DD247F0F18124A9200D9E6D4 /* DEAMagnetometerService.h */,
-				DD247F1018124A9200D9E6D4 /* DEAMagnetometerService.m */,
-				DD247F1118124A9200D9E6D4 /* DEASimpleKeysService.h */,
-				DD247F1218124A9200D9E6D4 /* DEASimpleKeysService.m */,
-				DD247F1318124A9200D9E6D4 /* DEATemperatureService.h */,
-				DD247F1418124A9200D9E6D4 /* DEATemperatureService.m */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		DD247F1718124A9200D9E6D4 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				DD247F1818124A9200D9E6D4 /* DEAPeripheralTableViewCell.h */,
-				DD247F1918124A9200D9E6D4 /* DEAPeripheralTableViewCell.m */,
-				DD247F1A18124A9200D9E6D4 /* DEAStyleSheet.h */,
-				DD247F1B18124A9200D9E6D4 /* Sensors */,
-				DD247F2C18124A9200D9E6D4 /* Themes */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		DD247F1B18124A9200D9E6D4 /* Sensors */ = {
-			isa = PBXGroup;
-			children = (
-				DD247F1C18124A9200D9E6D4 /* DEAAccelerometerViewCell.h */,
-				DD247F1D18124A9200D9E6D4 /* DEAAccelerometerViewCell.m */,
-				DD247F1E18124A9200D9E6D4 /* DEABarometerViewCell.h */,
-				DD247F1F18124A9200D9E6D4 /* DEABarometerViewCell.m */,
-				DD247F2018124A9200D9E6D4 /* DEADeviceInfoViewCell.h */,
-				DD247F2118124A9200D9E6D4 /* DEADeviceInfoViewCell.m */,
-				DD247F2218124A9200D9E6D4 /* DEAGyroscopeViewCell.h */,
-				DD247F2318124A9200D9E6D4 /* DEAGyroscopeViewCell.m */,
-				DD247F2418124A9200D9E6D4 /* DEAHumidityViewCell.h */,
-				DD247F2518124A9200D9E6D4 /* DEAHumidityViewCell.m */,
-				DD247F2618124A9200D9E6D4 /* DEAMagnetometerViewCell.h */,
-				DD247F2718124A9200D9E6D4 /* DEAMagnetometerViewCell.m */,
-				DD247F2818124A9200D9E6D4 /* DEASimpleKeysViewCell.h */,
-				DD247F2918124A9200D9E6D4 /* DEASimpleKeysViewCell.m */,
-				DD247F2A18124A9200D9E6D4 /* DEATemperatureViewCell.h */,
-				DD247F2B18124A9200D9E6D4 /* DEATemperatureViewCell.m */,
-			);
-			path = Sensors;
-			sourceTree = "<group>";
-		};
-		DD247F2C18124A9200D9E6D4 /* Themes */ = {
-			isa = PBXGroup;
-			children = (
-				DD247F2D18124A9200D9E6D4 /* DEADefaultTheme.h */,
-				DD247F2E18124A9200D9E6D4 /* DEADefaultTheme.m */,
-				DD247F2F18124A9200D9E6D4 /* DEATheme.h */,
-				DD247F3018124A9200D9E6D4 /* DEATheme.m */,
-			);
-			path = Themes;
-			sourceTree = "<group>";
-		};
-		DD247F3118124A9200D9E6D4 /* XIBs */ = {
-			isa = PBXGroup;
-			children = (
-				DD247F3218124A9200D9E6D4 /* DEAPeripheralsViewController.xib */,
-				DD247F3318124A9200D9E6D4 /* DEAPeripheralTableViewCell.xib */,
-				DD247F3418124A9200D9E6D4 /* DEASensorTagViewController.xib */,
-			);
-			path = XIBs;
-			sourceTree = "<group>";
-		};
-		DD247F3518124A9200D9E6D4 /* YmsCoreBluetooth */ = {
-			isa = PBXGroup;
-			children = (
-				DD247F3618124A9200D9E6D4 /* NSMutableArray+fifoQueue.h */,
-				DD247F3718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m */,
-				DD247F3818124A9200D9E6D4 /* YMS128.c */,
-				DD247F3918124A9200D9E6D4 /* YMS128.h */,
-				DD247F3A18124A9200D9E6D4 /* YMSCBCentralManager.h */,
-				DD247F3B18124A9200D9E6D4 /* YMSCBCentralManager.m */,
-				DD247F3C18124A9200D9E6D4 /* YMSCBCharacteristic.h */,
-				DD247F3D18124A9200D9E6D4 /* YMSCBCharacteristic.m */,
-				DD247F3E18124A9200D9E6D4 /* YMSCBDescriptor.h */,
-				DD247F3F18124A9200D9E6D4 /* YMSCBDescriptor.m */,
-				DD247F4018124A9200D9E6D4 /* YMSCBPeripheral.h */,
-				DD247F4118124A9200D9E6D4 /* YMSCBPeripheral.m */,
-				DD247F4218124A9200D9E6D4 /* YMSCBService.h */,
-				DD247F4318124A9200D9E6D4 /* YMSCBService.m */,
-				DD247F4418124A9200D9E6D4 /* YMSCBStoredPeripherals.h */,
-				DD247F4518124A9200D9E6D4 /* YMSCBStoredPeripherals.m */,
-				DD247F4618124A9200D9E6D4 /* YMSCBUtils.h */,
-				DD247F4718124A9200D9E6D4 /* YMSCBUtils.m */,
-			);
-			path = YmsCoreBluetooth;
 			sourceTree = "<group>";
 		};
 		DD247F7618126A8500D9E6D4 /* Supporting Files */ = {
@@ -932,8 +647,6 @@
 				DD56A7271821448E0088AB49 /* TMNavigationController.m */,
 				DD56A7051821434A0088AB49 /* RootViewController+BottomNavigationbar.h */,
 				DD56A7061821434A0088AB49 /* RootViewController+BottomNavigationbar.m */,
-				DD56A7071821434A0088AB49 /* RootViewController+ScanPeripharals.h */,
-				DD56A7081821434A0088AB49 /* RootViewController+ScanPeripharals.m */,
 				DD56A7091821434A0088AB49 /* RootViewController+SettingView.h */,
 				DD56A70A1821434A0088AB49 /* RootViewController+SettingView.m */,
 				DD56A70B1821434A0088AB49 /* RootViewController.h */,
@@ -1116,13 +829,9 @@
 				DD56A78C182287C10088AB49 /* Seq_v04_640x378_9.jpg in Resources */,
 				DD56A6E6181EB3B00088AB49 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
 				DD56A779182287C10088AB49 /* Seq_v04_640x378_23.jpg in Resources */,
-				DD247F4B18124A9200D9E6D4 /* Images.xcassets in Resources */,
 				DD56A784182287C10088AB49 /* Seq_v04_640x378_33.jpg in Resources */,
-				DD247F6618124A9200D9E6D4 /* DEASensorTagViewController.xib in Resources */,
 				DD56A7201821441A0088AB49 /* _360ViewController.xib in Resources */,
-				DD247F6418124A9200D9E6D4 /* DEAPeripheralsViewController.xib in Resources */,
 				DD56A77B182287C10088AB49 /* Seq_v04_640x378_25.jpg in Resources */,
-				DD247F6518124A9200D9E6D4 /* DEAPeripheralTableViewCell.xib in Resources */,
 				DD247F8418126A9C00D9E6D4 /* Images.xcassets in Resources */,
 				DD56A76C182287C10088AB49 /* Seq_v04_640x378_11.jpg in Resources */,
 				DD56A6DC181EB3B00088AB49 /* RennSDK.bundle in Resources */,
@@ -1178,8 +887,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD1BFBC4180AC0FC0001C200 /* PSTGridLayoutItem.m in Sources */,
-				DD247F5F18124A9200D9E6D4 /* DEAMagnetometerViewCell.m in Sources */,
-				DD247F5118124A9200D9E6D4 /* DEABaseService.m in Sources */,
 				DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */,
 				DD56A70F1821434A0088AB49 /* RootViewController+SettingView.m in Sources */,
 				DD1BFBD9180AD6020001C200 /* NotificationCell.m in Sources */,
@@ -1187,75 +894,40 @@
 				DD1BFBBE180AC0FC0001C200 /* PSTCollectionViewData.m in Sources */,
 				DD56A70D1821434A0088AB49 /* RootViewController+BottomNavigationbar.m in Sources */,
 				DD56A743182287410088AB49 /* FVImageSequence.m in Sources */,
-				DD247F5618124A9200D9E6D4 /* DEASimpleKeysService.m in Sources */,
-				DD247F6718124A9200D9E6D4 /* NSMutableArray+fifoQueue.m in Sources */,
 				DD56A6F9181FE6FC0088AB49 /* SettingView.m in Sources */,
 				DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */,
 				DD1BFBC2180AC0FC0001C200 /* PSTCollectionViewUpdateItem.m in Sources */,
-				DD247F6B18124A9200D9E6D4 /* YMSCBDescriptor.m in Sources */,
-				DD247F4D18124A9200D9E6D4 /* DEASensorTag.m in Sources */,
 				DD56A719182143920088AB49 /* MovieViewController.m in Sources */,
-				DD247F4E18124A9200D9E6D4 /* DEASensorTagUtils.m in Sources */,
 				DD56A72D182146010088AB49 /* ShopViewController.m in Sources */,
 				DD1BFBBD180AC0FC0001C200 /* PSTCollectionViewController.m in Sources */,
 				DD1BFBCD180AC24E0001C200 /* WatchVell.m in Sources */,
 				42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */,
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
 				DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */,
-				DD247F5718124A9200D9E6D4 /* DEATemperatureService.m in Sources */,
-				DD247F4C18124A9200D9E6D4 /* DEACentralManager.m in Sources */,
-				DD247F6018124A9200D9E6D4 /* DEASimpleKeysViewCell.m in Sources */,
 				DD1BFBD0180AC7280001C200 /* FactoryMethods.m in Sources */,
-				DD247F5818124A9200D9E6D4 /* TISensorTag.c in Sources */,
 				DD56A7101821434A0088AB49 /* RootViewController.m in Sources */,
 				42BBD88218079B330094E39D /* DialView.m in Sources */,
-				DD247F4918124A9200D9E6D4 /* DEAPeripheralsViewController.m in Sources */,
-				DD247F5018124A9200D9E6D4 /* DEABarometerService.m in Sources */,
 				DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */,
 				DD56A71A182143920088AB49 /* SignViewController.m in Sources */,
 				DDEC67E11807010200F3DD7A /* WatchView.m in Sources */,
 				42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */,
 				DD56A724182144490088AB49 /* TryViewController.m in Sources */,
 				DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */,
-				DD247F5418124A9200D9E6D4 /* DEAHumidityService.m in Sources */,
 				DD1BFBCA180AC1FD0001C200 /* SwitchWatchView.m in Sources */,
-				DD247F5A18124A9200D9E6D4 /* DEAAccelerometerViewCell.m in Sources */,
-				DD247F6E18124A9200D9E6D4 /* YMSCBStoredPeripherals.m in Sources */,
 				DD1BFBC1180AC0FC0001C200 /* PSTCollectionViewLayout.m in Sources */,
 				DD56A702181FFC150088AB49 /* SettingCell.m in Sources */,
-				DD247F6818124A9200D9E6D4 /* YMS128.c in Sources */,
-				DD247F5518124A9200D9E6D4 /* DEAMagnetometerService.m in Sources */,
-				DD56A70E1821434A0088AB49 /* RootViewController+ScanPeripharals.m in Sources */,
 				DD56A73F18214BE30088AB49 /* MoreSettingViewController.m in Sources */,
 				DD56A73518214B8C0088AB49 /* ShareAccountViewController.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
-				DD247F6318124A9200D9E6D4 /* DEATheme.m in Sources */,
-				DD247F4A18124A9200D9E6D4 /* DEASensorTagViewController.m in Sources */,
-				DD247F6918124A9200D9E6D4 /* YMSCBCentralManager.m in Sources */,
-				DD247F5D18124A9200D9E6D4 /* DEAGyroscopeViewCell.m in Sources */,
-				DD247F4818124A9200D9E6D4 /* DEABaseViewController.m in Sources */,
-				DD247F6C18124A9200D9E6D4 /* YMSCBPeripheral.m in Sources */,
-				DD247F5E18124A9200D9E6D4 /* DEAHumidityViewCell.m in Sources */,
 				DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */,
 				DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */,
-				DD247F6118124A9200D9E6D4 /* DEATemperatureViewCell.m in Sources */,
-				DD247F5C18124A9200D9E6D4 /* DEADeviceInfoViewCell.m in Sources */,
-				DD247F4F18124A9200D9E6D4 /* DEAAccelerometerService.m in Sources */,
-				DD247F5B18124A9200D9E6D4 /* DEABarometerViewCell.m in Sources */,
-				DD247F6218124A9200D9E6D4 /* DEADefaultTheme.m in Sources */,
-				DD247F6D18124A9200D9E6D4 /* YMSCBService.m in Sources */,
-				DD247F5218124A9200D9E6D4 /* DEADeviceInfoService.m in Sources */,
 				DD1BFBC3180AC0FC0001C200 /* PSTGridLayoutInfo.m in Sources */,
 				DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				DD56A7281821448E0088AB49 /* TMNavigationController.m in Sources */,
 				0A51A628182289AE00DE7DD3 /* UIPlaceHolderTextView.m in Sources */,
-				DD247F6A18124A9200D9E6D4 /* YMSCBCharacteristic.m in Sources */,
 				0A51A6241822878000DE7DD3 /* FeedBackViewController.m in Sources */,
 				DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */,
 				DD1BFBC5180AC0FC0001C200 /* PSTGridLayoutRow.m in Sources */,
-				DD247F5318124A9200D9E6D4 /* DEAGyroscopeService.m in Sources */,
-				DD247F5918124A9200D9E6D4 /* DEAPeripheralTableViewCell.m in Sources */,
-				DD247F6F18124A9200D9E6D4 /* YMSCBUtils.m in Sources */,
 				DD247F8118126A8500D9E6D4 /* main.m in Sources */,
 				0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */,
 				0AB8BB65182278C0002255C2 /* AboutViewController.m in Sources */,

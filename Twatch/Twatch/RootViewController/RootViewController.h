@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DEAPeripheralTableViewCell.h"
 
 @interface RootViewController : UIViewController
-
-/// TableViewCell for a connectable peripheral.
-@property (strong, nonatomic) IBOutlet DEAPeripheralTableViewCell *tvCell;
 
 /// TableView for found peripherals
 @property (strong, nonatomic) IBOutlet UITableView *peripheralsTableView;

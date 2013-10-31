@@ -7,8 +7,6 @@
 //
 
 #import "RootViewController+BottomNavigationbar.h"
-#import "RootViewController+ScanPeripharals.h"
-
 #import "ShopViewController.h"
 
 @implementation RootViewController (BottomNavigationbar)
@@ -39,11 +37,6 @@
 {
     ShopViewController *shop = [[ShopViewController alloc] init];
     [self.navigationController pushViewController:shop animated:YES];
-}
-
-- (void)scanButtonClicked:(UIButton *)sender
-{
-    [self startScan];
 }
 
 @end

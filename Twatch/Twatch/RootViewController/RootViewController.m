@@ -7,7 +7,6 @@
 //
 
 #import "RootViewController.h"
-#import "RootViewController+ScanPeripharals.h"
 #import "RootViewController+BottomNavigationbar.h"
 #import "RootViewController+SettingView.h"
 #import <QuartzCore/QuartzCore.h>
@@ -65,7 +64,6 @@
     bgView.center = CGPointMake(self.view.center.x, self.view.center.y + 5);
     
     [self prepareBottomNavigationbar];
-    [self prepareCentralManager];
     
     [self prepareSettingView];
 
