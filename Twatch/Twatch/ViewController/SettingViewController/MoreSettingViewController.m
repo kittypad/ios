@@ -57,6 +57,17 @@
     cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0f];
     cell.detailTextLabel.textColor = [UIColor blueColor];
     
+    UIButton *attentButton = [FactoryMethods buttonWWithNormalImage:@"加关注.png" hiliteImage:@"加关注.png" target:self selector:@selector(attention:)];
+    [attentButton setTitle:@"关注" forState:UIControlStateNormal];
+    [attentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    attentButton.frame = CGRectChangeOrigin(attentButton.frame, 10, 30);
+    attentButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    attentButton.titleLabel.textColor = [UIColor blueColor];
+    
+    CGSize size = [@"关注" sizeWithFont:[UIFont systemFontOfSize:12.0]];
+    attentButton.frame = CGRectMake(CGRectGetWidth(cell.frame) - CGRectGetWidth(attentButton.frame) - size.width - 10, 5, CGRectGetWidth(attentButton.frame) + size.width, CGRectGetHeight(attentButton.frame));
+
+    
     switch (indexPath.row) {
         case 0:
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -73,33 +84,12 @@
         case 3:
         {
             cell.textLabel.text = @"土曼微博";
-            UIButton *attentButton = [FactoryMethods buttonWWithNormalImage:@"加关注.png" hiliteImage:@"加关注.png" target:self selector:@selector(attention:)];
-            [attentButton setTitle:@"关注" forState:UIControlStateNormal];
-            [attentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            attentButton.frame = CGRectChangeOrigin(attentButton.frame, 10, 30);
-            attentButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-            attentButton.titleLabel.textColor = [UIColor blueColor];
-//            [self.view addSubview:goBackButton];
-            
-            CGSize size = [self.backName sizeWithFont:[UIFont systemFontOfSize:12.0]];
-            attentButton.frame = CGRectMake(240, 5, CGRectGetWidth(attentButton.frame) + size.width, CGRectGetHeight(attentButton.frame));
             [cell addSubview:attentButton];
         }
             break;
         case 4:
         {
             cell.textLabel.text = @"土曼微信";
-            UIButton *attentButton = [FactoryMethods buttonWWithNormalImage:@"加关注.png" hiliteImage:@"加关注.png" target:self selector:@selector(attention:)];
-            [attentButton setTitle:@"关注" forState:UIControlStateNormal];
-            [attentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            attentButton.frame = CGRectChangeOrigin(attentButton.frame, 10, 30);
-            attentButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-            attentButton.titleLabel.textColor = [UIColor blueColor];
-            //            [self.view addSubview:goBackButton];
-            
-            CGSize size = [self.backName sizeWithFont:[UIFont systemFontOfSize:12.0]];
-//            attentButton.frame = CGRectChangeWidth(attentButton.frame, CGRectGetWidth(attentButton.frame) + size.width);
-            attentButton.frame = CGRectMake(240, 5, CGRectGetWidth(attentButton.frame) + size.width, CGRectGetHeight(attentButton.frame));
             [cell addSubview:attentButton];
 
         }
