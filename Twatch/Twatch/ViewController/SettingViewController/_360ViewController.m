@@ -7,6 +7,7 @@
 //
 
 #import "_360ViewController.h"
+#import "FVImageSequence.h"
 
 @interface _360ViewController ()
 
@@ -14,19 +15,23 @@
 
 @implementation _360ViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    FVImageSequence *imageSquence = [[FVImageSequence alloc] initWithImage:[UIImage imageNamed:@"Seq_v04_640x378_0.jpg"]];
+    imageSquence.center = self.view.center;
+    imageSquence.userInteractionEnabled = YES;
+    [self.view addSubview:imageSquence];
+    
+    //Set slides extension
+	[imageSquence setExtension:@"jpg"];
+	
+	//Set slide prefix prefix
+	[imageSquence setPrefix:@"Seq_v04_640x378_"];
+	
+	//Set number of slides
+	[imageSquence setNumberOfImages:36];
 }
 
 - (void)didReceiveMemoryWarning
