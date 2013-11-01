@@ -23,7 +23,7 @@
 		42BBD88518079B550094E39D /* AppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88418079B550094E39D /* AppsView.m */; };
 		42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88718079B7B0094E39D /* CommonAppsView.m */; };
 		42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD8901807A4BE0094E39D /* AllAppsView.m */; };
-		42C676A31823520800B8474D /* CameraImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676A21823520800B8474D /* CameraImageHelper.m */; };
+		42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676A618237B9600B8474D /* CameraImageHelper.m */; };
 		DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */; };
 		DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA1180AC0FC0001C200 /* PSTCollectionView.m */; };
 		DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA3180AC0FC0001C200 /* PSTCollectionViewCell.m */; };
@@ -167,8 +167,8 @@
 		42BBD88718079B7B0094E39D /* CommonAppsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAppsView.m; sourceTree = "<group>"; };
 		42BBD88F1807A4BE0094E39D /* AllAppsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAppsView.h; sourceTree = "<group>"; };
 		42BBD8901807A4BE0094E39D /* AllAppsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAppsView.m; sourceTree = "<group>"; };
-		42C676A11823520800B8474D /* CameraImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraImageHelper.h; sourceTree = "<group>"; };
-		42C676A21823520800B8474D /* CameraImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraImageHelper.m; sourceTree = "<group>"; };
+		42C676A518237B9600B8474D /* CameraImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraImageHelper.h; path = CameraImageHelper/CameraImageHelper.h; sourceTree = "<group>"; };
+		42C676A618237B9600B8474D /* CameraImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraImageHelper.m; path = CameraImageHelper/CameraImageHelper.m; sourceTree = "<group>"; };
 		DD1BFB9E180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
 		DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+PSTCollectionViewAdditions.m"; sourceTree = "<group>"; };
 		DD1BFBA0180AC0FC0001C200 /* PSTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionView.h; sourceTree = "<group>"; };
@@ -447,6 +447,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		42C676A418237B7700B8474D /* CameraImageHelper */ = {
+			isa = PBXGroup;
+			children = (
+				42C676A518237B9600B8474D /* CameraImageHelper.h */,
+				42C676A618237B9600B8474D /* CameraImageHelper.m */,
+			);
+			name = CameraImageHelper;
+			sourceTree = "<group>";
+		};
 		DD1BFB9C180AC0FC0001C200 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,6 +463,7 @@
 				DD56A742182287400088AB49 /* FVImageSequence.m */,
 				DD56A6A4181EB3AF0088AB49 /* ShareSDK_v2.5.1 */,
 				DD1BFB9D180AC0FC0001C200 /* PSTCollectionView */,
+				42C676A418237B7700B8474D /* CameraImageHelper */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -775,8 +785,6 @@
 				42BBD8901807A4BE0094E39D /* AllAppsView.m */,
 				42BBD88618079B7B0094E39D /* CommonAppsView.h */,
 				42BBD88718079B7B0094E39D /* CommonAppsView.m */,
-				42C676A11823520800B8474D /* CameraImageHelper.h */,
-				42C676A21823520800B8474D /* CameraImageHelper.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -918,7 +926,7 @@
 				DD56A79518229ADE0088AB49 /* AGShareCell.m in Sources */,
 				DDEC67E11807010200F3DD7A /* WatchView.m in Sources */,
 				42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */,
-				42C676A31823520800B8474D /* CameraImageHelper.m in Sources */,
+				42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */,
 				DD56A724182144490088AB49 /* TryViewController.m in Sources */,
 				DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */,
 				DD1BFBCA180AC1FD0001C200 /* SwitchWatchView.m in Sources */,
