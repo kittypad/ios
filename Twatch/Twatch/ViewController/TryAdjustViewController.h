@@ -10,4 +10,6 @@
 
 @interface TryAdjustViewController : UIViewController
 
+- (id)initWithImage:(UIImage *)image;
+
 @end

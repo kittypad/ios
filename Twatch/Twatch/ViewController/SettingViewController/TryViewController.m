@@ -7,6 +7,10 @@
 //
 
 #import "TryViewController.h"
+#import "TryAdjustViewController.h"
+#import "SGSmokeScreenAnimation.h"
+#import "UIView+Screenshots.h"
+#import "SGSmokeScreenViewController.h"
 
 @interface TryViewController ()
 
@@ -93,6 +97,9 @@
 -(void)didFinishedCapture:(UIImage*)_img
 {
     [_cameraView stopRunning];
+    
+    TryAdjustViewController *secondViewController = [[TryAdjustViewController alloc] initWithImage:—_img];
+    [self addChildViewController:secondViewController];
 }
 
 -(void)foucusStatus:(BOOL)isadjusting

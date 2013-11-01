@@ -24,9 +24,6 @@
 		42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88718079B7B0094E39D /* CommonAppsView.m */; };
 		42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD8901807A4BE0094E39D /* AllAppsView.m */; };
 		42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676A618237B9600B8474D /* CameraImageHelper.m */; };
-		42C676AF18237D0000B8474D /* SGSmokeScreenAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676AA18237D0000B8474D /* SGSmokeScreenAnimation.m */; };
-		42C676B018237D0000B8474D /* SGSmokeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676AC18237D0000B8474D /* SGSmokeScreenViewController.m */; };
-		42C676B118237D0000B8474D /* UIView+Screenshots.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676AE18237D0000B8474D /* UIView+Screenshots.m */; };
 		42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B318237D7B00B8474D /* TryAdjustViewController.m */; };
 		DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */; };
 		DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA1180AC0FC0001C200 /* PSTCollectionView.m */; };
@@ -173,12 +170,6 @@
 		42BBD8901807A4BE0094E39D /* AllAppsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAppsView.m; sourceTree = "<group>"; };
 		42C676A518237B9600B8474D /* CameraImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraImageHelper.h; path = CameraImageHelper/CameraImageHelper.h; sourceTree = "<group>"; };
 		42C676A618237B9600B8474D /* CameraImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraImageHelper.m; path = CameraImageHelper/CameraImageHelper.m; sourceTree = "<group>"; };
-		42C676A918237D0000B8474D /* SGSmokeScreenAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSmokeScreenAnimation.h; sourceTree = "<group>"; };
-		42C676AA18237D0000B8474D /* SGSmokeScreenAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSmokeScreenAnimation.m; sourceTree = "<group>"; };
-		42C676AB18237D0000B8474D /* SGSmokeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSmokeScreenViewController.h; sourceTree = "<group>"; };
-		42C676AC18237D0000B8474D /* SGSmokeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSmokeScreenViewController.m; sourceTree = "<group>"; };
-		42C676AD18237D0000B8474D /* UIView+Screenshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshots.h"; sourceTree = "<group>"; };
-		42C676AE18237D0000B8474D /* UIView+Screenshots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshots.m"; sourceTree = "<group>"; };
 		42C676B218237D7B00B8474D /* TryAdjustViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TryAdjustViewController.h; sourceTree = "<group>"; };
 		42C676B318237D7B00B8474D /* TryAdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAdjustViewController.m; sourceTree = "<group>"; };
 		DD1BFB9E180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
@@ -468,25 +459,11 @@
 			name = CameraImageHelper;
 			sourceTree = "<group>";
 		};
-		42C676A818237D0000B8474D /* SGSmokeScreenViewController */ = {
-			isa = PBXGroup;
-			children = (
-				42C676A918237D0000B8474D /* SGSmokeScreenAnimation.h */,
-				42C676AA18237D0000B8474D /* SGSmokeScreenAnimation.m */,
-				42C676AB18237D0000B8474D /* SGSmokeScreenViewController.h */,
-				42C676AC18237D0000B8474D /* SGSmokeScreenViewController.m */,
-				42C676AD18237D0000B8474D /* UIView+Screenshots.h */,
-				42C676AE18237D0000B8474D /* UIView+Screenshots.m */,
-			);
-			path = SGSmokeScreenViewController;
-			sourceTree = "<group>";
-		};
 		DD1BFB9C180AC0FC0001C200 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
 				DD56A741182287400088AB49 /* FVImageSequence.h */,
 				DD56A742182287400088AB49 /* FVImageSequence.m */,
-				42C676A818237D0000B8474D /* SGSmokeScreenViewController */,
 				DD56A6A4181EB3AF0088AB49 /* ShareSDK_v2.5.1 */,
 				DD1BFB9D180AC0FC0001C200 /* PSTCollectionView */,
 				42C676A418237B7700B8474D /* CameraImageHelper */,
@@ -954,7 +931,6 @@
 				DD56A79518229ADE0088AB49 /* AGShareCell.m in Sources */,
 				DDEC67E11807010200F3DD7A /* WatchView.m in Sources */,
 				42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */,
-				42C676B018237D0000B8474D /* SGSmokeScreenViewController.m in Sources */,
 				42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */,
 				DD56A724182144490088AB49 /* TryViewController.m in Sources */,
 				DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */,
@@ -966,7 +942,6 @@
 				DD56A73F18214BE30088AB49 /* MoreSettingViewController.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
 				42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */,
-				42C676B118237D0000B8474D /* UIView+Screenshots.m in Sources */,
 				DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */,
 				DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */,
 				DD1BFBC3180AC0FC0001C200 /* PSTGridLayoutInfo.m in Sources */,
@@ -976,7 +951,6 @@
 				0A51A6241822878000DE7DD3 /* FeedBackViewController.m in Sources */,
 				DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */,
 				DD1BFBC5180AC0FC0001C200 /* PSTGridLayoutRow.m in Sources */,
-				42C676AF18237D0000B8474D /* SGSmokeScreenAnimation.m in Sources */,
 				DD247F8118126A8500D9E6D4 /* main.m in Sources */,
 				0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */,
 				0AB8BB65182278C0002255C2 /* AboutViewController.m in Sources */,

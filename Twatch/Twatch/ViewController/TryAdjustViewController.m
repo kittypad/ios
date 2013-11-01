@@ -23,6 +23,15 @@
     return self;
 }
 
+- (id)initWithImage:(UIImage *)image
+{
+    self = [super init];
+    if (self) {
+        self.view.backgroundColor = [UIColor greenColor];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
