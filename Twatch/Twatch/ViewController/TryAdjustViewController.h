@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface TryAdjustViewController : UIViewController
+{
+    UIImage *_image;
+    UIImageView *_imageView;
+}
 
-- (id)initWithImage:(UIImage *)image;
+- (id)initWithFrame:(CGRect)frame image:(UIImage *)image;
 
 @end

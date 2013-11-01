@@ -23,11 +23,13 @@
     return self;
 }
 
-- (id)initWithImage:(UIImage *)image
+- (id)initWithFrame:(CGRect)frame image:(UIImage *)image
 {
     self = [super init];
     if (self) {
-        self.view.backgroundColor = [UIColor greenColor];
+        _image = image;
+        self.view.frame = frame;
+        self.view.alpha = 0.0;
     }
     return self;
 }
@@ -35,13 +37,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    _imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    _imageView.image = _image;
+    [self.view addSubview:_imageView];    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [UIView animateWithDuration:0.3
+                     animations:^(void){
+                         self.view.alpha = 1.0;
+                     }];
 }
 
 @end

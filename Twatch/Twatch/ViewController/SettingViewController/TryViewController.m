@@ -8,6 +8,8 @@
 
 #import "TryViewController.h"
 #import "TryAdjustViewController.h"
+#import "UIImage+Tool.h"
+
 
 @interface TryViewController ()
 
@@ -33,6 +35,7 @@
     
     CGRect bounds = self.view.bounds;
     bounds.size.height = [[UIScreen mainScreen] bounds].size.height;
+    self.view.bounds = bounds;
     
     _photoView = [[UIView alloc] initWithFrame:bounds];
     [self.view addSubview:_photoView];
@@ -95,8 +98,21 @@
 {
     [_cameraView stopRunning];
     
-    TryAdjustViewController *secondViewController = [[TryAdjustViewController alloc] initWithImage:_img];
+    UIImage *image = [_img scaleToSize:self.view.bounds.size];
+    
+    UIImage *img = nil;
+    NSInteger style = [[NSUserDefaults standardUserDefaults] integerForKey:WatchStyleStatus];
+    if (style == wBlack) {
+        img = [UIImage imageNamed:@"黑扣.png"];
+    }else if (style == wRed){
+        img = [UIImage imageNamed:@"红扣.png"];
+    }else if (style == wBlue){
+        img = [UIImage imageNamed:@"蓝扣.png"];
+    }
+    
+    TryAdjustViewController *secondViewController = [[TryAdjustViewController alloc] initWithFrame:self.view.bounds image:[image drawCenterImage:img]];
     [self addChildViewController:secondViewController];
+    [self.view addSubview:secondViewController.view];
 }
 
 -(void)foucusStatus:(BOOL)isadjusting

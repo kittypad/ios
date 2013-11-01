@@ -25,6 +25,7 @@
 		42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD8901807A4BE0094E39D /* AllAppsView.m */; };
 		42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676A618237B9600B8474D /* CameraImageHelper.m */; };
 		42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B318237D7B00B8474D /* TryAdjustViewController.m */; };
+		42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B6182393DF00B8474D /* UIImage+Tool.m */; };
 		DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */; };
 		DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA1180AC0FC0001C200 /* PSTCollectionView.m */; };
 		DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA3180AC0FC0001C200 /* PSTCollectionViewCell.m */; };
@@ -172,6 +173,8 @@
 		42C676A618237B9600B8474D /* CameraImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraImageHelper.m; path = CameraImageHelper/CameraImageHelper.m; sourceTree = "<group>"; };
 		42C676B218237D7B00B8474D /* TryAdjustViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TryAdjustViewController.h; sourceTree = "<group>"; };
 		42C676B318237D7B00B8474D /* TryAdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAdjustViewController.m; sourceTree = "<group>"; };
+		42C676B5182393DF00B8474D /* UIImage+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tool.h"; sourceTree = "<group>"; };
+		42C676B6182393DF00B8474D /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
 		DD1BFB9E180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
 		DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+PSTCollectionViewAdditions.m"; sourceTree = "<group>"; };
 		DD1BFBA0180AC0FC0001C200 /* PSTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionView.h; sourceTree = "<group>"; };
@@ -769,6 +772,8 @@
 			children = (
 				DD1BFBCE180AC7280001C200 /* FactoryMethods.h */,
 				DD1BFBCF180AC7280001C200 /* FactoryMethods.m */,
+				42C676B5182393DF00B8474D /* UIImage+Tool.h */,
+				42C676B6182393DF00B8474D /* UIImage+Tool.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -932,6 +937,7 @@
 				DDEC67E11807010200F3DD7A /* WatchView.m in Sources */,
 				42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */,
 				42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */,
+				42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */,
 				DD56A724182144490088AB49 /* TryViewController.m in Sources */,
 				DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */,
 				DD1BFBCA180AC1FD0001C200 /* SwitchWatchView.m in Sources */,
