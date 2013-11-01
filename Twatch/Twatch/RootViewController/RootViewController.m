@@ -42,6 +42,7 @@
     
     UIImage *img = [UIImage imageNamed:@"蓝2.png"];
     UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
+    NSLog(@"%f", img.size.height);
     bgView.center = self.view.center;
     [self.view addSubview:bgView];
     [[NSNotificationCenter defaultCenter] addObserverForName:WatchStyleStatusChangeNotification object:nil queue:nil usingBlock:^(NSNotification *note) {

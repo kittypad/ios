@@ -89,7 +89,6 @@
 		DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A71D1821441A0088AB49 /* _360ViewController.m */; };
 		DD56A7201821441A0088AB49 /* _360ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A71E1821441A0088AB49 /* _360ViewController.xib */; };
 		DD56A724182144490088AB49 /* TryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A722182144490088AB49 /* TryViewController.m */; };
-		DD56A725182144490088AB49 /* TryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A723182144490088AB49 /* TryViewController.xib */; };
 		DD56A7281821448E0088AB49 /* TMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A7271821448E0088AB49 /* TMNavigationController.m */; };
 		DD56A72D182146010088AB49 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A72A182146010088AB49 /* ShopViewController.m */; };
 		DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */; };
@@ -274,7 +273,6 @@
 		DD56A71E1821441A0088AB49 /* _360ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = _360ViewController.xib; sourceTree = "<group>"; };
 		DD56A721182144490088AB49 /* TryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TryViewController.h; sourceTree = "<group>"; };
 		DD56A722182144490088AB49 /* TryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryViewController.m; sourceTree = "<group>"; };
-		DD56A723182144490088AB49 /* TryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TryViewController.xib; sourceTree = "<group>"; };
 		DD56A7261821448E0088AB49 /* TMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMNavigationController.h; sourceTree = "<group>"; };
 		DD56A7271821448E0088AB49 /* TMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMNavigationController.m; sourceTree = "<group>"; };
 		DD56A729182146010088AB49 /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
@@ -692,7 +690,6 @@
 				DD56A71E1821441A0088AB49 /* _360ViewController.xib */,
 				DD56A721182144490088AB49 /* TryViewController.h */,
 				DD56A722182144490088AB49 /* TryViewController.m */,
-				DD56A723182144490088AB49 /* TryViewController.xib */,
 				DD56A715182143920088AB49 /* SignViewController.h */,
 				DD56A716182143920088AB49 /* SignViewController.m */,
 				DD56A73C18214BE30088AB49 /* MoreSettingViewController.h */,
@@ -877,14 +874,12 @@
 				DD56A6D8181EB3B00088AB49 /* Resource.bundle in Resources */,
 				DD56A74018214BE30088AB49 /* MoreSettingViewController.xib in Resources */,
 				0A51A6251822878000DE7DD3 /* FeedBackViewController.xib in Resources */,
-				DD56A725182144490088AB49 /* TryViewController.xib in Resources */,
 				0AB8BB66182278C0002255C2 /* AboutViewController.xib in Resources */,
 				DD56A788182287C10088AB49 /* Seq_v04_640x378_5.jpg in Resources */,
 				DD56A777182287C10088AB49 /* Seq_v04_640x378_21.jpg in Resources */,
 				DD56A774182287C10088AB49 /* Seq_v04_640x378_19.jpg in Resources */,
 				DD56A78A182287C10088AB49 /* Seq_v04_640x378_7.jpg in Resources */,
 				DD56A785182287C10088AB49 /* Seq_v04_640x378_34.jpg in Resources */,
-				DD56A725182144490088AB49 /* TryViewController.xib in Resources */,
 				DD56A776182287C10088AB49 /* Seq_v04_640x378_20.jpg in Resources */,
 				DD56A778182287C10088AB49 /* Seq_v04_640x378_22.jpg in Resources */,
 			);

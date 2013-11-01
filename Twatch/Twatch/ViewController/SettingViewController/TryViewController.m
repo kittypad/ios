@@ -30,10 +30,10 @@
 {
     [super viewDidLoad];
     
-//    CGSize size = [[UIScreen mainScreen] bounds].size;
-//    CGFloat scale = 
+    CGRect bounds = self.view.bounds;
+    bounds.size.height = [[UIScreen mainScreen] bounds].size.height;
     
-    _photoView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _photoView = [[UIView alloc] initWithFrame:bounds];
     [self.view addSubview:_photoView];
     
     _cameraView = [[CameraImageHelper alloc] init];
@@ -41,9 +41,20 @@
     [_cameraView changePreviewOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
     [_cameraView setDelegate:self];
     
-    _photoView.hidden = YES;
+    UIImage *img = nil;
+    NSInteger style = [[NSUserDefaults standardUserDefaults] integerForKey:WatchStyleStatus];
+    if (style == wBlack) {
+        img = [UIImage imageNamed:@"黑展开.png"];
+    }else if (style == wRed){
+        img = [UIImage imageNamed:@"红展开.png"];
+    }else if (style == wBlue){
+        img = [UIImage imageNamed:@"蓝展开.png"];
+    }
+    UIImageView *bgView = [[UIImageView alloc] initWithImage:img];
+    bgView.center = self.view.center;
+    [self.view addSubview:bgView];
     
-    _cameraButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-50.0)/2, 70.0, 50.0, 50.0)];
+    _cameraButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-50.0)/2, bounds.size.height-70.0, 50.0, 50.0)];
     [_cameraButton setImage:[UIImage imageNamed:@"拍照.png"] forState:UIControlStateNormal];
     [_cameraButton setImage:[UIImage imageNamed:@"拍照-push.png"] forState:UIControlStateHighlighted];
     [_cameraButton addTarget:self action:@selector(captureImage:) forControlEvents:UIControlEventTouchUpInside];
@@ -73,7 +84,7 @@
 
 - (void)captureImage:(id)sender
 {
-    
+    [_cameraView CaptureStillImage];
 }
 
 #pragma mark -
@@ -81,7 +92,7 @@
 
 -(void)didFinishedCapture:(UIImage*)_img
 {
-    
+    [_cameraView stopRunning];
 }
 
 -(void)foucusStatus:(BOOL)isadjusting
