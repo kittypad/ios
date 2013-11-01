@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "NaviCommonViewController.h"
+#import "CameraImageHelper.h"
 
-@interface TryViewController : NaviCommonViewController
+@interface TryViewController : NaviCommonViewController <AVHelperDelegate>
+{
+    CameraImageHelper *_cameraView;
+    UIView *_photoView;
+    UIButton *_cameraButton;
+}
 
 @end

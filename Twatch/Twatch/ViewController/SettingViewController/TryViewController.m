@@ -10,6 +10,9 @@
 
 @interface TryViewController ()
 
+-(void)didFinishedCapture:(UIImage*)_img;
+-(void)foucusStatus:(BOOL)isadjusting;
+
 @end
 
 @implementation TryViewController
@@ -26,13 +29,64 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+//    CGSize size = [[UIScreen mainScreen] bounds].size;
+//    CGFloat scale = 
+    
+    _photoView = [[UIView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:_photoView];
+    
+    _cameraView = [[CameraImageHelper alloc] init];
+    [_cameraView embedPreviewInView:_photoView];
+    [_cameraView changePreviewOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+    [_cameraView setDelegate:self];
+    
+    _photoView.hidden = YES;
+    
+    _cameraButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-50.0)/2, 70.0, 50.0, 50.0)];
+    [_cameraButton setImage:[UIImage imageNamed:@"拍照.png"] forState:UIControlStateNormal];
+    [_cameraButton setImage:[UIImage imageNamed:@"拍照-push.png"] forState:UIControlStateHighlighted];
+    [_cameraButton addTarget:self action:@selector(captureImage:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_cameraButton];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // 开始实时取景
+    [_cameraView startRunning];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [_cameraView stopRunning];
+}
+
+- (void)captureImage:(id)sender
+{
+    
+}
+
+#pragma mark -
+#pragma mark - AVHelperDelegate method
+
+-(void)didFinishedCapture:(UIImage*)_img
+{
+    
+}
+
+-(void)foucusStatus:(BOOL)isadjusting
+{
+    
 }
 
 @end
