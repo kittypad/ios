@@ -27,6 +27,7 @@
 		42C676AF18237D0000B8474D /* SGSmokeScreenAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676AA18237D0000B8474D /* SGSmokeScreenAnimation.m */; };
 		42C676B018237D0000B8474D /* SGSmokeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676AC18237D0000B8474D /* SGSmokeScreenViewController.m */; };
 		42C676B118237D0000B8474D /* UIView+Screenshots.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676AE18237D0000B8474D /* UIView+Screenshots.m */; };
+		42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B318237D7B00B8474D /* TryAdjustViewController.m */; };
 		DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */; };
 		DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA1180AC0FC0001C200 /* PSTCollectionView.m */; };
 		DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA3180AC0FC0001C200 /* PSTCollectionViewCell.m */; };
@@ -178,6 +179,8 @@
 		42C676AC18237D0000B8474D /* SGSmokeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSmokeScreenViewController.m; sourceTree = "<group>"; };
 		42C676AD18237D0000B8474D /* UIView+Screenshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshots.h"; sourceTree = "<group>"; };
 		42C676AE18237D0000B8474D /* UIView+Screenshots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshots.m"; sourceTree = "<group>"; };
+		42C676B218237D7B00B8474D /* TryAdjustViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TryAdjustViewController.h; sourceTree = "<group>"; };
+		42C676B318237D7B00B8474D /* TryAdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAdjustViewController.m; sourceTree = "<group>"; };
 		DD1BFB9E180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
 		DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+PSTCollectionViewAdditions.m"; sourceTree = "<group>"; };
 		DD1BFBA0180AC0FC0001C200 /* PSTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionView.h; sourceTree = "<group>"; };
@@ -703,6 +706,8 @@
 			isa = PBXGroup;
 			children = (
 				DD56A714182143920088AB49 /* SettingViewController */,
+				42C676B218237D7B00B8474D /* TryAdjustViewController.h */,
+				42C676B318237D7B00B8474D /* TryAdjustViewController.m */,
 				DD56A712182143920088AB49 /* MovieViewController.h */,
 				DD56A713182143920088AB49 /* MovieViewController.m */,
 				DD56A729182146010088AB49 /* ShopViewController.h */,
@@ -960,6 +965,7 @@
 				DD56A79418229ADE0088AB49 /* AGAuthViewController.m in Sources */,
 				DD56A73F18214BE30088AB49 /* MoreSettingViewController.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
+				42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */,
 				42C676B118237D0000B8474D /* UIView+Screenshots.m in Sources */,
 				DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */,
 				DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */,
