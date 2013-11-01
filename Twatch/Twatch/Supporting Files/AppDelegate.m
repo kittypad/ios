@@ -18,7 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [application setStatusBarHidden:YES];
+    [application setStatusBarHidden:NO];
+    if (!IS_IOS7) {
+        [application setStatusBarStyle:UIStatusBarStyleBlackTranslucent];
+    }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

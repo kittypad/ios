@@ -65,6 +65,11 @@
     [self.view addSubview:_cameraButton];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -9,7 +9,6 @@
 #import "TMNavigationController.h"
 
 @implementation TMNavigationController
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
 
 - (BOOL)shouldAutorotate
 {
@@ -21,13 +20,9 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
-#else
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-#endif
 
 @end
