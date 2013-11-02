@@ -568,8 +568,8 @@
 			children = (
 				DD56A79618229CC00088AB49 /* AGViewDelegate.m */,
 				DD56A79718229CC00088AB49 /* AGViewDelegate.h */,
-				DD56A79018229ADE0088AB49 /* AGAuthViewController.m */,
 				DD56A79118229ADE0088AB49 /* AGAuthViewController.h */,
+				DD56A79018229ADE0088AB49 /* AGAuthViewController.m */,
 				DD56A79218229ADE0088AB49 /* AGShareCell.h */,
 				DD56A79318229ADE0088AB49 /* AGShareCell.m */,
 				DD56A6A5181EB3AF0088AB49 /* Connection */,

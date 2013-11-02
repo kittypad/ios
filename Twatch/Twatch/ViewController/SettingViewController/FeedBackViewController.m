@@ -14,7 +14,7 @@
 @interface FeedBackViewController ()
 
 @property(nonatomic,strong)UIPlaceHolderTextView *feedBackTextField;
-@property(nonatomic,strong)UIPlaceHolderTextView *contactField;
+@property(nonatomic,strong)UITextField *contactField;
 @property(nonatomic,strong)UMFeedback *myFeedback;
 @end
 
@@ -39,36 +39,32 @@
     feedBackTextField.showsHorizontalScrollIndicator = YES;
     [feedBackTextField setPlaceholder:@"亲，求意见^_^"];
     feedBackTextField.font = [UIFont fontWithName:@"Arial" size:12.0];
-    [feedBackTextField setBackgroundColor:[UIColor clearColor]];
-    feedBackTextField.layer.borderWidth = 0.5;
-    UIColor *color = [UIColor grayColor];
-    feedBackTextField.layer.borderColor = color.CGColor;
+    [feedBackTextField setBackgroundColor:[UIColor whiteColor]];
+    feedBackTextField.layer.borderWidth = 1;
+    feedBackTextField.layer.borderColor = RGB(221, 221, 221, 1).CGColor;
     feedBackTextField.delegate = self;
     feedBackTextField.returnKeyType = UIReturnKeyDone;
     [self.view addSubview:feedBackTextField];
     
     self.feedBackTextField = feedBackTextField;
+   
+#warning 缺少二维码
     
-    
-    UIPlaceHolderTextView *contactTextField = [[UIPlaceHolderTextView alloc] initWithFrame:CGRectMake(20, 241, 280, 35)];
-    contactTextField.showsVerticalScrollIndicator = YES;
-    contactTextField.showsHorizontalScrollIndicator = YES;
+    UITextField *contactTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(feedBackTextField.frame)-1, 280, 35)];
     [contactTextField setPlaceholder:@"联系方式"];
     contactTextField.font = [UIFont fontWithName:@"Arial" size:12.0];
-    [contactTextField setBackgroundColor:[UIColor clearColor]];
-    contactTextField.layer.borderWidth = 0.5;
-    contactTextField.layer.borderColor = color.CGColor;
-    contactTextField.delegate = self;
+    [contactTextField setBackgroundColor:[UIColor whiteColor]];
+    contactTextField.layer.borderWidth = 1;
+    contactTextField.layer.borderColor = RGB(221, 221, 221, 1).CGColor;
     contactTextField.returnKeyType = UIReturnKeyDone;
     [self.view addSubview:contactTextField];
     self.contactField = contactTextField;
         
-    UIButton *sendBtn = [[UIButton alloc] initWithFrame:CGRectMake(240, 290, 60, 30)];
-    
-    [sendBtn setBackgroundColor:RGB(18, 132, 245, 1)];
-    [sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    UIButton *sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    sendBtn.frame =CGRectMake(240, CGRectGetMaxY(contactTextField.frame)+5, 60, 30);
+    [sendBtn setTitleColor:RGB(165, 165, 165, 1) forState:UIControlStateNormal];
     [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
-    [sendBtn.layer setCornerRadius:5.0];
+    sendBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [sendBtn addTarget:self action:@selector(sendFeedBack) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:sendBtn];
     
@@ -80,6 +76,7 @@
     [defaultCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [defaultCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 }
+
 -(void)keyboardWillShow:(NSNotification*)notification{
     //调整UI位置
     NSTimeInterval animationDuration = 0.25f;
@@ -102,27 +99,29 @@
     
     [UIView commitAnimations];
 }
--(BOOL) textView :(UITextView *) textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *) text {
-    
-    if ([text isEqualToString:@"\n"])
-    {
-        [textView resignFirstResponder];
-    }
-    if(textView == self.feedBackTextField)
-    {
-        if(range.location >= TEXTMAX_INPUT)
-        {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"反馈内容超过上限" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
-            return NO;
-        }
-        else
-        {
-            
-        }
-    }
-    return YES;
-}
+
+//-(BOOL) textView :(UITextView *) textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *) text {
+//    
+//    if ([text isEqualToString:@"\n"])
+//    {
+//        [textView resignFirstResponder];
+//    }
+//    if(textView == self.feedBackTextField)
+//    {
+//        if(range.location >= TEXTMAX_INPUT)
+//        {
+//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"反馈内容超过上限" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            [alert show];
+//            return NO;
+//        }
+//        else
+//        {
+//            
+//        }
+//    }
+//    return YES;
+//}
+
 -(void)sendFeedBack
 {
     if ([self.feedBackTextField.text length] == 0)
@@ -130,13 +129,13 @@
         [self.feedBackTextField Shake];
         return;
     }
-    if ([self.contactField.text length] == 0)
-    {
-        [self.contactField Shake];
-        return;
-    }
+    
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:self.feedBackTextField.text forKey:@"content"];
+    
+    NSDictionary *contact = [NSDictionary dictionaryWithObject:self.contactField.text forKey:@"contact info"];
+    [dictionary setObject:contact forKey:@"contact"];
+
     [[UMFeedback sharedInstance] post:dictionary];
 }
 

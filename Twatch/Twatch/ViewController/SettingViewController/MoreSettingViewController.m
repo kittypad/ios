@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 80, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.rowHeight = 45;
@@ -60,14 +60,13 @@
     cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
     cell.textLabel.textColor = [UIColor getColor:@"292929"];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0f];
-    cell.detailTextLabel.textColor = [UIColor blueColor];
+    cell.detailTextLabel.textColor = RGB(81, 150, 221, 1);
     
     UIButton *attentButton = [FactoryMethods buttonWWithNormalImage:@"加关注.png" hiliteImage:@"加关注.png" target:self selector:@selector(attention:)];
     [attentButton setTitle:@"关注" forState:UIControlStateNormal];
-    [attentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [attentButton setTitleColor:RGB(81, 150, 221, 1) forState:UIControlStateNormal];
     attentButton.frame = CGRectChangeOrigin(attentButton.frame, 10, 30);
     attentButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    attentButton.titleLabel.textColor = [UIColor blueColor];
     
     CGSize size = [@"关注" sizeWithFont:[UIFont systemFontOfSize:12.0]];
     attentButton.frame = CGRectMake(CGRectGetWidth(cell.frame) - CGRectGetWidth(attentButton.frame) - size.width - 10, (CGRectGetHeight(cell.frame) - CGRectGetHeight(attentButton.frame))/2, CGRectGetWidth(attentButton.frame) + size.width, CGRectGetHeight(attentButton.frame));
