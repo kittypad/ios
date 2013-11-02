@@ -10,7 +10,10 @@
 #import "UIPlaceHolderTextView.h"
 
 #define TEXTMAX_INPUT 500
+
+#warning umeng key
 #define UMENG_APPKEY  @""
+
 @interface FeedBackViewController ()
 
 @property(nonatomic,strong)UIPlaceHolderTextView *feedBackTextField;
@@ -25,6 +28,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [[UMFeedback sharedInstance]  setAppkey:UMENG_APPKEY delegate:self];
     }
     return self;
 }
