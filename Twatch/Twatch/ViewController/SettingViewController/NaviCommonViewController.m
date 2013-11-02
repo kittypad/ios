@@ -18,6 +18,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    UIView *navigationBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  CGRectGetWidth(self.view.frame), IS_IOS7 ? 64 :44)];
+    navigationBar.backgroundColor = RGB(243, 249, 254, 1);
+    [self.view addSubview:navigationBar];
     
     UIButton *goBackButton = [FactoryMethods buttonWWithNormalImage:@"back.png" hiliteImage:@"back-push.png" target:self selector:@selector(goBack)];
     [goBackButton setTitle:self.backName forState:UIControlStateNormal];
@@ -25,14 +28,14 @@
     goBackButton.frame = CGRectChangeOrigin(goBackButton.frame, 10, 35);
     goBackButton.titleLabel.font = [UIFont systemFontOfSize:GoBackNameSize];
     goBackButton.titleLabel.textColor = [UIColor getColor:@"292929"];
-    [self.view addSubview:goBackButton];
+    [navigationBar addSubview:goBackButton];
     
     CGSize size = [self.backName sizeWithFont:[UIFont systemFontOfSize:GoBackNameSize]];
     goBackButton.frame = CGRectChangeWidth(goBackButton.frame, CGRectGetWidth(goBackButton.frame) + size.width);
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, IS_IOS7 ? 64 :44, CGRectGetWidth(self.view.frame), 1)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(navigationBar.frame)-1, CGRectGetWidth(self.view.frame), 1)];
     line.backgroundColor = RGB(101, 158, 224, 1);
-    [self.view addSubview:line];
+    [navigationBar addSubview:line];
     
     self.view.backgroundColor = RGB(243, 249, 254, 1);
 }

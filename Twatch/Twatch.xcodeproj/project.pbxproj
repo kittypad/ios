@@ -1100,8 +1100,8 @@
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/libWeiboSDK,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/SDKExport,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/TencentWeiboSSO,
-					/Users/wangjizeng/Desktop/ios/Twatch/Twatch/ThirdParty/ShareSDK_v2.5.1/UMSDK,
-					/Users/wangjizeng/Desktop/ios/Twatch/Twatch/ThirdParty/UMSDK,
+					Twatch/ThirdParty/ShareSDK_v2.5.1/UMSDK,
+					Twatch/ThirdParty/UMSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1132,8 +1132,8 @@
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/libWeiboSDK,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/SDKExport,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/TencentWeiboSSO,
-					/Users/wangjizeng/Desktop/ios/Twatch/Twatch/ThirdParty/ShareSDK_v2.5.1/UMSDK,
-					/Users/wangjizeng/Desktop/ios/Twatch/Twatch/ThirdParty/UMSDK,
+					Twatch/ThirdParty/ShareSDK_v2.5.1/UMSDK,
+					Twatch/ThirdParty/UMSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

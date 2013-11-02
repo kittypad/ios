@@ -54,12 +54,6 @@
                             @"type",
                             nil],
                            [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                            @"腾讯微博",
-                            @"title",
-                            [NSNumber numberWithInteger:ShareTypeTencentWeibo],
-                            @"type",
-                            nil],
-                           [NSMutableDictionary dictionaryWithObjectsAndKeys:
                             @"豆瓣社区",
                             @"title",
                             [NSNumber numberWithInteger:ShareTypeDouBan],

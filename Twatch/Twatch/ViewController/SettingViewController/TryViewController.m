@@ -31,8 +31,6 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
     CGRect bounds = self.view.bounds;
     bounds.size.height = [[UIScreen mainScreen] bounds].size.height;
     self.view.bounds = bounds;
@@ -56,6 +54,7 @@
     }
     UIImageView *bgView = [[UIImageView alloc] initWithImage:img];
     bgView.center = self.view.center;
+    bgView.userInteractionEnabled = YES;
     [self.view addSubview:bgView];
     
     _cameraButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-50.0)/2, bounds.size.height-70.0, 50.0, 50.0)];
@@ -63,6 +62,9 @@
     [_cameraButton setImage:[UIImage imageNamed:@"拍照-push.png"] forState:UIControlStateHighlighted];
     [_cameraButton addTarget:self action:@selector(captureImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_cameraButton];
+    
+    [super viewDidLoad];
+
 }
 
 - (BOOL)prefersStatusBarHidden

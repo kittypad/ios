@@ -43,8 +43,9 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 4;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *identifier = @"identifier";
@@ -91,14 +92,6 @@
             [cell addSubview:attentButton];
         }
             break;
-        case 4:
-        {
-            cell.textLabel.text = @"土曼微信";
-            [cell addSubview:attentButton];
-
-        }
-            break;
-            
         default:
             break;
     }
