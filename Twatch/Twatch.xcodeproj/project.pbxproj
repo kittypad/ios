@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A16E8BB18114C6200DAFAE5 /* ClockView.m */; };
 		0A16E8BE18114D6600DAFAE5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */; };
+		0A214095182500D70091C924 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A214092182500D70091C924 /* umFeedback.bundle */; };
+		0A2140971825012B0091C924 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2140961825012B0091C924 /* libUMFeedback.a */; };
 		0A46EA91180D7C0B00E7A6C1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */; };
 		0A51A6241822878000DE7DD3 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A6221822878000DE7DD3 /* FeedBackViewController.m */; };
 		0A51A6251822878000DE7DD3 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A51A6231822878000DE7DD3 /* FeedBackViewController.xib */; };
@@ -144,6 +146,9 @@
 		0A16E8BA18114C6200DAFAE5 /* ClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClockView.h; path = WatchTypeView/ClockView.h; sourceTree = "<group>"; };
 		0A16E8BB18114C6200DAFAE5 /* ClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClockView.m; path = WatchTypeView/ClockView.m; sourceTree = "<group>"; };
 		0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0A214092182500D70091C924 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
+		0A214093182500D70091C924 /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
+		0A2140961825012B0091C924 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
 		0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		0A51A6211822878000DE7DD3 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
 		0A51A6221822878000DE7DD3 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
@@ -370,6 +375,7 @@
 				DD56A6CE181EB3AF0088AB49 /* DouBanConnection.framework in Frameworks */,
 				DD56A6DE181EB3B00088AB49 /* libWeChatSDK.a in Frameworks */,
 				DD56A6DD181EB3B00088AB49 /* RennSDK.framework in Frameworks */,
+				0A2140971825012B0091C924 /* libUMFeedback.a in Frameworks */,
 				DD56A6D1181EB3AF0088AB49 /* RenRenConnection.framework in Frameworks */,
 				DD56A6D5181EB3B00088AB49 /* WeChatConnection.framework in Frameworks */,
 				427BEF471806A71F004AFB8C /* UIKit.framework in Frameworks */,
@@ -388,6 +394,16 @@
 				0A16E8BB18114C6200DAFAE5 /* ClockView.m */,
 			);
 			name = WatchTypeView;
+			sourceTree = "<group>";
+		};
+		0A21408D1824FD700091C924 /* UMSDK */ = {
+			isa = PBXGroup;
+			children = (
+				0A2140961825012B0091C924 /* libUMFeedback.a */,
+				0A214092182500D70091C924 /* umFeedback.bundle */,
+				0A214093182500D70091C924 /* UMFeedback.h */,
+			);
+			path = UMSDK;
 			sourceTree = "<group>";
 		};
 		427BEF361806A71F004AFB8C = {
@@ -465,6 +481,7 @@
 		DD1BFB9C180AC0FC0001C200 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				0A21408D1824FD700091C924 /* UMSDK */,
 				DD56A741182287400088AB49 /* FVImageSequence.h */,
 				DD56A742182287400088AB49 /* FVImageSequence.m */,
 				DD56A6A4181EB3AF0088AB49 /* ShareSDK_v2.5.1 */,
@@ -861,6 +878,7 @@
 				DD56A77B182287C10088AB49 /* Seq_v04_640x378_25.jpg in Resources */,
 				DD247F8418126A9C00D9E6D4 /* Images.xcassets in Resources */,
 				DD56A76C182287C10088AB49 /* Seq_v04_640x378_11.jpg in Resources */,
+				0A214095182500D70091C924 /* umFeedback.bundle in Resources */,
 				DD56A6DC181EB3B00088AB49 /* RennSDK.bundle in Resources */,
 				DD56A775182287C10088AB49 /* Seq_v04_640x378_2.jpg in Resources */,
 				DD56A6DB181EB3B00088AB49 /* WeiboSDK.bundle in Resources */,
@@ -1082,6 +1100,8 @@
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/libWeiboSDK,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/SDKExport,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/TencentWeiboSSO,
+					/Users/wangjizeng/Desktop/ios/Twatch/Twatch/ThirdParty/ShareSDK_v2.5.1/UMSDK,
+					/Users/wangjizeng/Desktop/ios/Twatch/Twatch/ThirdParty/UMSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1112,6 +1132,8 @@
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/libWeiboSDK,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/SDKExport,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/TencentWeiboSSO,
+					/Users/wangjizeng/Desktop/ios/Twatch/Twatch/ThirdParty/ShareSDK_v2.5.1/UMSDK,
+					/Users/wangjizeng/Desktop/ios/Twatch/Twatch/ThirdParty/UMSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

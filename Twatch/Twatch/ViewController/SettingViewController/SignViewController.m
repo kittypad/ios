@@ -10,20 +10,9 @@
 
 @interface SignViewController ()
 
-@property (nonatomic, strong) InsetsTextField *signtextfield;
+@property (nonatomic, strong) UITextField *signtextfield;
 @end
 
-@implementation InsetsTextField
-//控制 placeHolder 的位置，左右缩 5
-- (CGRect)textRectForBounds:(CGRect)bounds {
-    return CGRectInset( bounds , 5 , 0 );
-}
-
-// 控制文本的位置，左右缩 5
-- (CGRect)editingRectForBounds:(CGRect)bounds {
-    return CGRectInset( bounds , 5 , 0 );
-}
-@end
 
 @implementation SignViewController
 
@@ -42,6 +31,12 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"rooView_bg.png"]];
     
+    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0, (IS_IOS7 ? 64 :44) - 25 -7.0 , 25.0, 25.0)];
+    [shareButton setImage:[UIImage imageNamed:@"camera-share.png"] forState:UIControlStateNormal];
+    [shareButton setImage:[UIImage imageNamed:@"camera-share-push.png"] forState:UIControlStateHighlighted];
+    [shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:shareButton];
+    
     UIImage *img = [UIImage imageNamed:@"表扣-蓝.png"];
     UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
     bgView.center = CGPointMake(self.view.center.x, self.view.center.y + 20);// self.view.center;
@@ -58,7 +53,7 @@
     }
     bgView.userInteractionEnabled = YES;
     
-    InsetsTextField *signtextfield = [[InsetsTextField alloc] initWithFrame:CGRectMake(89, 130, 89, 37.5)];
+    UITextField *signtextfield = [[UITextField alloc] initWithFrame:CGRectMake(89, 130, 89, 37.5)];
 //    signtextfield.borderStyle = UITextBorderStyleRoundedRect;
     signtextfield.backgroundColor = [UIColor clearColor];
     signtextfield.textColor = [UIColor whiteColor];
@@ -66,6 +61,7 @@
     signtextfield.layer.borderWidth = 0.5;
     signtextfield.delegate = self;
     signtextfield.returnKeyType = UIReturnKeyDone;
+    signtextfield.textAlignment = NSTextAlignmentCenter;
     UIColor *color = [UIColor getColor:@"ffffff"];
     signtextfield.layer.borderColor = color.CGColor;
 
@@ -97,19 +93,35 @@
     [UIView commitAnimations];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+-(NSString *) getstring:(NSString *)string length:(int)length
 {
-    NSString *temp = [textField.text stringByReplacingCharactersInRange:range withString:string];
-//    NSLog(@"%d",[self convertToInt:temp]);
-    if ([self convertToInt:temp] > 5) {
-//        textField.text = [temp substringToIndex:5];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"亲,惜字如金哦" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        
-        [alert show];
-        [textField resignFirstResponder];
-        return NO;
+    int n = string.length;
+    NSString *backStr = @"";
+    int nTemp = 0;
+    for (int i =0; i<n; i++)
+    {
+        NSString *str = [string substringWithRange:NSMakeRange(i,1)];
+        char* p = (char*)[str cStringUsingEncoding:NSUnicodeStringEncoding];
+        p++;
+        if (*p) {
+            nTemp +=2;
+        }
+        else
+        {
+            nTemp +=1;
+        }
+        if (nTemp > 10)
+        {
+            return  backStr;
+        }
+        else
+        {
+            backStr = [NSString stringWithFormat:@"%@%@",backStr,str];
+        }
     }
-    return YES;
+    
+    return backStr;
+
 }
 - (int)convertToInt:(NSString*)strtemp {
     
@@ -127,11 +139,20 @@
     return (strlength+1)/2;
     
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.signtextfield.text = [self getstring:textField.text length:5];
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;
     
+}
+-(void)share :(id)sender
+{
+    ;
 }
 - (void)didReceiveMemoryWarning
 {

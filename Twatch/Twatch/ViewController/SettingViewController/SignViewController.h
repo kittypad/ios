@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "NaviCommonViewController.h"
 
-@interface InsetsTextField : UITextField
-@end
 @interface SignViewController : NaviCommonViewController<UITextFieldDelegate>
 
 @end
