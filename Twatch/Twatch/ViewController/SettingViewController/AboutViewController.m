@@ -51,8 +51,16 @@
     label4.frame = CGRectMake(starP.x, starP.y, 276, 30);
     [self.view addSubview:label4];
     
+    UIImageView *discriminateImage = [[UIImageView alloc] initWithFrame:CGRectMake(( self.view.frame.size.width - 100)/2, 280, 100, 100)];
+    discriminateImage.image = [UIImage imageNamed:@"土曼百达科技二维码.jpeg"];
+    
+    discriminateImage.layer.borderWidth = 1;
+    discriminateImage.layer.borderColor = RGB(221, 221, 221, 1).CGColor;
+    [self.view addSubview:discriminateImage];
+    
     UILabel *copyrightLab = [FactoryMethods labelWithTitle:COPYRIGHT_STRING textFont:[UIFont systemFontOfSize:10.0f] normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
-    copyrightLab.frame = CGRectMake(95, CGRectGetHeight(self.view.frame) - (IS_IOS7 ? 94 :74), 125, 30);
+    NSLog(@"%f",CGRectGetHeight(self.view.frame));
+    copyrightLab.frame = CGRectMake(100, CGRectGetHeight(self.view.frame) - (IS_IOS7? 10:30) , 125, 30);
     copyrightLab.textAlignment = UITextAlignmentCenter;
     [self.view addSubview:copyrightLab];
 

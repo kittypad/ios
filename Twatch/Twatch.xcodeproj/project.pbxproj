@@ -15,6 +15,8 @@
 		0A51A6241822878000DE7DD3 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A6221822878000DE7DD3 /* FeedBackViewController.m */; };
 		0A51A6251822878000DE7DD3 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A51A6231822878000DE7DD3 /* FeedBackViewController.xib */; };
 		0A51A628182289AE00DE7DD3 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A627182289AE00DE7DD3 /* UIPlaceHolderTextView.m */; };
+		0A70DE51182628CA00DC570D /* 土曼百达科技二维码.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0A70DE50182628CA00DC570D /* 土曼百达科技二维码.jpeg */; };
+		0A70DE5B18264C9200DC570D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A70DE5918264C9200DC570D /* Localizable.strings */; };
 		0AB8BB65182278C0002255C2 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8BB63182278C0002255C2 /* AboutViewController.m */; };
 		0AB8BB66182278C0002255C2 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB8BB64182278C0002255C2 /* AboutViewController.xib */; };
 		427BEF431806A71F004AFB8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF421806A71F004AFB8C /* Foundation.framework */; };
@@ -28,6 +30,15 @@
 		42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676A618237B9600B8474D /* CameraImageHelper.m */; };
 		42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B318237D7B00B8474D /* TryAdjustViewController.m */; };
 		42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B6182393DF00B8474D /* UIImage+Tool.m */; };
+		D8C352481825FCE70061081E /* MMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352381825FCE70061081E /* MMHud.m */; };
+		D8C352491825FCE70061081E /* MMProgressHUD+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523A1825FCE70061081E /* MMProgressHUD+Animations.m */; };
+		D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523B1825FCE70061081E /* MMProgressHUD+Class.m */; };
+		D8C3524B1825FCE70061081E /* MMProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523D1825FCE70061081E /* MMProgressHUD.m */; };
+		D8C3524C1825FCE70061081E /* MMProgressHUDOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523F1825FCE70061081E /* MMProgressHUDOverlayView.m */; };
+		D8C3524D1825FCE70061081E /* MMProgressHUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352411825FCE70061081E /* MMProgressHUDViewController.m */; };
+		D8C3524E1825FCE70061081E /* MMProgressHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352431825FCE70061081E /* MMProgressHUDWindow.m */; };
+		D8C3524F1825FCE70061081E /* MMRadialProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352451825FCE70061081E /* MMRadialProgressView.m */; };
+		D8C352501825FCE70061081E /* MMVectorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352471825FCE70061081E /* MMVectorImage.m */; };
 		DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */; };
 		DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA1180AC0FC0001C200 /* PSTCollectionView.m */; };
 		DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA3180AC0FC0001C200 /* PSTCollectionViewCell.m */; };
@@ -155,6 +166,9 @@
 		0A51A6231822878000DE7DD3 /* FeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackViewController.xib; sourceTree = "<group>"; };
 		0A51A626182289AE00DE7DD3 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		0A51A627182289AE00DE7DD3 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		0A70DE50182628CA00DC570D /* 土曼百达科技二维码.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "土曼百达科技二维码.jpeg"; sourceTree = "<group>"; };
+		0A70DE5A18264C9200DC570D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A70DE5C18264CA300DC570D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0AB8BB62182278C0002255C2 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		0AB8BB63182278C0002255C2 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		0AB8BB64182278C0002255C2 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -180,6 +194,23 @@
 		42C676B318237D7B00B8474D /* TryAdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAdjustViewController.m; sourceTree = "<group>"; };
 		42C676B5182393DF00B8474D /* UIImage+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tool.h"; sourceTree = "<group>"; };
 		42C676B6182393DF00B8474D /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
+		D8C352371825FCE70061081E /* MMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMHud.h; sourceTree = "<group>"; };
+		D8C352381825FCE70061081E /* MMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMHud.m; sourceTree = "<group>"; };
+		D8C352391825FCE70061081E /* MMProgressHUD+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMProgressHUD+Animations.h"; sourceTree = "<group>"; };
+		D8C3523A1825FCE70061081E /* MMProgressHUD+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMProgressHUD+Animations.m"; sourceTree = "<group>"; };
+		D8C3523B1825FCE70061081E /* MMProgressHUD+Class.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMProgressHUD+Class.m"; sourceTree = "<group>"; };
+		D8C3523C1825FCE70061081E /* MMProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUD.h; sourceTree = "<group>"; };
+		D8C3523D1825FCE70061081E /* MMProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUD.m; sourceTree = "<group>"; };
+		D8C3523E1825FCE70061081E /* MMProgressHUDOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDOverlayView.h; sourceTree = "<group>"; };
+		D8C3523F1825FCE70061081E /* MMProgressHUDOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDOverlayView.m; sourceTree = "<group>"; };
+		D8C352401825FCE70061081E /* MMProgressHUDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDViewController.h; sourceTree = "<group>"; };
+		D8C352411825FCE70061081E /* MMProgressHUDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDViewController.m; sourceTree = "<group>"; };
+		D8C352421825FCE70061081E /* MMProgressHUDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDWindow.h; sourceTree = "<group>"; };
+		D8C352431825FCE70061081E /* MMProgressHUDWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDWindow.m; sourceTree = "<group>"; };
+		D8C352441825FCE70061081E /* MMRadialProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRadialProgressView.h; sourceTree = "<group>"; };
+		D8C352451825FCE70061081E /* MMRadialProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRadialProgressView.m; sourceTree = "<group>"; };
+		D8C352461825FCE70061081E /* MMVectorImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVectorImage.h; sourceTree = "<group>"; };
+		D8C352471825FCE70061081E /* MMVectorImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMVectorImage.m; sourceTree = "<group>"; };
 		DD1BFB9E180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
 		DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+PSTCollectionViewAdditions.m"; sourceTree = "<group>"; };
 		DD1BFBA0180AC0FC0001C200 /* PSTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionView.h; sourceTree = "<group>"; };
@@ -478,9 +509,34 @@
 			name = CameraImageHelper;
 			sourceTree = "<group>";
 		};
+		D8C352361825FCE70061081E /* MMProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				D8C352371825FCE70061081E /* MMHud.h */,
+				D8C352381825FCE70061081E /* MMHud.m */,
+				D8C352391825FCE70061081E /* MMProgressHUD+Animations.h */,
+				D8C3523A1825FCE70061081E /* MMProgressHUD+Animations.m */,
+				D8C3523B1825FCE70061081E /* MMProgressHUD+Class.m */,
+				D8C3523C1825FCE70061081E /* MMProgressHUD.h */,
+				D8C3523D1825FCE70061081E /* MMProgressHUD.m */,
+				D8C3523E1825FCE70061081E /* MMProgressHUDOverlayView.h */,
+				D8C3523F1825FCE70061081E /* MMProgressHUDOverlayView.m */,
+				D8C352401825FCE70061081E /* MMProgressHUDViewController.h */,
+				D8C352411825FCE70061081E /* MMProgressHUDViewController.m */,
+				D8C352421825FCE70061081E /* MMProgressHUDWindow.h */,
+				D8C352431825FCE70061081E /* MMProgressHUDWindow.m */,
+				D8C352441825FCE70061081E /* MMRadialProgressView.h */,
+				D8C352451825FCE70061081E /* MMRadialProgressView.m */,
+				D8C352461825FCE70061081E /* MMVectorImage.h */,
+				D8C352471825FCE70061081E /* MMVectorImage.m */,
+			);
+			path = MMProgressHUD;
+			sourceTree = "<group>";
+		};
 		DD1BFB9C180AC0FC0001C200 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				D8C352361825FCE70061081E /* MMProgressHUD */,
 				0A21408D1824FD700091C924 /* UMSDK */,
 				DD56A741182287400088AB49 /* FVImageSequence.h */,
 				DD56A742182287400088AB49 /* FVImageSequence.m */,
@@ -558,6 +614,7 @@
 				DD247F7C18126A8500D9E6D4 /* Twatch-Info.plist */,
 				DD247F7D18126A8500D9E6D4 /* Twatch-Prefix.pch */,
 				DD247F7E18126A8500D9E6D4 /* WatchConstant.h */,
+				0A70DE5918264C9200DC570D /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			path = "Twatch/Supporting Files";
@@ -743,8 +800,9 @@
 		DD56A744182287C10088AB49 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				DD56A745182287C10088AB49 /* Seq_v04_640x378_0.jpg */,
+				0A70DE50182628CA00DC570D /* 土曼百达科技二维码.jpeg */,
 				DD56A746182287C10088AB49 /* Seq_v04_640x378_1.jpg */,
+				DD56A745182287C10088AB49 /* Seq_v04_640x378_0.jpg */,
 				DD56A747182287C10088AB49 /* Seq_v04_640x378_10.jpg */,
 				DD56A748182287C10088AB49 /* Seq_v04_640x378_11.jpg */,
 				DD56A749182287C10088AB49 /* Seq_v04_640x378_12.jpg */,
@@ -844,6 +902,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "龚涛";
+				TargetAttributes = {
+					427BEF3E1806A71F004AFB8C = {
+						DevelopmentTeam = PT9EGW4M43;
+					};
+				};
 			};
 			buildConfigurationList = 427BEF3A1806A71F004AFB8C /* Build configuration list for PBXProject "Twatch" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -874,8 +937,10 @@
 				DD56A6E6181EB3B00088AB49 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
 				DD56A779182287C10088AB49 /* Seq_v04_640x378_23.jpg in Resources */,
 				DD56A784182287C10088AB49 /* Seq_v04_640x378_33.jpg in Resources */,
+				0A70DE51182628CA00DC570D /* 土曼百达科技二维码.jpeg in Resources */,
 				DD56A7201821441A0088AB49 /* _360ViewController.xib in Resources */,
 				DD56A77B182287C10088AB49 /* Seq_v04_640x378_25.jpg in Resources */,
+				0A70DE5B18264C9200DC570D /* Localizable.strings in Resources */,
 				DD247F8418126A9C00D9E6D4 /* Images.xcassets in Resources */,
 				DD56A76C182287C10088AB49 /* Seq_v04_640x378_11.jpg in Resources */,
 				0A214095182500D70091C924 /* umFeedback.bundle in Resources */,
@@ -940,22 +1005,27 @@
 				DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */,
 				DD1BFBC2180AC0FC0001C200 /* PSTCollectionViewUpdateItem.m in Sources */,
 				DD56A719182143920088AB49 /* MovieViewController.m in Sources */,
+				D8C3524F1825FCE70061081E /* MMRadialProgressView.m in Sources */,
 				DD56A72D182146010088AB49 /* ShopViewController.m in Sources */,
 				DD1BFBBD180AC0FC0001C200 /* PSTCollectionViewController.m in Sources */,
 				DD1BFBCD180AC24E0001C200 /* WatchVell.m in Sources */,
 				42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */,
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
+				D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */,
 				DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */,
 				DD1BFBD0180AC7280001C200 /* FactoryMethods.m in Sources */,
 				DD56A7101821434A0088AB49 /* RootViewController.m in Sources */,
 				42BBD88218079B330094E39D /* DialView.m in Sources */,
 				DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */,
+				D8C3524E1825FCE70061081E /* MMProgressHUDWindow.m in Sources */,
 				DD56A71A182143920088AB49 /* SignViewController.m in Sources */,
 				DD56A79518229ADE0088AB49 /* AGShareCell.m in Sources */,
+				D8C352501825FCE70061081E /* MMVectorImage.m in Sources */,
 				DDEC67E11807010200F3DD7A /* WatchView.m in Sources */,
 				42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */,
 				42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */,
 				42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */,
+				D8C3524C1825FCE70061081E /* MMProgressHUDOverlayView.m in Sources */,
 				DD56A724182144490088AB49 /* TryViewController.m in Sources */,
 				DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */,
 				DD1BFBCA180AC1FD0001C200 /* SwitchWatchView.m in Sources */,
@@ -964,10 +1034,13 @@
 				DD56A79818229CC00088AB49 /* AGViewDelegate.m in Sources */,
 				DD56A79418229ADE0088AB49 /* AGAuthViewController.m in Sources */,
 				DD56A73F18214BE30088AB49 /* MoreSettingViewController.m in Sources */,
+				D8C352481825FCE70061081E /* MMHud.m in Sources */,
+				D8C3524D1825FCE70061081E /* MMProgressHUDViewController.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
 				42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */,
 				DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */,
 				DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */,
+				D8C3524B1825FCE70061081E /* MMProgressHUD.m in Sources */,
 				DD1BFBC3180AC0FC0001C200 /* PSTGridLayoutInfo.m in Sources */,
 				DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				DD56A7281821448E0088AB49 /* TMNavigationController.m in Sources */,
@@ -978,12 +1051,22 @@
 				DD247F8118126A8500D9E6D4 /* main.m in Sources */,
 				0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */,
 				0AB8BB65182278C0002255C2 /* AboutViewController.m in Sources */,
+				D8C352491825FCE70061081E /* MMProgressHUD+Animations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0A70DE5918264C9200DC570D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A70DE5A18264C9200DC570D /* en */,
+				0A70DE5C18264CA300DC570D /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		DD247F7918126A8500D9E6D4 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1082,6 +1165,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: wang zeng (F938LBL6VQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wang zeng (F938LBL6VQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Connection,
@@ -1104,6 +1189,7 @@
 					Twatch/ThirdParty/UMSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1114,6 +1200,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: wang zeng (F938LBL6VQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wang zeng (F938LBL6VQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Connection,
@@ -1136,6 +1224,7 @@
 					Twatch/ThirdParty/UMSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

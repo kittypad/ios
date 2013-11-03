@@ -8,10 +8,36 @@
 
 #import "TryAdjustViewController.h"
 
+typedef enum{
+    NormalStyle = 0,
+    JapanStyle,
+    FleetingStyle,
+    HDRStyle,
+    AxisStyle,
+    ShowyStyle,
+    EightsStyle,
+}FilterStyle;
+
+@interface TMFilterButton : UIButton
+
+@end
+
+@implementation TMFilterButton
+
+- (CGRect)titleRectForContentRect:(CGRect)contentRect
+{
+    return CGRectMake(0.0, 39.0, 44.0, 18.0);
+}
+
+- (CGRect)imageRectForContentRect:(CGRect)contentRect
+{
+    return CGRectMake(6.0, 7.0, 32.0, 32.0);
+}
+
+@end
+
 @interface TryAdjustViewController ()
 
-- (void)back:(id)sender;
-- (void)share:(id)sender;
 - (void)filter:(id)sender;
 
 @end
@@ -32,6 +58,7 @@
     self = [super init];
     if (self) {
         _image = image;
+        _shareImage = image;
         self.view.frame = frame;
         self.view.alpha = 0.0;
     }
@@ -49,13 +76,6 @@
     [self.view addSubview:_imageView];
     
     CGRect frame = self.view.bounds;
-    frame.size.height = 40.0;
-    UIView *topView = [[UIView alloc] initWithFrame:frame];
-    topView.backgroundColor = [UIColor blackColor];
-    topView.alpha = 0.6;
-    [self.view addSubview:topView];
-    
-    frame = self.view.bounds;
     frame.size.height = 60.0;
     frame.origin.y = self.view.frame.size.height-frame.size.height;
     UIView *bottomView = [[UIView alloc] initWithFrame:frame];
@@ -63,17 +83,20 @@
     bottomView.alpha = 0.6;
     [self.view addSubview:bottomView];
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(22.0, 5.0, 25.0, 25.0)];
-    [backButton setImage:[UIImage imageNamed:@"camera-back.png"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"camera-back-push.png"] forState:UIControlStateHighlighted];
-    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [topView addSubview:backButton];
-    
-    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0, 7.0, 25.0, 25.0)];
-    [shareButton setImage:[UIImage imageNamed:@"camera-share.png"] forState:UIControlStateNormal];
-    [shareButton setImage:[UIImage imageNamed:@"camera-share-push.png"] forState:UIControlStateHighlighted];
-    [shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
-    [topView addSubview:shareButton];
+    NSArray *array = @[@"默认", @"日系", @"流年", @"HDR", @"移轴", @"艳丽", @"80s"];
+    frame = CGRectMake(6.0, 0.0, 44.0, 57.0);
+    int i = 0;
+    for (NSString *title in array) {
+        TMFilterButton *button = [[TMFilterButton alloc] initWithFrame:frame];
+        [button setTitle:title forState:UIControlStateNormal];
+        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        button.titleLabel.font = [UIFont systemFontOfSize:13.0];
+        [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", title]] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(filter:) forControlEvents:UIControlEventTouchUpInside];
+        [bottomView addSubview:button];
+        frame.origin.x += frame.size.width;
+        i++;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,19 +114,40 @@
                      }];
 }
 
-- (void)back:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)share:(id)sender
-{
-    
-}
-
 - (void)filter:(id)sender
 {
-    
+    switch ([sender tag]) {
+        case NormalStyle: {
+            _shareImage = _image;
+            break;
+        }
+        case JapanStyle: {
+            
+            break;
+        }
+        case FleetingStyle: {
+            
+            break;
+        }
+        case HDRStyle: {
+            
+            break;
+        }
+        case AxisStyle: {
+            
+            break;
+        }
+        case ShowyStyle: {
+            
+            break;
+        }
+        case EightsStyle: {
+            
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 @end

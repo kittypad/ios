@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  Twatch
+
+  Created by wangjizeng on 13-11-3.
+  Copyright (c) 2013年 龚涛. All rights reserved.
+*/
+"more" = "更多";
+"Panoramicview" = "360°全景视图";
+"Try" = "手表试戴";
+"Engraving" = "专属刻字";
+"Size" = "屏幕尺寸";
+"Color" = "外壳颜色";
+"Dark" = "暗黑";
+"Red" = "嫣红";
+"Blue" = "湛蓝";
+"Accounts" = "绑定帐号";
+"Weibo" = "新浪";
+"QQZone" = "qq空间";
+"Wechat" = "微信";
+"Douban" = "豆瓣";
+"Renren" = "人人";
+"Settings" = "设置";
+"About" = "关于我们";
+"CurrentVersion" = "升级更新";
+"FeedBack" = "意见反馈";
+"TomoonWeibo" = "土曼微博";
+"PanoramicshareView" = "终于知道土曼手表长啥样了，抢不抢呢";
+"TryshareView" = "土曼手表，够土豪吗 ？";
+"EngravingshareView" = "我的土曼手表刻谁的名字好呢";

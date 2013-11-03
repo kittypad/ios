@@ -11,6 +11,8 @@
 @interface TryAdjustViewController : UIViewController
 {
     UIImage *_image;
+    UIImage *_shareImage;
+    
     UIImageView *_imageView;
 }
 

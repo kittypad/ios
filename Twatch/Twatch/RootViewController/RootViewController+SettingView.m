@@ -25,9 +25,9 @@
     NSArray *classNames = [NSArray arrayWithObjects:@"_360ViewController", @"TryViewController",
                            @"SignViewController",@"AGAuthViewController",
                            @"MoreSettingViewController", nil];
-    NSArray *backNames = [NSArray arrayWithObjects:@"360°全景视图", @"手表试戴",
-                           @"专属刻字",@"账号绑定",
-                           @"更多设置", nil];
+    NSArray *backNames = [NSArray arrayWithObjects:NSLocalizedString(@"Panoramicview", nil), NSLocalizedString(@"Try", nil),
+                           NSLocalizedString(@"Engraving", nil),NSLocalizedString(@"Accounts", nil),
+                           NSLocalizedString(@"Settings", nil), nil];
 
     __weak typeof(self) weakself = self;
     settingView.settingActionHandle = ^(int i){
