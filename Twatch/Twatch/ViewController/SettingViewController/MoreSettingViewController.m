@@ -75,19 +75,19 @@
     switch (indexPath.row) {
         case 0:
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = @"关于我们";
+            cell.textLabel.text = NSLocalizedString(@"About", nil);
             break;
         case 1:
-            cell.textLabel.text = @"升级更新";
+            cell.textLabel.text = NSLocalizedString(@"Accounts", nil);
             cell.detailTextLabel.text = @"已最新v1.0";
             break;
         case 2:
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = @"意见反馈";
+            cell.textLabel.text = NSLocalizedString(@"FeedBack", nil);
             break;
         case 3:
         {
-            cell.textLabel.text = @"土曼微博";
+            cell.textLabel.text = NSLocalizedString(@"TomoonWeibo", nil);
             [cell addSubview:attentButton];
         }
             break;
@@ -112,13 +112,13 @@
 {
     if (indexPath.row == 0) {
         AboutViewController *about = [[AboutViewController alloc] init];
-        about.backName = @"关于我们";
+        about.backName = NSLocalizedString(@"About", nil);
         [self.navigationController pushViewController:about animated:YES];
     }
     else if(indexPath.row == 2)
     {
         FeedBackViewController *feedback = [[FeedBackViewController alloc] init];
-        feedback.backName = @"意见反馈";
+        feedback.backName = NSLocalizedString(@"FeedBack", nil);
         [self.navigationController pushViewController:feedback animated:YES];
     }else if (indexPath.row == 3){
         id delegate = [[AGViewDelegate alloc] init];

@@ -1,0 +1,30 @@
+/*
+  Localizable.strings
+  Twatch
+
+  Created by wangjizeng on 13-11-3.
+  Copyright (c) 2013年 龚涛. All rights reserved.
+*/
+"more" = "more";
+"Panoramicview" = "360° Panoramic view";
+"Try" = "Try";
+"Engraving" = "Engraving";
+"Size" = "Size";
+"Color" = "Color";
+"Dark" = "Dark";
+"Red" = "Red";
+"Blue" = "Blue";
+"Accounts" = "Accounts";
+"Weibo" = "Weibo";
+"QQZone" = "QQZone";
+"Wechat" = "Wechat";
+"Douban" = "Douban";
+"Renren" = "Renren";
+"Settings" = "Settings";
+"About" = "About";
+"CurrentVersion" = "Current Version";
+"FeedBack" = "Feedback";
+"TomoonWeibo" = "Tomoon Weibo (Link)";
+"PanoramicshareView" = "Finally a smart watch I can wear.";
+"TryshareView" = "Does it looks cool?";
+"EngravingshareView" = "Who should I give it as gift?";

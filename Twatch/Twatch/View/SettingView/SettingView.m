@@ -127,13 +127,14 @@ static NSString *SettingViewCellId = @"SettingCell";
         switch (indexPath.row)
         {
             case 0:
-                cell.textLabel.text = @"360º 全景视图";
+                cell.textLabel.text = NSLocalizedString(@"Panoramicview",nil);
                 break;
             case 1:
-                cell.textLabel.text = @"手表试戴";
+                cell.textLabel.text = NSLocalizedString(@"Try",nil);
                 break;
             case 2:
-                cell.textLabel.text = @"专属刻字";
+//                cell.textLabel.text = @"专属刻字";
+                cell.textLabel.text = NSLocalizedString(@"Engraving",nil);
                 break;
                 
             default:
@@ -146,13 +147,13 @@ static NSString *SettingViewCellId = @"SettingCell";
         color.center = CGPointMake(61, tableView.rowHeight/2);
         [cell addSubview:color];
         if (indexPath.row == 0){
-            cell.textLabel.text = @"暗黑";
+            cell.textLabel.text = NSLocalizedString(@"Dark", nil);
             color.image = img;
         }else if(indexPath.row == 1){
-            cell.textLabel.text = @"嫣红";
+            cell.textLabel.text = NSLocalizedString(@"Red", nil);
             color.image = [UIImage imageNamed:@"红.png"];
         }else if(indexPath.row == 2){
-            cell.textLabel.text = @"湛蓝";
+            cell.textLabel.text = NSLocalizedString(@"Blue", nil);
             color.image = [UIImage imageNamed:@"蓝.png"];
         }
         
@@ -168,10 +169,10 @@ static NSString *SettingViewCellId = @"SettingCell";
         switch (indexPath.row)
         {
             case 0:
-                cell.textLabel.text = @"账号绑定";
+                cell.textLabel.text = NSLocalizedString(@"Accounts", nil);
                 break;
             case 1:
-                cell.textLabel.text = @"设置";
+                cell.textLabel.text = NSLocalizedString(@"Settings", nil);
                 break;
             default:
                 break;
@@ -193,7 +194,7 @@ static NSString *SettingViewCellId = @"SettingCell";
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 1) {
-        return @"外壳颜色";
+        return NSLocalizedString(@"Color", nil);
     }else return @"";
 }
 
