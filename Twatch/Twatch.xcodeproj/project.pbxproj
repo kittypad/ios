@@ -28,6 +28,15 @@
 		42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676A618237B9600B8474D /* CameraImageHelper.m */; };
 		42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B318237D7B00B8474D /* TryAdjustViewController.m */; };
 		42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B6182393DF00B8474D /* UIImage+Tool.m */; };
+		D8C352481825FCE70061081E /* MMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352381825FCE70061081E /* MMHud.m */; };
+		D8C352491825FCE70061081E /* MMProgressHUD+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523A1825FCE70061081E /* MMProgressHUD+Animations.m */; };
+		D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523B1825FCE70061081E /* MMProgressHUD+Class.m */; };
+		D8C3524B1825FCE70061081E /* MMProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523D1825FCE70061081E /* MMProgressHUD.m */; };
+		D8C3524C1825FCE70061081E /* MMProgressHUDOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523F1825FCE70061081E /* MMProgressHUDOverlayView.m */; };
+		D8C3524D1825FCE70061081E /* MMProgressHUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352411825FCE70061081E /* MMProgressHUDViewController.m */; };
+		D8C3524E1825FCE70061081E /* MMProgressHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352431825FCE70061081E /* MMProgressHUDWindow.m */; };
+		D8C3524F1825FCE70061081E /* MMRadialProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352451825FCE70061081E /* MMRadialProgressView.m */; };
+		D8C352501825FCE70061081E /* MMVectorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352471825FCE70061081E /* MMVectorImage.m */; };
 		DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */; };
 		DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA1180AC0FC0001C200 /* PSTCollectionView.m */; };
 		DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBA3180AC0FC0001C200 /* PSTCollectionViewCell.m */; };
@@ -180,6 +189,23 @@
 		42C676B318237D7B00B8474D /* TryAdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAdjustViewController.m; sourceTree = "<group>"; };
 		42C676B5182393DF00B8474D /* UIImage+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tool.h"; sourceTree = "<group>"; };
 		42C676B6182393DF00B8474D /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
+		D8C352371825FCE70061081E /* MMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMHud.h; sourceTree = "<group>"; };
+		D8C352381825FCE70061081E /* MMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMHud.m; sourceTree = "<group>"; };
+		D8C352391825FCE70061081E /* MMProgressHUD+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMProgressHUD+Animations.h"; sourceTree = "<group>"; };
+		D8C3523A1825FCE70061081E /* MMProgressHUD+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMProgressHUD+Animations.m"; sourceTree = "<group>"; };
+		D8C3523B1825FCE70061081E /* MMProgressHUD+Class.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMProgressHUD+Class.m"; sourceTree = "<group>"; };
+		D8C3523C1825FCE70061081E /* MMProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUD.h; sourceTree = "<group>"; };
+		D8C3523D1825FCE70061081E /* MMProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUD.m; sourceTree = "<group>"; };
+		D8C3523E1825FCE70061081E /* MMProgressHUDOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDOverlayView.h; sourceTree = "<group>"; };
+		D8C3523F1825FCE70061081E /* MMProgressHUDOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDOverlayView.m; sourceTree = "<group>"; };
+		D8C352401825FCE70061081E /* MMProgressHUDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDViewController.h; sourceTree = "<group>"; };
+		D8C352411825FCE70061081E /* MMProgressHUDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDViewController.m; sourceTree = "<group>"; };
+		D8C352421825FCE70061081E /* MMProgressHUDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDWindow.h; sourceTree = "<group>"; };
+		D8C352431825FCE70061081E /* MMProgressHUDWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDWindow.m; sourceTree = "<group>"; };
+		D8C352441825FCE70061081E /* MMRadialProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRadialProgressView.h; sourceTree = "<group>"; };
+		D8C352451825FCE70061081E /* MMRadialProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRadialProgressView.m; sourceTree = "<group>"; };
+		D8C352461825FCE70061081E /* MMVectorImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVectorImage.h; sourceTree = "<group>"; };
+		D8C352471825FCE70061081E /* MMVectorImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMVectorImage.m; sourceTree = "<group>"; };
 		DD1BFB9E180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+PSTCollectionViewAdditions.h"; sourceTree = "<group>"; };
 		DD1BFB9F180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+PSTCollectionViewAdditions.m"; sourceTree = "<group>"; };
 		DD1BFBA0180AC0FC0001C200 /* PSTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTCollectionView.h; sourceTree = "<group>"; };
@@ -478,9 +504,34 @@
 			name = CameraImageHelper;
 			sourceTree = "<group>";
 		};
+		D8C352361825FCE70061081E /* MMProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				D8C352371825FCE70061081E /* MMHud.h */,
+				D8C352381825FCE70061081E /* MMHud.m */,
+				D8C352391825FCE70061081E /* MMProgressHUD+Animations.h */,
+				D8C3523A1825FCE70061081E /* MMProgressHUD+Animations.m */,
+				D8C3523B1825FCE70061081E /* MMProgressHUD+Class.m */,
+				D8C3523C1825FCE70061081E /* MMProgressHUD.h */,
+				D8C3523D1825FCE70061081E /* MMProgressHUD.m */,
+				D8C3523E1825FCE70061081E /* MMProgressHUDOverlayView.h */,
+				D8C3523F1825FCE70061081E /* MMProgressHUDOverlayView.m */,
+				D8C352401825FCE70061081E /* MMProgressHUDViewController.h */,
+				D8C352411825FCE70061081E /* MMProgressHUDViewController.m */,
+				D8C352421825FCE70061081E /* MMProgressHUDWindow.h */,
+				D8C352431825FCE70061081E /* MMProgressHUDWindow.m */,
+				D8C352441825FCE70061081E /* MMRadialProgressView.h */,
+				D8C352451825FCE70061081E /* MMRadialProgressView.m */,
+				D8C352461825FCE70061081E /* MMVectorImage.h */,
+				D8C352471825FCE70061081E /* MMVectorImage.m */,
+			);
+			path = MMProgressHUD;
+			sourceTree = "<group>";
+		};
 		DD1BFB9C180AC0FC0001C200 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				D8C352361825FCE70061081E /* MMProgressHUD */,
 				0A21408D1824FD700091C924 /* UMSDK */,
 				DD56A741182287400088AB49 /* FVImageSequence.h */,
 				DD56A742182287400088AB49 /* FVImageSequence.m */,
@@ -945,22 +996,27 @@
 				DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */,
 				DD1BFBC2180AC0FC0001C200 /* PSTCollectionViewUpdateItem.m in Sources */,
 				DD56A719182143920088AB49 /* MovieViewController.m in Sources */,
+				D8C3524F1825FCE70061081E /* MMRadialProgressView.m in Sources */,
 				DD56A72D182146010088AB49 /* ShopViewController.m in Sources */,
 				DD1BFBBD180AC0FC0001C200 /* PSTCollectionViewController.m in Sources */,
 				DD1BFBCD180AC24E0001C200 /* WatchVell.m in Sources */,
 				42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */,
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
+				D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */,
 				DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */,
 				DD1BFBD0180AC7280001C200 /* FactoryMethods.m in Sources */,
 				DD56A7101821434A0088AB49 /* RootViewController.m in Sources */,
 				42BBD88218079B330094E39D /* DialView.m in Sources */,
 				DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */,
+				D8C3524E1825FCE70061081E /* MMProgressHUDWindow.m in Sources */,
 				DD56A71A182143920088AB49 /* SignViewController.m in Sources */,
 				DD56A79518229ADE0088AB49 /* AGShareCell.m in Sources */,
+				D8C352501825FCE70061081E /* MMVectorImage.m in Sources */,
 				DDEC67E11807010200F3DD7A /* WatchView.m in Sources */,
 				42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */,
 				42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */,
 				42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */,
+				D8C3524C1825FCE70061081E /* MMProgressHUDOverlayView.m in Sources */,
 				DD56A724182144490088AB49 /* TryViewController.m in Sources */,
 				DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */,
 				DD1BFBCA180AC1FD0001C200 /* SwitchWatchView.m in Sources */,
@@ -969,10 +1025,13 @@
 				DD56A79818229CC00088AB49 /* AGViewDelegate.m in Sources */,
 				DD56A79418229ADE0088AB49 /* AGAuthViewController.m in Sources */,
 				DD56A73F18214BE30088AB49 /* MoreSettingViewController.m in Sources */,
+				D8C352481825FCE70061081E /* MMHud.m in Sources */,
+				D8C3524D1825FCE70061081E /* MMProgressHUDViewController.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
 				42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */,
 				DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */,
 				DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */,
+				D8C3524B1825FCE70061081E /* MMProgressHUD.m in Sources */,
 				DD1BFBC3180AC0FC0001C200 /* PSTGridLayoutInfo.m in Sources */,
 				DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				DD56A7281821448E0088AB49 /* TMNavigationController.m in Sources */,
@@ -983,6 +1042,7 @@
 				DD247F8118126A8500D9E6D4 /* main.m in Sources */,
 				0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */,
 				0AB8BB65182278C0002255C2 /* AboutViewController.m in Sources */,
+				D8C352491825FCE70061081E /* MMProgressHUD+Animations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

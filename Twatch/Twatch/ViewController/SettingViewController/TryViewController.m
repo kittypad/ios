@@ -9,12 +9,15 @@
 #import "TryViewController.h"
 #import "TryAdjustViewController.h"
 #import "UIImage+Tool.h"
+#import "MMProgressHUD.h"
 
 
 @interface TryViewController ()
 
 -(void)didFinishedCapture:(UIImage*)_img;
 -(void)foucusStatus:(BOOL)isadjusting;
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
 
 @end
 
@@ -31,6 +34,8 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     CGRect bounds = self.view.bounds;
     bounds.size.height = [[UIScreen mainScreen] bounds].size.height;
     self.view.bounds = bounds;
@@ -63,8 +68,33 @@
     [_cameraButton addTarget:self action:@selector(captureImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_cameraButton];
     
-    [super viewDidLoad];
+    CGRect frame = self.view.bounds;
+    frame.size.height = 40.0;
+    _topView = [[UIView alloc] initWithFrame:frame];
+    _topView.backgroundColor = [UIColor blackColor];
+    _topView.alpha = 0.6;
+    [self.view addSubview:_topView];
+    
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(22.0, 5.0, 25.0, 25.0)];
+    [backButton setImage:[UIImage imageNamed:@"camera-back.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"camera-back-push.png"] forState:UIControlStateHighlighted];
+    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    [_topView addSubview:backButton];
+    
+    _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0, 7.0, 25.0, 25.0)];
+    [_shareButton setImage:[UIImage imageNamed:@"camera-share.png"] forState:UIControlStateNormal];
+    [_shareButton setImage:[UIImage imageNamed:@"camera-share-push.png"] forState:UIControlStateHighlighted];
+    [_shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+    [_topView addSubview:_shareButton];
+    _shareButton.hidden = YES;
+    
+    _scale = 1.0;
 
+}
+
+- (void)share:(id)sender
+{
+    
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -84,6 +114,7 @@
     
     // 开始实时取景
     [_cameraView startRunning];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -91,6 +122,7 @@
     [super viewWillDisappear:animated];
     
     [_cameraView stopRunning];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void)captureImage:(id)sender
@@ -98,12 +130,26 @@
     [_cameraView CaptureStillImage];
 }
 
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if(error != NULL){
+        [MMProgressHUD dismissWithError:@"保存图片到相册失败" title:@"" afterDelay:1.5];
+    }else{
+        [MMProgressHUD dismissWithSuccess:@"图片已成功保存到相册" title:@"" afterDelay:1.5];
+    }
+}
+
+
 #pragma mark -
 #pragma mark - AVHelperDelegate method
 
 -(void)didFinishedCapture:(UIImage*)_img
 {
     [_cameraView stopRunning];
+    
+    [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
+    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+    [MMProgressHUD showWithTitle:@"" status:@"图片处理中..."];
     
     UIImage *image = [_img scaleToSize:self.view.bounds.size];
     
@@ -117,9 +163,14 @@
         img = [UIImage imageNamed:@"蓝扣.png"];
     }
     
-    TryAdjustViewController *secondViewController = [[TryAdjustViewController alloc] initWithFrame:self.view.bounds image:[image drawCenterImage:img]];
+    UIImage *finalImage = [image drawCenterImage:img];
+    
+    TryAdjustViewController *secondViewController = [[TryAdjustViewController alloc] initWithFrame:self.view.bounds image:finalImage];
     [self addChildViewController:secondViewController];
-    [self.view addSubview:secondViewController.view];
+    [self.view insertSubview:secondViewController.view belowSubview:_topView];
+    _shareButton.hidden = NO;
+    
+    UIImageWriteToSavedPhotosAlbum(finalImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
 
 -(void)foucusStatus:(BOOL)isadjusting
