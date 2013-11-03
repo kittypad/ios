@@ -10,6 +10,7 @@
 #import "TryAdjustViewController.h"
 #import "UIImage+Tool.h"
 #import "MMProgressHUD.h"
+#import <ShareSDK/ShareSDK.h>
 
 
 @interface TryViewController ()
@@ -99,7 +100,7 @@
 
 - (void)share:(id)sender
 {
-    
+//    [self shareTitle:@"" content:@"帮我看看，戴着这块表够土豪吗？" image:_tryAdjustViewController.shareImage];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -117,8 +118,10 @@
 {
     [super viewWillAppear:animated];
     
-    // 开始实时取景
-    [_cameraView startRunning];
+    if (!_tryAdjustViewController) {
+        // 开始实时取景
+        [_cameraView startRunning];
+    }
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
@@ -169,7 +172,7 @@
 #pragma mark -
 #pragma mark - AVHelperDelegate method
 
--(void)didFinishedCapture:(UIImage*)_img
+- (void)didFinishedCapture:(UIImage*)_img
 {
     [_cameraView stopRunning];
     
@@ -198,9 +201,9 @@
     
     UIImage *finalImage = [image drawCenterImage:scaleImage];
     
-    TryAdjustViewController *secondViewController = [[TryAdjustViewController alloc] initWithFrame:self.view.bounds image:finalImage];
-    [self addChildViewController:secondViewController];
-    [self.view insertSubview:secondViewController.view belowSubview:_topView];
+    _tryAdjustViewController = [[TryAdjustViewController alloc] initWithFrame:self.view.bounds image:finalImage];
+    [self addChildViewController:_tryAdjustViewController];
+    [self.view insertSubview:_tryAdjustViewController.view belowSubview:_topView];
     _shareButton.hidden = NO;
     
     UIImageWriteToSavedPhotosAlbum(finalImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);

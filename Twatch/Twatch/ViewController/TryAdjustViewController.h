@@ -11,10 +11,11 @@
 @interface TryAdjustViewController : UIViewController
 {
     UIImage *_image;
-    UIImage *_shareImage;
     
     UIImageView *_imageView;
 }
+
+@property (nonatomic, retain) UIImage *shareImage;
 
 - (id)initWithFrame:(CGRect)frame image:(UIImage *)image;
 

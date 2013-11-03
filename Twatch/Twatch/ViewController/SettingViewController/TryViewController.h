@@ -10,6 +10,8 @@
 #import "NaviCommonViewController.h"
 #import "CameraImageHelper.h"
 
+@class TryAdjustViewController;
+
 @interface TryViewController : NaviCommonViewController <AVHelperDelegate>
 {
     CameraImageHelper *_cameraView;
@@ -21,6 +23,8 @@
     
     CGFloat _scale;
     CGFloat _lastScale;
+    
+    TryAdjustViewController *_tryAdjustViewController;
 }
 
 @end
