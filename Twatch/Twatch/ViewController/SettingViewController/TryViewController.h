@@ -15,10 +15,12 @@
     CameraImageHelper *_cameraView;
     UIView *_photoView;
     UIView *_topView;
+    UIView *_bgView;
     UIButton *_cameraButton;
     UIButton *_shareButton;
     
     CGFloat _scale;
+    CGFloat _lastScale;
 }
 
 @end

@@ -30,14 +30,8 @@
     }
     UIGraphicsBeginImageContext(self.size);
     
-    CGFloat x = (image.size.width-self.size.width)/2;
-    if (image.size.width>self.size.width) {
-        x = -x;
-    }
-    CGFloat y = (image.size.height-self.size.height)/2;
-    if (image.size.height>self.size.height) {
-        y = -y;
-    }
+    CGFloat x = (self.size.width-image.size.width)/2;
+    CGFloat y = (self.size.height-image.size.height)/2;
     
     // 绘制图片
     [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
