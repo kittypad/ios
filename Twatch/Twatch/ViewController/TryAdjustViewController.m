@@ -97,6 +97,7 @@ typedef enum{
         frame.origin.x += frame.size.width;
         i++;
     }
+    
 }
 
 - (void)didReceiveMemoryWarning
