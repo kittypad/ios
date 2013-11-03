@@ -74,18 +74,12 @@
     [_cameraButton addTarget:self action:@selector(captureImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_cameraButton];
     
-    CGRect frame = self.view.bounds;
-    frame.size.height = 40.0;
-    _topView = [[UIView alloc] initWithFrame:frame];
+    _topView = [self.view viewWithTag:1322];
     _topView.backgroundColor = [UIColor blackColor];
     _topView.alpha = 0.6;
-    [self.view addSubview:_topView];
+    [self.view bringSubviewToFront:_topView];
+    [_topView viewWithTag:1323].hidden = YES;//hide line
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(22.0, 5.0, 25.0, 25.0)];
-    [backButton setImage:[UIImage imageNamed:@"camera-back.png"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"camera-back-push.png"] forState:UIControlStateHighlighted];
-    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
-    [_topView addSubview:backButton];
     
     _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0, 7.0, 25.0, 25.0)];
     [_shareButton setImage:[UIImage imageNamed:@"camera-share.png"] forState:UIControlStateNormal];

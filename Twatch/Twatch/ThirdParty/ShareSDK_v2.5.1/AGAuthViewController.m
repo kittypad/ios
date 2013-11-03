@@ -119,7 +119,7 @@
         [self setEdgesForExtendedLayout:SSRectEdgeBottom | SSRectEdgeLeft | SSRectEdgeRight];
     }
 
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 28.0, self.view.frame.size.width, self.view.frame.size.height)
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, IS_IOS7 ? 28.0:44.0, self.view.frame.size.width, self.view.frame.size.height)
                                                style:UITableViewStyleGrouped];
     _tableView.rowHeight = 50.0;
     _tableView.scrollEnabled = NO;
