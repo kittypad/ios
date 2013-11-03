@@ -15,6 +15,7 @@
 		0A51A6241822878000DE7DD3 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A6221822878000DE7DD3 /* FeedBackViewController.m */; };
 		0A51A6251822878000DE7DD3 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A51A6231822878000DE7DD3 /* FeedBackViewController.xib */; };
 		0A51A628182289AE00DE7DD3 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A627182289AE00DE7DD3 /* UIPlaceHolderTextView.m */; };
+		0A70DE51182628CA00DC570D /* 土曼百达科技二维码.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0A70DE50182628CA00DC570D /* 土曼百达科技二维码.jpeg */; };
 		0AB8BB65182278C0002255C2 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8BB63182278C0002255C2 /* AboutViewController.m */; };
 		0AB8BB66182278C0002255C2 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB8BB64182278C0002255C2 /* AboutViewController.xib */; };
 		427BEF431806A71F004AFB8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF421806A71F004AFB8C /* Foundation.framework */; };
@@ -164,6 +165,7 @@
 		0A51A6231822878000DE7DD3 /* FeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackViewController.xib; sourceTree = "<group>"; };
 		0A51A626182289AE00DE7DD3 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		0A51A627182289AE00DE7DD3 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		0A70DE50182628CA00DC570D /* 土曼百达科技二维码.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "土曼百达科技二维码.jpeg"; sourceTree = "<group>"; };
 		0AB8BB62182278C0002255C2 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		0AB8BB63182278C0002255C2 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		0AB8BB64182278C0002255C2 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -794,8 +796,9 @@
 		DD56A744182287C10088AB49 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				DD56A745182287C10088AB49 /* Seq_v04_640x378_0.jpg */,
+				0A70DE50182628CA00DC570D /* 土曼百达科技二维码.jpeg */,
 				DD56A746182287C10088AB49 /* Seq_v04_640x378_1.jpg */,
+				DD56A745182287C10088AB49 /* Seq_v04_640x378_0.jpg */,
 				DD56A747182287C10088AB49 /* Seq_v04_640x378_10.jpg */,
 				DD56A748182287C10088AB49 /* Seq_v04_640x378_11.jpg */,
 				DD56A749182287C10088AB49 /* Seq_v04_640x378_12.jpg */,
@@ -930,6 +933,7 @@
 				DD56A6E6181EB3B00088AB49 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
 				DD56A779182287C10088AB49 /* Seq_v04_640x378_23.jpg in Resources */,
 				DD56A784182287C10088AB49 /* Seq_v04_640x378_33.jpg in Resources */,
+				0A70DE51182628CA00DC570D /* 土曼百达科技二维码.jpeg in Resources */,
 				DD56A7201821441A0088AB49 /* _360ViewController.xib in Resources */,
 				DD56A77B182287C10088AB49 /* Seq_v04_640x378_25.jpg in Resources */,
 				DD247F8418126A9C00D9E6D4 /* Images.xcassets in Resources */,

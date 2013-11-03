@@ -11,8 +11,7 @@
 
 #define TEXTMAX_INPUT 500
 
-#warning umeng key
-#define UMENG_APPKEY  @""
+#define UMENG_APPKEY  @"525b85e856240bcc84108059"
 
 @interface FeedBackViewController ()
 
@@ -55,7 +54,7 @@
 #warning 缺少二维码
     
     UITextField *contactTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(feedBackTextField.frame)-1, 280, 35)];
-    [contactTextField setPlaceholder:@"联系方式"];
+    [contactTextField setPlaceholder:@"  联系方式"];
     contactTextField.font = [UIFont fontWithName:@"Arial" size:12.0];
     [contactTextField setBackgroundColor:[UIColor whiteColor]];
     contactTextField.layer.borderWidth = 1;
