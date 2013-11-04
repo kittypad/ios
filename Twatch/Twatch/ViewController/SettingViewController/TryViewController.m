@@ -87,7 +87,7 @@
     [_topView viewWithTag:1323].hidden = YES;//hide line
     
     
-    _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0, 9.0, 25.0, 25.0)];
+    _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0,11.0, 25.0, 25.0)];
     [_shareButton setImage:[UIImage imageNamed:@"camera-share.png"] forState:UIControlStateNormal];
     [_shareButton setImage:[UIImage imageNamed:@"camera-share-push.png"] forState:UIControlStateHighlighted];
     [_shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];

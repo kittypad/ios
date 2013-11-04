@@ -108,14 +108,10 @@ typedef enum{
     // Dispose of any resources that can be recreated.
 }
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    [UIView animateWithDuration:0.5
-//                     animations:^(void){
-//                         self.view.alpha = 1.0;
-//                     }];
-//}
+- (void)dealloc
+{
+    [UIImage freeTmpData];
+}
 
 - (void)viewWillDisappear:(BOOL)animated
 {

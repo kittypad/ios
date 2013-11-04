@@ -11,11 +11,12 @@
 #pragma mark -
 #pragma mark - method
 
+static void *bitmapData = NULL;//内存空间的指针，该内存空间的大小等于图像使用RGB通道所占用的字节数。
+
 static CGContextRef CreateRGBABitmapContext (CGImageRef inImage)// 返回一个使用RGBA通道的位图上下文
 {
 	CGContextRef context = NULL;
 	CGColorSpaceRef colorSpace;
-	void *bitmapData; //内存空间的指针，该内存空间的大小等于图像使用RGB通道所占用的字节数。
 	int bitmapByteCount;
 	int bitmapBytesPerRow;
     
@@ -27,9 +28,11 @@ static CGContextRef CreateRGBABitmapContext (CGImageRef inImage)// 返回一个�
     
 	colorSpace = CGColorSpaceCreateDeviceRGB();//创建依赖于设备的RGB通道
 	
-	bitmapData = malloc(bitmapByteCount); //分配足够容纳图片字节数的内存空间
+    [UIImage freeTmpData];//释放上次数据
     
-	context = CGBitmapContextCreate (bitmapData, pixelsWide, pixelsHigh, 8, bitmapBytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);//kCGImageAlphaPremultipliedLast
+    bitmapData = malloc(bitmapByteCount); //分配足够容纳图片字节数的内存空间
+    
+	context = CGBitmapContextCreate (bitmapData, pixelsWide, pixelsHigh, 8, bitmapBytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     //创建CoreGraphic的图形上下文，该上下文描述了bitmaData指向的内存空间需要绘制的图像的一些绘制参数
     
 	CGColorSpaceRelease( colorSpace );
@@ -213,6 +216,12 @@ static unsigned char *RequestImagePixelData(UIImage *inImage)
 	CGColorSpaceRelease(colorSpaceRef);
 	CGDataProviderRelease(provider);
 	return myImage;
+}
+
++ (void)freeTmpData
+{
+    free(bitmapData);
+    bitmapData = NULL;
 }
 
 @end

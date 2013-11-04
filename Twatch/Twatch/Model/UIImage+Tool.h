@@ -17,5 +17,6 @@
 - (UIImage *)drawCenterImage:(UIImage *)image;
 
 + (UIImage*)imageWithImage:(UIImage*)inImage withColorMatrix:(const float*)f;
++ (void)freeTmpData;
 
 @end
