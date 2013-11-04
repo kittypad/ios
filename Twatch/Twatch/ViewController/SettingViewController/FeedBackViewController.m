@@ -149,14 +149,23 @@
 - (void)postFinishedWithError:(NSError *)error
 {
     if (error == nil) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"FeedBackSuccess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"FeedBackSuccess", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
+        alert.tag = 10000;
         [alert show];
     }
     else
     {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"FeedBackFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
+        alert.tag = 10001;
         [alert show];
 
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 10000)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 - (void)didReceiveMemoryWarning

@@ -28,12 +28,28 @@
     TMNavigationController *rootViewController = [[TMNavigationController alloc] initWithRootViewController:[[RootViewController alloc] initWithNibName:nil bundle:nil]];
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
-    
+    self.haveNewVersion = NO;
+    [self performSelector:@selector(checkVersion) withObject:nil afterDelay:0];
     [self prepareShareData];
     
     return YES;
 }
 
+-(void)checkVersion
+{
+    NSString *string=[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",APPID]] encoding:NSUTF8StringEncoding error:nil];
+    if (string!=nil && [string length]>0 && [string rangeOfString:@"version"].length==7) {
+        NSString *version=[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+        NSString *appInfo1=[string substringFromIndex:[string rangeOfString:@"\"version\":"].location+10];
+        NSString *appInfo2=[string substringFromIndex:[string rangeOfString:@"\"trackViewUrl\":"].location+15];
+        appInfo1=[[appInfo1 substringToIndex:[appInfo1 rangeOfString:@","].location] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        appInfo2=[[appInfo2 substringToIndex:[appInfo2 rangeOfString:@","].location] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        
+        if (![appInfo1 isEqualToString:version]) {
+            self.haveNewVersion = YES;
+        }
+    }
+}
 - (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
 {
     return [ShareSDK handleOpenURL:url

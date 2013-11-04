@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "NaviCommonViewController.h"
 #import "UMFeedback.h"
-@interface FeedBackViewController : NaviCommonViewController<UITextViewDelegate,UMFeedbackDataDelegate>
+@interface FeedBackViewController : NaviCommonViewController<UITextViewDelegate,UMFeedbackDataDelegate,UIAlertViewDelegate>
 
 @end

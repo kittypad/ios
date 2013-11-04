@@ -32,7 +32,7 @@
     [navigationBar addSubview:goBackButton];
     
     CGSize size = [self.backName sizeWithFont:[UIFont systemFontOfSize:GoBackNameSize]];
-    goBackButton.frame = CGRectChangeWidth(goBackButton.frame, CGRectGetWidth(goBackButton.frame) + size.width);
+    goBackButton.frame = CGRectChangeWidth(goBackButton.frame, CGRectGetWidth(goBackButton.frame) + size.width+ 20) ;//返回不好点
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(navigationBar.frame)-1, CGRectGetWidth(self.view.frame), 1)];
     line.tag = 1323;

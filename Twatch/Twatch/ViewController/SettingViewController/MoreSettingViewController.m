@@ -11,9 +11,10 @@
 #import "FeedBackViewController.h"
 #import <ShareSDK/ShareSDK.h>
 #import "AGViewDelegate.h"
+#import "AppDelegate.h"
+
 
 @interface MoreSettingViewController ()
-
 @end
 
 @implementation MoreSettingViewController
@@ -40,6 +41,7 @@
     tableView.backgroundColor = [UIColor getColor:@"F3F8FE"];
     tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:tableView];
+
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -80,8 +82,22 @@
         case 1:
         {
             cell.textLabel.text = NSLocalizedString(@"Accounts", nil);
-             NSString *theAppVersion=[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Latest", nil),theAppVersion];
+                AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+            if (delegate.haveNewVersion)
+            {
+                UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width - 65, 0, 60, cell.contentView.frame.size.height)];
+                [btn setTitle:@"New" forState:UIControlStateNormal];
+                btn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+                [btn setBackgroundColor:[UIColor clearColor]];
+                [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                [btn addTarget:self action:@selector(update) forControlEvents:UIControlEventTouchUpInside];
+                [cell.contentView addSubview:btn];
+            }
+            else
+            {
+                NSString *theAppVersion=[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Latest", nil),theAppVersion];
+            }
         }
         break;
         case 2:
@@ -175,6 +191,13 @@
 
     }
 
+}
+
+-(void)update
+{
+    NSString *iTunesString = [NSString stringWithFormat:@"https://itunes.apple.com/app/id%@", APPID];
+    NSURL *iTunesURL = [NSURL URLWithString:iTunesString];
+    [[UIApplication sharedApplication] openURL:iTunesURL];
 }
 -(void)attention: (id)sender
 {
