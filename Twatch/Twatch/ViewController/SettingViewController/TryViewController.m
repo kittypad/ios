@@ -225,7 +225,7 @@
     CGSize size = self.view.bounds.size;
     CGFloat scale = [[UIScreen mainScreen] scale];
     size = CGSizeMake(size.width*scale, size.height*scale);
-    UIImage *image = [_img scaleToScale:size.width/_img.size.width];
+    UIImage *image = [_img scaleToSize:size];
     
     UIImage *img = nil;
     NSInteger style = [[NSUserDefaults standardUserDefaults] integerForKey:WatchStyleStatus];
@@ -238,7 +238,7 @@
     }
     
     scale *= _scale;
-    UIImage *scaleImage = [img scaleToScale:scale];
+    UIImage *scaleImage = [img scaleToSize:CGSizeMake(img.size.width*scale, img.size.height*scale)];
     
     UIImage *finalImage = [image drawCenterImage:scaleImage];
     

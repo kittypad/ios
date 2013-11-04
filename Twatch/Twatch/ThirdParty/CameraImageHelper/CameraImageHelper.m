@@ -76,7 +76,7 @@
     //设置取景
     preview = [AVCaptureVideoPreviewLayer layerWithSession: session];
     preview.frame = aView.bounds;
-    preview.videoGravity = AVLayerVideoGravityResizeAspectFill; 
+    preview.videoGravity = AVLayerVideoGravityResize;
     [aView.layer addSublayer: preview];
 }
 
