@@ -29,25 +29,36 @@
     // Do any additional setup after loading the view from its nib.
     
     CGPoint starP = CGPointMake(22, IS_IOS7 ? 94 :74);
-    UILabel *label1 = [FactoryMethods labelWithTitle:ABOUTSTRING_1 textFont:ABOUTSTRING_FONT normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
-    label1.frame = CGRectMake(starP.x, starP.y, 276, 30);
-    [self.view addSubview:label1];
+    UILabel *label1_1 = [FactoryMethods labelWithTitle:NSLocalizedString(@"AboutText1_1", nil) textFont:ABOUTSTRING_FONT normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
+    CGFloat width = [label1_1.text sizeWithFont:ABOUTSTRING_FONT].width;
+    label1_1.frame = CGRectMake(starP.x, starP.y, width, 30);
+    [self.view addSubview:label1_1];
+    
+    UIButton *btn = [FactoryMethods buttonWWithTitle:NSLocalizedString(@"AboutBtnText", nil) normalBg:nil hiliteBg:nil target:self selector:@selector(goTohomePage)];
+    [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = ABOUTSTRING_FONT;
+    btn.frame = CGRectMake(label1_1.frame.origin.x + width, starP.y + 1, [NSLocalizedString(@"AboutBtnText", nil) sizeWithFont:ABOUTSTRING_FONT].width, 30);
+    [self.view addSubview:btn];
+    
+    UILabel *label1_2 = [FactoryMethods labelWithTitle:NSLocalizedString(@"AboutText1_2", nil) textFont:ABOUTSTRING_FONT normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
+    label1_2.frame = CGRectMake(CGRectGetWidth(btn.frame) + btn.frame.origin.x, starP.y, [NSLocalizedString(@"AboutText1_2", nil) sizeWithFont:ABOUTSTRING_FONT].width, 30);
+    [self.view addSubview:label1_2];
     
     starP.y += 30;
     
-    UILabel *label2 = [FactoryMethods labelWithTitle:ABOUTSTRING_2 textFont:ABOUTSTRING_FONT normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
+    UILabel *label2 = [FactoryMethods labelWithTitle:NSLocalizedString(@"AboutText2", nil) textFont:ABOUTSTRING_FONT normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
     label2.frame = CGRectMake(starP.x, starP.y, 276, 30);
     [self.view addSubview:label2];
 
     starP.y += 30;
     
-    UILabel *label3 = [FactoryMethods labelWithTitle:ABOUTSTRING_3 textFont:ABOUTSTRING_FONT normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
+    UILabel *label3 = [FactoryMethods labelWithTitle:NSLocalizedString(@"AboutText3", nil) textFont:ABOUTSTRING_FONT normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
     label3.frame = CGRectMake(starP.x, starP.y, 276, 30);
     [self.view addSubview:label3];
 
     starP.y += 30;
     
-    UILabel *label4 = [FactoryMethods labelWithTitle:ABOUTSTRING_4 textFont:ABOUTSTRING_FONT normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
+    UILabel *label4 = [FactoryMethods labelWithTitle:NSLocalizedString(@"AboutText4", nil) textFont:ABOUTSTRING_FONT normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
     label4.frame = CGRectMake(starP.x, starP.y, 276, 30);
     [self.view addSubview:label4];
     
@@ -58,16 +69,19 @@
     discriminateImage.layer.borderColor = RGB(221, 221, 221, 1).CGColor;
     [self.view addSubview:discriminateImage];
     
-    UILabel *copyrightLab = [FactoryMethods labelWithTitle:COPYRIGHT_STRING textFont:[UIFont systemFontOfSize:10.0f] normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
+    UILabel *copyrightLab = [FactoryMethods labelWithTitle:NSLocalizedString(@"AboutCopyRight", nil) textFont:[UIFont systemFontOfSize:10.0f] normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
     NSLog(@"%f",CGRectGetHeight(self.view.frame));
-    copyrightLab.frame = CGRectMake(100, CGRectGetHeight(self.view.frame) - (IS_IOS7? 10:30) , 125, 30);
+    copyrightLab.frame = CGRectMake(85, CGRectGetHeight(self.view.frame) - (IS_IOS7? 10:30) , 150, 30);
     copyrightLab.textAlignment = UITextAlignmentCenter;
     [self.view addSubview:copyrightLab];
 
     
     
 }
-
+-(void)goTohomePage
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.tomoon.cn/"]];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

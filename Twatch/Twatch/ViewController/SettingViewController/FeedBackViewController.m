@@ -40,7 +40,7 @@
     UIPlaceHolderTextView *feedBackTextField = [[UIPlaceHolderTextView alloc] initWithFrame:CGRectMake(20, 80, 280, 160)];
     feedBackTextField.showsVerticalScrollIndicator = YES;
     feedBackTextField.showsHorizontalScrollIndicator = YES;
-    [feedBackTextField setPlaceholder:@"亲，求意见^_^"];
+    [feedBackTextField setPlaceholder:NSLocalizedString(@"Contactus", nil)];
     feedBackTextField.font = [UIFont fontWithName:@"Arial" size:12.0];
     [feedBackTextField setBackgroundColor:[UIColor whiteColor]];
     feedBackTextField.layer.borderWidth = 1;
@@ -51,10 +51,10 @@
     
     self.feedBackTextField = feedBackTextField;
    
-#warning 缺少二维码
+//#warning 缺少二维码
     
     UITextField *contactTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(feedBackTextField.frame)-1, 280, 35)];
-    [contactTextField setPlaceholder:@"  联系方式"];
+    [contactTextField setPlaceholder:NSLocalizedString(@"ContactAddress", nil)];
     contactTextField.font = [UIFont fontWithName:@"Arial" size:12.0];
     [contactTextField setBackgroundColor:[UIColor whiteColor]];
     contactTextField.layer.borderWidth = 1;
@@ -66,7 +66,7 @@
     UIButton *sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     sendBtn.frame =CGRectMake(240, CGRectGetMaxY(contactTextField.frame)+5, 60, 30);
     [sendBtn setTitleColor:RGB(165, 165, 165, 1) forState:UIControlStateNormal];
-    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    [sendBtn setTitle:NSLocalizedString(@"send", nil) forState:UIControlStateNormal];
     sendBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [sendBtn addTarget:self action:@selector(sendFeedBack) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:sendBtn];
@@ -149,12 +149,12 @@
 - (void)postFinishedWithError:(NSError *)error
 {
     if (error == nil) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"反馈成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"FeedBackSuccess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
         [alert show];
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"反馈失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"FeedBackFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
         [alert show];
 
     }

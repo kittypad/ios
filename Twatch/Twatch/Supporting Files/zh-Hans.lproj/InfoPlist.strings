@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  Twatch
+
+  Created by wangjizeng on 13-11-4.
+  Copyright (c) 2013年 龚涛. All rights reserved.
+*/
+CFBundleName="土曼";
+
+CFBundleDisplayName="土曼";

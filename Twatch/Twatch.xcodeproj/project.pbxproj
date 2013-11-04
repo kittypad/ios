@@ -17,6 +17,7 @@
 		0A51A628182289AE00DE7DD3 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A627182289AE00DE7DD3 /* UIPlaceHolderTextView.m */; };
 		0A70DE51182628CA00DC570D /* 土曼百达科技二维码.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0A70DE50182628CA00DC570D /* 土曼百达科技二维码.jpeg */; };
 		0A70DE5B18264C9200DC570D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A70DE5918264C9200DC570D /* Localizable.strings */; };
+		0A7499241827CDE400B355D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A7499261827CDE400B355D7 /* InfoPlist.strings */; };
 		0AB8BB65182278C0002255C2 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8BB63182278C0002255C2 /* AboutViewController.m */; };
 		0AB8BB66182278C0002255C2 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB8BB64182278C0002255C2 /* AboutViewController.xib */; };
 		427BEF431806A71F004AFB8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF421806A71F004AFB8C /* Foundation.framework */; };
@@ -59,7 +60,6 @@
 		DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBD5180AD5D90001C200 /* NotificationView.m */; };
 		DD1BFBD9180AD6020001C200 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BFBD8180AD6020001C200 /* NotificationCell.m */; };
 		DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7818126A8500D9E6D4 /* AppDelegate.m */; };
-		DD247F8018126A8500D9E6D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD247F7918126A8500D9E6D4 /* InfoPlist.strings */; };
 		DD247F8118126A8500D9E6D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7B18126A8500D9E6D4 /* main.m */; };
 		DD247F8418126A9C00D9E6D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD247F8318126A9C00D9E6D4 /* Images.xcassets */; };
 		DD56A6CE181EB3AF0088AB49 /* DouBanConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A6A6181EB3AF0088AB49 /* DouBanConnection.framework */; };
@@ -170,6 +170,8 @@
 		0A70DE50182628CA00DC570D /* 土曼百达科技二维码.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "土曼百达科技二维码.jpeg"; sourceTree = "<group>"; };
 		0A70DE5A18264C9200DC570D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A70DE5C18264CA300DC570D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		0A7499251827CDE400B355D7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		0A7499271827CDF800B355D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0AB8BB62182278C0002255C2 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		0AB8BB63182278C0002255C2 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		0AB8BB64182278C0002255C2 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -254,7 +256,6 @@
 		DD1BFBD8180AD6020001C200 /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCell.m; sourceTree = "<group>"; };
 		DD247F7718126A8500D9E6D4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DD247F7818126A8500D9E6D4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DD247F7A18126A8500D9E6D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DD247F7B18126A8500D9E6D4 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DD247F7C18126A8500D9E6D4 /* Twatch-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Twatch-Info.plist"; sourceTree = "<group>"; };
 		DD247F7D18126A8500D9E6D4 /* Twatch-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Twatch-Prefix.pch"; sourceTree = "<group>"; };
@@ -614,12 +615,12 @@
 			children = (
 				DD247F7718126A8500D9E6D4 /* AppDelegate.h */,
 				DD247F7818126A8500D9E6D4 /* AppDelegate.m */,
-				DD247F7918126A8500D9E6D4 /* InfoPlist.strings */,
 				DD247F7B18126A8500D9E6D4 /* main.m */,
 				DD247F7C18126A8500D9E6D4 /* Twatch-Info.plist */,
 				DD247F7D18126A8500D9E6D4 /* Twatch-Prefix.pch */,
 				DD247F7E18126A8500D9E6D4 /* WatchConstant.h */,
 				0A70DE5918264C9200DC570D /* Localizable.strings */,
+				0A7499261827CDE400B355D7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			path = "Twatch/Supporting Files";
@@ -967,10 +968,10 @@
 				DD56A76A182287C10088AB49 /* Seq_v04_640x378_1.jpg in Resources */,
 				DD56A786182287C10088AB49 /* Seq_v04_640x378_35.jpg in Resources */,
 				DD56A787182287C10088AB49 /* Seq_v04_640x378_4.jpg in Resources */,
+				0A7499241827CDE400B355D7 /* InfoPlist.strings in Resources */,
 				DD56A783182287C10088AB49 /* Seq_v04_640x378_32.jpg in Resources */,
 				DD56A6E0181EB3B00088AB49 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				DD56A78B182287C10088AB49 /* Seq_v04_640x378_8.jpg in Resources */,
-				DD247F8018126A8500D9E6D4 /* InfoPlist.strings in Resources */,
 				DD56A76D182287C10088AB49 /* Seq_v04_640x378_12.jpg in Resources */,
 				DD56A77E182287C10088AB49 /* Seq_v04_640x378_28.jpg in Resources */,
 				DD56A6D7181EB3B00088AB49 /* ShareSDKLocalizable.strings in Resources */,
@@ -1073,10 +1074,11 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		DD247F7918126A8500D9E6D4 /* InfoPlist.strings */ = {
+		0A7499261827CDE400B355D7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DD247F7A18126A8500D9E6D4 /* en */,
+				0A7499251827CDE400B355D7 /* zh-Hans */,
+				0A7499271827CDF800B355D7 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1171,8 +1173,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: wang zeng (F938LBL6VQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wang zeng (F938LBL6VQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Connection,
@@ -1195,7 +1197,8 @@
 					Twatch/ThirdParty/UMSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "27EFED40-7947-43A3-B8A1-2B4BB04267A6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27EFED40-7947-43A3-B8A1-2B4BB04267A6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1206,8 +1209,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: wang zeng (F938LBL6VQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wang zeng (F938LBL6VQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Connection,
@@ -1230,7 +1233,8 @@
 					Twatch/ThirdParty/UMSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "27EFED40-7947-43A3-B8A1-2B4BB04267A6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27EFED40-7947-43A3-B8A1-2B4BB04267A6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

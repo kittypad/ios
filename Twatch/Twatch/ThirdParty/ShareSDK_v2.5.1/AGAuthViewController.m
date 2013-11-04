@@ -249,7 +249,7 @@
         }
         else
         {
-            cell.textLabel.text = @"尚未授权";
+            cell.textLabel.text = NSLocalizedString(@"Unauthorized", nil);
         }
     }
     

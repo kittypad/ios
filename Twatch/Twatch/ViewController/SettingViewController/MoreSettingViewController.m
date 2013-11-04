@@ -63,12 +63,12 @@
     cell.detailTextLabel.textColor = RGB(81, 150, 221, 1);
     
     UIButton *attentButton = [FactoryMethods buttonWWithNormalImage:@"加关注.png" hiliteImage:@"加关注.png" target:self selector:@selector(attention:)];
-    [attentButton setTitle:@"关注" forState:UIControlStateNormal];
+    [attentButton setTitle:NSLocalizedString(@"Concern", nil) forState:UIControlStateNormal];
     [attentButton setTitleColor:RGB(81, 150, 221, 1) forState:UIControlStateNormal];
     attentButton.frame = CGRectChangeOrigin(attentButton.frame, 10, 30);
     attentButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
     
-    CGSize size = [@"关注" sizeWithFont:[UIFont systemFontOfSize:12.0]];
+    CGSize size = [NSLocalizedString(@"Concern", nil) sizeWithFont:[UIFont systemFontOfSize:12.0]];
     attentButton.frame = CGRectMake(CGRectGetWidth(cell.frame) - CGRectGetWidth(attentButton.frame) - size.width - 10, (CGRectGetHeight(cell.frame) - CGRectGetHeight(attentButton.frame))/2, CGRectGetWidth(attentButton.frame) + size.width, CGRectGetHeight(attentButton.frame));
 
     
@@ -78,9 +78,12 @@
             cell.textLabel.text = NSLocalizedString(@"About", nil);
             break;
         case 1:
+        {
             cell.textLabel.text = NSLocalizedString(@"Accounts", nil);
-            cell.detailTextLabel.text = @"已最新v1.0";
-            break;
+             NSString *theAppVersion=[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Latest", nil),theAppVersion];
+        }
+        break;
         case 2:
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = NSLocalizedString(@"FeedBack", nil);

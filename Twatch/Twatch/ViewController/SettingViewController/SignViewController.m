@@ -62,7 +62,7 @@
     signtextfield.font = [UIFont systemFontOfSize:13.0f];
     signtextfield.layer.borderWidth = 0.5;
     signtextfield.delegate = self;
-    signtextfield.placeholder = @"请输入文字";
+    signtextfield.placeholder = NSLocalizedString(@"Input", nil);
     signtextfield.returnKeyType = UIReturnKeyDone;
     signtextfield.textAlignment = NSTextAlignmentCenter;
     UIColor *color = [UIColor getColor:@"ffffff"];
@@ -101,7 +101,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if ([textField.text sizeWithFont:[UIFont systemFontOfSize:13]].width > CGRectGetWidth(textField.frame)) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"文字超出可显示区域" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LengthOvered", nil) message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         return NO;
     }
