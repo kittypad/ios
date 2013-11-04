@@ -12,6 +12,7 @@
 
 @interface UIImage (Tool)
 
+- (UIImage *)scaleToScale:(CGFloat)scale;
 - (UIImage *)scaleToSize:(CGSize)size;
 - (UIImage *)drawCenterImage:(UIImage *)image;
 

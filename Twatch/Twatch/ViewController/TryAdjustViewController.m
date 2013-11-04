@@ -62,7 +62,6 @@ typedef enum{
         _image = image;
         _shareImage = image;
         self.view.frame = frame;
-        self.view.alpha = 0.0;
     }
     return self;
 }
@@ -109,14 +108,14 @@ typedef enum{
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [UIView animateWithDuration:0.5
-                     animations:^(void){
-                         self.view.alpha = 1.0;
-                     }];
-}
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    [UIView animateWithDuration:0.5
+//                     animations:^(void){
+//                         self.view.alpha = 1.0;
+//                     }];
+//}
 
 - (void)viewWillDisappear:(BOOL)animated
 {

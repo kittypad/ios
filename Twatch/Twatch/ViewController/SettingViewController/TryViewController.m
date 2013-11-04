@@ -57,11 +57,11 @@
     UIImage *img = nil;
     NSInteger style = [[NSUserDefaults standardUserDefaults] integerForKey:WatchStyleStatus];
     if (style == wBlack) {
-        img = [UIImage imageNamed:@"黑展开.png"];
+        img = [UIImage imageNamed:@"黑扣.png"];
     }else if (style == wRed){
-        img = [UIImage imageNamed:@"红展开.png"];
+        img = [UIImage imageNamed:@"红扣.png"];
     }else if (style == wBlue){
-        img = [UIImage imageNamed:@"蓝展开.png"];
+        img = [UIImage imageNamed:@"蓝扣.png"];
     }
     _bgView = [[UIImageView alloc] initWithImage:img];
     _bgView.center = self.view.center;
@@ -225,7 +225,7 @@
     CGSize size = self.view.bounds.size;
     CGFloat scale = [[UIScreen mainScreen] scale];
     size = CGSizeMake(size.width*scale, size.height*scale);
-    UIImage *image = [_img scaleToSize:size];
+    UIImage *image = [_img scaleToScale:size.width/_img.size.width];
     
     UIImage *img = nil;
     NSInteger style = [[NSUserDefaults standardUserDefaults] integerForKey:WatchStyleStatus];
@@ -238,15 +238,23 @@
     }
     
     scale *= _scale;
-    size = CGSizeMake(img.size.width*scale, img.size.height*scale);
-    UIImage *scaleImage = [img scaleToSize:size];
+    UIImage *scaleImage = [img scaleToScale:scale];
     
     UIImage *finalImage = [image drawCenterImage:scaleImage];
     
     _tryAdjustViewController = [[TryAdjustViewController alloc] initWithFrame:self.view.bounds image:finalImage];
     [self addChildViewController:_tryAdjustViewController];
+    _tryAdjustViewController.view.alpha = 0.0;
     [self.view insertSubview:_tryAdjustViewController.view belowSubview:_topView];
     _shareButton.hidden = NO;
+    
+    [UIView animateWithDuration:0.5
+                     animations:^(void){
+                         _tryAdjustViewController.view.alpha = 1.0;
+                     }
+                     completion:^(BOOL finished){
+                         _bgView = nil;
+                     }];
     
     UIImageWriteToSavedPhotosAlbum(finalImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
