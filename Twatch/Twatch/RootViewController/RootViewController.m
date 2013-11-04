@@ -62,7 +62,7 @@
     self.watchView.frame = CGRectOffset(self.watchView.frame, -2, -2);
     self.watchView.layer.masksToBounds = YES;
     [self.view addSubview:self.watchView];
-    bgView.center = CGPointMake(self.view.center.x, self.view.center.y + 5);
+    bgView.center = CGPointMake(self.view.center.x - 2.0, self.view.center.y + 6.0);
     
     [self prepareBottomNavigationbar];
     
