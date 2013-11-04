@@ -48,27 +48,15 @@
         
         _shareTypeArray = [[NSMutableArray alloc] initWithObjects:
                            [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                            @"新浪微博",
+                            @"人人网",
                             @"title",
-                            [NSNumber numberWithInteger:ShareTypeSinaWeibo],
+                            [NSNumber numberWithInteger:ShareTypeRenren],
                             @"type",
                             nil],
                            [NSMutableDictionary dictionaryWithObjectsAndKeys:
                             @"豆瓣社区",
                             @"title",
                             [NSNumber numberWithInteger:ShareTypeDouBan],
-                            @"type",
-                            nil],
-                           [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                            @"QQ空间",
-                            @"title",
-                            [NSNumber numberWithInteger:ShareTypeQQSpace],
-                            @"type",
-                            nil],
-                           [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                            @"人人网",
-                            @"title",
-                            [NSNumber numberWithInteger:ShareTypeRenren],
                             @"type",
                             nil],
                            nil];
