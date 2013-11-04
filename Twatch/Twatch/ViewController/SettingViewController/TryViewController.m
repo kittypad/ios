@@ -88,8 +88,8 @@
     
     
     _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0,11.0, 25.0, 25.0)];
-    [_shareButton setImage:[UIImage imageNamed:@"camera-share.png"] forState:UIControlStateNormal];
-    [_shareButton setImage:[UIImage imageNamed:@"camera-share-push.png"] forState:UIControlStateHighlighted];
+    [_shareButton setImage:[UIImage imageNamed:@"camera-share-push.png"] forState:UIControlStateNormal];
+    [_shareButton setImage:[UIImage imageNamed:@"camera-share.png"] forState:UIControlStateHighlighted];
     [_shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
     [_topView addSubview:_shareButton];
     _shareButton.hidden = YES;
@@ -106,7 +106,7 @@
 - (void)share:(id)sender
 {
     //定义菜单分享列表
-    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeSinaWeibo, ShareTypeTencentWeibo, ShareTypeQQSpace, ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeDouBan, nil];
+    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeDouBan, nil];
     
     UIImage *img = _tryAdjustViewController.shareImage;
     id<ISSCAttachment> shareImage = nil;
@@ -118,10 +118,10 @@
     }
     
     //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:@"土曼share"
-                                       defaultContent:@"帮我看看，戴着这块表够土豪吗？"
+    id<ISSContent> publishContent = [ShareSDK content:@"土曼手表分享"
+                                       defaultContent:@"手表试戴: 帮我看看，戴着这块表够土豪吗？"
                                                 image:shareImage
-                                                title:@"土曼手表分享"
+                                                title:@""
                                                   url:@"http://www.tomoon.cn"
                                           description:@""
                                             mediaType:shareType];

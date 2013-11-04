@@ -30,7 +30,7 @@
 
 #define GoBackNameSize  15
 
-#define APPID @""
+#define APPID @"737815068"
 
 typedef enum _WatchStyle{
     wBlack = 0,
