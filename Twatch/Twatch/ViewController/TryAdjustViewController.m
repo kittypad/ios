@@ -7,6 +7,8 @@
 //
 
 #import "TryAdjustViewController.h"
+#import "UIImage+Tool.h"
+#import "TMColorMatrix.h"
 
 typedef enum{
     NormalStyle = 0,
@@ -88,6 +90,7 @@ typedef enum{
     int i = 0;
     for (NSString *title in array) {
         TMFilterButton *button = [[TMFilterButton alloc] initWithFrame:frame];
+        button.tag = i;
         [button setTitle:title forState:UIControlStateNormal];
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
         button.titleLabel.font = [UIFont systemFontOfSize:13.0];
@@ -115,6 +118,13 @@ typedef enum{
                      }];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    _image = nil;
+    _shareImage = nil;
+}
+
 - (void)filter:(id)sender
 {
     switch ([sender tag]) {
@@ -123,32 +133,33 @@ typedef enum{
             break;
         }
         case JapanStyle: {
-            
+            _shareImage = [UIImage imageWithImage:_image withColorMatrix:colormatrix_danya];
             break;
         }
         case FleetingStyle: {
-            
+            _shareImage = [UIImage imageWithImage:_image withColorMatrix:colormatrix_qingning];
             break;
         }
         case HDRStyle: {
-            
+            _shareImage = [UIImage imageWithImage:_image withColorMatrix:colormatrix_landiao];
             break;
         }
         case AxisStyle: {
-            
+            _shareImage = [UIImage imageWithImage:_image withColorMatrix:colormatrix_gete];
             break;
         }
         case ShowyStyle: {
-            
+            _shareImage = [UIImage imageWithImage:_image withColorMatrix:colormatrix_ruise];
             break;
         }
         case EightsStyle: {
-            
+            _shareImage = [UIImage imageWithImage:_image withColorMatrix:colormatrix_huaijiu];
             break;
         }
         default:
             break;
     }
+    [_imageView setImage:_shareImage];
 }
 
 @end

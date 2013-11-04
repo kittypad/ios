@@ -30,6 +30,7 @@
 		42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676A618237B9600B8474D /* CameraImageHelper.m */; };
 		42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B318237D7B00B8474D /* TryAdjustViewController.m */; };
 		42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B6182393DF00B8474D /* UIImage+Tool.m */; };
+		D8A397561827677F0058221C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A397551827677F0058221C /* OpenGLES.framework */; };
 		D8C352481825FCE70061081E /* MMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352381825FCE70061081E /* MMHud.m */; };
 		D8C352491825FCE70061081E /* MMProgressHUD+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523A1825FCE70061081E /* MMProgressHUD+Animations.m */; };
 		D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523B1825FCE70061081E /* MMProgressHUD+Class.m */; };
@@ -194,6 +195,8 @@
 		42C676B318237D7B00B8474D /* TryAdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAdjustViewController.m; sourceTree = "<group>"; };
 		42C676B5182393DF00B8474D /* UIImage+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tool.h"; sourceTree = "<group>"; };
 		42C676B6182393DF00B8474D /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
+		D8A397551827677F0058221C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D8A3975718276E150058221C /* TMColorMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMColorMatrix.h; sourceTree = "<group>"; };
 		D8C352371825FCE70061081E /* MMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMHud.h; sourceTree = "<group>"; };
 		D8C352381825FCE70061081E /* MMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMHud.m; sourceTree = "<group>"; };
 		D8C352391825FCE70061081E /* MMProgressHUD+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMProgressHUD+Animations.h"; sourceTree = "<group>"; };
@@ -379,6 +382,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8A397561827677F0058221C /* OpenGLES.framework in Frameworks */,
 				DD56A6F5181EB5420088AB49 /* MessageUI.framework in Frameworks */,
 				DD56A6F3181EB4E90088AB49 /* CoreTelephony.framework in Frameworks */,
 				DD56A6F1181EB4DE0088AB49 /* libsqlite3.dylib in Frameworks */,
@@ -458,6 +462,7 @@
 		427BEF411806A71F004AFB8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8A397551827677F0058221C /* OpenGLES.framework */,
 				DD56A6F4181EB5420088AB49 /* MessageUI.framework */,
 				DD56A6F2181EB4E90088AB49 /* CoreTelephony.framework */,
 				DD56A6F0181EB4DE0088AB49 /* libsqlite3.dylib */,
@@ -849,6 +854,7 @@
 				DD1BFBCF180AC7280001C200 /* FactoryMethods.m */,
 				42C676B5182393DF00B8474D /* UIImage+Tool.h */,
 				42C676B6182393DF00B8474D /* UIImage+Tool.m */,
+				D8A3975718276E150058221C /* TMColorMatrix.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1185,7 +1191,7 @@
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/libWeiboSDK,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/SDKExport,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/TencentWeiboSSO,
-					Twatch/ThirdParty/ShareSDK_v2.5.1/UMSDK,
+					Twatch/ThirdParty/ShareSDK_v2.5.1,
 					Twatch/ThirdParty/UMSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1220,7 +1226,7 @@
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/libWeiboSDK,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/SDKExport,
 					Twatch/ThirdParty/ShareSDK_v2.5.1/Extend/TencentWeiboSSO,
-					Twatch/ThirdParty/ShareSDK_v2.5.1/UMSDK,
+					Twatch/ThirdParty/ShareSDK_v2.5.1,
 					Twatch/ThirdParty/UMSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";

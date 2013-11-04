@@ -8,9 +8,9 @@
 
 #import "TryViewController.h"
 #import "TryAdjustViewController.h"
-#import "UIImage+Tool.h"
 #import "MMProgressHUD.h"
 #import <ShareSDK/ShareSDK.h>
+#import "UIImage+Tool.h"
 
 
 @interface TryViewController ()
@@ -75,13 +75,19 @@
     [self.view addSubview:_cameraButton];
     
     _topView = [self.view viewWithTag:1322];
+    _topView.frame = CGRectMake(0, 0,  CGRectGetWidth(self.view.frame), 44.0);
     _topView.backgroundColor = [UIColor blackColor];
     _topView.alpha = 0.6;
+    for (UIView *subView in _topView.subviews) {
+        CGRect frame = subView.frame;
+        frame.origin.y -= 20.0;
+        subView.frame = frame;
+    }
     [self.view bringSubviewToFront:_topView];
     [_topView viewWithTag:1323].hidden = YES;//hide line
     
     
-    _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0, 7.0, 25.0, 25.0)];
+    _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0, 9.0, 25.0, 25.0)];
     [_shareButton setImage:[UIImage imageNamed:@"camera-share.png"] forState:UIControlStateNormal];
     [_shareButton setImage:[UIImage imageNamed:@"camera-share-push.png"] forState:UIControlStateHighlighted];
     [_shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
@@ -92,14 +98,14 @@
 
 }
 
-- (void)share:(id)sender
-{
-//    [self shareTitle:@"" content:@"帮我看看，戴着这块表够土豪吗？" image:_tryAdjustViewController.shareImage];
-}
-
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+- (void)share:(id)sender
+{
+//    [self shareTitle:@"" content:@"帮我看看，戴着这块表够土豪吗？" image:_tryAdjustViewController.shareImage];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,6 +118,8 @@
 {
     [super viewWillAppear:animated];
     
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
     if (!_tryAdjustViewController) {
         // 开始实时取景
         [_cameraView startRunning];
@@ -122,6 +130,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     [_cameraView stopRunning];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
