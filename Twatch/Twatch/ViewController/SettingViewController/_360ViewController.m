@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    FVImageSequence *imageSquence = [[FVImageSequence alloc] initWithImage:[UIImage imageNamed:@"Seq_v04_640x378_0.jpg"]];
+    FVImageSequence *imageSquence = [[FVImageSequence alloc] initWithImage:[UIImage imageNamed:@"0_0.jpg"]];
     imageSquence.center = self.view.center;
     imageSquence.userInteractionEnabled = YES;
     [self.view addSubview:imageSquence];
@@ -28,10 +28,10 @@
 	[imageSquence setExtension:@"jpg"];
 	
 	//Set slide prefix prefix
-	[imageSquence setPrefix:@"Seq_v04_640x378_"];
+	[imageSquence setPrefix:@"0_"];
 	
 	//Set number of slides
-	[imageSquence setNumberOfImages:36];
+	[imageSquence setNumberOfImages:24];
 }
 
 - (void)didReceiveMemoryWarning
