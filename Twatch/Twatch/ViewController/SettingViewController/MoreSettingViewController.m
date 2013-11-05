@@ -81,7 +81,7 @@
             break;
         case 1:
         {
-            cell.textLabel.text = NSLocalizedString(@"Accounts", nil);
+            cell.textLabel.text = NSLocalizedString(@"Update", nil);
                 AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
             if (delegate.haveNewVersion)
             {

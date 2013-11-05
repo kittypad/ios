@@ -14,7 +14,7 @@
 "Dark" = "Dark";
 "Red" = "Red";
 "Blue" = "Blue";
-"Accounts" = "Update";
+"Accounts" = "Accounts";
 "Weibo" = "Weibo";
 "QQZone" = "QQZone";
 "Wechat" = "Wechat";
@@ -46,3 +46,4 @@
 "AboutText4" ="";
 "AboutCopyRight" ="TOMOON©2013 TOMOON";
 "InputWord" = "InputWord";
+"Update" = "Update";

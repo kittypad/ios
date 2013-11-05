@@ -20,6 +20,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     FVImageSequence *imageSquence = [[FVImageSequence alloc] initWithImage:[UIImage imageNamed:@"0_0.jpg"]];
+    imageSquence.frame = CGRectChangeSize(imageSquence.frame,640,360);
+//    imageSquence.frame = CGRectChangeWidth(imageSquence.frame,640);
     imageSquence.center = self.view.center;
     imageSquence.userInteractionEnabled = YES;
     [self.view addSubview:imageSquence];
