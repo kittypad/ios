@@ -23,9 +23,13 @@
     // Do any additional setup after loading the view from its nib.
     
     UIButton *shareButton = [FactoryMethods buttonWWithNormalImage:@"share.png" hiliteImage:@"share-push.png" target:self selector:@selector(share:)];
-    shareButton.frame = CGRectChangeSize(shareButton.frame, 44, 44);
-    shareButton.frame = CGRectChangeOrigin(shareButton.frame,self.view.frame.size.width - CGRectGetWidth(shareButton.frame), (IS_IOS7 ? 64 :44) - CGRectGetHeight(shareButton.frame) );
+    shareButton.frame = CGRectChangeOrigin(shareButton.frame,self.view.frame.size.width - CGRectGetWidth(shareButton.frame)-15, (IS_IOS7 ? 64 :44) - CGRectGetHeight(shareButton.frame) - 5);
     [self.view addSubview:shareButton];
+    
+    UIView *bg = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(shareButton.frame)+5, 320, 568)];
+    bg.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:bg];
+    
     
     FVImageSequence *imageSquence = [[FVImageSequence alloc] initWithImage:[UIImage imageNamed:@"0_0.jpg"]];
     imageSquence.frame = CGRectChangeSize(imageSquence.frame,640,360);

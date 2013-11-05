@@ -37,10 +37,9 @@
 //    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0, (IS_IOS7 ? 64 :44) - 25 -7.0 , 25.0, 25.0)];
     
     UIButton *shareButton = [FactoryMethods buttonWWithNormalImage:@"share.png" hiliteImage:@"share-push.png" target:self selector:@selector(share:)];
-    shareButton.frame = CGRectChangeSize(shareButton.frame, 44, 44);
-    shareButton.frame = CGRectChangeOrigin(shareButton.frame,self.view.frame.size.width - CGRectGetWidth(shareButton.frame), (IS_IOS7 ? 64 :44) - CGRectGetHeight(shareButton.frame) );
-//    [shareButton setImage:[UIImage imageNamed:@"camera-share.png"] forState:UIControlStateNormal];
-//    [shareButton setImage:[UIImage imageNamed:@"camera-share-push.png"] forState:UIControlStateHighlighted];
+    shareButton.frame = CGRectChangeOrigin(shareButton.frame,self.view.frame.size.width - CGRectGetWidth(shareButton.frame)-15, (IS_IOS7 ? 64 :44) - CGRectGetHeight(shareButton.frame) - 5);
+//    [shareButton setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateNormal];
+//    [shareButton setImage:[UIImage imageNamed:@"share-push.png"] forState:UIControlStateHighlighted];
 //    [shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shareButton];
     

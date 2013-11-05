@@ -14,7 +14,7 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 	if(increment == 0)
-		increment = 1;
+		increment = 0.3;
 	[super touchesBegan:touches withEvent:event];
 	
     UITouch *touch = [[event allTouches] anyObject];
@@ -43,7 +43,7 @@
 	if(current < 0)
 		current = numberOfImages;
 	
-	NSString *path = [NSString stringWithFormat:@"%@%d", prefix, current];
+	NSString *path = [NSString stringWithFormat:@"%@%d", prefix, (int)current%24];
 	NSLog(@"%@", path);
 	
 	path = [[NSBundle mainBundle] pathForResource:path ofType:extension];

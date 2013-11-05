@@ -878,7 +878,7 @@
 				ORGANIZATIONNAME = "龚涛";
 				TargetAttributes = {
 					427BEF3E1806A71F004AFB8C = {
-						DevelopmentTeam = PT9EGW4M43;
+						DevelopmentTeam = 2D4CMLL2L8;
 					};
 				};
 			};

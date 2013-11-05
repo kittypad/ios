@@ -12,13 +12,13 @@
 @interface FVImageSequence : UIImageView {
 	NSString *prefix;
 	int numberOfImages;
-	int current;
+	float current;
 	int previous;
 	NSString *extension;
-	int increment;
+	float increment;
 }
 
-@property (readwrite) int increment;
+@property (readwrite) float increment;
 @property (readwrite, copy) NSString *extension;
 @property (readwrite, copy) NSString *prefix;
 @property (readwrite) int numberOfImages;
