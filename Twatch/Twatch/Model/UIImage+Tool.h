@@ -16,6 +16,8 @@
 - (UIImage *)scaleToSize:(CGSize)size;
 - (UIImage *)drawCenterImage:(UIImage *)image;
 
++ (UIImage *)imageFromView:(UIView *)view;
++ (UIImage *)imageFromView:(UIView *)view view:(UIView *)upView;
 + (UIImage*)imageWithImage:(UIImage*)inImage withColorMatrix:(const float*)f;
 + (void)freeTmpData;
 

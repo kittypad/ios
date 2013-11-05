@@ -8,6 +8,7 @@
 
 #import "SignViewController.h"
 #import <ShareSDK/ShareSDK.h>
+#import "UIImage+Tool.h"
 
 @interface SignViewController ()
 
@@ -115,13 +116,18 @@
 
 -(void)share:(id)sender
 {
+    self.signtextfield.layer.borderWidth = 0.0;
+    UIImage *image = [UIImage imageFromView:self.bgView view:self.signtextfield];
+    id<ISSCAttachment> shareImage = [ShareSDK pngImageWithImage:image];
+    self.signtextfield.layer.borderWidth = 0.5;
+    
     //定义菜单分享列表
     NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeDouBan, nil];
     
     //构造分享内容
     id<ISSContent> publishContent = [ShareSDK content:NSLocalizedString(@"EngravingshareView", nil)
                                        defaultContent:NSLocalizedString(@"EngravingshareView", nil)
-                                                image:[ShareSDK jpegImageWithImage:self.bgView.image quality:1.0]
+                                                image:shareImage
                                                 title:NSLocalizedString(@"T-FrieShare", nil)
                                                   url:@"r.tomoon.cn/kezi"
                                           description:@""

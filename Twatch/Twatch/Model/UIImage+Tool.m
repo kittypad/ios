@@ -159,6 +159,36 @@ static unsigned char *RequestImagePixelData(UIImage *inImage)
     return scaledImage;
 }
 
++ (UIImage *)imageFromView:(UIView *)view
+{
+    UIGraphicsBeginImageContext(view.bounds.size);
+    // 绘制图片
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    // 返回新的改变大小后的图片
+    return image;
+}
+
++ (UIImage *)imageFromView:(UIView *)view view:(UIView *)upView
+{
+    UIImage *vImg = [UIImage imageFromView:view];
+    UIImage *vUpImg = [UIImage imageFromView:upView];
+    
+    UIGraphicsBeginImageContext(vImg.size);
+    // 绘制图片
+    [vImg drawInRect:view.bounds];
+    [vUpImg drawInRect:upView.frame];
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    // 返回新的改变大小后的图片
+    return image;
+}
+
 + (UIImage*)imageWithImage:(UIImage*)inImage withColorMatrix:(const float*)f
 {
 	unsigned char *imgPixel = RequestImagePixelData(inImage);
