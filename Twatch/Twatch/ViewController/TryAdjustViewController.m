@@ -85,6 +85,7 @@ typedef enum{
     [self.view addSubview:bottomView];
 
     NSArray *array = @[NSLocalizedString(@"Default", nil), NSLocalizedString(@"Retro", nil), NSLocalizedString(@"Fleeting", nil), @"HDR",NSLocalizedString(@"Shift", nil), NSLocalizedString(@"Contrast", nil), @"80s"];
+    NSArray *imgArray = @[@"默认", @"日系", @"流年", @"HDR", @"移轴", @"艳丽", @"80s"];
     frame = CGRectMake(6.0, 0.0, 44.0, 57.0);
     int i = 0;
     for (NSString *title in array) {
@@ -93,7 +94,7 @@ typedef enum{
         [button setTitle:title forState:UIControlStateNormal];
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
         button.titleLabel.font = [UIFont systemFontOfSize:13.0];
-        [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", title]] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [imgArray objectAtIndex:i]]] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(filter:) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:button];
         frame.origin.x += frame.size.width;
