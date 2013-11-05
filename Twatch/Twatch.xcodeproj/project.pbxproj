@@ -55,7 +55,6 @@
 		42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676A618237B9600B8474D /* CameraImageHelper.m */; };
 		42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B318237D7B00B8474D /* TryAdjustViewController.m */; };
 		42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B6182393DF00B8474D /* UIImage+Tool.m */; };
-		D655FA161828C1C9009DBEA4 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D655FA151828C1C9009DBEA4 /* Resource.bundle */; };
 		D8A397561827677F0058221C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A397551827677F0058221C /* OpenGLES.framework */; };
 		D8C352481825FCE70061081E /* MMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352381825FCE70061081E /* MMHud.m */; };
 		D8C352491825FCE70061081E /* MMProgressHUD+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523A1825FCE70061081E /* MMProgressHUD+Animations.m */; };
@@ -209,7 +208,6 @@
 		42C676B318237D7B00B8474D /* TryAdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAdjustViewController.m; sourceTree = "<group>"; };
 		42C676B5182393DF00B8474D /* UIImage+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tool.h"; sourceTree = "<group>"; };
 		42C676B6182393DF00B8474D /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
-		D655FA151828C1C9009DBEA4 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		D8A397551827677F0058221C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		D8A3975718276E150058221C /* TMColorMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMColorMatrix.h; sourceTree = "<group>"; };
 		D8C352371825FCE70061081E /* MMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMHud.h; sourceTree = "<group>"; };
@@ -638,7 +636,6 @@
 		DD56A6AE181EB3AF0088AB49 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				D655FA151828C1C9009DBEA4 /* Resource.bundle */,
 				DD56A6AF181EB3AF0088AB49 /* AGCommon.framework */,
 				DD56A6B0181EB3AF0088AB49 /* ShareSDKLocalizable.strings */,
 				DD56A6B3181EB3AF0088AB49 /* ShareSDKCoreService.framework */,
@@ -941,7 +938,6 @@
 				0A714AC41828880500A78784 /* 0_8.jpg in Resources */,
 				0A714AC81828880500A78784 /* 0_12.jpg in Resources */,
 				0AB8BB66182278C0002255C2 /* AboutViewController.xib in Resources */,
-				D655FA161828C1C9009DBEA4 /* Resource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
