@@ -153,6 +153,12 @@
     else {
         CGRect frame = _pullView.frame;
         frame.origin.y += p.y-_lastY;
+        if (_bottomView==_pullView && frame.origin.y<=-Watch_PullUp_Height) {
+            frame.origin.y = -Watch_PullUp_Height;
+        }
+        else if (_topView==_pullView && frame.origin.y>=0.0) {
+            frame.origin.y = 0.0;
+        }
         _pullView.frame = frame;
     }
     _lastY = p.y;
@@ -182,6 +188,12 @@
     else {
         CGRect frame = _pullView.frame;
         frame.origin.y += p.y-_lastY;
+        if (_bottomView==_pullView && frame.origin.y<=-Watch_PullUp_Height) {
+            frame.origin.y = -Watch_PullUp_Height;
+        }
+        else if (_topView==_pullView && frame.origin.y>=0.0) {
+            frame.origin.y = 0.0;
+        }
         _pullView.frame = frame;
     }
     _lastY = p.y;
