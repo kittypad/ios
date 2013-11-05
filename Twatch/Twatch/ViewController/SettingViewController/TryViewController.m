@@ -118,7 +118,7 @@
     }
     
     //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:NSLocalizedString(@"T-FrieShare", nil)
+    id<ISSContent> publishContent = [ShareSDK content:NSLocalizedString(@"TryshareView", nil)
                                        defaultContent:NSLocalizedString(@"TryshareView", nil)
                                                 image:shareImage
                                                 title:@""
