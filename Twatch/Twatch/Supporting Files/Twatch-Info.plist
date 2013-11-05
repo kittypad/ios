@@ -52,6 +52,16 @@
 				<string>tencent100598779</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>tecentwb</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wb801439497</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>

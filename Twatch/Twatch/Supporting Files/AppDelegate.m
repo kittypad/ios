@@ -100,9 +100,9 @@
                              redirectUri:@"http://www.tomoon.cn"];
     
     //添加腾讯微博应用
-    [ShareSDK connectTencentWeiboWithAppKey:@"801307650"
-                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
-                                redirectUri:@"http://www.tomoon.cn"];
+    [ShareSDK connectTencentWeiboWithAppKey:@"801439497"
+                                  appSecret:@"be98b1992a65555005f9b67789a7f2c8"
+                                redirectUri:@"http://developer.tomoon.cn/tools/tomoonV1.0.apk"];
 //
     //添加QQ空间应用
 //    [ShareSDK connectQZoneWithAppKey:@"100598779"
