@@ -56,8 +56,10 @@ static NSString *SettingViewCellId = @"SettingCell";
         pan.direction = UISwipeGestureRecognizerDirectionRight;
         [tableView addGestureRecognizer:pan];
         
-         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingBUttonClicked:) name:SettingviewClickNotification object:nil];
-         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appIconClicked:) name:AppIconClickNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appIconClicked:) name:PlayAppsVideoNotification object:nil];
+//         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingBUttonClicked:) name:SettingviewClickNotification object:nil];
+//         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appIconClicked:) name:AppIconClickNotification object:nil];
     }
     return self;
 }
@@ -66,6 +68,9 @@ static NSString *SettingViewCellId = @"SettingCell";
         NSString *name = [notice.userInfo objectForKey:@"name"];
         switch ([name integerValue])
         {
+            case SettingAppType:
+                [self settingBUttonClicked:nil];
+                break;
             case PanoramicAppType:
                 self.settingActionHandle(0);
                 break;

@@ -11,8 +11,8 @@
 
 #define PlayAppsVideoNotification @"PlayAppsVideoNotification"
 #define PlayAppsVideoDidPlayFinishedNotification @"PlayAppsVideoDidPlayFinishedNotification"
-#define SettingviewClickNotification @"SettingviewClickNotification"
-#define AppIconClickNotification @"AppIconClickNotification"
+//#define SettingviewClickNotification @"SettingviewClickNotification"
+//#define AppIconClickNotification @"AppIconClickNotification"
 
 #define WatchStyleStatus  @"watch style saved in local "
 #define WatchStyleStatusChangeNotification  @"watch style change notification"

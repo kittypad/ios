@@ -68,7 +68,7 @@
     
     [self prepareSettingView];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAppsVideo:) name:PlayAppsVideoNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAppsVideo:) name:PlayAppsVideoNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayDidFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     
@@ -83,17 +83,17 @@
 
 - (void)playAppsVideo:(NSNotification *)notice
 {
-    NSString *name = [notice.userInfo objectForKey:@"name"];
-    switch ([name integerValue])
-    {
-        case SettingAppType:
-            [[NSNotificationCenter defaultCenter] postNotificationName:SettingviewClickNotification object:nil userInfo:nil];
-            break;
-        default:
-            [[NSNotificationCenter defaultCenter] postNotificationName:AppIconClickNotification object:nil userInfo:notice.userInfo];
-            
-            break;
-    }
+//    NSString *name = [notice.userInfo objectForKey:@"name"];
+//    switch ([name integerValue])
+//    {
+//        case SettingAppType:
+//            [[NSNotificationCenter defaultCenter] postNotificationName:SettingviewClickNotification object:nil userInfo:nil];
+//            break;
+//        default:
+//            [[NSNotificationCenter defaultCenter] postNotificationName:AppIconClickNotification object:nil userInfo:notice.userInfo];
+//            
+//            break;
+//    }
 }
 
 - (void)videoPlayDidFinished:(NSNotification *)notice
