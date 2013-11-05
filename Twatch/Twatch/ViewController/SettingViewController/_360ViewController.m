@@ -10,7 +10,7 @@
 #import "FVImageSequence.h"
 
 @interface _360ViewController ()
-
+@property(nonatomic,strong)FVImageSequence *imageSquence;
 @end
 
 @implementation _360ViewController
@@ -25,6 +25,7 @@
     imageSquence.center = self.view.center;
     imageSquence.userInteractionEnabled = YES;
     [self.view addSubview:imageSquence];
+    self.imageSquence = imageSquence;
     
     //Set slides extension
 	[imageSquence setExtension:@"jpg"];
@@ -34,6 +35,10 @@
 	
 	//Set number of slides
 	[imageSquence setNumberOfImages:24];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.imageSquence removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning
