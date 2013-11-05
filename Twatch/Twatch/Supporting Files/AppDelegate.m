@@ -29,7 +29,7 @@
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     self.haveNewVersion = NO;
-    [self performSelector:@selector(checkVersion) withObject:nil afterDelay:0];
+    [self checkVersion];
     [self prepareShareData];
     
     return YES;
@@ -37,18 +37,36 @@
 
 -(void)checkVersion
 {
-    NSString *string=[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",APPID]] encoding:NSUTF8StringEncoding error:nil];
-    if (string!=nil && [string length]>0 && [string rangeOfString:@"version"].length==7) {
-        NSString *version=[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-        NSString *appInfo1=[string substringFromIndex:[string rangeOfString:@"\"version\":"].location+10];
-        NSString *appInfo2=[string substringFromIndex:[string rangeOfString:@"\"trackViewUrl\":"].location+15];
-        appInfo1=[[appInfo1 substringToIndex:[appInfo1 rangeOfString:@","].location] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-        appInfo2=[[appInfo2 substringToIndex:[appInfo2 rangeOfString:@","].location] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-        
-        if (![appInfo1 isEqualToString:version]) {
-            self.haveNewVersion = YES;
-        }
-    }
+    NSString *storeString = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@", APPID];
+    NSURL *storeURL = [NSURL URLWithString:storeString];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:storeURL];
+    [request setHTTPMethod:@"GET"];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         if ( [data length] > 0 && !error )
+         {
+             NSDictionary *appData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 
+                 NSArray *versionsInAppStore = [[appData valueForKey:@"results"] valueForKey:@"version"];
+                 
+                 if ( ![versionsInAppStore count] ) {
+                     return;                     
+                 } else {
+                     NSString *theAppVersion=[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+                     NSString *currentAppStoreVersion = [versionsInAppStore objectAtIndex:0];
+
+                     if ([theAppVersion compare:currentAppStoreVersion options:NSNumericSearch] == NSOrderedAscending) {
+                            self.haveNewVersion = YES;
+                     }
+                 }
+             });
+             
+             
+         }
+     }];
 }
 - (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
 {
