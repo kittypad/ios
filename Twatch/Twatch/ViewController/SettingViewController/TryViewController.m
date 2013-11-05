@@ -92,10 +92,9 @@
     [_shareButton setImage:[UIImage imageNamed:@"share-push.png"] forState:UIControlStateHighlighted];
     [_shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
     [_topView addSubview:_shareButton];
-    //_shareButton.hidden = YES;
+    _shareButton.hidden = YES;
     
     _scale = 1.0;
-
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -106,7 +105,7 @@
 - (void)share:(id)sender
 {
     //定义菜单分享列表
-    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeDouBan, nil];
+    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeDouBan,ShareTypeTencentWeibo,ShareTypeSinaWeibo, nil];
     
     UIImage *img = _tryAdjustViewController.shareImage;
     id<ISSCAttachment> shareImage = nil;

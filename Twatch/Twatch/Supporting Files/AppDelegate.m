@@ -68,6 +68,7 @@
          }
      }];
 }
+
 - (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
 {
     return [ShareSDK handleOpenURL:url
@@ -93,16 +94,16 @@
     [ShareSDK connectWeChatWithAppId:@"wx601a43912ee66d19"        //此参数为申请的微信AppID
                            wechatCls:[WXApi class]];
     
-//    //添加新浪微博应用
-//    [ShareSDK connectSinaWeiboWithAppKey:@"177815352"
-//                               appSecret:@"83ce845e210aeb0ed385c0419697647d"
-//                             redirectUri:@"http://www.tomoon.cn"];
-//    
-//    //添加腾讯微博应用
-//    [ShareSDK connectTencentWeiboWithAppKey:@"801307650"
-//                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
-//                                redirectUri:@"http://www.sharesdk.cn"];
-//    
+    //添加新浪微博应用
+    [ShareSDK connectSinaWeiboWithAppKey:@"177815352"
+                               appSecret:@"83ce845e210aeb0ed385c0419697647d"
+                             redirectUri:@"http://www.tomoon.cn"];
+    
+    //添加腾讯微博应用
+    [ShareSDK connectTencentWeiboWithAppKey:@"801307650"
+                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
+                                redirectUri:@"http://www.tomoon.cn"];
+//
     //添加QQ空间应用
 //    [ShareSDK connectQZoneWithAppKey:@"100598779"
 //                           appSecret:@"aed9b0303e3ed1e27bae87c33761161d"

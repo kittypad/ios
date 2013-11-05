@@ -59,6 +59,18 @@
                             [NSNumber numberWithInteger:ShareTypeDouBan],
                             @"type",
                             nil],
+                           [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                            @"腾讯微博",
+                            @"title",
+                            [NSNumber numberWithInteger:ShareTypeTencentWeibo],
+                            @"type",
+                            nil],
+                           [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                            @"新浪微博",
+                            @"title",
+                            [NSNumber numberWithInteger:ShareTypeSinaWeibo],
+                            @"type",
+                            nil],
                            nil];
         
         NSArray *authList = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/authListCache.plist",NSTemporaryDirectory()]];

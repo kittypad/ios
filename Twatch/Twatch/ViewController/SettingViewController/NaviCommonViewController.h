@@ -12,4 +12,6 @@
 
 @property (nonatomic, copy) NSString *backName;
 
+- (void)goBack;
+
 @end

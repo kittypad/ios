@@ -26,7 +26,7 @@
     UIButton *goBackButton = [FactoryMethods buttonWWithNormalImage:@"back.png" hiliteImage:@"back-push.png" target:self selector:@selector(goBack)];
     [goBackButton setTitle:self.backName forState:UIControlStateNormal];
     [goBackButton setTitleColor:RGB(150, 154, 158, 1) forState:UIControlStateNormal];
-    goBackButton.frame = CGRectChangeOrigin(goBackButton.frame, 10, IS_IOS7 ? 35 : 15);
+    goBackButton.frame = CGRectChangeOrigin(goBackButton.frame, 0, IS_IOS7 ? 35 : 15);
     goBackButton.titleLabel.font = [UIFont systemFontOfSize:GoBackNameSize];
     goBackButton.titleLabel.textColor = [UIColor getColor:@"292929"];
     [navigationBar addSubview:goBackButton];
