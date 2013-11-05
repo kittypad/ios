@@ -118,11 +118,11 @@
     }
     
     //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:@"土曼手表分享"
-                                       defaultContent:@"手表试戴: 帮我看看，戴着这块表够土豪吗？"
+    id<ISSContent> publishContent = [ShareSDK content:NSLocalizedString(@"T-FrieShare", nil)
+                                       defaultContent:NSLocalizedString(@"TryshareView", nil)
                                                 image:shareImage
                                                 title:@""
-                                                  url:@"http://r.tomoon.cn/simulator"
+                                                  url:@"r.tomoon.cn/simulator"
                                           description:@""
                                             mediaType:shareType];
     
@@ -179,7 +179,7 @@
 {
     [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
     [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
-    [MMProgressHUD showWithTitle:@"" status:@"图片处理中..."];
+    [MMProgressHUD showWithTitle:@"" status:NSLocalizedString(@"Processing", nil)];
     
     [_cameraView CaptureStillImage];
 }
@@ -187,9 +187,9 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
     if(error != NULL){
-        [MMProgressHUD dismissWithError:@"保存图片到相册失败" title:@"" afterDelay:1.5];
+        [MMProgressHUD dismissWithError:NSLocalizedString(@"SaveFailed", nil) title:@"" afterDelay:1.5];
     }else{
-        [MMProgressHUD dismissWithSuccess:@"图片已成功保存到相册" title:@"" afterDelay:1.5];
+        [MMProgressHUD dismissWithSuccess:NSLocalizedString(@"SaveSuccess", nil) title:@"" afterDelay:1.5];
     }
 }
 

@@ -72,6 +72,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayDidFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,15 +84,15 @@
 - (void)playAppsVideo:(NSNotification *)notice
 {
     NSString *name = [notice.userInfo objectForKey:@"name"];
-    NSString *type = [notice.userInfo objectForKey:@"type"];
-    if (name && name.length>0 && type && type.length>0) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:type];
-        NSLog(@"%@", path);
-        if (path && path.length>0) {
-            NSURL *url = [NSURL fileURLWithPath:path];
-            MovieViewController *_moviePlayerViewController = [[MovieViewController alloc] initWithContentURL:url];
-            [self presentViewController:_moviePlayerViewController animated:YES completion:^(void){}];
-        }
+    switch ([name integerValue])
+    {
+        case SettingAppType:
+            [[NSNotificationCenter defaultCenter] postNotificationName:SettingviewClickNotification object:nil userInfo:nil];
+            break;
+        default:
+            [[NSNotificationCenter defaultCenter] postNotificationName:AppIconClickNotification object:nil userInfo:notice.userInfo];
+            
+            break;
     }
 }
 

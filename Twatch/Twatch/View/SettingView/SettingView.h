@@ -14,5 +14,5 @@ typedef void(^ SettingActionHandle) (int i);
 
 @property (nonatomic)       BOOL                settingHasPullOut;
 @property (nonatomic, copy) SettingActionHandle settingActionHandle;
-
+- (void)settingBUttonClicked:(id *)sender;
 @end

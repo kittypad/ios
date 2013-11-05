@@ -34,10 +34,14 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"rooView_bg.png"]];
     
-    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0, (IS_IOS7 ? 64 :44) - 25 -7.0 , 25.0, 25.0)];
-    [shareButton setImage:[UIImage imageNamed:@"camera-share.png"] forState:UIControlStateNormal];
-    [shareButton setImage:[UIImage imageNamed:@"camera-share-push.png"] forState:UIControlStateHighlighted];
-    [shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0, (IS_IOS7 ? 64 :44) - 25 -7.0 , 25.0, 25.0)];
+    
+    UIButton *shareButton = [FactoryMethods buttonWWithNormalImage:@"share.png" hiliteImage:@"share-push.png" target:self selector:@selector(share:)];
+    shareButton.frame = CGRectChangeSize(shareButton.frame, 44, 44);
+    shareButton.frame = CGRectChangeOrigin(shareButton.frame,self.view.frame.size.width - CGRectGetWidth(shareButton.frame), (IS_IOS7 ? 64 :44) - CGRectGetHeight(shareButton.frame) );
+//    [shareButton setImage:[UIImage imageNamed:@"camera-share.png"] forState:UIControlStateNormal];
+//    [shareButton setImage:[UIImage imageNamed:@"camera-share-push.png"] forState:UIControlStateHighlighted];
+//    [shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shareButton];
     
     UIImage *img = [UIImage imageNamed:@"表扣-蓝.png"];
@@ -102,7 +106,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if ([textField.text sizeWithFont:[UIFont systemFontOfSize:13]].width > CGRectGetWidth(textField.frame)) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LengthOvered", nil) message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LengthOvered", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
         [alert show];
         return NO;
     }
@@ -112,16 +116,15 @@
 
 -(void)share:(id)sender
 {
-#warning need share feature
     //定义菜单分享列表
     NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeDouBan, nil];
     
     //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:@"专属刻字: 我的土曼手表刻谁的名字好呢？"
-                                       defaultContent:@"我的土曼手表刻谁的名字好呢？"
+    id<ISSContent> publishContent = [ShareSDK content:NSLocalizedString(@"EngravingshareView", nil)
+                                       defaultContent:NSLocalizedString(@"EngravingshareView", nil)
                                                 image:[ShareSDK jpegImageWithImage:self.bgView.image quality:1.0]
-                                                title:@"土曼手表分享"
-                                                  url:@"http://www.tomoon.cn"
+                                                title:NSLocalizedString(@"T-FrieShare", nil)
+                                                  url:@"r.tomoon.cn/kezi"
                                           description:@""
                                             mediaType:SSPublishContentMediaTypeNews];
     

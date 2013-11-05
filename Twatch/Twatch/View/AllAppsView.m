@@ -24,24 +24,24 @@
         rect.origin.x += rect.size.width+10.0;
         
         UIButton *musicButton = [[UIButton alloc] initWithFrame:rect];
-        [musicButton setImage:[UIImage imageNamed:@"音乐.png"] forState:UIControlStateNormal];
+        [musicButton setImage:[UIImage imageNamed:@"360度.png"] forState:UIControlStateNormal];
         [musicButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
-        musicButton.tag = MusicAppType;
+        musicButton.tag = PanoramicAppType;
         [self addSubview:musicButton];
         rect.origin.x = 10.0;
         rect.origin.y += rect.size.height+12.0;
         
         UIButton *runningButton = [[UIButton alloc] initWithFrame:rect];
-        [runningButton setImage:[UIImage imageNamed:@"计步.png"] forState:UIControlStateNormal];
+        [runningButton setImage:[UIImage imageNamed:@"刻字.png"] forState:UIControlStateNormal];
         [runningButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
-        runningButton.tag = RunningAppType;
+        runningButton.tag = ExclusuveAppType;
         [self addSubview:runningButton];
         rect.origin.x += rect.size.width+10.0;
         
         UIButton *weatherButton = [[UIButton alloc] initWithFrame:rect];
-        [weatherButton setImage:[UIImage imageNamed:@"天气.png"] forState:UIControlStateNormal];
+        [weatherButton setImage:[UIImage imageNamed:@"试戴.png"] forState:UIControlStateNormal];
         [weatherButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
-        weatherButton.tag = WeatherAppType;
+        weatherButton.tag = TryAppType;
         [self addSubview:weatherButton];
     }
     return self;

@@ -25,9 +25,9 @@
 "CurrentVersion" = "升级更新";
 "FeedBack" = "意见反馈";
 "TomoonWeibo" = "土曼微博";
-"PanoramicshareView" = "终于知道土曼手表长啥样了，抢不抢呢";
-"TryshareView" = "土曼手表，够土豪吗 ？";
-"EngravingshareView" = "我的土曼手表刻谁的名字好呢";
+"PanoramicshareView" = "360°全景视图： #我的手表，我戴言#终于知道土曼手表长啥样了，抢不抢呢";
+"TryshareView" = "手表试戴： #我的手表，我戴言#土曼手表，够土豪吗 ？";
+"EngravingshareView" = "专属刻字： #我的手表，我戴言#我的土曼手表刻谁的名字好呢";
 "Latest" = "已最新";
 "Concern" = "关注";
 "Contactus" = "亲，求意见^_^";
@@ -47,3 +47,17 @@
 "AboutCopyRight" ="土曼©2013 TOMOON";
 "InputWord" = "请输入文字";
 "Update" = "升级更新";
+"Success" = "关注成功";
+"failed" = "关注失败";
+"T-FrieShare" = "土曼手表分享";
+"Processing" = "图片处理中";
+"SaveFailed"="保存图片到相册失败";
+"SaveSuccess"="图片已成功保存到相册";
+"hint" = "提示";
+"HasConcern" = "已关注";
+"Default" = "默认";
+"Retro" = "日系";
+"Fleeting" = "流年";
+"Shift" = "移轴";
+"Contrast" = "艳丽";
+

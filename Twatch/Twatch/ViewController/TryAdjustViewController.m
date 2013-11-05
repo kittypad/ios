@@ -83,8 +83,8 @@ typedef enum{
     bottomView.backgroundColor = [UIColor blackColor];
     bottomView.alpha = 0.6;
     [self.view addSubview:bottomView];
-    
-    NSArray *array = @[@"默认", @"日系", @"流年", @"HDR", @"移轴", @"艳丽", @"80s"];
+
+    NSArray *array = @[NSLocalizedString(@"Default", nil), NSLocalizedString(@"Retro", nil), NSLocalizedString(@"Fleeting", nil), @"HDR",NSLocalizedString(@"Shift", nil), NSLocalizedString(@"Contrast", nil), @"80s"];
     frame = CGRectMake(6.0, 0.0, 44.0, 57.0);
     int i = 0;
     for (NSString *title in array) {

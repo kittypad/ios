@@ -7,9 +7,10 @@
 //
 
 #import "RootViewController.h"
+#import "SettingView.h"
 
 @interface RootViewController (SettingView)
-
 - (void)prepareSettingView;
+- (void)btnClick;
 
 @end

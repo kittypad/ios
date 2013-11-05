@@ -7,7 +7,6 @@
 //
 
 #import "RootViewController+SettingView.h"
-#import "SettingView.h"
 
 #import "_360ViewController.h"
 #import "TryViewController.h"
@@ -37,4 +36,7 @@
     };
 }
 
+-(void)btnClick
+{
+}
 @end

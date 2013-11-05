@@ -21,20 +21,34 @@
 
 - (void)playVideo:(id)sender
 {
+    
     NSLog(@"haha");
     NSString *name = nil;
-    NSString *type = nil;
-    switch ([sender tag]) {
-        case SettingAppType: {
-//            name = @"naruto554";
-//            type = @"mp4";
-            break;
-        }
-        default:
-            break;
-    }
-    if (name && type) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:PlayAppsVideoNotification object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:name, @"name", type, @"type", nil]];
+////    NSString *type = nil;
+//    switch ([sender tag]) {
+//        case SettingAppType: {
+////            name = @"setting";
+//            break;
+//        }
+//        case PanoramicAppType: {
+////            name = @"panoramic";
+//            break;
+//        }
+//        case ExclusuveAppType: {
+////            name = @"exclisive";
+//            break;
+//        }
+//        case TryAppType: {
+//            name = @"try";
+//            break;
+//        }
+//
+//        default:
+//            break;
+//    }
+    name = [NSString stringWithFormat:@"%d",[sender tag]];
+    if (name) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:PlayAppsVideoNotification object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:name, @"name", nil]];
     }
 }
 

@@ -8,7 +8,7 @@
 
 #import "SettingView.h"
 #import "SettingCell.h"
-
+#import "AppsView.h"
 @interface SettingView ()
 
 @property (nonatomic, strong) UIButton *settingButton;
@@ -55,10 +55,30 @@ static NSString *SettingViewCellId = @"SettingCell";
                                                                                   action:@selector(settingBUttonClicked:)];
         pan.direction = UISwipeGestureRecognizerDirectionRight;
         [tableView addGestureRecognizer:pan];
+        
+         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingBUttonClicked:) name:SettingviewClickNotification object:nil];
+         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appIconClicked:) name:AppIconClickNotification object:nil];
     }
     return self;
 }
-
+-(void)appIconClicked :(NSNotification*)notice
+{
+        NSString *name = [notice.userInfo objectForKey:@"name"];
+        switch ([name integerValue])
+        {
+            case PanoramicAppType:
+                self.settingActionHandle(0);
+                break;
+            case ExclusuveAppType:
+                self.settingActionHandle(2);
+                break;
+            case TryAppType:
+                self.settingActionHandle(1);
+                break;
+            default:                
+                break;
+        }
+}
 
 - (void)settingBUttonClicked:(id *)sender
 {

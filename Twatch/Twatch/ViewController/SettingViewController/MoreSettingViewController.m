@@ -45,7 +45,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -64,14 +64,14 @@
     cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0f];
     cell.detailTextLabel.textColor = RGB(81, 150, 221, 1);
     
-    UIButton *attentButton = [FactoryMethods buttonWWithNormalImage:@"加关注.png" hiliteImage:@"加关注.png" target:self selector:@selector(attention:)];
-    [attentButton setTitle:NSLocalizedString(@"Concern", nil) forState:UIControlStateNormal];
-    [attentButton setTitleColor:RGB(81, 150, 221, 1) forState:UIControlStateNormal];
-    attentButton.frame = CGRectChangeOrigin(attentButton.frame, 10, 30);
-    attentButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+//    UIButton *attentButton = [FactoryMethods buttonWWithNormalImage:@"加关注.png" hiliteImage:@"加关注.png" target:self selector:@selector(attention:)];
+////    [attentButton setTitle:NSLocalizedString(@"Concern", nil) forState:UIControlStateNormal];
+//    [attentButton setTitleColor:RGB(81, 150, 221, 1) forState:UIControlStateNormal];
+//    attentButton.frame = CGRectChangeOrigin(attentButton.frame, 10, 30);
+//    attentButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
     
-    CGSize size = [NSLocalizedString(@"Concern", nil) sizeWithFont:[UIFont systemFontOfSize:12.0]];
-    attentButton.frame = CGRectMake(CGRectGetWidth(cell.frame) - CGRectGetWidth(attentButton.frame) - size.width - 10, (CGRectGetHeight(cell.frame) - CGRectGetHeight(attentButton.frame))/2, CGRectGetWidth(attentButton.frame) + size.width, CGRectGetHeight(attentButton.frame));
+//    CGSize size = [NSLocalizedString(@"Concern", nil) sizeWithFont:[UIFont systemFontOfSize:12.0]];
+//    attentButton.frame = CGRectMake(CGRectGetWidth(cell.frame) - CGRectGetWidth(attentButton.frame)  - 10, (CGRectGetHeight(cell.frame) - CGRectGetHeight(attentButton.frame))/2, CGRectGetWidth(attentButton.frame), CGRectGetHeight(attentButton.frame));
 
     
     switch (indexPath.row) {
@@ -104,11 +104,11 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = NSLocalizedString(@"FeedBack", nil);
             break;
-        case 3:
-        {
-            cell.textLabel.text = NSLocalizedString(@"TomoonWeibo", nil);
-            [cell addSubview:attentButton];
-        }
+//        case 3:
+//        {
+//            cell.textLabel.text = NSLocalizedString(@"TomoonWeibo", nil);
+//            [cell addSubview:attentButton];
+//        }
             break;
         default:
             break;
@@ -140,54 +140,51 @@
         feedback.backName = NSLocalizedString(@"FeedBack", nil);
         [self.navigationController pushViewController:feedback animated:YES];
     }else if (indexPath.row == 3){
-        id delegate = [[AGViewDelegate alloc] init];
-        id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES
-                                                             allowCallback:YES
-                                                             authViewStyle:SSAuthViewStyleFullScreenPopup
-                                                              viewDelegate:nil
-                                                   authManagerViewDelegate:delegate];
-        
-        //在授权页面中添加关注官方微博
-        [authOptions setFollowAccounts:[NSDictionary dictionaryWithObjectsAndKeys:
-                                        [ShareSDK userFieldWithType:SSUserFieldTypeName value:@"ShareSDK"],
-                                        SHARE_TYPE_NUMBER(ShareTypeSinaWeibo),
-                                        nil]];
-        
-        [ShareSDK followUserWithType:ShareTypeSinaWeibo
-                               field:@"ShareSDK"
-                           fieldType:SSUserFieldTypeName
-                         authOptions:authOptions
-                        viewDelegate:delegate
-                              result:^(SSResponseState state, id<ISSUserInfo> userInfo, id<ICMErrorInfo> error) {
-                                  NSString *msg = nil;
-                                  if (state == SSResponseStateSuccess)
-                                  {
-                                      msg = @"关注成功";
-                                  }
-                                  else if (state == SSResponseStateFail)
-                                  {
-                                      switch ([error errorCode])
-                                      {
-                                          case 20506:
-                                              msg = @"已关注";
-                                              break;
-                                              
-                                          default:
-                                              msg = [NSString stringWithFormat:@"关注失败:%@", error.errorDescription];
-                                              break;
-                                      }
-                                  }
-                                  
-                                  if (msg)
-                                  {
-                                      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                                          message:msg
-                                                                                         delegate:nil
-                                                                                cancelButtonTitle:@"知道了"
-                                                                                otherButtonTitles:nil];
-                                      [alertView show];
-                                  }
-                              }];
+//        id delegate = [[AGViewDelegate alloc] init];
+//        id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES
+//                                                             allowCallback:YES
+//                                                             authViewStyle:SSAuthViewStyleFullScreenPopup
+//                                                              viewDelegate:nil
+//                                                   authManagerViewDelegate:delegate];
+//        
+//        //在授权页面中添加关注官方微博
+//        [authOptions setFollowAccounts:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                        [ShareSDK userFieldWithType:SSUserFieldTypeName value:@"ShareSDK"],
+//                                        SHARE_TYPE_NUMBER(ShareTypeSinaWeibo),
+//                                        nil]];
+//        
+//        [ShareSDK followUserWithType:ShareTypeSinaWeibo
+//                               field:@"ShareSDK"
+//                           fieldType:SSUserFieldTypeName
+//                         authOptions:authOptions
+//                        viewDelegate:delegate
+//                              result:^(SSResponseState state, id<ISSUserInfo> userInfo, id<ICMErrorInfo> error) {
+//                                  NSString *msg = nil;
+//                                  if (state == SSResponseStateSuccess)
+//                                  {
+//                                      msg = NSLocalizedString(@"Success", nil);
+//                                  }
+//                                  else if (state == SSResponseStateFail)
+//                                  {
+//                                      switch ([error errorCode])
+//                                      {
+//                                          case 20506:
+//                                              msg = NSLocalizedString(@"HasConcern", nil);
+//                                              break;
+//                                              
+//                                          default:
+//                                              msg = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"failed", nil), error.errorDescription];
+//                                              break;
+//                                      }
+//                                  }
+//                                  
+//                                  if (msg)
+//                                  {
+//                                      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"hint", nil)                                                                                          message:msg                                                                                         delegate:nil                                                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
+//                                                                                otherButtonTitles:nil];
+//                                      [alertView show];
+//                                  }
+//                              }];
 
     }
 
