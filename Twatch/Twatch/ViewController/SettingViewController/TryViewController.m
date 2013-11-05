@@ -177,6 +177,10 @@
 
 - (void)captureImage:(id)sender
 {
+    [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
+    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+    [MMProgressHUD showWithTitle:@"" status:@"图片处理中..."];
+    
     [_cameraView CaptureStillImage];
 }
 
@@ -217,10 +221,6 @@
 - (void)didFinishedCapture:(UIImage*)_img
 {
     [_cameraView stopRunning];
-    
-    [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
-    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
-    [MMProgressHUD showWithTitle:@"" status:@"图片处理中..."];
     
     CGSize size = self.view.bounds.size;
     CGFloat scale = [[UIScreen mainScreen] scale];
