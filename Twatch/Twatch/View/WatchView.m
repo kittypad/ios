@@ -77,10 +77,10 @@
         [pullUpView1 addGestureRecognizer:g1];
         
         //通知界面的下拉View
-        UIView *pullDownView1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, bounds.size.height, bounds.size.width, Watch_PullDown_Height)];
-        [_topView addSubview:pullDownView1];
-        UIPanGestureRecognizer *g3 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pullDown:)];
-        [pullDownView1 addGestureRecognizer:g3];
+//        UIView *pullDownView1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, bounds.size.height, bounds.size.width, Watch_PullDown_Height)];
+//        [_topView addSubview:pullDownView1];
+//        UIPanGestureRecognizer *g3 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pullDown:)];
+//        [pullDownView1 addGestureRecognizer:g3];
         
         //切换手表样式界面
         subViewFrame.origin.y = bounds.size.height-Watch_PullUp_Height;
