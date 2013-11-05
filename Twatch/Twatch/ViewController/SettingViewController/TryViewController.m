@@ -122,7 +122,7 @@
                                        defaultContent:@"手表试戴: 帮我看看，戴着这块表够土豪吗？"
                                                 image:shareImage
                                                 title:@""
-                                                  url:@"http://www.tomoon.cn/simulator"
+                                                  url:@"http://r.tomoon.cn/simulator"
                                           description:@""
                                             mediaType:shareType];
     
