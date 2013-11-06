@@ -55,6 +55,8 @@
 		42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676A618237B9600B8474D /* CameraImageHelper.m */; };
 		42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B318237D7B00B8474D /* TryAdjustViewController.m */; };
 		42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B6182393DF00B8474D /* UIImage+Tool.m */; };
+		42C780A8182A410600DB47A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C780A6182A410600DB47A5 /* Default-568h@2x.png */; };
+		42C780A9182A410600DB47A5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C780A7182A410600DB47A5 /* Default@2x.png */; };
 		42FBA9A81828E6CE0042C3E4 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */; };
 		D655FB6E1828C7F0009DBEA4 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D655FB6D1828C7F0009DBEA4 /* Resource.bundle */; };
 		D8A397561827677F0058221C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A397551827677F0058221C /* OpenGLES.framework */; };
@@ -210,6 +212,8 @@
 		42C676B318237D7B00B8474D /* TryAdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAdjustViewController.m; sourceTree = "<group>"; };
 		42C676B5182393DF00B8474D /* UIImage+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tool.h"; sourceTree = "<group>"; };
 		42C676B6182393DF00B8474D /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
+		42C780A6182A410600DB47A5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		42C780A7182A410600DB47A5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		D655FB6D1828C7F0009DBEA4 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		D8A397551827677F0058221C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -478,6 +482,8 @@
 		427BEF771806A88B004AFB8C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				42C780A6182A410600DB47A5 /* Default-568h@2x.png */,
+				42C780A7182A410600DB47A5 /* Default@2x.png */,
 				42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */,
 				DD56A744182287C10088AB49 /* image */,
 				DD247F8318126A9C00D9E6D4 /* Images.xcassets */,
@@ -910,6 +916,7 @@
 				0A714ACA1828880500A78784 /* 0_14.jpg in Resources */,
 				0A714AC91828880500A78784 /* 0_13.jpg in Resources */,
 				0A70DE51182628CA00DC570D /* 土曼百达科技二维码.jpeg in Resources */,
+				42C780A8182A410600DB47A5 /* Default-568h@2x.png in Resources */,
 				0A714AD11828880500A78784 /* 0_21.jpg in Resources */,
 				0A714AC01828880500A78784 /* 0_4.jpg in Resources */,
 				DD56A7201821441A0088AB49 /* _360ViewController.xib in Resources */,
@@ -925,6 +932,7 @@
 				0A714AC21828880500A78784 /* 0_6.jpg in Resources */,
 				0A714ABE1828880500A78784 /* 0_2.jpg in Resources */,
 				0A714AC31828880500A78784 /* 0_7.jpg in Resources */,
+				42C780A9182A410600DB47A5 /* Default@2x.png in Resources */,
 				0A714ABC1828880500A78784 /* 0_0.jpg in Resources */,
 				DD56A6DC181EB3B00088AB49 /* RennSDK.bundle in Resources */,
 				0A714ACF1828880500A78784 /* 0_19.jpg in Resources */,
@@ -1130,7 +1138,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1166,7 +1173,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
