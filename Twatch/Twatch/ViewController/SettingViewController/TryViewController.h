@@ -25,6 +25,8 @@
     CGFloat _lastScale;
     
     TryAdjustViewController *_tryAdjustViewController;
+    
+    UIImage *_shareImg;
 }
 
 @end

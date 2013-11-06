@@ -107,12 +107,14 @@
     //定义菜单分享列表
     NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeDouBan,ShareTypeTencentWeibo,ShareTypeSinaWeibo, nil];
     
-    UIImage *img = _tryAdjustViewController.shareImage;
+    if (!_shareImg) {
+        _shareImg = _tryAdjustViewController.shareImage;
+    }
     id<ISSCAttachment> shareImage = nil;
     SSPublishContentMediaType shareType = SSPublishContentMediaTypeText;
-    if(img)
+    if(_shareImg)
     {
-        shareImage = [ShareSDK pngImageWithImage:img];
+        shareImage = [ShareSDK pngImageWithImage:_shareImg];
         shareType = SSPublishContentMediaTypeNews;
     }
     
