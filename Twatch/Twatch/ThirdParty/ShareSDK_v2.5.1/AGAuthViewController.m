@@ -47,12 +47,12 @@
                                    action:@selector(userInfoUpdateHandler:)];
         
         _shareTypeArray = [[NSMutableArray alloc] initWithObjects:
-                           [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                            @"人人网",
-                            @"title",
-                            [NSNumber numberWithInteger:ShareTypeRenren],
-                            @"type",
-                            nil],
+//                           [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                            @"人人网",
+//                            @"title",
+//                            [NSNumber numberWithInteger:ShareTypeRenren],
+//                            @"type",
+//                            nil],
                            [NSMutableDictionary dictionaryWithObjectsAndKeys:
                             @"豆瓣社区",
                             @"title",

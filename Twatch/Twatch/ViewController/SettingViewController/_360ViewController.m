@@ -58,7 +58,7 @@
 -(void)share:(id)sender
 {
     //定义菜单分享列表
-    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeDouBan,ShareTypeTencentWeibo,ShareTypeSinaWeibo, nil];
+    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeDouBan,ShareTypeTencentWeibo,ShareTypeSinaWeibo, nil];
     
     //构造分享内容
     id<ISSContent> publishContent = [ShareSDK content:NSLocalizedString(@"PanoramicshareView", nil)
