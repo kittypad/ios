@@ -243,14 +243,23 @@
         ((UISwitch *)cell.accessoryView).on = [ShareSDK hasAuthorizedWithType:[[item objectForKey:@"type"] integerValue]];
         ((UISwitch *)cell.accessoryView).tag = BASE_TAG + indexPath.row;
         
-        if (((UISwitch *)cell.accessoryView).on)
-        {
-            cell.textLabel.text = [item objectForKey:@"username"];
-        }
-        else
-        {
-            cell.textLabel.text = NSLocalizedString([item objectForKey:@"title"], nil);
-        }
+        NSString *website = NSLocalizedString([item objectForKey:@"title"], nil);
+        cell.textLabel.text = website;
+        
+//        if (((UISwitch *)cell.accessoryView).on)
+//        {
+//            NSString *username = [item objectForKey:@"username"];
+//            if (username && username.length>0) {
+//                cell.textLabel.text = username;
+//            }
+//            else {
+//                cell.textLabel.text = website;
+//            }
+//        }
+//        else
+//        {
+//            cell.textLabel.text = website;
+//        }
     }
     
     return cell;
@@ -259,19 +268,19 @@
 #pragma mark - Private
 - (void)userInfoUpdateHandler:(NSNotification *)notif
 {
-    NSInteger plat = [[[notif userInfo] objectForKey:SSK_PLAT] integerValue];
-    id<ISSUserInfo> userInfo = [[notif userInfo] objectForKey:SSK_USER_INFO];
-    
-    for (int i = 0; i < [_shareTypeArray count]; i++)
-    {
-        NSMutableDictionary *item = [_shareTypeArray objectAtIndex:i];
-        ShareType type = [[item objectForKey:@"type"] integerValue];
-        if (type == plat)
-        {
-            [item setObject:[userInfo nickname] forKey:@"username"];
-            [_tableView reloadData];
-        }
-    }
+//    NSInteger plat = [[[notif userInfo] objectForKey:SSK_PLAT] integerValue];
+//    id<ISSUserInfo> userInfo = [[notif userInfo] objectForKey:SSK_USER_INFO];
+//    
+//    for (int i = 0; i < [_shareTypeArray count]; i++)
+//    {
+//        NSMutableDictionary *item = [_shareTypeArray objectAtIndex:i];
+//        ShareType type = [[item objectForKey:@"type"] integerValue];
+//        if (type == plat)
+//        {
+//            [item setObject:[userInfo nickname] forKey:@"username"];
+//            [_tableView reloadData];
+//        }
+//    }
 }
 
 - (void)layoutPortrait
