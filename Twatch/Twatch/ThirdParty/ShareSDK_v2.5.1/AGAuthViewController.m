@@ -249,7 +249,7 @@
         }
         else
         {
-            cell.textLabel.text = NSLocalizedString(@"Unauthorized", nil);
+            cell.textLabel.text = NSLocalizedString([item objectForKey:@"title"], nil);
         }
     }
     
