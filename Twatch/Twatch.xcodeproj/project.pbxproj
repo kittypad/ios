@@ -11,7 +11,6 @@
 		0A16E8BE18114D6600DAFAE5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */; };
 		0A214095182500D70091C924 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A214092182500D70091C924 /* umFeedback.bundle */; };
 		0A2140971825012B0091C924 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2140961825012B0091C924 /* libUMFeedback.a */; };
-		0A46EA91180D7C0B00E7A6C1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */; };
 		0A51A6241822878000DE7DD3 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A6221822878000DE7DD3 /* FeedBackViewController.m */; };
 		0A51A6251822878000DE7DD3 /* FeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A51A6231822878000DE7DD3 /* FeedBackViewController.xib */; };
 		0A51A628182289AE00DE7DD3 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A51A627182289AE00DE7DD3 /* UIPlaceHolderTextView.m */; };
@@ -152,7 +151,6 @@
 		0A214092182500D70091C924 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
 		0A214093182500D70091C924 /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
 		0A2140961825012B0091C924 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
-		0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		0A51A6211822878000DE7DD3 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
 		0A51A6221822878000DE7DD3 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		0A51A6231822878000DE7DD3 /* FeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackViewController.xib; sourceTree = "<group>"; };
@@ -374,7 +372,6 @@
 				DD56A6EB181EB4B20088AB49 /* libicucore.dylib in Frameworks */,
 				0A16E8BE18114D6600DAFAE5 /* QuartzCore.framework in Frameworks */,
 				DD56A6E9181EB4920088AB49 /* SystemConfiguration.framework in Frameworks */,
-				0A46EA91180D7C0B00E7A6C1 /* GameKit.framework in Frameworks */,
 				42B5C9231808F85900D2FB27 /* MediaPlayer.framework in Frameworks */,
 				DD56A6D4181EB3B00088AB49 /* TencentWeiboConnection.framework in Frameworks */,
 				DD56A6DA181EB3B00088AB49 /* libSinaWeiboSDK.a in Frameworks */,
@@ -454,7 +451,6 @@
 				DD56A6EA181EB4B20088AB49 /* libicucore.dylib */,
 				DD56A6E8181EB4920088AB49 /* SystemConfiguration.framework */,
 				0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */,
-				0A46EA90180D7C0B00E7A6C1 /* GameKit.framework */,
 				42B5C9221808F85900D2FB27 /* MediaPlayer.framework */,
 				42B5C91E1808EE7E00D2FB27 /* AVFoundation.framework */,
 				42B5C91F1808EE7E00D2FB27 /* CoreVideo.framework */,
@@ -885,6 +881,11 @@
 				TargetAttributes = {
 					427BEF3E1806A71F004AFB8C = {
 						DevelopmentTeam = TR9EUPHXYS;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -1116,8 +1117,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: wang zeng (F938LBL6VQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wang zeng (F938LBL6VQ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
