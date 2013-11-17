@@ -31,7 +31,7 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height);
 @interface UIColor(extend)
 
 // 将十六进制的颜色值转为objective-c的颜色
-+ (id)getColor:(NSString *) hexColor;
++ (UIColor *)colorWithHex:(NSString *) hexColor;
 
 @end
 

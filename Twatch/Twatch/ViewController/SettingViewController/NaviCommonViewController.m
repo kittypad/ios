@@ -28,7 +28,7 @@
     [goBackButton setTitleColor:RGB(150, 154, 158, 1) forState:UIControlStateNormal];
     goBackButton.frame = CGRectChangeOrigin(goBackButton.frame, 0, IS_IOS7 ? 35 : 15);
     goBackButton.titleLabel.font = [UIFont systemFontOfSize:GoBackNameSize];
-    goBackButton.titleLabel.textColor = [UIColor getColor:@"292929"];
+    goBackButton.titleLabel.textColor = [UIColor colorWithHex:@"292929"];
     [navigationBar addSubview:goBackButton];
     
     CGSize size = [self.backName sizeWithFont:[UIFont systemFontOfSize:GoBackNameSize]];

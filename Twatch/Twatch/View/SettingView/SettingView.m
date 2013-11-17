@@ -28,7 +28,7 @@ static NSString *SettingViewCellId = @"SettingCell";
     self = [super initWithFrame:frame];
     if (self) {
         
-//        [self setBackgroundColor:[UIColor getColor:@"F3F8FE"]];
+//        [self setBackgroundColor:[UIColor colorWithHex:@"F3F8FE"]];
         
         // Initialization code
         UIButton *settingButton = [FactoryMethods buttonWWithNormalImage:@"设置-默认.png" hiliteImage:@"设置.png" target:self selector:@selector(settingBUttonClicked:)];
@@ -43,11 +43,11 @@ static NSString *SettingViewCellId = @"SettingCell";
         tableView.dataSource = self;
         tableView.rowHeight = 45;
         tableView.scrollEnabled = NO;
-        tableView.backgroundColor = [UIColor getColor:@"F3F8FE"];
+        tableView.backgroundColor = [UIColor colorWithHex:@"F3F8FE"];
         tableView.separatorColor = [UIColor clearColor];
         [tableView registerClass:[SettingCell class] forCellReuseIdentifier:SettingViewCellId];
         tableView.layer.borderWidth = 0.5;
-        UIColor *color = [UIColor getColor:@"ffffff"];
+        UIColor *color = [UIColor colorWithHex:@"ffffff"];
         tableView.layer.borderColor = color.CGColor;
         [self addSubview:tableView];
 
@@ -143,7 +143,7 @@ static NSString *SettingViewCellId = @"SettingCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SettingViewCellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont systemFontOfSize:15];
-    cell.textLabel.textColor = [UIColor getColor:@"292929"];
+    cell.textLabel.textColor = [UIColor colorWithHex:@"292929"];
 
     UIImageView *color = nil;
     if (indexPath.section == 0) {
@@ -205,7 +205,7 @@ static NSString *SettingViewCellId = @"SettingCell";
     
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(15, tableView.rowHeight - .5, CGRectGetWidth(tableView.frame) - 15, .5)];
-    line.backgroundColor = [UIColor getColor:@"e2e1e4"];
+    line.backgroundColor = [UIColor colorWithHex:@"e2e1e4"];
     [cell addSubview:line];
     
     return cell;

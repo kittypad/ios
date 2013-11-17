@@ -38,7 +38,7 @@
     tableView.dataSource = self;
     tableView.rowHeight = 45;
     tableView.scrollEnabled = NO;
-    tableView.backgroundColor = [UIColor getColor:@"F3F8FE"];
+    tableView.backgroundColor = [UIColor colorWithHex:@"F3F8FE"];
     tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:tableView];
 
@@ -60,7 +60,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
-    cell.textLabel.textColor = [UIColor getColor:@"292929"];
+    cell.textLabel.textColor = [UIColor colorWithHex:@"292929"];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0f];
     cell.detailTextLabel.textColor = RGB(81, 150, 221, 1);
     
@@ -114,7 +114,7 @@
             break;
     }
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.rowHeight - .5, CGRectGetWidth(tableView.frame) - 15, .5)];
-    line.backgroundColor = [UIColor getColor:@"e2e1e4"];
+    line.backgroundColor = [UIColor colorWithHex:@"e2e1e4"];
     [cell addSubview:line];
     return cell;
 }

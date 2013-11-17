@@ -70,7 +70,7 @@
     signtextfield.placeholder = NSLocalizedString(@"Input", nil);
     signtextfield.returnKeyType = UIReturnKeyDone;
     signtextfield.textAlignment = NSTextAlignmentCenter;
-    UIColor *color = [UIColor getColor:@"ffffff"];
+    UIColor *color = [UIColor colorWithHex:@"ffffff"];
     signtextfield.layer.borderColor = color.CGColor;
 
     [bgView addSubview:signtextfield];

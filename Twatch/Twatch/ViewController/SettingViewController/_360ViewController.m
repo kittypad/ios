@@ -9,6 +9,7 @@
 #import "_360ViewController.h"
 #import "FVImageSequence.h"
 #import <ShareSDK/ShareSDK.h>
+#import "ShareViewController.h"
 
 @interface _360ViewController ()
 @property(nonatomic,strong)FVImageSequence *imageSquence;
@@ -57,6 +58,11 @@
 
 -(void)share:(id)sender
 {
+    ShareViewController *vc = [[ShareViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+
+    return;
+    
     //定义菜单分享列表
     NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeDouBan,ShareTypeTencentWeibo,ShareTypeSinaWeibo, nil];
     

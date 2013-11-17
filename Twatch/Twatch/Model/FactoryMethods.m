@@ -98,7 +98,7 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height)
 
 @implementation UIColor(extend)
 
-+ (id)getColor:(NSString *) hexColor
++ (UIColor *)colorWithHex:(NSString *)hexColor
 {
 	unsigned int redInt_, greenInt_, blueInt_;
 	NSRange rangeNSRange_;

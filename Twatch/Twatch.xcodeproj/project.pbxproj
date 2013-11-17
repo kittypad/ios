@@ -141,6 +141,8 @@
 		DD56A79418229ADE0088AB49 /* AGAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A79018229ADE0088AB49 /* AGAuthViewController.m */; };
 		DD56A79518229ADE0088AB49 /* AGShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A79318229ADE0088AB49 /* AGShareCell.m */; };
 		DD56A79818229CC00088AB49 /* AGViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A79618229CC00088AB49 /* AGViewDelegate.m */; };
+		DDBD0BB718390B8000ACB029 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBD0BB618390B8000ACB029 /* ShareViewController.m */; };
+		DDBD0BBA18390F0800ACB029 /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBD0BB918390F0800ACB029 /* ShareCell.m */; };
 		DDEC67E11807010200F3DD7A /* WatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC67E01807010200F3DD7A /* WatchView.m */; };
 /* End PBXBuildFile section */
 
@@ -354,6 +356,10 @@
 		DD56A79318229ADE0088AB49 /* AGShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGShareCell.m; sourceTree = "<group>"; };
 		DD56A79618229CC00088AB49 /* AGViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGViewDelegate.m; sourceTree = "<group>"; };
 		DD56A79718229CC00088AB49 /* AGViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGViewDelegate.h; sourceTree = "<group>"; };
+		DDBD0BB518390B8000ACB029 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		DDBD0BB618390B8000ACB029 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		DDBD0BB818390F0800ACB029 /* ShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCell.h; sourceTree = "<group>"; };
+		DDBD0BB918390F0800ACB029 /* ShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCell.m; sourceTree = "<group>"; };
 		DDEC67DF1807010200F3DD7A /* WatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchView.h; sourceTree = "<group>"; };
 		DDEC67E01807010200F3DD7A /* WatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -755,6 +761,8 @@
 				DD56A72A182146010088AB49 /* ShopViewController.m */,
 				DD56A72B182146010088AB49 /* ShopViewController+NaivBar.h */,
 				DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */,
+				DDBD0BB518390B8000ACB029 /* ShareViewController.h */,
+				DDBD0BB618390B8000ACB029 /* ShareViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -840,6 +848,8 @@
 				DDEC67E01807010200F3DD7A /* WatchView.m */,
 				42BBD88018079B330094E39D /* DialView.h */,
 				42BBD88118079B330094E39D /* DialView.m */,
+				DDBD0BB818390F0800ACB029 /* ShareCell.h */,
+				DDBD0BB918390F0800ACB029 /* ShareCell.m */,
 				42BBD88318079B550094E39D /* AppsView.h */,
 				42BBD88418079B550094E39D /* AppsView.m */,
 				42BBD88F1807A4BE0094E39D /* AllAppsView.h */,
@@ -983,6 +993,7 @@
 				DD1BFBCD180AC24E0001C200 /* WatchVell.m in Sources */,
 				42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */,
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
+				DDBD0BBA18390F0800ACB029 /* ShareCell.m in Sources */,
 				D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */,
 				DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */,
 				DD1BFBD0180AC7280001C200 /* FactoryMethods.m in Sources */,
@@ -1023,6 +1034,7 @@
 				DD247F8118126A8500D9E6D4 /* main.m in Sources */,
 				0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */,
 				0AB8BB65182278C0002255C2 /* AboutViewController.m in Sources */,
+				DDBD0BB718390B8000ACB029 /* ShareViewController.m in Sources */,
 				D8C352491825FCE70061081E /* MMProgressHUD+Animations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

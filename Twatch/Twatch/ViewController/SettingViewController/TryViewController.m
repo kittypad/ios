@@ -11,7 +11,7 @@
 #import "MMProgressHUD.h"
 #import <ShareSDK/ShareSDK.h>
 #import "UIImage+Tool.h"
-
+#import "ShareViewController.h"
 
 @interface TryViewController ()
 
@@ -104,6 +104,11 @@
 
 - (void)share:(id)sender
 {
+    ShareViewController *vc = [[ShareViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    return;
+    
+    
     //定义菜单分享列表
     NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeDouBan,ShareTypeTencentWeibo,ShareTypeSinaWeibo, nil];
     

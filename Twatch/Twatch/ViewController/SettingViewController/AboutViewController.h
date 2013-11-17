@@ -10,7 +10,7 @@
 #import "NaviCommonViewController.h"
 
 #define ABOUTSTRING_FONT        [UIFont systemFontOfSize:12.0f]
-#define ABOUTSTRING_TEXTCOLOR    [UIColor getColor:@"292929"]
+#define ABOUTSTRING_TEXTCOLOR    [UIColor colorWithHex:@"292929"]
 #define ABOUTSTRING_BACKCOLOR    [UIColor clearColor]
 
 @interface AboutViewController : NaviCommonViewController
