@@ -37,6 +37,10 @@
     [self setSelected:NO];
 }
 
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [self setSelected:highlighted];
+}
 
 - (void)setSelected:(BOOL)selected
 {
