@@ -9,6 +9,7 @@
 #import "SignViewController.h"
 #import <ShareSDK/ShareSDK.h>
 #import "UIImage+Tool.h"
+#import "ShareViewController.h"
 
 @interface SignViewController ()
 
@@ -121,37 +122,14 @@
     id<ISSCAttachment> shareImage = [ShareSDK pngImageWithImage:image];
     self.signtextfield.layer.borderWidth = 0.5;
     
-    //定义菜单分享列表
-    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeDouBan,ShareTypeTencentWeibo,ShareTypeSinaWeibo, nil];
-    
-    //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:NSLocalizedString(@"EngravingshareView", nil)
-                                       defaultContent:NSLocalizedString(@"EngravingshareView", nil)
-                                                image:shareImage
-                                                title:NSLocalizedString(@"T-FrieShare", nil)
-                                                  url:@"r.tomoon.cn/kezi"
-                                          description:@""
-                                            mediaType:SSPublishContentMediaTypeNews];
-    
-    id<ISSShareOptions> op = [ShareSDK defaultShareOptionsWithTitle:nil oneKeyShareList:shareList qqButtonHidden:YES wxSessionButtonHidden:NO wxTimelineButtonHidden:NO showKeyboardOnAppear:NO shareViewDelegate:nil friendsViewDelegate:nil picViewerViewDelegate:nil];
-    
-    [ShareSDK showShareActionSheet:nil
-                         shareList:shareList
-                           content:publishContent
-                     statusBarTips:YES
-                       authOptions:nil
-                      shareOptions: op
-                            result:^(ShareType type, SSPublishContentState state, id<ISSStatusInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                if (state == SSPublishContentStateSuccess)
-                                {
-                                    NSLog(@"分享成功");
-                                }
-                                else if (state == SSPublishContentStateFail)
-                                {
-                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
-                                }
-                            }];
-
+    ShareViewController *vc = [[ShareViewController alloc] initWithContent:NSLocalizedString(@"EngravingshareView", nil)
+                                                            defaultContent:NSLocalizedString(@"EngravingshareView", nil)
+                                                                     image:shareImage
+                                                                     title:NSLocalizedString(@"T-FrieShare", nil)
+                                                                       url:@"r.tomoon.cn/kezi"
+                                                               description:@""
+                                                                 mediaType:SSPublishContentMediaTypeNews];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

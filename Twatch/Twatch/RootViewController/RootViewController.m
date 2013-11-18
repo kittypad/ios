@@ -102,39 +102,8 @@
 }
 
 - (void)settingBUttonClicked:(UIButton *)sender
-{/*
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"icon_120"  ofType:@"png"];
+{
     
-    //定义菜单分享列表
-    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeSinaWeibo, ShareTypeTencentWeibo, ShareTypeQQSpace, ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeDouBan, nil];
-
-    //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:@"土曼share"
-                                       defaultContent:@"亲，这是我的新手表哦"
-                                                image:[ShareSDK imageWithPath:imagePath]
-                                                title:@"土曼手表分享"
-                                                  url:@"http://www.tomoon.cn"
-                                          description:@"这是一条测试信息"
-                                            mediaType:SSPublishContentMediaTypeNews];
-    
-    id<ISSShareOptions> op = [ShareSDK defaultShareOptionsWithTitle:nil oneKeyShareList:shareList qqButtonHidden:YES wxSessionButtonHidden:NO wxTimelineButtonHidden:NO showKeyboardOnAppear:NO shareViewDelegate:nil friendsViewDelegate:nil picViewerViewDelegate:nil];
-    
-    [ShareSDK showShareActionSheet:nil
-                         shareList:shareList
-                           content:publishContent
-                     statusBarTips:YES
-                       authOptions:nil
-                      shareOptions: op
-                            result:^(ShareType type, SSPublishContentState state, id<ISSStatusInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                if (state == SSPublishContentStateSuccess)
-                                {
-                                    NSLog(@"分享成功");
-                                }
-                                else if (state == SSPublishContentStateFail)
-                                {
-                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
-                                }
-                            }];*/
 }
 
 - (void)dealloc

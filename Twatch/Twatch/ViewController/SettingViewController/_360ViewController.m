@@ -58,42 +58,14 @@
 
 -(void)share:(id)sender
 {
-    ShareViewController *vc = [[ShareViewController alloc] init];
+    ShareViewController *vc = [[ShareViewController alloc] initWithContent:NSLocalizedString(@"PanoramicshareView", nil)
+                                                            defaultContent:NSLocalizedString(@"PanoramicshareView", nil)
+                                                                     image:[ShareSDK jpegImageWithImage:self.imageSquence.image quality:1.0]
+                                                                     title:NSLocalizedString(@"T-FrieShare", nil)
+                                                                       url:@"r.tomoon.cn/rotate"
+                                                               description:@""
+                                                                 mediaType:SSPublishContentMediaTypeNews];
     [self.navigationController pushViewController:vc animated:YES];
-
-    return;
-    
-    //定义菜单分享列表
-    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeDouBan,ShareTypeTencentWeibo,ShareTypeSinaWeibo, nil];
-    
-    //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:NSLocalizedString(@"PanoramicshareView", nil)
-                                       defaultContent:NSLocalizedString(@"PanoramicshareView", nil)
-                                                image:[ShareSDK jpegImageWithImage:self.imageSquence.image quality:1.0]
-                                                title:NSLocalizedString(@"T-FrieShare", nil)
-                                                  url:@"r.tomoon.cn/rotate"
-                                          description:@""
-                                            mediaType:SSPublishContentMediaTypeNews];
-    
-    id<ISSShareOptions> op = [ShareSDK defaultShareOptionsWithTitle:nil oneKeyShareList:shareList qqButtonHidden:YES wxSessionButtonHidden:NO wxTimelineButtonHidden:NO showKeyboardOnAppear:NO shareViewDelegate:nil friendsViewDelegate:nil picViewerViewDelegate:nil];
-    
-    [ShareSDK showShareActionSheet:nil
-                         shareList:shareList
-                           content:publishContent
-                     statusBarTips:YES
-                       authOptions:nil
-                      shareOptions: op
-                            result:^(ShareType type, SSPublishContentState state, id<ISSStatusInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                if (state == SSPublishContentStateSuccess)
-                                {
-                                    NSLog(@"分享成功");
-                                }
-                                else if (state == SSPublishContentStateFail)
-                                {
-                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
-                                }
-                            }];
-    
 }
 
 - (void)didReceiveMemoryWarning

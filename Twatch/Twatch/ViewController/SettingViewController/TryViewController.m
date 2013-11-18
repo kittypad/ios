@@ -104,14 +104,6 @@
 
 - (void)share:(id)sender
 {
-    ShareViewController *vc = [[ShareViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    return;
-    
-    
-    //定义菜单分享列表
-    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeDouBan,ShareTypeTencentWeibo,ShareTypeSinaWeibo, nil];
-    
     if (!_shareImg) {
         _shareImg = _tryAdjustViewController.shareImage;
     }
@@ -123,33 +115,16 @@
         shareType = SSPublishContentMediaTypeNews;
     }
     
-    //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:NSLocalizedString(@"TryshareView", nil)
-                                       defaultContent:NSLocalizedString(@"TryshareView", nil)
-                                                image:shareImage
-                                                title:@""
-                                                  url:@"r.tomoon.cn/simulator"
-                                          description:@""
-                                            mediaType:shareType];
     
-    id<ISSShareOptions> op = [ShareSDK defaultShareOptionsWithTitle:nil oneKeyShareList:shareList qqButtonHidden:YES wxSessionButtonHidden:NO wxTimelineButtonHidden:NO showKeyboardOnAppear:NO shareViewDelegate:nil friendsViewDelegate:nil picViewerViewDelegate:nil];
-    
-    [ShareSDK showShareActionSheet:nil
-                         shareList:shareList
-                           content:publishContent
-                     statusBarTips:YES
-                       authOptions:nil
-                      shareOptions: op
-                            result:^(ShareType type, SSPublishContentState state, id<ISSStatusInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                if (state == SSPublishContentStateSuccess)
-                                {
-                                    NSLog(@"分享成功");
-                                }
-                                else if (state == SSPublishContentStateFail)
-                                {
-                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
-                                }
-                            }];
+    ShareViewController *vc = [[ShareViewController alloc] initWithContent:NSLocalizedString(@"TryshareView", nil)
+                                                            defaultContent:NSLocalizedString(@"TryshareView", nil)
+                                                                     image:shareImage
+                                                                     title:@""
+                                                                       url:@"r.tomoon.cn/simulator"
+                                                               description:@""
+                                                                 mediaType:shareType];
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning

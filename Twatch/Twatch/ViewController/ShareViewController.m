@@ -8,25 +8,48 @@
 
 #import "ShareViewController.h"
 #import "ShareCell.h"
-#import <ShareSDK/ShareSDK.h>
 
 @interface ShareViewController ()
 
 @property (nonatomic, strong) NSArray *listNames;
 
+@property (nonatomic, copy) NSString *content;
+@property (nonatomic, copy) NSString *defaultContent;
+@property (nonatomic, strong) id<ISSCAttachment> image;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *description;
+@property (nonatomic) SSPublishContentMediaType mediaType;
+
 @end
+
 
 @implementation ShareViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithContent:(NSString *)content
+       defaultContent:(NSString *)defaultContent
+                image:(id<ISSCAttachment>)image
+                title:(NSString *)title
+                  url:(NSString *)url
+          description:(NSString *)description
+            mediaType:(SSPublishContentMediaType)mediaType
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         // Custom initialization
         self.listNames = [NSArray arrayWithObjects:@"微信",@"人人",@"豆瓣",@"腾讯微博",@"新浪", nil];
+        
+        self.content = content;
+        self.defaultContent = defaultContent;
+        self.image = image;
+        self.title = title;
+        self.url = url;
+        self.description = description;
+        self.mediaType = mediaType;
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -70,7 +93,30 @@
 //MARK: PSTCollectionViewDelegate
 - (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"choose ");
+    NSArray *shareList = [NSArray arrayWithObjects:[NSNumber numberWithInt:(int)ShareTypeWeixiSession],[NSNumber numberWithInt:(int)ShareTypeWeixiTimeline],[NSNumber numberWithInt:(int)ShareTypeDouBan],[NSNumber numberWithInt:(int)ShareTypeTencentWeibo],[NSNumber numberWithInt:(int)ShareTypeSinaWeibo], nil];
+    
+    id<ISSContent> publishContent = [ShareSDK content:self.content
+                                       defaultContent:self.defaultContent
+                                                image:self.image
+                                                title:self.title
+                                                  url:self.url
+                                          description:self.description
+                                            mediaType:self.mediaType ];
+    
+    [ShareSDK shareContent:publishContent
+                      type:[shareList[indexPath.row] integerValue]
+               authOptions:nil
+             statusBarTips:YES
+                    result:^(ShareType type, SSPublishContentState state, id<ISSStatusInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                        if (state == SSPublishContentStateSuccess)
+                        {
+                            NSLog(@"分享成功");
+                        }
+                        else if (state == SSPublishContentStateFail)
+                        {
+                            NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode],  [error errorDescription]);
+                        }
+                    }];
 }
 
 - (void)didReceiveMemoryWarning
