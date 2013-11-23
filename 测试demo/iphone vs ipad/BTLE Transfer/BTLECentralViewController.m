@@ -126,7 +126,7 @@
  */
 - (void)scan
 {
-    [self.centralManager scanForPeripheralsWithServices:nil//@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]
+    [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]
                                                 options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
     
     NSLog(@"Scanning started");
@@ -145,7 +145,7 @@
     }
         
     // Reject if the signal strength is too low to be close enough (Close is around -22dB)
-    if (RSSI.integerValue < -35) {
+    if (RSSI.integerValue < -50) {
         return;
     }
     
@@ -250,12 +250,15 @@
     }
     
     NSString *stringFromData = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
-    
+    NSLog(@"%@",characteristic.value);
     // Have we got everything we need?
     if ([stringFromData isEqualToString:@"EOM"]) {
         
+        UIImage *img = [[UIImage alloc] initWithData:self.data];
+        self.imageView.image = img;
+
         // We have, so show the data, 
-        [self.textview setText:[[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding]];
+        //[self.textview setText:[[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding]];
         
         // Cancel our subscription to the characteristic
         [peripheral setNotifyValue:NO forCharacteristic:characteristic];
@@ -264,11 +267,14 @@
         [self.centralManager cancelPeripheralConnection:peripheral];
     }
 
-    // Otherwise, just add the data on to what we already have
     [self.data appendData:characteristic.value];
+
+    // Otherwise, just add the data on to what we already have
+    //[self.data appendData:characteristic.value];
     
     // Log it
     NSLog(@"Received: %@", stringFromData);
+    
 }
 
 

@@ -52,5 +52,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BTLECentralViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

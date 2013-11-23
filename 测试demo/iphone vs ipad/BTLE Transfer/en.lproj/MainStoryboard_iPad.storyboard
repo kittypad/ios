@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="ElL-cK-gOP">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -10,37 +10,32 @@
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KZo-J6-0To"/>
-                        <viewControllerLayoutGuide type="bottom" id="HYl-f3-ySe"/>
+                        <viewControllerLayoutGuide type="top" id="vDt-26-mdI"/>
+                        <viewControllerLayoutGuide type="bottom" id="pLW-Bl-Rif"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jc-Td-doI">
-                                <rect key="frame" x="359" y="222" width="50" height="30"/>
-                                <state key="normal" title="Central">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jc-Td-doI">
+                                <rect key="frame" x="350" y="223" width="90" height="30"/>
+                                <state key="normal" title="进入接收界面">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="7eE-pW-ZTc" kind="push" id="2tf-ab-aZc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzy-RR-Ijz">
-                                <rect key="frame" x="349" y="338" width="70" height="30"/>
-                                <state key="normal" title="Peripheral">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOz-1j-gMl">
+                                <rect key="frame" x="45" y="127" width="410" height="49"/>
+                                <state key="normal" title="支持iPhone向iPad做发送图片测试">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="uwv-lI-X9n" kind="push" id="UgC-2U-ETb"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2jc-Td-doI" firstAttribute="top" secondItem="5" secondAttribute="top" constant="222" id="0gz-43-amH"/>
-                            <constraint firstItem="Zzy-RR-Ijz" firstAttribute="top" secondItem="5" secondAttribute="top" constant="338" id="G1Q-Ts-I3P"/>
-                            <constraint firstItem="Zzy-RR-Ijz" firstAttribute="centerX" secondItem="2jc-Td-doI" secondAttribute="centerX" id="dqB-mV-zJc"/>
                             <constraint firstItem="2jc-Td-doI" firstAttribute="centerX" secondItem="5" secondAttribute="centerX" id="msq-na-lcD"/>
                         </constraints>
                     </view>
@@ -55,8 +50,8 @@
             <objects>
                 <viewController id="uwv-lI-X9n" customClass="BTLEPeripheralViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Qp9-l0-b0w"/>
-                        <viewControllerLayoutGuide type="bottom" id="Pgo-WI-SQP"/>
+                        <viewControllerLayoutGuide type="top" id="1Mv-UT-LdX"/>
+                        <viewControllerLayoutGuide type="bottom" id="sSq-bv-blk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Fy3-SV-Gef">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
@@ -113,8 +108,8 @@
             <objects>
                 <viewController id="7eE-pW-ZTc" customClass="BTLECentralViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cOS-0i-IWZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="uR2-Ke-4wn"/>
+                        <viewControllerLayoutGuide type="top" id="gnj-Zu-gI6"/>
+                        <viewControllerLayoutGuide type="bottom" id="RKw-79-FvZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lin-cR-7UE">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
@@ -126,6 +121,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ci-3a-2Zw">
+                                <rect key="frame" x="278" y="243" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.95456042921686746" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -137,6 +136,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZxX-cB-0EW"/>
                     <connections>
+                        <outlet property="imageView" destination="7ci-3a-2Zw" id="DTC-Gf-kkp"/>
                         <outlet property="textview" destination="Zjw-5X-5xC" id="9gr-te-m0N"/>
                     </connections>
                 </viewController>

@@ -141,7 +141,8 @@
     NSLog(@"Central subscribed to characteristic");
     
     // Get the data
-    self.dataToSend = [self.textView.text dataUsingEncoding:NSUTF8StringEncoding];
+    UIImage *img = [UIImage imageNamed:@"Icon-144.png"];
+    self.dataToSend = UIImageJPEGRepresentation(img, 1);//[self.textView.text dataUsingEncoding:NSUTF8StringEncoding];
     
     // Reset the index
     self.sendDataIndex = 0;
@@ -169,7 +170,7 @@
     if (sendingEOM) {
         
         // send it
-        BOOL didSend = [self.peripheralManager updateValue:[@"start advertise tomoon" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
+        BOOL didSend = [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
         
         // Did it send?
         if (didSend) {
@@ -234,7 +235,7 @@
             sendingEOM = YES;
             
             // Send it
-            BOOL eomSent = [self.peripheralManager updateValue:[@"update tomoon" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
+            BOOL eomSent = [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
             
             if (eomSent) {
                 // It sent, we're all done

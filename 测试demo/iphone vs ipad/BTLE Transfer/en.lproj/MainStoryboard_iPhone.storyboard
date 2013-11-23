@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tnd-HP-Qyz">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--View Controller - Select Mode-->
@@ -10,38 +10,33 @@
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="IhF-Nr-aNW"/>
-                        <viewControllerLayoutGuide type="bottom" id="F6e-6Q-Pk0"/>
+                        <viewControllerLayoutGuide type="top" id="SUW-JI-JhY"/>
+                        <viewControllerLayoutGuide type="bottom" id="Opp-j5-MbS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRh-zO-6n2">
-                                <rect key="frame" x="114" y="79" width="93" height="30"/>
-                                <state key="normal" title="Central Mode">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="oJR-Eu-GFX" kind="push" id="FfV-FB-Sw2"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgw-nN-SFc">
-                                <rect key="frame" x="104" y="300" width="113" height="30"/>
-                                <state key="normal" title="Peripheral Mode">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgw-nN-SFc">
+                                <rect key="frame" x="91" y="219" width="138" height="30"/>
+                                <state key="normal" title="进入发送图片界面">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="CLX-Le-b13" kind="push" id="cmF-iY-ZXu"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbg-gY-5gZ">
+                                <rect key="frame" x="40" y="94" width="241" height="31"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="支持iPhone向iPad发送图片测试">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qgw-nN-SFc" firstAttribute="centerX" secondItem="yRh-zO-6n2" secondAttribute="centerX" id="El7-mD-gjp"/>
-                            <constraint firstItem="yRh-zO-6n2" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="KjQ-aJ-CW2"/>
                             <constraint firstAttribute="bottom" secondItem="qgw-nN-SFc" secondAttribute="bottom" constant="150" id="O3U-uo-hgc"/>
-                            <constraint firstItem="yRh-zO-6n2" firstAttribute="top" secondItem="3" secondAttribute="top" constant="79" id="dVF-Ct-Oaq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Select Mode" id="go5-FE-P7r"/>
@@ -55,8 +50,8 @@
             <objects>
                 <viewController id="oJR-Eu-GFX" customClass="BTLECentralViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="c6B-cd-o86"/>
-                        <viewControllerLayoutGuide type="bottom" id="uey-zC-xgq"/>
+                        <viewControllerLayoutGuide type="top" id="ipD-JO-i0J"/>
+                        <viewControllerLayoutGuide type="bottom" id="OVf-EM-Us9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Y9o-so-s2T">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -91,8 +86,8 @@
             <objects>
                 <viewController id="CLX-Le-b13" customClass="BTLEPeripheralViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3Q2-BN-qbp"/>
-                        <viewControllerLayoutGuide type="bottom" id="lfd-QX-4Oz"/>
+                        <viewControllerLayoutGuide type="top" id="BSX-qG-cnv"/>
+                        <viewControllerLayoutGuide type="bottom" id="VD1-hB-y0X"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HqI-5G-qR2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
