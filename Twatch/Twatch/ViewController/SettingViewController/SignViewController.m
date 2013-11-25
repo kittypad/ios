@@ -10,12 +10,16 @@
 #import <ShareSDK/ShareSDK.h>
 #import "UIImage+Tool.h"
 #import "ShareViewController.h"
+#import "FXLabel.h"
 
 @interface SignViewController ()
 
 @property (nonatomic, strong) UITextField *signtextfield;
 
 @property (nonatomic, strong) UIImageView *bgView;
+
+@property (nonatomic, strong) FXLabel *label;
+
 @end
 
 
@@ -61,11 +65,11 @@
     }
     bgView.userInteractionEnabled = YES;
     
-    UITextField *signtextfield = [[UITextField alloc] initWithFrame:CGRectMake(89, 130, 89, 37.5)];
-//    signtextfield.borderStyle = UITextBorderStyleRoundedRect;
+    UITextField *signtextfield = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 89, 30.0)];
+    signtextfield.center = CGPointMake(img.size.width/2+2, img.size.height/2+45);
     signtextfield.backgroundColor = [UIColor clearColor];
     signtextfield.textColor = [UIColor whiteColor];
-    signtextfield.font = [UIFont systemFontOfSize:13.0f];
+    signtextfield.font = [UIFont systemFontOfSize:20.0f];
     signtextfield.layer.borderWidth = 0.5;
     signtextfield.delegate = self;
     signtextfield.placeholder = NSLocalizedString(@"Input", nil);
@@ -76,6 +80,30 @@
 
     [bgView addSubview:signtextfield];
     self.signtextfield = signtextfield;
+    
+    FXLabel *label = [[FXLabel alloc] initWithFrame:signtextfield.frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.shadowOffset = CGSizeMake(1.0, 1.0);
+    label.innerShadowOffset = CGSizeMake(0.0, 1.0);
+    label.hidden = YES;
+    
+    [bgView addSubview:label];
+    self.label = label;
+    
+    if (style == wBlack) {
+        label.textColor = [UIColor colorWithHex:@"4b4a4a"];
+        label.innerShadowColor = [UIColor colorWithHex:@"1d0008"];
+        label.shadowColor = [UIColor colorWithHex:@"555555"];
+    }else if (style == wRed){
+        label.textColor = [UIColor colorWithHex:@"952328"];
+        label.innerShadowColor = [UIColor colorWithHex:@"1d0008"];
+        label.shadowColor = [UIColor colorWithHex:@"cf444b"];
+    }else if (style == wBlue){
+        label.textColor = [UIColor colorWithHex:@"09437d"];
+        label.innerShadowColor = [UIColor colorWithHex:@"1d0008"];
+        label.shadowColor = [UIColor colorWithHex:@"14508f"];
+    }
     
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     [defaultCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -90,7 +118,7 @@
     NSTimeInterval animationDuration = 0.25f;
     [UIView beginAnimations:@"move" context:nil];
     [UIView setAnimationDuration:animationDuration];
-    self.bgView.center = CGPointMake(self.view.center.x, self.view.center.y-40);
+    self.bgView.center = CGPointMake(self.view.center.x, self.view.center.y-70);
     [UIView commitAnimations];
 }
 
@@ -103,6 +131,13 @@
     [UIView commitAnimations];
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    textField.text = @"";
+    
+    self.label.text = @"";
+    self.label.hidden = YES;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -112,15 +147,19 @@
         return NO;
     }
     [textField resignFirstResponder];
+    
+    self.label.text = textField.text;
+    self.label.hidden = NO;
+    
+    textField.text = @" ";
+    
     return YES;
 }
 
 -(void)share:(id)sender
 {
-    self.signtextfield.layer.borderWidth = 0.0;
-    UIImage *image = [UIImage imageFromView:self.bgView view:self.signtextfield];
+    UIImage *image = [UIImage imageFromView:self.bgView view:self.label];
     id<ISSCAttachment> shareImage = [ShareSDK pngImageWithImage:image];
-    self.signtextfield.layer.borderWidth = 0.5;
     
     ShareViewController *vc = [[ShareViewController alloc] initWithContent:NSLocalizedString(@"EngravingshareView", nil)
                                                             defaultContent:NSLocalizedString(@"EngravingshareView", nil)

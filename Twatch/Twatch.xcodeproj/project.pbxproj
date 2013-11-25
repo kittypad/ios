@@ -46,6 +46,7 @@
 		427BEF431806A71F004AFB8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF421806A71F004AFB8C /* Foundation.framework */; };
 		427BEF451806A71F004AFB8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF441806A71F004AFB8C /* CoreGraphics.framework */; };
 		427BEF471806A71F004AFB8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF461806A71F004AFB8C /* UIKit.framework */; };
+		42802A95184348C500B4112A /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42802A94184348C500B4112A /* FXLabel.m */; };
 		42B5C9231808F85900D2FB27 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B5C9221808F85900D2FB27 /* MediaPlayer.framework */; };
 		42BBD88218079B330094E39D /* DialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88118079B330094E39D /* DialView.m */; };
 		42BBD88518079B550094E39D /* AppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88418079B550094E39D /* AppsView.m */; };
@@ -195,6 +196,8 @@
 		427BEF441806A71F004AFB8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		427BEF461806A71F004AFB8C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		427BEF5B1806A71F004AFB8C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		42802A93184348C500B4112A /* FXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXLabel.h; sourceTree = "<group>"; };
+		42802A94184348C500B4112A /* FXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXLabel.m; sourceTree = "<group>"; };
 		42B5C91E1808EE7E00D2FB27 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		42B5C91F1808EE7E00D2FB27 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		42B5C9221808F85900D2FB27 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -493,6 +496,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		42802A92184348C500B4112A /* FXLabel */ = {
+			isa = PBXGroup;
+			children = (
+				42802A93184348C500B4112A /* FXLabel.h */,
+				42802A94184348C500B4112A /* FXLabel.m */,
+			);
+			path = FXLabel;
+			sourceTree = "<group>";
+		};
 		42C676A418237B7700B8474D /* CameraImageHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +541,7 @@
 		DD1BFB9C180AC0FC0001C200 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				42802A92184348C500B4112A /* FXLabel */,
 				D8C352361825FCE70061081E /* MMProgressHUD */,
 				0A21408D1824FD700091C924 /* UMSDK */,
 				DD56A741182287400088AB49 /* FVImageSequence.h */,
@@ -997,6 +1010,7 @@
 				D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */,
 				DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */,
 				DD1BFBD0180AC7280001C200 /* FactoryMethods.m in Sources */,
+				42802A95184348C500B4112A /* FXLabel.m in Sources */,
 				DD56A7101821434A0088AB49 /* RootViewController.m in Sources */,
 				42BBD88218079B330094E39D /* DialView.m in Sources */,
 				DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */,
