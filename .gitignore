@@ -4,3 +4,7 @@ xcuserdata
 *.xcuserstate
 
 *.xcuserstate
+
+Pods
+
+Twatch/Podfile.lock
