@@ -13,6 +13,9 @@
 #import "FXLabel.h"
 
 @interface SignViewController ()
+{
+    NSString *_signString;
+}
 
 @property (nonatomic, strong) UITextField *signtextfield;
 
@@ -38,6 +41,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    _signString = @"";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"rooView_bg.png"]];
     
 //    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-47.0, (IS_IOS7 ? 64 :44) - 25 -7.0 , 25.0, 25.0)];
@@ -82,6 +86,7 @@
     self.signtextfield = signtextfield;
     
     FXLabel *label = [[FXLabel alloc] initWithFrame:signtextfield.frame];
+    label.font = [UIFont boldSystemFontOfSize:20.0];
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.shadowOffset = CGSizeMake(1.0, 1.0);
@@ -133,7 +138,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    textField.text = @"";
+    textField.text = _signString;
     
     self.label.text = @"";
     self.label.hidden = YES;
@@ -141,7 +146,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if ([textField.text sizeWithFont:[UIFont systemFontOfSize:13]].width > CGRectGetWidth(textField.frame)) {
+    if ([textField.text sizeWithFont:[UIFont systemFontOfSize:20.0]].width > CGRectGetWidth(textField.frame)) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LengthOvered", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
         [alert show];
         return NO;
@@ -149,6 +154,7 @@
     [textField resignFirstResponder];
     
     self.label.text = textField.text;
+    _signString = textField.text;
     self.label.hidden = NO;
     
     textField.text = @" ";
@@ -158,7 +164,9 @@
 
 -(void)share:(id)sender
 {
-    UIImage *image = [UIImage imageFromView:self.bgView view:self.label];
+    self.signtextfield.hidden = YES;
+    UIImage *image = [UIImage imageFromView:self.bgView];
+    self.signtextfield.hidden = NO;
     id<ISSCAttachment> shareImage = [ShareSDK pngImageWithImage:image];
     
     ShareViewController *vc = [[ShareViewController alloc] initWithContent:NSLocalizedString(@"EngravingshareView", nil)
