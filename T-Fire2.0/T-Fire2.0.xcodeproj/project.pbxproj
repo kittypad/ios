@@ -10,10 +10,7 @@
 		DD17FAEA18477F1E00FF3AA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD17FAE918477F1E00FF3AA3 /* Foundation.framework */; };
 		DD17FAEC18477F1E00FF3AA3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD17FAEB18477F1E00FF3AA3 /* CoreGraphics.framework */; };
 		DD17FAEE18477F1E00FF3AA3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD17FAED18477F1E00FF3AA3 /* UIKit.framework */; };
-		DD17FAF418477F1E00FF3AA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD17FAF218477F1E00FF3AA3 /* InfoPlist.strings */; };
-		DD17FAF618477F1E00FF3AA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD17FAF518477F1E00FF3AA3 /* main.m */; };
 		DD17FAFA18477F1E00FF3AA3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD17FAF918477F1E00FF3AA3 /* AppDelegate.m */; };
-		DD17FAFD18477F1E00FF3AA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD17FAFB18477F1E00FF3AA3 /* Main.storyboard */; };
 		DD17FB0018477F1E00FF3AA3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD17FAFF18477F1E00FF3AA3 /* RootViewController.m */; };
 		DD17FB0218477F1E00FF3AA3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD17FB0118477F1E00FF3AA3 /* Images.xcassets */; };
 		DD17FB0918477F1E00FF3AA3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD17FB0818477F1E00FF3AA3 /* XCTest.framework */; };
@@ -21,6 +18,21 @@
 		DD17FB0B18477F1E00FF3AA3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD17FAED18477F1E00FF3AA3 /* UIKit.framework */; };
 		DD17FB1318477F1E00FF3AA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD17FB1118477F1E00FF3AA3 /* InfoPlist.strings */; };
 		DD17FB1518477F1E00FF3AA3 /* T_Fire2_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DD17FB1418477F1E00FF3AA3 /* T_Fire2_0Tests.m */; };
+		DD98B9ED1847863C00BD3934 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD98B9E71847863C00BD3934 /* InfoPlist.strings */; };
+		DD98B9EE1847863C00BD3934 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98B9E91847863C00BD3934 /* main.m */; };
+		DD98B9F4184786B800BD3934 /* AppCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98B9F2184786B800BD3934 /* AppCenterViewController.m */; };
+		DD98B9F5184786B800BD3934 /* AppCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD98B9F3184786B800BD3934 /* AppCenterViewController.xib */; };
+		DD98B9F9184786DD00BD3934 /* WatchStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98B9F7184786DD00BD3934 /* WatchStyleViewController.m */; };
+		DD98B9FA184786DD00BD3934 /* WatchStyleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD98B9F8184786DD00BD3934 /* WatchStyleViewController.xib */; };
+		DD98BA031847872F00BD3934 /* MoreSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98BA011847872F00BD3934 /* MoreSettingViewController.m */; };
+		DD98BA041847872F00BD3934 /* MoreSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD98BA021847872F00BD3934 /* MoreSettingViewController.xib */; };
+		DD98BA081847874600BD3934 /* SimulatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98BA061847874600BD3934 /* SimulatorViewController.m */; };
+		DD98BA091847874600BD3934 /* SimulatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD98BA071847874600BD3934 /* SimulatorViewController.xib */; };
+		DD98BA0D1847876000BD3934 /* ShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98BA0B1847876000BD3934 /* ShoppingViewController.m */; };
+		DD98BA0E1847876000BD3934 /* ShoppingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD98BA0C1847876000BD3934 /* ShoppingViewController.xib */; };
+		DD98BA121847878900BD3934 /* ConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98BA101847878900BD3934 /* ConnectionViewController.m */; };
+		DD98BA131847878900BD3934 /* ConnectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD98BA111847878900BD3934 /* ConnectionViewController.xib */; };
+		DD98BA181847883100BD3934 /* RootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98BA171847883100BD3934 /* RootCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,13 +50,8 @@
 		DD17FAE918477F1E00FF3AA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DD17FAEB18477F1E00FF3AA3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DD17FAED18477F1E00FF3AA3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		DD17FAF118477F1E00FF3AA3 /* T-Fire2.0-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "T-Fire2.0-Info.plist"; sourceTree = "<group>"; };
-		DD17FAF318477F1E00FF3AA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DD17FAF518477F1E00FF3AA3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DD17FAF718477F1E00FF3AA3 /* T-Fire2.0-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "T-Fire2.0-Prefix.pch"; sourceTree = "<group>"; };
 		DD17FAF818477F1E00FF3AA3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DD17FAF918477F1E00FF3AA3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DD17FAFC18477F1E00FF3AA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD17FAFE18477F1E00FF3AA3 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		DD17FAFF18477F1E00FF3AA3 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		DD17FB0118477F1E00FF3AA3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -53,6 +60,30 @@
 		DD17FB1018477F1E00FF3AA3 /* T-Fire2.0Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "T-Fire2.0Tests-Info.plist"; sourceTree = "<group>"; };
 		DD17FB1218477F1E00FF3AA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DD17FB1418477F1E00FF3AA3 /* T_Fire2_0Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = T_Fire2_0Tests.m; sourceTree = "<group>"; };
+		DD98B9E81847863C00BD3934 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DD98B9E91847863C00BD3934 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DD98B9EA1847863C00BD3934 /* T-Fire2.0-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "T-Fire2.0-Info.plist"; sourceTree = "<group>"; };
+		DD98B9EB1847863C00BD3934 /* T-Fire2.0-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "T-Fire2.0-Prefix.pch"; sourceTree = "<group>"; };
+		DD98B9F1184786B800BD3934 /* AppCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCenterViewController.h; sourceTree = "<group>"; };
+		DD98B9F2184786B800BD3934 /* AppCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCenterViewController.m; sourceTree = "<group>"; };
+		DD98B9F3184786B800BD3934 /* AppCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppCenterViewController.xib; sourceTree = "<group>"; };
+		DD98B9F6184786DD00BD3934 /* WatchStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchStyleViewController.h; sourceTree = "<group>"; };
+		DD98B9F7184786DD00BD3934 /* WatchStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchStyleViewController.m; sourceTree = "<group>"; };
+		DD98B9F8184786DD00BD3934 /* WatchStyleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WatchStyleViewController.xib; sourceTree = "<group>"; };
+		DD98BA001847872F00BD3934 /* MoreSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreSettingViewController.h; sourceTree = "<group>"; };
+		DD98BA011847872F00BD3934 /* MoreSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreSettingViewController.m; sourceTree = "<group>"; };
+		DD98BA021847872F00BD3934 /* MoreSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreSettingViewController.xib; sourceTree = "<group>"; };
+		DD98BA051847874600BD3934 /* SimulatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatorViewController.h; sourceTree = "<group>"; };
+		DD98BA061847874600BD3934 /* SimulatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulatorViewController.m; sourceTree = "<group>"; };
+		DD98BA071847874600BD3934 /* SimulatorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimulatorViewController.xib; sourceTree = "<group>"; };
+		DD98BA0A1847876000BD3934 /* ShoppingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingViewController.h; sourceTree = "<group>"; };
+		DD98BA0B1847876000BD3934 /* ShoppingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingViewController.m; sourceTree = "<group>"; };
+		DD98BA0C1847876000BD3934 /* ShoppingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingViewController.xib; sourceTree = "<group>"; };
+		DD98BA0F1847878900BD3934 /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
+		DD98BA101847878900BD3934 /* ConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
+		DD98BA111847878900BD3934 /* ConnectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectionViewController.xib; sourceTree = "<group>"; };
+		DD98BA161847883100BD3934 /* RootCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootCell.h; sourceTree = "<group>"; };
+		DD98BA171847883100BD3934 /* RootCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,24 +145,15 @@
 			children = (
 				DD17FAF818477F1E00FF3AA3 /* AppDelegate.h */,
 				DD17FAF918477F1E00FF3AA3 /* AppDelegate.m */,
-				DD17FAFB18477F1E00FF3AA3 /* Main.storyboard */,
 				DD17FAFE18477F1E00FF3AA3 /* RootViewController.h */,
 				DD17FAFF18477F1E00FF3AA3 /* RootViewController.m */,
+				DD98B9F01847867900BD3934 /* SubViewController */,
+				DD98BA14184787F400BD3934 /* Model */,
+				DD98BA15184787F400BD3934 /* View */,
+				DD98B9E41847863C00BD3934 /* Application */,
 				DD17FB0118477F1E00FF3AA3 /* Images.xcassets */,
-				DD17FAF018477F1E00FF3AA3 /* Supporting Files */,
 			);
 			path = "T-Fire2.0";
-			sourceTree = "<group>";
-		};
-		DD17FAF018477F1E00FF3AA3 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DD17FAF118477F1E00FF3AA3 /* T-Fire2.0-Info.plist */,
-				DD17FAF218477F1E00FF3AA3 /* InfoPlist.strings */,
-				DD17FAF518477F1E00FF3AA3 /* main.m */,
-				DD17FAF718477F1E00FF3AA3 /* T-Fire2.0-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		DD17FB0E18477F1E00FF3AA3 /* T-Fire2.0Tests */ = {
@@ -150,6 +172,58 @@
 				DD17FB1118477F1E00FF3AA3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DD98B9E41847863C00BD3934 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				DD98B9E71847863C00BD3934 /* InfoPlist.strings */,
+				DD98B9E91847863C00BD3934 /* main.m */,
+				DD98B9EA1847863C00BD3934 /* T-Fire2.0-Info.plist */,
+				DD98B9EB1847863C00BD3934 /* T-Fire2.0-Prefix.pch */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		DD98B9F01847867900BD3934 /* SubViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DD98B9F1184786B800BD3934 /* AppCenterViewController.h */,
+				DD98B9F2184786B800BD3934 /* AppCenterViewController.m */,
+				DD98B9F3184786B800BD3934 /* AppCenterViewController.xib */,
+				DD98B9F6184786DD00BD3934 /* WatchStyleViewController.h */,
+				DD98B9F7184786DD00BD3934 /* WatchStyleViewController.m */,
+				DD98B9F8184786DD00BD3934 /* WatchStyleViewController.xib */,
+				DD98BA0F1847878900BD3934 /* ConnectionViewController.h */,
+				DD98BA101847878900BD3934 /* ConnectionViewController.m */,
+				DD98BA111847878900BD3934 /* ConnectionViewController.xib */,
+				DD98BA001847872F00BD3934 /* MoreSettingViewController.h */,
+				DD98BA011847872F00BD3934 /* MoreSettingViewController.m */,
+				DD98BA021847872F00BD3934 /* MoreSettingViewController.xib */,
+				DD98BA051847874600BD3934 /* SimulatorViewController.h */,
+				DD98BA061847874600BD3934 /* SimulatorViewController.m */,
+				DD98BA071847874600BD3934 /* SimulatorViewController.xib */,
+				DD98BA0A1847876000BD3934 /* ShoppingViewController.h */,
+				DD98BA0B1847876000BD3934 /* ShoppingViewController.m */,
+				DD98BA0C1847876000BD3934 /* ShoppingViewController.xib */,
+			);
+			path = SubViewController;
+			sourceTree = "<group>";
+		};
+		DD98BA14184787F400BD3934 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD98BA15184787F400BD3934 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD98BA161847883100BD3934 /* RootCell.h */,
+				DD98BA171847883100BD3934 /* RootCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,8 +303,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD17FB0218477F1E00FF3AA3 /* Images.xcassets in Resources */,
-				DD17FAF418477F1E00FF3AA3 /* InfoPlist.strings in Resources */,
-				DD17FAFD18477F1E00FF3AA3 /* Main.storyboard in Resources */,
+				DD98BA0E1847876000BD3934 /* ShoppingViewController.xib in Resources */,
+				DD98BA131847878900BD3934 /* ConnectionViewController.xib in Resources */,
+				DD98B9F5184786B800BD3934 /* AppCenterViewController.xib in Resources */,
+				DD98BA091847874600BD3934 /* SimulatorViewController.xib in Resources */,
+				DD98B9FA184786DD00BD3934 /* WatchStyleViewController.xib in Resources */,
+				DD98BA041847872F00BD3934 /* MoreSettingViewController.xib in Resources */,
+				DD98B9ED1847863C00BD3934 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,8 +329,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD17FB0018477F1E00FF3AA3 /* RootViewController.m in Sources */,
+				DD98BA0D1847876000BD3934 /* ShoppingViewController.m in Sources */,
+				DD98B9F4184786B800BD3934 /* AppCenterViewController.m in Sources */,
 				DD17FAFA18477F1E00FF3AA3 /* AppDelegate.m in Sources */,
-				DD17FAF618477F1E00FF3AA3 /* main.m in Sources */,
+				DD98BA081847874600BD3934 /* SimulatorViewController.m in Sources */,
+				DD98BA121847878900BD3934 /* ConnectionViewController.m in Sources */,
+				DD98BA031847872F00BD3934 /* MoreSettingViewController.m in Sources */,
+				DD98B9F9184786DD00BD3934 /* WatchStyleViewController.m in Sources */,
+				DD98B9EE1847863C00BD3934 /* main.m in Sources */,
+				DD98BA181847883100BD3934 /* RootCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,26 +360,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DD17FAF218477F1E00FF3AA3 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DD17FAF318477F1E00FF3AA3 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		DD17FAFB18477F1E00FF3AA3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DD17FAFC18477F1E00FF3AA3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DD17FB1118477F1E00FF3AA3 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				DD17FB1218477F1E00FF3AA3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DD98B9E71847863C00BD3934 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD98B9E81847863C00BD3934 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -379,8 +457,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "T-Fire2.0/T-Fire2.0-Prefix.pch";
-				INFOPLIST_FILE = "T-Fire2.0/T-Fire2.0-Info.plist";
+				GCC_PREFIX_HEADER = "T-Fire2.0/Application/T-Fire2.0-Prefix.pch";
+				INFOPLIST_FILE = "T-Fire2.0/Application/T-Fire2.0-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -393,8 +471,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "T-Fire2.0/T-Fire2.0-Prefix.pch";
-				INFOPLIST_FILE = "T-Fire2.0/T-Fire2.0-Info.plist";
+				GCC_PREFIX_HEADER = "T-Fire2.0/Application/T-Fire2.0-Prefix.pch";
+				INFOPLIST_FILE = "T-Fire2.0/Application/T-Fire2.0-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -462,6 +540,7 @@
 				DD17FB1A18477F1E00FF3AA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DD17FB1B18477F1E00FF3AA3 /* Build configuration list for PBXNativeTarget "T-Fire2.0Tests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +549,7 @@
 				DD17FB1D18477F1E00FF3AA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

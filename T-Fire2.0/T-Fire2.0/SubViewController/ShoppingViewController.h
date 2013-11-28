@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ShoppingViewController.h
 //  T-Fire2.0
 //
 //  Created by yixiaoluo on 13-11-28.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RootViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
-
+@interface ShoppingViewController : UIViewController
 
 @end
