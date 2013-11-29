@@ -129,8 +129,6 @@ static NSString *SettingViewCellId = @"SettingCell";
             return 3;
         case 1:
             return 3;
-        case 2:
-            return 2;
             
         default:
             break;
@@ -213,7 +211,7 @@ static NSString *SettingViewCellId = @"SettingCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
-    return 3;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -242,9 +240,6 @@ static NSString *SettingViewCellId = @"SettingCell";
             
             [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
         }
-            break;
-        case 2:
-            self.settingActionHandle(indexPath.row+3);
             break;
         default:
             break;

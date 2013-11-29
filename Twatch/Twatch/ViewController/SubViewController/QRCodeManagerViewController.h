@@ -1,5 +1,5 @@
 //
-//  HomeSettingViewController.h
+//  QRCodeManagerViewController.h
 //  Twatch
 //
 //  Created by 龚涛 on 11/29/13.
@@ -8,6 +8,6 @@
 
 #import "NaviCommonViewController.h"
 
-@interface HomeSettingViewController : NaviCommonViewController <UITableViewDataSource,UITableViewDelegate>
+@interface QRCodeManagerViewController : NaviCommonViewController
 
 @end

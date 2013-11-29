@@ -46,7 +46,7 @@
 
 - (void)prepareDefaultData
 {
-    self.titleSourceArray = [NSArray arrayWithObjects:@"应用中心",@"表盘背景",@"同步连接",@"更多设置",@"手表模拟器",@"土曼商城", nil];
+    self.titleSourceArray = [NSArray arrayWithObjects:@"应用中心", @"表盘背景", @"同步连接", NSLocalizedString(@"more settings", nil), @"手表模拟器", @"土曼商城", nil];
     self.subControllerSourceArray = [NSArray arrayWithObjects:@"AppCenterViewController",
                                      @"WatchStyleViewController",
                                      @"ConnectionViewController",

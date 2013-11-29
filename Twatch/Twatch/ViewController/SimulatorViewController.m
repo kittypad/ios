@@ -64,7 +64,7 @@
     [self.view addSubview:self.watchView];
     bgView.center = CGPointMake(self.view.center.x - 2.0, self.view.center.y + 5.0);
     
-    [self prepareBottomNavigationbar];
+//    [self prepareBottomNavigationbar];
     
     [self prepareSettingView];
 

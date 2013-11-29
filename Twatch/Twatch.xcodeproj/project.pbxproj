@@ -58,6 +58,7 @@
 		428294371848568700D24A36 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 428294311848568700D24A36 /* ShopViewController.m */; };
 		428294381848568700D24A36 /* WatchStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 428294331848568700D24A36 /* WatchStyleViewController.m */; };
 		4282943B1848577500D24A36 /* HomeSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4282943A1848577500D24A36 /* HomeSettingViewController.m */; };
+		4282943E1848760C00D24A36 /* QRCodeManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4282943D1848760C00D24A36 /* QRCodeManagerViewController.m */; };
 		42B5C9231808F85900D2FB27 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B5C9221808F85900D2FB27 /* MediaPlayer.framework */; };
 		42BBD88218079B330094E39D /* DialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88118079B330094E39D /* DialView.m */; };
 		42BBD88518079B550094E39D /* AppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88418079B550094E39D /* AppsView.m */; };
@@ -229,6 +230,8 @@
 		428294331848568700D24A36 /* WatchStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchStyleViewController.m; sourceTree = "<group>"; };
 		428294391848577500D24A36 /* HomeSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSettingViewController.h; sourceTree = "<group>"; };
 		4282943A1848577500D24A36 /* HomeSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSettingViewController.m; sourceTree = "<group>"; };
+		4282943C1848760C00D24A36 /* QRCodeManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeManagerViewController.h; sourceTree = "<group>"; };
+		4282943D1848760C00D24A36 /* QRCodeManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeManagerViewController.m; sourceTree = "<group>"; };
 		42B5C91E1808EE7E00D2FB27 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		42B5C91F1808EE7E00D2FB27 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		42B5C9221808F85900D2FB27 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -560,6 +563,8 @@
 				428294331848568700D24A36 /* WatchStyleViewController.m */,
 				428294391848577500D24A36 /* HomeSettingViewController.h */,
 				4282943A1848577500D24A36 /* HomeSettingViewController.m */,
+				4282943C1848760C00D24A36 /* QRCodeManagerViewController.h */,
+				4282943D1848760C00D24A36 /* QRCodeManagerViewController.m */,
 			);
 			path = SubViewController;
 			sourceTree = "<group>";
@@ -1159,6 +1164,7 @@
 				0A51A6241822878000DE7DD3 /* FeedBackViewController.m in Sources */,
 				4282943B1848577500D24A36 /* HomeSettingViewController.m in Sources */,
 				DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */,
+				4282943E1848760C00D24A36 /* QRCodeManagerViewController.m in Sources */,
 				DD1BFBC5180AC0FC0001C200 /* PSTGridLayoutRow.m in Sources */,
 				DD247F8118126A8500D9E6D4 /* main.m in Sources */,
 				0A16E8BC18114C6200DAFAE5 /* ClockView.m in Sources */,
