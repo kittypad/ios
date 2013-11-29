@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 龚涛. All rights reserved.
 //
 
-#import "RootViewController+BottomNavigationbar.h"
+#import "SimulatorViewController+BottomNavigationbar.h"
 #import "ShopViewController.h"
 
-@implementation RootViewController (BottomNavigationbar)
+@implementation SimulatorViewController (BottomNavigationbar)
 
 - (void)prepareBottomNavigationbar
 {

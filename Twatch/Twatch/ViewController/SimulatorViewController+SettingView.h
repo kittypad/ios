@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 龚涛. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "SimulatorViewController.h"
 #import "SettingView.h"
 
-@interface RootViewController (SettingView)
+@interface SimulatorViewController (SettingView)
 - (void)prepareSettingView;
 - (void)btnClick;
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 龚涛. All rights reserved.
 //
 
-#import "RootViewController+SettingView.h"
+#import "SimulatorViewController+SettingView.h"
 
 #import "_360ViewController.h"
 #import "TryViewController.h"
@@ -14,7 +14,7 @@
 #import "AGAuthViewController.h"
 #import "MoreSettingViewController.h"
 
-@implementation RootViewController (SettingView)
+@implementation SimulatorViewController (SettingView)
 
 - (void)prepareSettingView
 {

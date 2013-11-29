@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 龚涛. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "SimulatorViewController.h"
 
-@interface RootViewController (BottomNavigationbar)
+@interface SimulatorViewController (BottomNavigationbar)
 
 - (void)prepareBottomNavigationbar;
 

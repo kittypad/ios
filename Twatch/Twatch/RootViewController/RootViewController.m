@@ -1,78 +1,58 @@
 //
-//  RootViewController.m
-//  Twatch
+//  ViewController.m
+//  T-Fire2.0
 //
-//  Created by 龚涛 on 10/10/13.
-//  Copyright (c) 2013 龚涛. All rights reserved.
+//  Created by yixiaoluo on 13-11-28.
+//  Copyright (c) 2013年 tomoon. All rights reserved.
 //
 
 #import "RootViewController.h"
-#import "RootViewController+BottomNavigationbar.h"
-#import "RootViewController+SettingView.h"
-#import <QuartzCore/QuartzCore.h>
-#import "WatchView.h"
-#import <MediaPlayer/MediaPlayer.h>
-#import "MovieViewController.h"
-#import <ShareSDK/ShareSDK.h>
-#import "SettingView.h"
+#import "AppCenterViewController.h"
+#import "WatchStyleViewController.h"
+#import "ConnectionViewController.h"
+#import "HomeSettingViewController.h"
+#import "SimulatorViewController.h"
+#import "RootCell.h"
 
 @interface RootViewController ()
 
-@property (nonatomic, strong) WatchView *watchView;
+@property (nonatomic, strong) NSArray *titleSourceArray;
+@property (nonatomic, strong) NSArray *subControllerSourceArray;
 
 @end
 
 @implementation RootViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+	// Do any additional setup after loading the view, typically from a nib.
     self.navigationController.navigationBarHidden = YES;
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"rooView_bg.png"]];
+    [self prepareDefaultData];
     
-    UIImage *img = [UIImage imageNamed:@"蓝2.png"];
-    UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
-    NSLog(@"%f", img.size.height);
-    bgView.center = self.view.center;
-    [self.view addSubview:bgView];
-    [[NSNotificationCenter defaultCenter] addObserverForName:WatchStyleStatusChangeNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-        NSInteger style = [[NSUserDefaults standardUserDefaults] integerForKey:WatchStyleStatus];
-        if (style == wBlack) {
-            bgView.image = [UIImage imageNamed:@"黑2.png"];
-        }else if (style == wRed){
-            bgView.image = [UIImage imageNamed:@"红2.png"];
-        }else if (style == wBlue){
-            bgView.image = [UIImage imageNamed:@"蓝2.png"];
-        }
-    }];
-    [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(CGRectGetWidth(self.view.frame)/2, CGRectGetHeight(self.view.frame)/3);
+    layout.minimumInteritemSpacing = 0;
+    layout.minimumLineSpacing = 0;
+    layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    
+    UICollectionView *rootView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:layout];
+    rootView.delegate = self;
+    rootView.dataSource = self;
+    rootView.backgroundColor = [UIColor whiteColor];
+    [rootView registerClass:[RootCell class] forCellWithReuseIdentifier:@"RootCell"];
+    [self.view addSubview:rootView];
+}
 
-    self.watchView = [[WatchView alloc] initWithFrame:CGRectMake(0, 0, Watch_Width, Watch_Height)];
-    self.watchView.center = self.view.center;
-    self.watchView.frame = CGRectOffset(self.watchView.frame, -2, -2);
-    self.watchView.layer.masksToBounds = YES;
-    [self.view addSubview:self.watchView];
-    bgView.center = CGPointMake(self.view.center.x - 2.0, self.view.center.y + 5.0);
-    
-    [self prepareBottomNavigationbar];
-    
-    [self prepareSettingView];
-
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAppsVideo:) name:PlayAppsVideoNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayDidFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-    
-    
+- (void)prepareDefaultData
+{
+    self.titleSourceArray = [NSArray arrayWithObjects:@"应用中心",@"表盘背景",@"同步连接",@"更多设置",@"手表模拟器",@"土曼商城", nil];
+    self.subControllerSourceArray = [NSArray arrayWithObjects:@"AppCenterViewController",
+                                     @"WatchStyleViewController",
+                                     @"ConnectionViewController",
+                                     @"HomeSettingViewController",
+                                     @"SimulatorViewController",
+                                     @"ShopViewController", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,33 +61,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)playAppsVideo:(NSNotification *)notice
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSString *name = [notice.userInfo objectForKey:@"name"];
-//    switch ([name integerValue])
-//    {
-//        case SettingAppType:
-//            [[NSNotificationCenter defaultCenter] postNotificationName:SettingviewClickNotification object:nil userInfo:nil];
-//            break;
-//        default:
-//            [[NSNotificationCenter defaultCenter] postNotificationName:AppIconClickNotification object:nil userInfo:notice.userInfo];
-//            
-//            break;
-//    }
-}
-
-- (void)videoPlayDidFinished:(NSNotification *)notice
-{
-    [self dismissViewControllerAnimated:YES completion:^(void){}];
-}
-
-- (void)settingBUttonClicked:(UIButton *)sender
-{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RootCell" forIndexPath:indexPath];
     
+    [((RootCell *)cell) configCellWithTitle:self.titleSourceArray[indexPath.row]];
+    
+    return cell;
 }
 
-- (void)dealloc
+- (int)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    return 6;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *className = self.subControllerSourceArray[indexPath.row];
+    UIViewController *aController = [[NSClassFromString(className) alloc] initWithNibName:nil bundle:nil];
+    
+    NSLog(@"---%@",self.navigationController);
+    [self.navigationController pushViewController:aController animated:YES];
+    
+    aController.title = self.titleSourceArray[indexPath.row];
+}
+
 @end

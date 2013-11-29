@@ -47,6 +47,17 @@
 		427BEF451806A71F004AFB8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF441806A71F004AFB8C /* CoreGraphics.framework */; };
 		427BEF471806A71F004AFB8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF461806A71F004AFB8C /* UIKit.framework */; };
 		42802A95184348C500B4112A /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42802A94184348C500B4112A /* FXLabel.m */; };
+		4282941F18484FE700D24A36 /* SimulatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4282941A18484FE700D24A36 /* SimulatorViewController.m */; };
+		4282942018484FE700D24A36 /* SimulatorViewController+BottomNavigationbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4282941C18484FE700D24A36 /* SimulatorViewController+BottomNavigationbar.m */; };
+		4282942118484FE700D24A36 /* SimulatorViewController+SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4282941E18484FE700D24A36 /* SimulatorViewController+SettingView.m */; };
+		428294241848513D00D24A36 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 428294231848513D00D24A36 /* RootViewController.m */; };
+		428294281848520500D24A36 /* RootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 428294271848520500D24A36 /* RootCell.m */; };
+		428294341848568700D24A36 /* AppCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4282942B1848568700D24A36 /* AppCenterViewController.m */; };
+		428294351848568700D24A36 /* ConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4282942D1848568700D24A36 /* ConnectionViewController.m */; };
+		428294361848568700D24A36 /* ShopViewController+NaivBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4282942F1848568700D24A36 /* ShopViewController+NaivBar.m */; };
+		428294371848568700D24A36 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 428294311848568700D24A36 /* ShopViewController.m */; };
+		428294381848568700D24A36 /* WatchStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 428294331848568700D24A36 /* WatchStyleViewController.m */; };
+		4282943B1848577500D24A36 /* HomeSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4282943A1848577500D24A36 /* HomeSettingViewController.m */; };
 		42B5C9231808F85900D2FB27 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B5C9221808F85900D2FB27 /* MediaPlayer.framework */; };
 		42BBD88218079B330094E39D /* DialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88118079B330094E39D /* DialView.m */; };
 		42BBD88518079B550094E39D /* AppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88418079B550094E39D /* AppsView.m */; };
@@ -127,17 +138,12 @@
 		DD56A6F5181EB5420088AB49 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD56A6F4181EB5420088AB49 /* MessageUI.framework */; };
 		DD56A6F9181FE6FC0088AB49 /* SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A6F8181FE6FC0088AB49 /* SettingView.m */; };
 		DD56A702181FFC150088AB49 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A701181FFC150088AB49 /* SettingCell.m */; };
-		DD56A70D1821434A0088AB49 /* RootViewController+BottomNavigationbar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A7061821434A0088AB49 /* RootViewController+BottomNavigationbar.m */; };
-		DD56A70F1821434A0088AB49 /* RootViewController+SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A70A1821434A0088AB49 /* RootViewController+SettingView.m */; };
-		DD56A7101821434A0088AB49 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A70C1821434A0088AB49 /* RootViewController.m */; };
 		DD56A719182143920088AB49 /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A713182143920088AB49 /* MovieViewController.m */; };
 		DD56A71A182143920088AB49 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A716182143920088AB49 /* SignViewController.m */; };
 		DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A71D1821441A0088AB49 /* _360ViewController.m */; };
 		DD56A7201821441A0088AB49 /* _360ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A71E1821441A0088AB49 /* _360ViewController.xib */; };
 		DD56A724182144490088AB49 /* TryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A722182144490088AB49 /* TryViewController.m */; };
 		DD56A7281821448E0088AB49 /* TMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A7271821448E0088AB49 /* TMNavigationController.m */; };
-		DD56A72D182146010088AB49 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A72A182146010088AB49 /* ShopViewController.m */; };
-		DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */; };
 		DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A730182146800088AB49 /* NaviCommonViewController.m */; };
 		DD56A73F18214BE30088AB49 /* MoreSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD56A73D18214BE30088AB49 /* MoreSettingViewController.m */; };
 		DD56A74018214BE30088AB49 /* MoreSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD56A73E18214BE30088AB49 /* MoreSettingViewController.xib */; };
@@ -201,6 +207,28 @@
 		427BEF5B1806A71F004AFB8C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		42802A93184348C500B4112A /* FXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXLabel.h; sourceTree = "<group>"; };
 		42802A94184348C500B4112A /* FXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXLabel.m; sourceTree = "<group>"; };
+		4282941918484FE700D24A36 /* SimulatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatorViewController.h; sourceTree = "<group>"; };
+		4282941A18484FE700D24A36 /* SimulatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulatorViewController.m; sourceTree = "<group>"; };
+		4282941B18484FE700D24A36 /* SimulatorViewController+BottomNavigationbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SimulatorViewController+BottomNavigationbar.h"; sourceTree = "<group>"; };
+		4282941C18484FE700D24A36 /* SimulatorViewController+BottomNavigationbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SimulatorViewController+BottomNavigationbar.m"; sourceTree = "<group>"; };
+		4282941D18484FE700D24A36 /* SimulatorViewController+SettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SimulatorViewController+SettingView.h"; sourceTree = "<group>"; };
+		4282941E18484FE700D24A36 /* SimulatorViewController+SettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SimulatorViewController+SettingView.m"; sourceTree = "<group>"; };
+		428294221848513D00D24A36 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		428294231848513D00D24A36 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		428294261848520500D24A36 /* RootCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootCell.h; sourceTree = "<group>"; };
+		428294271848520500D24A36 /* RootCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootCell.m; sourceTree = "<group>"; };
+		4282942A1848568700D24A36 /* AppCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCenterViewController.h; sourceTree = "<group>"; };
+		4282942B1848568700D24A36 /* AppCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCenterViewController.m; sourceTree = "<group>"; };
+		4282942C1848568700D24A36 /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
+		4282942D1848568700D24A36 /* ConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
+		4282942E1848568700D24A36 /* ShopViewController+NaivBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShopViewController+NaivBar.h"; sourceTree = "<group>"; };
+		4282942F1848568700D24A36 /* ShopViewController+NaivBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShopViewController+NaivBar.m"; sourceTree = "<group>"; };
+		428294301848568700D24A36 /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
+		428294311848568700D24A36 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
+		428294321848568700D24A36 /* WatchStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchStyleViewController.h; sourceTree = "<group>"; };
+		428294331848568700D24A36 /* WatchStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchStyleViewController.m; sourceTree = "<group>"; };
+		428294391848577500D24A36 /* HomeSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSettingViewController.h; sourceTree = "<group>"; };
+		4282943A1848577500D24A36 /* HomeSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSettingViewController.m; sourceTree = "<group>"; };
 		42B5C91E1808EE7E00D2FB27 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		42B5C91F1808EE7E00D2FB27 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		42B5C9221808F85900D2FB27 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -335,12 +363,6 @@
 		DD56A6F8181FE6FC0088AB49 /* SettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingView.m; sourceTree = "<group>"; };
 		DD56A700181FFC150088AB49 /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
 		DD56A701181FFC150088AB49 /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
-		DD56A7051821434A0088AB49 /* RootViewController+BottomNavigationbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RootViewController+BottomNavigationbar.h"; sourceTree = "<group>"; };
-		DD56A7061821434A0088AB49 /* RootViewController+BottomNavigationbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RootViewController+BottomNavigationbar.m"; sourceTree = "<group>"; };
-		DD56A7091821434A0088AB49 /* RootViewController+SettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RootViewController+SettingView.h"; sourceTree = "<group>"; };
-		DD56A70A1821434A0088AB49 /* RootViewController+SettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RootViewController+SettingView.m"; sourceTree = "<group>"; };
-		DD56A70B1821434A0088AB49 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		DD56A70C1821434A0088AB49 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		DD56A712182143920088AB49 /* MovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieViewController.h; sourceTree = "<group>"; };
 		DD56A713182143920088AB49 /* MovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieViewController.m; sourceTree = "<group>"; };
 		DD56A715182143920088AB49 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignViewController.h; sourceTree = "<group>"; };
@@ -352,10 +374,6 @@
 		DD56A722182144490088AB49 /* TryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryViewController.m; sourceTree = "<group>"; };
 		DD56A7261821448E0088AB49 /* TMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMNavigationController.h; sourceTree = "<group>"; };
 		DD56A7271821448E0088AB49 /* TMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMNavigationController.m; sourceTree = "<group>"; };
-		DD56A729182146010088AB49 /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
-		DD56A72A182146010088AB49 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
-		DD56A72B182146010088AB49 /* ShopViewController+NaivBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShopViewController+NaivBar.h"; sourceTree = "<group>"; };
-		DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShopViewController+NaivBar.m"; sourceTree = "<group>"; };
 		DD56A72F182146800088AB49 /* NaviCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaviCommonViewController.h; sourceTree = "<group>"; };
 		DD56A730182146800088AB49 /* NaviCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaviCommonViewController.m; sourceTree = "<group>"; };
 		DD56A73C18214BE30088AB49 /* MoreSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreSettingViewController.h; sourceTree = "<group>"; };
@@ -516,6 +534,34 @@
 				42802A94184348C500B4112A /* FXLabel.m */,
 			);
 			path = FXLabel;
+			sourceTree = "<group>";
+		};
+		428294251848520500D24A36 /* RootView */ = {
+			isa = PBXGroup;
+			children = (
+				428294261848520500D24A36 /* RootCell.h */,
+				428294271848520500D24A36 /* RootCell.m */,
+			);
+			path = RootView;
+			sourceTree = "<group>";
+		};
+		428294291848568700D24A36 /* SubViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4282942A1848568700D24A36 /* AppCenterViewController.h */,
+				4282942B1848568700D24A36 /* AppCenterViewController.m */,
+				4282942C1848568700D24A36 /* ConnectionViewController.h */,
+				4282942D1848568700D24A36 /* ConnectionViewController.m */,
+				4282942E1848568700D24A36 /* ShopViewController+NaivBar.h */,
+				4282942F1848568700D24A36 /* ShopViewController+NaivBar.m */,
+				428294301848568700D24A36 /* ShopViewController.h */,
+				428294311848568700D24A36 /* ShopViewController.m */,
+				428294321848568700D24A36 /* WatchStyleViewController.h */,
+				428294331848568700D24A36 /* WatchStyleViewController.m */,
+				428294391848577500D24A36 /* HomeSettingViewController.h */,
+				4282943A1848577500D24A36 /* HomeSettingViewController.m */,
+			);
+			path = SubViewController;
 			sourceTree = "<group>";
 		};
 		42C676A418237B7700B8474D /* CameraImageHelper */ = {
@@ -777,12 +823,8 @@
 			children = (
 				DD56A7261821448E0088AB49 /* TMNavigationController.h */,
 				DD56A7271821448E0088AB49 /* TMNavigationController.m */,
-				DD56A7051821434A0088AB49 /* RootViewController+BottomNavigationbar.h */,
-				DD56A7061821434A0088AB49 /* RootViewController+BottomNavigationbar.m */,
-				DD56A7091821434A0088AB49 /* RootViewController+SettingView.h */,
-				DD56A70A1821434A0088AB49 /* RootViewController+SettingView.m */,
-				DD56A70B1821434A0088AB49 /* RootViewController.h */,
-				DD56A70C1821434A0088AB49 /* RootViewController.m */,
+				428294221848513D00D24A36 /* RootViewController.h */,
+				428294231848513D00D24A36 /* RootViewController.m */,
 			);
 			path = RootViewController;
 			sourceTree = "<group>";
@@ -790,17 +832,20 @@
 		DD56A711182143920088AB49 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				428294291848568700D24A36 /* SubViewController */,
 				DD56A714182143920088AB49 /* SettingViewController */,
 				42C676B218237D7B00B8474D /* TryAdjustViewController.h */,
 				42C676B318237D7B00B8474D /* TryAdjustViewController.m */,
 				DD56A712182143920088AB49 /* MovieViewController.h */,
 				DD56A713182143920088AB49 /* MovieViewController.m */,
-				DD56A729182146010088AB49 /* ShopViewController.h */,
-				DD56A72A182146010088AB49 /* ShopViewController.m */,
-				DD56A72B182146010088AB49 /* ShopViewController+NaivBar.h */,
-				DD56A72C182146010088AB49 /* ShopViewController+NaivBar.m */,
 				DDBD0BB518390B8000ACB029 /* ShareViewController.h */,
 				DDBD0BB618390B8000ACB029 /* ShareViewController.m */,
+				4282941918484FE700D24A36 /* SimulatorViewController.h */,
+				4282941A18484FE700D24A36 /* SimulatorViewController.m */,
+				4282941B18484FE700D24A36 /* SimulatorViewController+BottomNavigationbar.h */,
+				4282941C18484FE700D24A36 /* SimulatorViewController+BottomNavigationbar.m */,
+				4282941D18484FE700D24A36 /* SimulatorViewController+SettingView.h */,
+				4282941E18484FE700D24A36 /* SimulatorViewController+SettingView.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -879,6 +924,7 @@
 		DDEC67D81806F8E600F3DD7A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				428294251848520500D24A36 /* RootView */,
 				DD56A6F6181FE6C50088AB49 /* SettingView */,
 				0A16E8B918114BB900DAFAE5 /* WatchTypeView */,
 				DD1BFBD3180AD5D90001C200 /* TheViewPulledDown */,
@@ -1049,13 +1095,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				428294361848568700D24A36 /* ShopViewController+NaivBar.m in Sources */,
 				DD1BFBC4180AC0FC0001C200 /* PSTGridLayoutItem.m in Sources */,
+				4282941F18484FE700D24A36 /* SimulatorViewController.m in Sources */,
 				DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */,
-				DD56A70F1821434A0088AB49 /* RootViewController+SettingView.m in Sources */,
+				4282942118484FE700D24A36 /* SimulatorViewController+SettingView.m in Sources */,
+				428294341848568700D24A36 /* AppCenterViewController.m in Sources */,
 				DD1BFBD9180AD6020001C200 /* NotificationCell.m in Sources */,
 				42BBD88518079B550094E39D /* AppsView.m in Sources */,
 				DD1BFBBE180AC0FC0001C200 /* PSTCollectionViewData.m in Sources */,
-				DD56A70D1821434A0088AB49 /* RootViewController+BottomNavigationbar.m in Sources */,
 				DD56A743182287410088AB49 /* FVImageSequence.m in Sources */,
 				DD17FADA1846343400FF3AA3 /* BTLECentralViewController.m in Sources */,
 				DD56A6F9181FE6FC0088AB49 /* SettingView.m in Sources */,
@@ -1063,19 +1111,18 @@
 				DD1BFBC2180AC0FC0001C200 /* PSTCollectionViewUpdateItem.m in Sources */,
 				DD56A719182143920088AB49 /* MovieViewController.m in Sources */,
 				D8C3524F1825FCE70061081E /* MMRadialProgressView.m in Sources */,
-				DD56A72D182146010088AB49 /* ShopViewController.m in Sources */,
 				DD1BFBBD180AC0FC0001C200 /* PSTCollectionViewController.m in Sources */,
 				DD1BFBCD180AC24E0001C200 /* WatchVell.m in Sources */,
 				42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */,
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
 				DDBD0BBA18390F0800ACB029 /* ShareCell.m in Sources */,
 				D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */,
+				428294381848568700D24A36 /* WatchStyleViewController.m in Sources */,
 				DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */,
 				DD1BFBD0180AC7280001C200 /* FactoryMethods.m in Sources */,
+				428294371848568700D24A36 /* ShopViewController.m in Sources */,
 				42802A95184348C500B4112A /* FXLabel.m in Sources */,
-				DD56A7101821434A0088AB49 /* RootViewController.m in Sources */,
 				42BBD88218079B330094E39D /* DialView.m in Sources */,
-				DD56A72E182146010088AB49 /* ShopViewController+NaivBar.m in Sources */,
 				D8C3524E1825FCE70061081E /* MMProgressHUDWindow.m in Sources */,
 				DD56A71A182143920088AB49 /* SignViewController.m in Sources */,
 				DD56A79518229ADE0088AB49 /* AGShareCell.m in Sources */,
@@ -1088,6 +1135,7 @@
 				DD56A724182144490088AB49 /* TryViewController.m in Sources */,
 				DD1BFBD6180AD5D90001C200 /* NotificationView.m in Sources */,
 				DD1BFBCA180AC1FD0001C200 /* SwitchWatchView.m in Sources */,
+				4282942018484FE700D24A36 /* SimulatorViewController+BottomNavigationbar.m in Sources */,
 				DD1BFBC1180AC0FC0001C200 /* PSTCollectionViewLayout.m in Sources */,
 				DD56A702181FFC150088AB49 /* SettingCell.m in Sources */,
 				DD56A79818229CC00088AB49 /* AGViewDelegate.m in Sources */,
@@ -1098,6 +1146,9 @@
 				D8C3524D1825FCE70061081E /* MMProgressHUDViewController.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
 				42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */,
+				428294281848520500D24A36 /* RootCell.m in Sources */,
+				428294241848513D00D24A36 /* RootViewController.m in Sources */,
+				428294351848568700D24A36 /* ConnectionViewController.m in Sources */,
 				DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */,
 				DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */,
 				D8C3524B1825FCE70061081E /* MMProgressHUD.m in Sources */,
@@ -1106,6 +1157,7 @@
 				DD56A7281821448E0088AB49 /* TMNavigationController.m in Sources */,
 				0A51A628182289AE00DE7DD3 /* UIPlaceHolderTextView.m in Sources */,
 				0A51A6241822878000DE7DD3 /* FeedBackViewController.m in Sources */,
+				4282943B1848577500D24A36 /* HomeSettingViewController.m in Sources */,
 				DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */,
 				DD1BFBC5180AC0FC0001C200 /* PSTGridLayoutRow.m in Sources */,
 				DD247F8118126A8500D9E6D4 /* main.m in Sources */,
