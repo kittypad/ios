@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppCenterViewController : UIViewController
+@interface AppCenterViewController : UIViewController <UIScrollViewDelegate>
 
 @end

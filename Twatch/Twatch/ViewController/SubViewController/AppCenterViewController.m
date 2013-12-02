@@ -7,8 +7,13 @@
 //
 
 #import "AppCenterViewController.h"
+#import "HomeButton.h"
 
 @interface AppCenterViewController ()
+
+@property (nonatomic, strong) UIScrollView *scrollView;
+
+- (void)homeButtonPressed:(id)sender;
 
 @end
 
@@ -27,12 +32,38 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.view.backgroundColor = [UIColor colorWithHex:@"eef7fe"];
+    
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 60.0)];
+    topView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:topView];
+    
+    HomeButton *homeButton = [[HomeButton alloc] initWithFrame:CGRectMake(22.0, 20.0, 60.0, 40.0)];
+    [homeButton addTarget:self action:@selector(homeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [topView addSubview:homeButton];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)homeButtonPressed:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    
 }
 
 @end
