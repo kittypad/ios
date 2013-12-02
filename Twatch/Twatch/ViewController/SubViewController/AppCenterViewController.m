@@ -41,6 +41,15 @@
     HomeButton *homeButton = [[HomeButton alloc] initWithFrame:CGRectMake(22.0, 20.0, 60.0, 40.0)];
     [homeButton addTarget:self action:@selector(homeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:homeButton];
+    
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 90.0, 320.0, self.view.frame.size.height - 90.0)];
+    _scrollView.backgroundColor = [UIColor whiteColor];
+    _scrollView.contentSize = CGSizeMake(_scrollView.bounds.size.width*3, _scrollView.bounds.size.height);
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.delegate = self;
+    _scrollView.pagingEnabled = YES;
+    _scrollView.bounces = YES;
+    [self.view addSubview:_scrollView];
 }
 
 - (void)didReceiveMemoryWarning
