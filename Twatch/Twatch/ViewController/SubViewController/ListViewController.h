@@ -10,7 +10,7 @@
 
 @interface ListViewController : UITableViewController
 
-@property (nonatomic, assign) int page;
+@property (nonatomic, assign) NSUInteger page;
 
 @property (nonatomic, strong) NSMutableArray *array;
 

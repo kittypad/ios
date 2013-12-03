@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class AFJSONRequestOperation;
+
 @interface NetworkManager : NSObject
 
 + (NetworkManager *)sharedManager;
+
+- (AFJSONRequestOperation *)getDownloadList:(NSUInteger)type
+                                       page:(NSUInteger)page
+                                    success:(void (^)(NSArray *array))success
+                                    failure:(void (^)(NSError *error))failure;
 
 @end

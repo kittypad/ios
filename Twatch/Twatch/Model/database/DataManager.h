@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 #define DownloadElement_Entity  @"DownloadElement"
+
 #define kIconUrl                @"iconUrl"
 #define kIntro                  @"intro"
 #define kName                   @"name"
@@ -18,6 +19,11 @@
 #define kType                   @"type"
 #define kVer                    @"ver"
 #define kState                  @"state"
+
+#define kNotDownload            0
+#define kDownloading            1
+#define kNotInstall             2
+#define kInstalled              3
 
 @interface DataManager : NSObject
 
