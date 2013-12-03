@@ -4,5 +4,7 @@ target "Twatch" do
 
 pod 'AFNetworking'
 
+pod 'GTTableViewController'
+
 end
 
