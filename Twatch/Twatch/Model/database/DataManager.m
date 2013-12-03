@@ -28,11 +28,13 @@
     BOOL result = YES;
     NSError *error;
     
-    result = [context save:&error];
-    
-    if (error) {
-        NSLog(@"save context error: %@", [error localizedDescription]);
-        abort();
+    if ([context hasChanges]) {
+        result = [context save:&error];
+        
+        if (error) {
+            NSLog(@"save context error: %@", [error localizedDescription]);
+            abort();
+        }
     }
     
     return result;

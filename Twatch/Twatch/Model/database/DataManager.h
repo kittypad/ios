@@ -9,6 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#define DownloadElement_Entity  @"DownloadElement"
+#define kIconUrl                @"iconUrl"
+#define kIntro                  @"intro"
+#define kName                   @"name"
+#define kPkg                    @"pkg"
+#define kSize                   @"size"
+#define kType                   @"type"
+#define kVer                    @"ver"
+#define kState                  @"state"
+
 @interface DataManager : NSObject
 
 + (DataManager *)sharedManager;

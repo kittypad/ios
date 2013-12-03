@@ -72,6 +72,7 @@
 		42F5EE10184D710E00708958 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE0E184D710E00708958 /* Database.xcdatamodeld */; };
 		42F5EE16184D750400708958 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE15184D750400708958 /* DataManager.m */; };
 		42F5EE19184D76B000708958 /* DownloadElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE18184D76B000708958 /* DownloadElement.m */; };
+		42F5EE1C184D796100708958 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE1B184D796100708958 /* NetworkManager.m */; };
 		42FB2E41184C1D330061DAB6 /* AppListViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E40184C1D330061DAB6 /* AppListViewViewController.m */; };
 		42FB2E4A184C231B0061DAB6 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E49184C231B0061DAB6 /* ListViewController.m */; };
 		42FB2E4D184C26490061DAB6 /* WallPaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E4C184C26490061DAB6 /* WallPaperViewController.m */; };
@@ -263,6 +264,8 @@
 		42F5EE15184D750400708958 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		42F5EE17184D76B000708958 /* DownloadElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadElement.h; sourceTree = "<group>"; };
 		42F5EE18184D76B000708958 /* DownloadElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadElement.m; sourceTree = "<group>"; };
+		42F5EE1A184D796100708958 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		42F5EE1B184D796100708958 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		42FB2E3F184C1D330061DAB6 /* AppListViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppListViewViewController.h; sourceTree = "<group>"; };
 		42FB2E40184C1D330061DAB6 /* AppListViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppListViewViewController.m; sourceTree = "<group>"; };
 		42FB2E48184C231B0061DAB6 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
@@ -961,6 +964,8 @@
 				42C676B5182393DF00B8474D /* UIImage+Tool.h */,
 				42C676B6182393DF00B8474D /* UIImage+Tool.m */,
 				D8A3975718276E150058221C /* TMColorMatrix.h */,
+				42F5EE1A184D796100708958 /* NetworkManager.h */,
+				42F5EE1B184D796100708958 /* NetworkManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1164,6 +1169,7 @@
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
 				DDBD0BBA18390F0800ACB029 /* ShareCell.m in Sources */,
 				D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */,
+				42F5EE1C184D796100708958 /* NetworkManager.m in Sources */,
 				428294381848568700D24A36 /* WatchStyleViewController.m in Sources */,
 				42FB2E4A184C231B0061DAB6 /* ListViewController.m in Sources */,
 				DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */,
