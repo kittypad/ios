@@ -35,11 +35,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)startNetworkingFetch
-{
-    
-}
-
 #pragma mark - Table view data source
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

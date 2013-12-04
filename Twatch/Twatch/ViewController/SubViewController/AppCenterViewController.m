@@ -8,10 +8,16 @@
 
 #import "AppCenterViewController.h"
 #import "HomeButton.h"
+#import "AppListViewViewController.h"
+#import "WallPaperViewController.h"
 
 @interface AppCenterViewController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
+
+@property (nonatomic, strong) AppListViewViewController *appVC;
+
+@property (nonatomic, strong) WallPaperViewController *wallPaperVC;
 
 - (void)homeButtonPressed:(id)sender;
 
@@ -50,6 +56,18 @@
     _scrollView.pagingEnabled = YES;
     _scrollView.bounces = YES;
     [self.view addSubview:_scrollView];
+    
+    CGRect frame = _scrollView.bounds;
+    _appVC = [[AppListViewViewController alloc] initWithNibName:nil bundle:nil];
+    _appVC.view.frame = frame;
+    [self addChildViewController:_appVC];
+    [_scrollView addSubview:_appVC.view];
+    
+    frame.origin.x += frame.size.width;
+    _wallPaperVC = [[WallPaperViewController alloc] initWithNibName:nil bundle:nil];
+    _wallPaperVC.view.frame = frame;
+    [self addChildViewController:_wallPaperVC];
+    [_scrollView addSubview:_wallPaperVC.view];
 }
 
 - (void)didReceiveMemoryWarning

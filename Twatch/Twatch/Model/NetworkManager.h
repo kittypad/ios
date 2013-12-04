@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class AFJSONRequestOperation;
+@class AFHTTPRequestOperation;
 
 @interface NetworkManager : NSObject
 
 + (NetworkManager *)sharedManager;
 
-- (AFJSONRequestOperation *)getDownloadList:(NSUInteger)type
+- (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
                                        page:(NSUInteger)page
                                     success:(void (^)(NSArray *array))success
                                     failure:(void (^)(NSError *error))failure;

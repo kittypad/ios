@@ -13,7 +13,7 @@
 
 @interface NetworkManager ()
 {
-    AFHTTPClient *client;
+    AFHTTPRequestOperationManager *_manager;
 }
 
 @end
@@ -37,9 +37,9 @@
     self = [super init];
     
     if (self) {
-        client = [AFHTTPClient clientWithBaseURL:kBaseURL];
-        [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+        _manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:kBaseURL];
         
+        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         
         NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:8 * 1024 * 1024
                                                              diskCapacity:40 * 1024 * 1024
@@ -50,9 +50,7 @@
     return self;
 }
 
-
-
-- (AFJSONRequestOperation *)getDownloadList:(NSUInteger)type
+- (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
                                        page:(NSUInteger)page
                                     success:(void (^)(NSArray *array))success
                                     failure:(void (^)(NSError *error))failure
@@ -61,21 +59,24 @@
     NSDictionary *params = @{ @"p": [NSNumber numberWithInteger:page],
                               @"t": [NSNumber numberWithInteger:type] };
     
-    NSURLRequest *request = [client requestWithMethod:@"GET" path:@"app" parameters:params];
-    
-    void (^requestSuccess)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) = ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject != [NSNull null] && [responseObject isKindOfClass:[NSArray class]]) {
+            NSLog(@"%@", responseObject);
+            if (success) {
+                success(responseObject);
+            }
+        }
     };
     
-    void (^requestFailure)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) = ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            failure(error);
+        }
     };
     
-    
-    NSLog(@"%@", request.URL);
-    AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:requestSuccess failure:requestFailure];
-    
-    [op start];
+    AFHTTPRequestOperation *op = [_manager GET:@"app" parameters:params success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }
 

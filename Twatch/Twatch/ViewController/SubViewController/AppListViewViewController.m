@@ -7,6 +7,7 @@
 //
 
 #import "AppListViewViewController.h"
+#import "NetworkManager.h"
 
 @interface AppListViewViewController ()
 
@@ -33,11 +34,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)startNetworkingFetch
-{
-    
 }
 
 #pragma mark - Table view data source
