@@ -81,6 +81,8 @@
 		CCE083E4A9414791949B5F8E /* libPods-Twatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D98DDA7A1B334C188155C672 /* libPods-Twatch.a */; };
 		D655FB6E1828C7F0009DBEA4 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D655FB6D1828C7F0009DBEA4 /* Resource.bundle */; };
 		D8A397561827677F0058221C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A397551827677F0058221C /* OpenGLES.framework */; };
+		D8A8D37C184F1721002FB1D1 /* DownloadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D37B184F1721002FB1D1 /* DownloadObject.m */; };
+		D8A8D37F184F2242002FB1D1 /* DownloadObjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D37E184F2242002FB1D1 /* DownloadObjectCell.m */; };
 		D8C352481825FCE70061081E /* MMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C352381825FCE70061081E /* MMHud.m */; };
 		D8C352491825FCE70061081E /* MMProgressHUD+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523A1825FCE70061081E /* MMProgressHUD+Animations.m */; };
 		D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3523B1825FCE70061081E /* MMProgressHUD+Class.m */; };
@@ -278,6 +280,10 @@
 		D655FB6D1828C7F0009DBEA4 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		D8A397551827677F0058221C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		D8A3975718276E150058221C /* TMColorMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMColorMatrix.h; sourceTree = "<group>"; };
+		D8A8D37A184F1721002FB1D1 /* DownloadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadObject.h; sourceTree = "<group>"; };
+		D8A8D37B184F1721002FB1D1 /* DownloadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadObject.m; sourceTree = "<group>"; };
+		D8A8D37D184F2242002FB1D1 /* DownloadObjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadObjectCell.h; sourceTree = "<group>"; };
+		D8A8D37E184F2242002FB1D1 /* DownloadObjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadObjectCell.m; sourceTree = "<group>"; };
 		D8C352371825FCE70061081E /* MMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMHud.h; sourceTree = "<group>"; };
 		D8C352381825FCE70061081E /* MMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMHud.m; sourceTree = "<group>"; };
 		D8C352391825FCE70061081E /* MMProgressHUD+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMProgressHUD+Animations.h"; sourceTree = "<group>"; };
@@ -966,6 +972,8 @@
 				D8A3975718276E150058221C /* TMColorMatrix.h */,
 				42F5EE1A184D796100708958 /* NetworkManager.h */,
 				42F5EE1B184D796100708958 /* NetworkManager.m */,
+				D8A8D37A184F1721002FB1D1 /* DownloadObject.h */,
+				D8A8D37B184F1721002FB1D1 /* DownloadObject.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -992,6 +1000,8 @@
 				42BBD88718079B7B0094E39D /* CommonAppsView.m */,
 				42FB2E4E184C2BA00061DAB6 /* HomeButton.h */,
 				42FB2E4F184C2BA00061DAB6 /* HomeButton.m */,
+				D8A8D37D184F2242002FB1D1 /* DownloadObjectCell.h */,
+				D8A8D37E184F2242002FB1D1 /* DownloadObjectCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1156,6 +1166,7 @@
 				42BBD88518079B550094E39D /* AppsView.m in Sources */,
 				DD1BFBBE180AC0FC0001C200 /* PSTCollectionViewData.m in Sources */,
 				DD56A743182287410088AB49 /* FVImageSequence.m in Sources */,
+				D8A8D37C184F1721002FB1D1 /* DownloadObject.m in Sources */,
 				DD17FADA1846343400FF3AA3 /* BTLECentralViewController.m in Sources */,
 				DD56A6F9181FE6FC0088AB49 /* SettingView.m in Sources */,
 				DD1BFBBB180AC0FC0001C200 /* PSTCollectionView.m in Sources */,
@@ -1165,6 +1176,7 @@
 				DD1BFBBD180AC0FC0001C200 /* PSTCollectionViewController.m in Sources */,
 				DD1BFBCD180AC24E0001C200 /* WatchVell.m in Sources */,
 				42F5EE16184D750400708958 /* DataManager.m in Sources */,
+				D8A8D37F184F2242002FB1D1 /* DownloadObjectCell.m in Sources */,
 				42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */,
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
 				DDBD0BBA18390F0800ACB029 /* ShareCell.m in Sources */,

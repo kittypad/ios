@@ -7,6 +7,9 @@
 //
 
 #import "ListViewController.h"
+#import "NetworkManager.h"
+#import "DownloadObjectCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ListViewController ()
 
@@ -26,10 +29,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _type = 0;
 
     _page = 0;
     
     _array = [[NSMutableArray alloc] init];
+    
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.tableView setAllowsSelection:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,10 +48,30 @@
 
 - (void)startNetworkingFetch
 {
-    
+    if (_array.count == 0) {
+        [self loadNetworking];
+    }
+}
+
+- (void)loadNetworking
+{
+    [[NetworkManager sharedManager] getDownloadList:self.type
+                                               page:self.page
+                                            success:^(NSArray *array){
+                                                [_array addObjectsFromArray:array];
+                                                [self.tableView reloadData];
+                                            }
+                                            failure:^(NSError *error){
+                                                
+                                            }];
 }
 
 #pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 45.0;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -57,8 +85,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"ListCell";
+    DownloadObjectCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[DownloadObjectCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    DownloadObject *obj = [_array objectAtIndex:[indexPath row]];
+    [cell.imageView setImageWithURL:[NSURL URLWithString:obj.iconUrl]];
+    
+    cell.textLabel.text = obj.name;
+    
+    cell.detailTextLabel.text = obj.intro;
     
     return cell;
 }

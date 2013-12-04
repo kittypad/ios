@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) NSMutableArray *array;
 
+@property (nonatomic, assign) NSUInteger type;
+
 - (void)startNetworkingFetch;
 
 @end

@@ -62,9 +62,29 @@
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null] && [responseObject isKindOfClass:[NSArray class]]) {
             NSLog(@"%@", responseObject);
-            if (success) {
-                success(responseObject);
+            NSArray *array = (NSArray *)responseObject;
+            if (array.count > 0) {
+                NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:array.count];
+                for (NSDictionary *dic in array) {
+                    DownloadObject *obj = [[DownloadObject alloc] init];
+                    obj.apkUrl = dic[@"apkUrl"];
+                    obj.iconUrl = dic[@"iconUrl"];
+                    obj.intro = dic[@"intro"];
+                    obj.name = dic[@"name"];
+                    obj.pkg = dic[@"pkg"];
+                    obj.size = dic[@"size"];
+                    obj.type = dic[@"type"];
+                    obj.ver = dic[@"ver"];
+                    [resultArray addObject:obj];
+                }
+                if (success) {
+                    success(resultArray);
+                    return;
+                }
             }
+        }
+        if (success) {
+            success(nil);
         }
     };
     

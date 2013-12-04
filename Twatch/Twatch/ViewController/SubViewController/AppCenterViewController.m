@@ -76,6 +76,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [_appVC startNetworkingFetch];
+}
+
 - (void)homeButtonPressed:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
