@@ -69,9 +69,6 @@
 		42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B6182393DF00B8474D /* UIImage+Tool.m */; };
 		42C780A8182A410600DB47A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C780A6182A410600DB47A5 /* Default-568h@2x.png */; };
 		42C780A9182A410600DB47A5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C780A7182A410600DB47A5 /* Default@2x.png */; };
-		42F5EE10184D710E00708958 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE0E184D710E00708958 /* Database.xcdatamodeld */; };
-		42F5EE16184D750400708958 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE15184D750400708958 /* DataManager.m */; };
-		42F5EE19184D76B000708958 /* DownloadElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE18184D76B000708958 /* DownloadElement.m */; };
 		42F5EE1C184D796100708958 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE1B184D796100708958 /* NetworkManager.m */; };
 		42FB2E41184C1D330061DAB6 /* AppListViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E40184C1D330061DAB6 /* AppListViewViewController.m */; };
 		42FB2E4A184C231B0061DAB6 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E49184C231B0061DAB6 /* ListViewController.m */; };
@@ -261,11 +258,6 @@
 		42C676B6182393DF00B8474D /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
 		42C780A6182A410600DB47A5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		42C780A7182A410600DB47A5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		42F5EE0F184D710E00708958 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
-		42F5EE14184D750400708958 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
-		42F5EE15184D750400708958 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
-		42F5EE17184D76B000708958 /* DownloadElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadElement.h; sourceTree = "<group>"; };
-		42F5EE18184D76B000708958 /* DownloadElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadElement.m; sourceTree = "<group>"; };
 		42F5EE1A184D796100708958 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		42F5EE1B184D796100708958 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		42FB2E3F184C1D330061DAB6 /* AppListViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppListViewViewController.h; sourceTree = "<group>"; };
@@ -613,18 +605,6 @@
 			name = CameraImageHelper;
 			sourceTree = "<group>";
 		};
-		42F5EE0D184D710E00708958 /* database */ = {
-			isa = PBXGroup;
-			children = (
-				42F5EE0E184D710E00708958 /* Database.xcdatamodeld */,
-				42F5EE14184D750400708958 /* DataManager.h */,
-				42F5EE15184D750400708958 /* DataManager.m */,
-				42F5EE17184D76B000708958 /* DownloadElement.h */,
-				42F5EE18184D76B000708958 /* DownloadElement.m */,
-			);
-			path = database;
-			sourceTree = "<group>";
-		};
 		D8C352361825FCE70061081E /* MMProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -963,7 +943,6 @@
 		DDEC67D71806F8E600F3DD7A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				42F5EE0D184D710E00708958 /* database */,
 				DD17FAD51846343400FF3AA3 /* ble4.0 */,
 				DD1BFBCE180AC7280001C200 /* FactoryMethods.h */,
 				DD1BFBCF180AC7280001C200 /* FactoryMethods.m */,
@@ -1175,7 +1154,6 @@
 				D8C3524F1825FCE70061081E /* MMRadialProgressView.m in Sources */,
 				DD1BFBBD180AC0FC0001C200 /* PSTCollectionViewController.m in Sources */,
 				DD1BFBCD180AC24E0001C200 /* WatchVell.m in Sources */,
-				42F5EE16184D750400708958 /* DataManager.m in Sources */,
 				D8A8D37F184F2242002FB1D1 /* DownloadObjectCell.m in Sources */,
 				42BBD8911807A4BE0094E39D /* AllAppsView.m in Sources */,
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
@@ -1215,7 +1193,6 @@
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
 				42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */,
 				428294281848520500D24A36 /* RootCell.m in Sources */,
-				42F5EE19184D76B000708958 /* DownloadElement.m in Sources */,
 				428294241848513D00D24A36 /* RootViewController.m in Sources */,
 				42FB2E4D184C26490061DAB6 /* WallPaperViewController.m in Sources */,
 				428294351848568700D24A36 /* ConnectionViewController.m in Sources */,
@@ -1223,7 +1200,6 @@
 				DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */,
 				D8C3524B1825FCE70061081E /* MMProgressHUD.m in Sources */,
 				DD1BFBC3180AC0FC0001C200 /* PSTGridLayoutInfo.m in Sources */,
-				42F5EE10184D710E00708958 /* Database.xcdatamodeld in Sources */,
 				DD1BFBBA180AC0FC0001C200 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				DD56A7281821448E0088AB49 /* TMNavigationController.m in Sources */,
 				0A51A628182289AE00DE7DD3 /* UIPlaceHolderTextView.m in Sources */,
@@ -1441,19 +1417,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		42F5EE0E184D710E00708958 /* Database.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				42F5EE0F184D710E00708958 /* Database.xcdatamodel */,
-			);
-			currentVersion = 42F5EE0F184D710E00708958 /* Database.xcdatamodel */;
-			path = Database.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 427BEF371806A71F004AFB8C /* Project object */;
 }
