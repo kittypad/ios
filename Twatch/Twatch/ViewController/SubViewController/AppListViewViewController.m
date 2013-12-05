@@ -7,7 +7,6 @@
 //
 
 #import "AppListViewViewController.h"
-#import "NetworkManager.h"
 
 @interface AppListViewViewController ()
 

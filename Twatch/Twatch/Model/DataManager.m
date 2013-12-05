@@ -6,28 +6,28 @@
 //  Copyright (c) 2013 龚涛. All rights reserved.
 //
 
-#import "NetworkManager.h"
+#import "DataManager.h"
 #import <AFNetworking.h>
 
 #define kBaseURL [NSURL URLWithString:@"http://r.tomoon.cn"]
 
-@interface NetworkManager ()
+@interface DataManager ()
 {
     AFHTTPRequestOperationManager *_manager;
 }
 
 @end
 
-@implementation NetworkManager
+@implementation DataManager
 
-+ (NetworkManager *)sharedManager
++ (DataManager *)sharedManager
 {
-    static NetworkManager *sharedManagerInstance = nil;
+    static DataManager *sharedManagerInstance = nil;
     
     static dispatch_once_t predicate;
     
     dispatch_once(&predicate, ^{
-        sharedManagerInstance = [[NetworkManager alloc] init];
+        sharedManagerInstance = [[DataManager alloc] init];
     });
     
     return sharedManagerInstance;

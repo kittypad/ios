@@ -7,7 +7,7 @@
 //
 
 #import "ListViewController.h"
-#import "NetworkManager.h"
+#import "DataManager.h"
 #import "DownloadObjectCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -55,7 +55,7 @@
 
 - (void)loadNetworking
 {
-    [[NetworkManager sharedManager] getDownloadList:self.type
+    [[DataManager sharedManager] getDownloadList:self.type
                                                page:self.page
                                             success:^(NSArray *array){
                                                 [_array addObjectsFromArray:array];

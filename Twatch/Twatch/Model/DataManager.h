@@ -11,9 +11,9 @@
 
 @class AFHTTPRequestOperation;
 
-@interface NetworkManager : NSObject
+@interface DataManager : NSObject
 
-+ (NetworkManager *)sharedManager;
++ (DataManager *)sharedManager;
 
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
                                        page:(NSUInteger)page
