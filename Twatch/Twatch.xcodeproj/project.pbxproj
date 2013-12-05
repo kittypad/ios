@@ -59,6 +59,7 @@
 		428294381848568700D24A36 /* WatchStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 428294331848568700D24A36 /* WatchStyleViewController.m */; };
 		4282943B1848577500D24A36 /* HomeSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4282943A1848577500D24A36 /* HomeSettingViewController.m */; };
 		4282943E1848760C00D24A36 /* QRCodeManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4282943D1848760C00D24A36 /* QRCodeManagerViewController.m */; };
+		42AE2A271850527500066644 /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AE2A261850527500066644 /* DownloadManagerViewController.m */; };
 		42B5C9231808F85900D2FB27 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B5C9221808F85900D2FB27 /* MediaPlayer.framework */; };
 		42BBD88218079B330094E39D /* DialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88118079B330094E39D /* DialView.m */; };
 		42BBD88518079B550094E39D /* AppsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBD88418079B550094E39D /* AppsView.m */; };
@@ -237,6 +238,8 @@
 		4282943A1848577500D24A36 /* HomeSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSettingViewController.m; sourceTree = "<group>"; };
 		4282943C1848760C00D24A36 /* QRCodeManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeManagerViewController.h; sourceTree = "<group>"; };
 		4282943D1848760C00D24A36 /* QRCodeManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeManagerViewController.m; sourceTree = "<group>"; };
+		42AE2A251850527500066644 /* DownloadManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerViewController.h; sourceTree = "<group>"; };
+		42AE2A261850527500066644 /* DownloadManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerViewController.m; sourceTree = "<group>"; };
 		42B5C91E1808EE7E00D2FB27 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		42B5C91F1808EE7E00D2FB27 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		42B5C9221808F85900D2FB27 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -582,6 +585,8 @@
 				4282943D1848760C00D24A36 /* QRCodeManagerViewController.m */,
 				42FB2E48184C231B0061DAB6 /* AppCenterListViewController.h */,
 				42FB2E49184C231B0061DAB6 /* AppCenterListViewController.m */,
+				42AE2A251850527500066644 /* DownloadManagerViewController.h */,
+				42AE2A261850527500066644 /* DownloadManagerViewController.m */,
 			);
 			path = SubViewController;
 			sourceTree = "<group>";
@@ -1128,6 +1133,7 @@
 				428294361848568700D24A36 /* ShopViewController+NaivBar.m in Sources */,
 				DD1BFBC4180AC0FC0001C200 /* PSTGridLayoutItem.m in Sources */,
 				4282941F18484FE700D24A36 /* SimulatorViewController.m in Sources */,
+				42AE2A271850527500066644 /* DownloadManagerViewController.m in Sources */,
 				DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */,
 				4282942118484FE700D24A36 /* SimulatorViewController+SettingView.m in Sources */,
 				428294341848568700D24A36 /* AppCenterViewController.m in Sources */,

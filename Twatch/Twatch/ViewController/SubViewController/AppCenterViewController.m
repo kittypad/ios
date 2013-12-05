@@ -60,6 +60,14 @@
     [homeButton addTarget:self action:@selector(_homeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:homeButton];
     
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 59.0, 320.0, 1.0)];
+    lineView.backgroundColor = [UIColor colorWithHex:@"49acff"];
+    [topView addSubview:lineView];
+    
+    lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 89.0, 320.0, 1.0)];
+    lineView.backgroundColor = [UIColor colorWithHex:@"49acff"];
+    [topView addSubview:lineView];
+    
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 90.0, 321.0, self.view.frame.size.height - 90.0)];
     _scrollView.contentSize = CGSizeMake(_scrollView.bounds.size.width*3, _scrollView.bounds.size.height);
     _scrollView.showsHorizontalScrollIndicator = NO;
@@ -70,14 +78,14 @@
     
     CGRect frame = _scrollView.bounds;
     frame.size.width -= 1.0;
-    _appVC = [[AppCenterListViewController alloc] initWithNibName:nil bundle:nil];
+    _appVC = [[AppCenterListViewController alloc] initWithStyle:UITableViewStylePlain];
     _appVC.view.frame = frame;
     _appVC.type = kAppCenterType;
     [self addChildViewController:_appVC];
     [_scrollView addSubview:_appVC.view];
     
     frame.origin.x += frame.size.width + 1.0;
-    _wallPaperVC = [[AppCenterListViewController alloc] initWithNibName:nil bundle:nil];
+    _wallPaperVC = [[AppCenterListViewController alloc] initWithStyle:UITableViewStylePlain];
     _wallPaperVC.view.frame = frame;
     _wallPaperVC.type = kWallPaperCenterType;
     [self addChildViewController:_wallPaperVC];

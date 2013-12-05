@@ -8,6 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+#define kApkUrl                 @"apkUrl"
+#define kIconUrl                @"iconUrl"
+#define kIntro                  @"intro"
+#define kName                   @"name"
+#define kPkg                    @"pkg"
+#define kSize                   @"size"
+#define kType                   @"type"
+#define kVer                    @"ver"
+#define kState                  @"state"
+
+#define kNotDownload            0
+#define kDownloading            1
+#define kNotInstall             2
+#define kInstalled              3
+
 @interface DownloadObject : NSObject
 
 @property (nonatomic, retain) NSString * apkUrl;

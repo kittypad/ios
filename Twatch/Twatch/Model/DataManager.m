@@ -103,14 +103,15 @@
                     DownloadObject *obj = _downloadSearchDic[dic[@"apkUrl"]];
                     if (!obj) {
                         obj = [[DownloadObject alloc] init];
-                        obj.apkUrl = dic[@"apkUrl"];
-                        obj.iconUrl = dic[@"iconUrl"];
-                        obj.intro = dic[@"intro"];
-                        obj.name = dic[@"name"];
-                        obj.pkg = dic[@"pkg"];
-                        obj.size = dic[@"size"];
-                        obj.type = dic[@"type"];
-                        obj.ver = dic[@"ver"];
+                        obj.apkUrl = dic[kApkUrl];
+                        obj.iconUrl = dic[kIconUrl];
+                        obj.intro = dic[kIntro];
+                        obj.name = dic[kName];
+                        obj.pkg = dic[kPkg];
+                        obj.size = dic[kSize];
+                        obj.type = dic[kType];
+                        obj.ver = dic[kVer];
+                        obj.state = [NSNumber numberWithInteger:kNotDownload];
                     }
                     [resultArray addObject:obj];
                 }
