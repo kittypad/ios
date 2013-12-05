@@ -27,6 +27,19 @@
         _lineView = [[UIView alloc] init];
         _lineView.backgroundColor = [UIColor colorWithHex:@"cee2f4"];
         [self.contentView addSubview:_lineView];
+        
+        _stateButton = [[UIControl alloc] initWithFrame:CGRectMake(0.0, 0.0, 45.0, 45.0)];
+        
+        _stateImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 4.0, 25.0, 25.0)];
+        [_stateButton addSubview:_stateImgView];
+        
+        _stateLable = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 30.0, 45.0, 10.0)];
+        _stateLable.font = [UIFont systemFontOfSize:8.0];
+        _stateLable.textColor = [UIColor colorWithHex:@"7e7e7e"];
+        _stateLable.textAlignment = NSTextAlignmentCenter;
+        [_stateButton addSubview:_stateLable];
+        
+        self.accessoryView = _stateButton;
     }
     return self;
 }
@@ -50,10 +63,35 @@
     
     if (f > 1024) {
         f /= 1024.0;
-        self.detailTextLabel.text = [NSString stringWithFormat:@"%fMB", f];
+        self.detailTextLabel.text = [NSString stringWithFormat:@"%.2fMB", f];
     }
     else {
-        self.detailTextLabel.text = [NSString stringWithFormat:@"%fKB", f];
+        self.detailTextLabel.text = [NSString stringWithFormat:@"%.2fKB", f];
+    }
+    
+    switch ([obj.state integerValue]) {
+        case kNotDownload: {
+            _stateLable.text = NSLocalizedString(@"Download", nil);
+            _stateImgView.image = [UIImage imageNamed:@"下载.png"];
+            break;
+        }
+        case kDownloading: {
+            _stateLable.text = NSLocalizedString(@"Downloading", nil);
+            _stateImgView.image = [UIImage imageNamed:@"下载中.png"];
+            break;
+        }
+        case kNotInstall: {
+            _stateLable.text = NSLocalizedString(@"Install", nil);
+            _stateImgView.image = [UIImage imageNamed:@"安装.png"];
+            break;
+        }
+        case kInstalled: {
+            _stateLable.text = NSLocalizedString(@"Installed", nil);
+            _stateImgView.image = [UIImage imageNamed:@"已安装.png"];
+            break;
+        }
+        default:
+            break;
     }
     
     self.lineView.hidden = NO;
@@ -66,6 +104,31 @@
     self.textLabel.text = obj.name;
     
     self.detailTextLabel.text = obj.intro;
+    
+    switch ([obj.state integerValue]) {
+        case kNotDownload: {
+            _stateLable.text = NSLocalizedString(@"Download", nil);
+            _stateImgView.image = [UIImage imageNamed:@"下载.png"];
+            break;
+        }
+        case kDownloading: {
+            _stateLable.text = NSLocalizedString(@"Downloading", nil);
+            _stateImgView.image = [UIImage imageNamed:@"下载中.png"];
+            break;
+        }
+        case kNotInstall: {
+            _stateLable.text = NSLocalizedString(@"Install", nil);
+            _stateImgView.image = [UIImage imageNamed:@"安装.png"];
+            break;
+        }
+        case kInstalled: {
+            _stateLable.text = NSLocalizedString(@"Installed", nil);
+            _stateImgView.image = [UIImage imageNamed:@"已安装.png"];
+            break;
+        }
+        default:
+            break;
+    }
     
     self.lineView.hidden = hidden;
 }

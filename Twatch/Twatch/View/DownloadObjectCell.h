@@ -10,6 +10,12 @@
 #import "DownloadObject.h"
 
 @interface DownloadObjectCell : UITableViewCell
+{
+    UIImageView *_stateImgView;
+    UILabel *_stateLable;
+}
+
+@property (nonatomic, strong) UIControl *stateButton;
 
 @property (nonatomic, strong) UIImageView *iconView;
 

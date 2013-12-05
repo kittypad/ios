@@ -75,5 +75,8 @@
 "App Center" = "应用中心";
 "Wallpaper Center" = "壁纸中心";
 "Download Manager" = "下载管理";
+"Download" = "下载";
 "Downloading" = "下载中";
 "Downloaded" = "已下载";
+"Install" = "安装";
+"Installed" = "已安装";

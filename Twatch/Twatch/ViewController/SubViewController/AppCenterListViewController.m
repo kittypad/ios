@@ -21,6 +21,8 @@
     BOOL _isPageEnd;
 }
 
+- (void)_stateButtonPressed:(id)sender;
+
 - (void)_loadMorePressed:(UIButton *)button;
 
 - (void)_loadNetworking;
@@ -68,6 +70,26 @@
 }
 
 #pragma mark - Private
+
+- (void)_stateButtonPressed:(id)sender
+{
+    int row = [sender tag];
+    DownloadObject *obj = [_array objectAtIndex:row];
+    switch ([obj.state integerValue]) {
+        case kNotDownload: {
+            obj.state = [NSNumber numberWithInteger:kDownloading];
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+#warning notification
+            break;
+        }
+        case kNotInstall: {
+            
+            break;
+        }
+        default:
+            break;
+    }
+}
 
 - (void)_loadMorePressed:(UIButton *)button
 {
@@ -173,11 +195,14 @@
         DownloadObjectCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:DownCellIdentifier];
         if (!downloadCell) {
             downloadCell = [[DownloadObjectCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DownCellIdentifier];
+            [downloadCell.stateButton addTarget:self action:@selector(_stateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
         
         DownloadObject *obj = [_array objectAtIndex:[indexPath row]];
         
         [downloadCell configCell:obj lineHidden:([indexPath row] == _array.count-1 && _isPageEnd)];
+        
+        downloadCell.stateButton.tag = [indexPath row];
         
         cell = downloadCell;
     }

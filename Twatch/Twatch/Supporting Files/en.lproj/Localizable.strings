@@ -75,5 +75,8 @@
 "App Center" = "App";
 "Wallpaper Center" = "Wallpaper";
 "Download Manager" = "Manager";
+"Download" = "Download";
 "Downloading" = "Downloading";
 "Downloaded" = "Downloaded";
+"Install" = "Install";
+"Installed" = "Installed";
