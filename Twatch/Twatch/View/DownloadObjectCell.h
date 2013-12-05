@@ -10,4 +10,8 @@
 
 @interface DownloadObjectCell : UITableViewCell
 
+@property (nonatomic, strong) UIImageView *iconView;
+
+@property (nonatomic, strong) UIView *lineView;
+
 @end

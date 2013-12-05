@@ -14,6 +14,8 @@
 @interface DataManager ()
 {
     AFHTTPRequestOperationManager *_manager;
+    
+    NSString *_downloadFilePath;
 }
 
 @end
@@ -37,6 +39,34 @@
     self = [super init];
     
     if (self) {
+        
+        NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        _downloadFilePath = [Path stringByAppendingPathComponent:@"download.dat"];
+        
+        _downloadSearchDic = [[NSMutableDictionary alloc] init];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:_downloadFilePath]) {
+            _downloadDic = [NSKeyedUnarchiver unarchiveObjectWithFile:_downloadFilePath];
+            
+            NSMutableArray *array = _downloadDic[AppDownloadingArray];
+            [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+                DownloadObject *object = (DownloadObject *)obj;
+                _downloadSearchDic[object.apkUrl] = object;
+            }];
+            
+            array = _downloadDic[AppDownloadedArray];
+            [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+                DownloadObject *object = (DownloadObject *)obj;
+                _downloadSearchDic[object.apkUrl] = object;
+            }];
+        }
+        else {
+            _downloadDic = [[NSMutableDictionary alloc] init];
+            _downloadDic[AppDownloadingArray] = [[NSMutableArray alloc] init];
+            _downloadDic[AppDownloadedArray] = [[NSMutableArray alloc] init];
+            [NSKeyedArchiver archiveRootObject:_downloadDic toFile:_downloadFilePath];
+        }
+        
         _manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:kBaseURL];
         
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -45,10 +75,14 @@
                                                              diskCapacity:40 * 1024 * 1024
                                                                  diskPath:nil];
         [NSURLCache setSharedURLCache:URLCache];
+        
+        
     }
     
     return self;
 }
+
+#pragma mark - Networking
 
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
                                        page:(NSUInteger)page
@@ -66,15 +100,18 @@
             if (array.count > 0) {
                 NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:array.count];
                 for (NSDictionary *dic in array) {
-                    DownloadObject *obj = [[DownloadObject alloc] init];
-                    obj.apkUrl = dic[@"apkUrl"];
-                    obj.iconUrl = dic[@"iconUrl"];
-                    obj.intro = dic[@"intro"];
-                    obj.name = dic[@"name"];
-                    obj.pkg = dic[@"pkg"];
-                    obj.size = dic[@"size"];
-                    obj.type = dic[@"type"];
-                    obj.ver = dic[@"ver"];
+                    DownloadObject *obj = _downloadSearchDic[dic[@"apkUrl"]];
+                    if (!obj) {
+                        obj = [[DownloadObject alloc] init];
+                        obj.apkUrl = dic[@"apkUrl"];
+                        obj.iconUrl = dic[@"iconUrl"];
+                        obj.intro = dic[@"intro"];
+                        obj.name = dic[@"name"];
+                        obj.pkg = dic[@"pkg"];
+                        obj.size = dic[@"size"];
+                        obj.type = dic[@"type"];
+                        obj.ver = dic[@"ver"];
+                    }
                     [resultArray addObject:obj];
                 }
                 if (success) {

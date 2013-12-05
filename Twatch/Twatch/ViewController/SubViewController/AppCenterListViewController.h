@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ListViewController : UITableViewController
+#define kAppCenterType          0
+#define kWallPaperCenterType    1
+
+@interface AppCenterListViewController : UITableViewController
 
 @property (nonatomic, assign) NSUInteger page;
 

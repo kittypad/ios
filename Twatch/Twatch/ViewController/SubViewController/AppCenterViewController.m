@@ -8,16 +8,15 @@
 
 #import "AppCenterViewController.h"
 #import "HomeButton.h"
-#import "AppListViewViewController.h"
-#import "WallPaperViewController.h"
+#import "AppCenterListViewController.h"
 
 @interface AppCenterViewController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
-@property (nonatomic, strong) AppListViewViewController *appVC;
+@property (nonatomic, strong) AppCenterListViewController *appVC;
 
-@property (nonatomic, strong) WallPaperViewController *wallPaperVC;
+@property (nonatomic, strong) AppCenterListViewController *wallPaperVC;
 
 - (void)homeButtonPressed:(id)sender;
 
@@ -54,18 +53,20 @@
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.delegate = self;
     _scrollView.pagingEnabled = YES;
-    _scrollView.bounces = YES;
+    _scrollView.bounces = NO;
     [self.view addSubview:_scrollView];
     
     CGRect frame = _scrollView.bounds;
-    _appVC = [[AppListViewViewController alloc] initWithNibName:nil bundle:nil];
+    _appVC = [[AppCenterListViewController alloc] initWithNibName:nil bundle:nil];
     _appVC.view.frame = frame;
+    _appVC.type = kAppCenterType;
     [self addChildViewController:_appVC];
     [_scrollView addSubview:_appVC.view];
     
     frame.origin.x += frame.size.width;
-    _wallPaperVC = [[WallPaperViewController alloc] initWithNibName:nil bundle:nil];
+    _wallPaperVC = [[AppCenterListViewController alloc] initWithNibName:nil bundle:nil];
     _wallPaperVC.view.frame = frame;
+    _wallPaperVC.type = kWallPaperCenterType;
     [self addChildViewController:_wallPaperVC];
     [_scrollView addSubview:_wallPaperVC.view];
 }

@@ -70,9 +70,7 @@
 		42C780A8182A410600DB47A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C780A6182A410600DB47A5 /* Default-568h@2x.png */; };
 		42C780A9182A410600DB47A5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C780A7182A410600DB47A5 /* Default@2x.png */; };
 		42F5EE1C184D796100708958 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE1B184D796100708958 /* DataManager.m */; };
-		42FB2E41184C1D330061DAB6 /* AppListViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E40184C1D330061DAB6 /* AppListViewViewController.m */; };
-		42FB2E4A184C231B0061DAB6 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E49184C231B0061DAB6 /* ListViewController.m */; };
-		42FB2E4D184C26490061DAB6 /* WallPaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E4C184C26490061DAB6 /* WallPaperViewController.m */; };
+		42FB2E4A184C231B0061DAB6 /* AppCenterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E49184C231B0061DAB6 /* AppCenterListViewController.m */; };
 		42FB2E50184C2BA00061DAB6 /* HomeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E4F184C2BA00061DAB6 /* HomeButton.m */; };
 		42FBA9A81828E6CE0042C3E4 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */; };
 		CCE083E4A9414791949B5F8E /* libPods-Twatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D98DDA7A1B334C188155C672 /* libPods-Twatch.a */; };
@@ -260,12 +258,8 @@
 		42C780A7182A410600DB47A5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		42F5EE1A184D796100708958 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		42F5EE1B184D796100708958 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
-		42FB2E3F184C1D330061DAB6 /* AppListViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppListViewViewController.h; sourceTree = "<group>"; };
-		42FB2E40184C1D330061DAB6 /* AppListViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppListViewViewController.m; sourceTree = "<group>"; };
-		42FB2E48184C231B0061DAB6 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
-		42FB2E49184C231B0061DAB6 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
-		42FB2E4B184C26490061DAB6 /* WallPaperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallPaperViewController.h; sourceTree = "<group>"; };
-		42FB2E4C184C26490061DAB6 /* WallPaperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallPaperViewController.m; sourceTree = "<group>"; };
+		42FB2E48184C231B0061DAB6 /* AppCenterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCenterListViewController.h; sourceTree = "<group>"; };
+		42FB2E49184C231B0061DAB6 /* AppCenterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCenterListViewController.m; sourceTree = "<group>"; };
 		42FB2E4E184C2BA00061DAB6 /* HomeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeButton.h; sourceTree = "<group>"; };
 		42FB2E4F184C2BA00061DAB6 /* HomeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeButton.m; sourceTree = "<group>"; };
 		42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
@@ -586,12 +580,8 @@
 				4282943A1848577500D24A36 /* HomeSettingViewController.m */,
 				4282943C1848760C00D24A36 /* QRCodeManagerViewController.h */,
 				4282943D1848760C00D24A36 /* QRCodeManagerViewController.m */,
-				42FB2E48184C231B0061DAB6 /* ListViewController.h */,
-				42FB2E49184C231B0061DAB6 /* ListViewController.m */,
-				42FB2E3F184C1D330061DAB6 /* AppListViewViewController.h */,
-				42FB2E40184C1D330061DAB6 /* AppListViewViewController.m */,
-				42FB2E4B184C26490061DAB6 /* WallPaperViewController.h */,
-				42FB2E4C184C26490061DAB6 /* WallPaperViewController.m */,
+				42FB2E48184C231B0061DAB6 /* AppCenterListViewController.h */,
+				42FB2E49184C231B0061DAB6 /* AppCenterListViewController.m */,
 			);
 			path = SubViewController;
 			sourceTree = "<group>";
@@ -1161,7 +1151,7 @@
 				D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */,
 				42F5EE1C184D796100708958 /* DataManager.m in Sources */,
 				428294381848568700D24A36 /* WatchStyleViewController.m in Sources */,
-				42FB2E4A184C231B0061DAB6 /* ListViewController.m in Sources */,
+				42FB2E4A184C231B0061DAB6 /* AppCenterListViewController.m in Sources */,
 				DD56A731182146800088AB49 /* NaviCommonViewController.m in Sources */,
 				DD1BFBD0180AC7280001C200 /* FactoryMethods.m in Sources */,
 				428294371848568700D24A36 /* ShopViewController.m in Sources */,
@@ -1185,7 +1175,6 @@
 				DD56A702181FFC150088AB49 /* SettingCell.m in Sources */,
 				DD56A79818229CC00088AB49 /* AGViewDelegate.m in Sources */,
 				DD56A79418229ADE0088AB49 /* AGAuthViewController.m in Sources */,
-				42FB2E41184C1D330061DAB6 /* AppListViewViewController.m in Sources */,
 				DD17FADB1846343400FF3AA3 /* BTLEPeripheralViewController.m in Sources */,
 				DD56A73F18214BE30088AB49 /* MoreSettingViewController.m in Sources */,
 				D8C352481825FCE70061081E /* MMHud.m in Sources */,
@@ -1194,7 +1183,6 @@
 				42C676B418237D7B00B8474D /* TryAdjustViewController.m in Sources */,
 				428294281848520500D24A36 /* RootCell.m in Sources */,
 				428294241848513D00D24A36 /* RootViewController.m in Sources */,
-				42FB2E4D184C26490061DAB6 /* WallPaperViewController.m in Sources */,
 				428294351848568700D24A36 /* ConnectionViewController.m in Sources */,
 				DD1BFBC0180AC0FC0001C200 /* PSTCollectionViewItemKey.m in Sources */,
 				DD56A71F1821441A0088AB49 /* _360ViewController.m in Sources */,

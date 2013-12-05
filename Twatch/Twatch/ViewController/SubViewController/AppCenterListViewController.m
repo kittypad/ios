@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 龚涛. All rights reserved.
 //
 
-#import "ListViewController.h"
+#import "AppCenterListViewController.h"
 #import "DataManager.h"
 #import "DownloadObjectCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface ListViewController ()
+@interface AppCenterListViewController ()
 
 @end
 
-@implementation ListViewController
+@implementation AppCenterListViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -92,11 +92,18 @@
     }
     
     DownloadObject *obj = [_array objectAtIndex:[indexPath row]];
-    [cell.imageView setImageWithURL:[NSURL URLWithString:obj.iconUrl]];
+    [cell.iconView setImageWithURL:[NSURL URLWithString:obj.iconUrl]];
     
     cell.textLabel.text = obj.name;
     
     cell.detailTextLabel.text = obj.intro;
+    
+    if ([indexPath row] == _array.count-1) {
+        cell.lineView.hidden = YES;
+    }
+    else {
+        cell.lineView.hidden = NO;
+    }
     
     return cell;
 }

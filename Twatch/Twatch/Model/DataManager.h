@@ -9,12 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "DownloadObject.h"
 
+#define AppDownloadingArray     @"downloading"
+#define AppDownloadedArray      @"downloaded"
+
 @class AFHTTPRequestOperation;
 
 @interface DataManager : NSObject
 
+@property (nonatomic, strong) NSMutableDictionary *downloadDic;
+
+@property (nonatomic, strong) NSMutableDictionary *downloadSearchDic;
+
+
 + (DataManager *)sharedManager;
 
+//Data
+
+//Network
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
                                        page:(NSUInteger)page
                                     success:(void (^)(NSArray *array))success
