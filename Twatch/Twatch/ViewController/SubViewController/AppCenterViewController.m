@@ -9,6 +9,7 @@
 #import "AppCenterViewController.h"
 #import "HomeButton.h"
 #import "AppCenterListViewController.h"
+#import "DownloadManagerViewController.h"
 
 @interface AppCenterViewController ()
 {
@@ -22,6 +23,8 @@
 @property (nonatomic, strong) AppCenterListViewController *appVC;
 
 @property (nonatomic, strong) AppCenterListViewController *wallPaperVC;
+
+@property (nonatomic, strong) DownloadManagerViewController *managerVC;
 
 - (void)_selectButton:(UIButton *)button;
 
@@ -56,7 +59,7 @@
     topView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:topView];
     
-    HomeButton *homeButton = [[HomeButton alloc] initWithFrame:CGRectMake(22.0, 20.0, 60.0, 40.0)];
+    HomeButton *homeButton = [[HomeButton alloc] initWithFrame:CGRectMake(22.0, 20.0, 80.0, 40.0)];
     [homeButton addTarget:self action:@selector(_homeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:homeButton];
     
@@ -90,6 +93,12 @@
     _wallPaperVC.type = kWallPaperCenterType;
     [self addChildViewController:_wallPaperVC];
     [_scrollView addSubview:_wallPaperVC.view];
+    
+    frame.origin.x += frame.size.width + 1.0;
+    _managerVC = [[DownloadManagerViewController alloc] initWithStyle:UITableViewStylePlain];
+    _managerVC.view.frame = frame;
+    [self addChildViewController:_managerVC];
+    [_scrollView addSubview:_managerVC.view];
     
     NSArray *titleArray = @[NSLocalizedString(@"App Center", nil), NSLocalizedString(@"Wallpaper Center", nil),NSLocalizedString(@"Download Manager", nil)];
     

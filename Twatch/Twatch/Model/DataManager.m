@@ -82,6 +82,13 @@
     return self;
 }
 
+#pragma mark - Data
+
+- (BOOL)saveDownloadDic
+{
+    return [NSKeyedArchiver archiveRootObject:_downloadDic toFile:_downloadFilePath];
+}
+
 #pragma mark - Networking
 
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
@@ -101,7 +108,7 @@
                 NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:array.count];
                 for (NSDictionary *dic in array) {
                     DownloadObject *obj = _downloadSearchDic[dic[@"apkUrl"]];
-                    if (!obj) {
+                    if (!obj || ![obj.ver isEqualToString:dic[kVer]]) {
                         obj = [[DownloadObject alloc] init];
                         obj.apkUrl = dic[kApkUrl];
                         obj.iconUrl = dic[kIconUrl];

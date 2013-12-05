@@ -25,6 +25,8 @@
 
 //Data
 
+- (BOOL)saveDownloadDic;
+
 //Network
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
                                        page:(NSUInteger)page

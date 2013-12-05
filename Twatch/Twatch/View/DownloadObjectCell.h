@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DownloadObject.h"
 
 @interface DownloadObjectCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *iconView;
 
 @property (nonatomic, strong) UIView *lineView;
+
+- (void)configCell:(DownloadObject *)obj lineHidden:(BOOL)hidden;
+
+- (void)configCell:(DownloadObject *)obj;
 
 @end

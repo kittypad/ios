@@ -9,7 +9,6 @@
 #import "AppCenterListViewController.h"
 #import "DataManager.h"
 #import "DownloadObjectCell.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 
 #define kPageNum 10
 
@@ -177,18 +176,9 @@
         }
         
         DownloadObject *obj = [_array objectAtIndex:[indexPath row]];
-        [downloadCell.iconView setImageWithURL:[NSURL URLWithString:obj.iconUrl]];
         
-        downloadCell.textLabel.text = obj.name;
+        [downloadCell configCell:obj lineHidden:([indexPath row] == _array.count-1 && _isPageEnd)];
         
-        downloadCell.detailTextLabel.text = obj.intro;
-        
-        if ([indexPath row] == _array.count-1 && _isPageEnd) {
-            downloadCell.lineView.hidden = YES;
-        }
-        else {
-            downloadCell.lineView.hidden = NO;
-        }
         cell = downloadCell;
     }
     

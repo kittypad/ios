@@ -72,6 +72,8 @@
 "Commucation Test" = "Commucation Test";
 "Home" = "Home";
 "Click For More" = "Click for more";
-"App Center" = "App Center";
-"Wallpaper Center" = "Wallpaper Center";
-"Download Manager" = "Download Manager";
+"App Center" = "App";
+"Wallpaper Center" = "Wallpaper";
+"Download Manager" = "Manager";
+"Downloading" = "Downloading";
+"Downloaded" = "Downloaded";

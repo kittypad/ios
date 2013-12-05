@@ -7,8 +7,16 @@
 //
 
 #import "DownloadManagerViewController.h"
+#import "DataManager.h"
+#import "DownloadObjectCell.h"
+
+#define kHeaderHight    22.0
 
 @interface DownloadManagerViewController ()
+{
+    NSMutableArray *_downloadingArray;
+    NSMutableArray *_downloadedArray;
+}
 
 @end
 
@@ -27,11 +35,14 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSMutableDictionary *dic = [DataManager sharedManager].downloadDic;
+    
+    _downloadingArray = dic[AppDownloadingArray];
+    _downloadedArray = dic[AppDownloadedArray];
+    
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.tableView setAllowsSelection:NO];
+    self.tableView.backgroundColor = [UIColor colorWithHex:@"f4f9ff"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,79 +53,92 @@
 
 #pragma mark - Table view data source
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    static NSString *HeaderIdentifier = @"HeaderView";
+    UIView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier];
+    if (!headerView) {
+        headerView = [[UIView alloc] init];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 0.0, 200.0, kHeaderHight)];
+        label.textColor = [UIColor colorWithHex:@"8da8bf"];
+        label.tag = 100;
+        label.font = [UIFont systemFontOfSize:10.0];
+        [headerView addSubview:label];
+    }
+    
+    UILabel *label = (UILabel *)[headerView viewWithTag:100];
+    
+    if (0 == section) {
+        label.text = NSLocalizedString(@"Downloading", nil);
+    }
+    else if (1 == section) {
+        label.text = NSLocalizedString(@"Downloaded", nil);
+    }
+    
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (0 == section && 0 != [_downloadingArray count]) {
+        return kHeaderHight;
+    }
+    else if (1 == section && 0 != [_downloadedArray count]) {
+        return kHeaderHight;
+    }
+    return 0.0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 45.0;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
+    if (0 == section) {
+        return [_downloadingArray count];
+    }
+    else if (1 == section) {
+        return [_downloadedArray count];
+    }
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = nil;
     
-    // Configure the cell...
+    if (0 == [indexPath section]) {
+        static NSString *DefaultCellIdentifier = @"DownloadingCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DefaultCellIdentifier];
+        }
+        
+    }
+    else if (1 == [indexPath section]) {
+        
+        static NSString *DownCellIdentifier = @"DownloadedCell";
+        DownloadObjectCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:DownCellIdentifier];
+        if (!downloadCell) {
+            downloadCell = [[DownloadObjectCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DownCellIdentifier];
+        }
+        
+        DownloadObject *obj = [_downloadedArray objectAtIndex:[indexPath row]];
+        
+        [downloadCell configCell:obj];
+        
+        cell = downloadCell;
+    }
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end
