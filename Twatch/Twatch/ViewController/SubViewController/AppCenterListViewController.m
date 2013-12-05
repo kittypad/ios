@@ -11,7 +11,20 @@
 #import "DownloadObjectCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+#define kPageNum 10
+
+#define kLoadingCellHeight      30.0
+
+#define kLoadingIndicatorTag    100
+
 @interface AppCenterListViewController ()
+{
+    BOOL _isPageEnd;
+}
+
+- (void)_loadMorePressed:(UIButton *)button;
+
+- (void)_loadNetworking;
 
 @end
 
@@ -32,7 +45,9 @@
     
     _type = 0;
 
-    _page = 0;
+    _page = 1;
+    
+    _isPageEnd = NO;
     
     _array = [[NSMutableArray alloc] init];
     
@@ -49,16 +64,54 @@
 - (void)startNetworkingFetch
 {
     if (_array.count == 0) {
-        [self loadNetworking];
+        [self _loadNetworking];
     }
 }
 
-- (void)loadNetworking
+#pragma mark - Private
+
+- (void)_loadMorePressed:(UIButton *)button
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[_array count] inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (cell) {
+        UIActivityIndicatorView *indicatorView = (UIActivityIndicatorView *)[cell.contentView viewWithTag:kLoadingIndicatorTag];
+        if (indicatorView) {
+            button.hidden = YES;
+            indicatorView.hidden = NO;
+            [indicatorView startAnimating];
+            _page++;
+            [[DataManager sharedManager] getDownloadList:self.type
+                                                    page:self.page
+                                                 success:^(NSArray *array){
+                                                     button.hidden = NO;
+                                                     indicatorView.hidden = YES;
+                                                     [indicatorView stopAnimating];
+                                                     
+                                                     [_array addObjectsFromArray:array];
+                                                     if (!array || array==0 || [array count]%kPageNum!=0) {
+                                                         _isPageEnd = YES;
+                                                     }
+                                                     [self.tableView reloadData];
+                                                 }
+                                                 failure:^(NSError *error){
+                                                     button.hidden = NO;
+                                                     indicatorView.hidden = YES;
+                                                     [indicatorView stopAnimating];
+                                                 }];
+        }
+    }
+}
+
+- (void)_loadNetworking
 {
     [[DataManager sharedManager] getDownloadList:self.type
                                                page:self.page
                                             success:^(NSArray *array){
                                                 [_array addObjectsFromArray:array];
+                                                if (!array || array==0 || [array count]%kPageNum!=0) {
+                                                    _isPageEnd = YES;
+                                                }
                                                 [self.tableView reloadData];
                                             }
                                             failure:^(NSError *error){
@@ -70,6 +123,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([indexPath row] == [_array count]) {
+        return 30.0;
+    }
     return 45.0;
 }
 
@@ -80,29 +136,60 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_array count];
+    int count = [_array count];
+    if (count == 0) {
+        return 0;
+    }
+    else if (!_isPageEnd) {
+        return count+1;
+    }
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ListCell";
-    DownloadObjectCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[DownloadObjectCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-    DownloadObject *obj = [_array objectAtIndex:[indexPath row]];
-    [cell.iconView setImageWithURL:[NSURL URLWithString:obj.iconUrl]];
-    
-    cell.textLabel.text = obj.name;
-    
-    cell.detailTextLabel.text = obj.intro;
-    
-    if ([indexPath row] == _array.count-1) {
-        cell.lineView.hidden = YES;
+    UITableViewCell *cell = nil;
+    if ([indexPath row] == [_array count]) {
+        static NSString *DefaultCellIdentifier = @"DefaultCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DefaultCellIdentifier];
+            
+            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, kLoadingCellHeight)];
+            [button setTitle:NSLocalizedString(@"Click For More", nil) forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor colorWithHex:@"333333"] forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(_loadMorePressed:) forControlEvents:UIControlEventTouchUpInside];
+            button.titleLabel.font = [UIFont systemFontOfSize:14.0];
+            [cell.contentView addSubview:button];
+            
+            UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            indicatorView.center = CGPointMake(self.tableView.bounds.size.width/2, kLoadingCellHeight/2);
+            indicatorView.tag = kLoadingIndicatorTag;
+            indicatorView.hidden = YES;
+            [cell.contentView addSubview:indicatorView];
+        }
     }
     else {
-        cell.lineView.hidden = NO;
+        static NSString *DownCellIdentifier = @"ListCell";
+        DownloadObjectCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:DownCellIdentifier];
+        if (!downloadCell) {
+            downloadCell = [[DownloadObjectCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DownCellIdentifier];
+        }
+        
+        DownloadObject *obj = [_array objectAtIndex:[indexPath row]];
+        [downloadCell.iconView setImageWithURL:[NSURL URLWithString:obj.iconUrl]];
+        
+        downloadCell.textLabel.text = obj.name;
+        
+        downloadCell.detailTextLabel.text = obj.intro;
+        
+        if ([indexPath row] == _array.count-1 && _isPageEnd) {
+            downloadCell.lineView.hidden = YES;
+        }
+        else {
+            downloadCell.lineView.hidden = NO;
+        }
+        cell = downloadCell;
     }
     
     return cell;
