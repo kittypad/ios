@@ -10,6 +10,6 @@
 
 @interface RootViewController (BleManager)<CBPeripheralManagerDelegate>
 
-- (void)sendDataToBle:(id)data;
+- (void)sendDataToBle:(id)data transerType:(TransferDataType)type;
 
 @end

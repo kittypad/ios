@@ -7,14 +7,52 @@
 //
 
 #import "RootViewController+BleManager.h"
+#import "ConnectionViewController+CentralManager.h"
 
-#define NOTIFY_MTU      20
+#define NOTIFY_MTU      498
 
 @implementation RootViewController (BleManager)
 
-- (void)sendDataToBle:(id)data
+- (void)sendDataToBle:(id)data transerType:(TransferDataType)type
 {
+    self.transferDataType = type;
+    
+    // Reset the index
+    self.sendDataIndex = 0;
+
+    if (self.transferDataType == kTransferDataType_String) {
+        self.dataToSend = [(NSString *)data dataUsingEncoding:NSUTF8StringEncoding];
+    }else{
+    
+    }
+    
     [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
+}
+
+- (NSData *)getFirstTwoBytes
+{
+    NSUInteger index = (self.transferDataType == kTransferDataType_String) ? 0 : 16;
+    if (self.sendDataIndex == 0 && self.dataToSend.length <= NOTIFY_MTU) {//entire
+        
+        index += 0;
+
+    }else if (self.sendDataIndex == 0 && self.dataToSend.length > NOTIFY_MTU){//start
+        index += 1;
+    }else if (self.sendDataIndex + NOTIFY_MTU >= self.dataToSend.length){//end
+        index += 3;
+    }else {//continue
+        index += 2;
+    }
+    
+    NSData *firstByte = [NSData dataWithBytes:&index length:sizeof(index)];
+    NSData *secondByte = firstByte;
+    
+    NSMutableData *bytes = [NSMutableData dataWithData:firstByte];
+    [bytes appendData:secondByte];
+    
+    NSLog(@"");
+    
+    return bytes;
 }
 
 
@@ -58,13 +96,6 @@
 {
     NSLog(@"Central subscribed to characteristic");
     
-    // Get the data
-    UIImage *img = [UIImage imageNamed:@"Icon-144.png"];
-    self.dataToSend = UIImageJPEGRepresentation(img, 1);//[self.textView.text dataUsingEncoding:NSUTF8StringEncoding];
-    
-    // Reset the index
-    self.sendDataIndex = 0;
-    
     // Start sending
     [self sendData];
 }
@@ -82,29 +113,6 @@
  */
 - (void)sendData
 {
-    // First up, check if we're meant to be sending an EOM
-    static BOOL sendingEOM = NO;
-    
-    if (sendingEOM) {
-        
-        // send it
-        BOOL didSend = [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
-        
-        // Did it send?
-        if (didSend) {
-            
-            // It did, so mark it as sent
-            sendingEOM = NO;
-            
-            NSLog(@"Sent: EOM");
-        }
-        
-        // It didn't send, so we'll exit and wait for peripheralManagerIsReadyToUpdateSubscribers to call sendData again
-        return;
-    }
-    
-    // We're not sending an EOM, so we're sending data
-    
     // Is there any left to send?
     
     if (self.sendDataIndex >= self.dataToSend.length) {
@@ -130,37 +138,23 @@
         // Copy out the data we want
         NSData *chunk = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
         
+        NSMutableData *dataWillSend = [[NSMutableData alloc] init];
+        [dataWillSend appendData:[self getFirstTwoBytes]];
+        [dataWillSend appendData:chunk];
+        
         // Send it
-        didSend = [self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
+        didSend = [self.peripheralManager updateValue:dataWillSend forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
         
         // If it didn't work, drop out and wait for the callback
         if (!didSend) {
             return;
         }
         
-        NSString *stringFromData = [[NSString alloc] initWithData:chunk encoding:NSUTF8StringEncoding];
-        NSLog(@"Sent: %@", stringFromData);
-        
         // It did send, so update our index
         self.sendDataIndex += amountToSend;
         
         // Was it the last one?
         if (self.sendDataIndex >= self.dataToSend.length) {
-            
-            // It was - send an EOM
-            
-            // Set this so if the send fails, we'll send it next time
-            sendingEOM = YES;
-            
-            // Send it
-            BOOL eomSent = [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
-            
-            if (eomSent) {
-                // It sent, we're all done
-                sendingEOM = NO;
-                
-                NSLog(@"Sent: EOM");
-            }
             
             return;
         }

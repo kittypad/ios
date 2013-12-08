@@ -19,7 +19,9 @@
 @property (nonatomic, strong)      ConnectionViewController  *connectionController;
 @property (nonatomic, strong)      CBPeripheralManager       *peripheralManager;
 @property (nonatomic, strong)      CBMutableCharacteristic   *transferCharacteristic;
+
 @property (nonatomic, strong)      NSData                    *dataToSend;
 @property (nonatomic, readwrite)   NSInteger                 sendDataIndex;
+@property (nonatomic, readwrite)   TransferDataType         transferDataType;
 
 @end
