@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "NaviCommonViewController.h"
-#import "ToggleView.h"
-#import "BlockUIAlertView.h"
+
 @interface MoreSettingCell : UITableViewCell
+
+//@property (nonatomic) BOOL isSelected;
+//@property (nonatomic, strong)  UIImageView  *selectionImageView;
+
 @end
-@interface SettingViewController : NaviCommonViewController<UITableViewDelegate,UITableViewDataSource,ToggleViewDelegate>
+@interface SettingViewController : NaviCommonViewController<UITableViewDelegate,UITableViewDataSource>
 
 @end

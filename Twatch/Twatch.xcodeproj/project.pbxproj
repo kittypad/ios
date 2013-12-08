@@ -37,6 +37,10 @@
 		0A714AD21828880500A78784 /* 0_22.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A714ABA1828880500A78784 /* 0_22.jpg */; };
 		0A714AD31828880500A78784 /* 0_23.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A714ABB1828880500A78784 /* 0_23.jpg */; };
 		0A7499241827CDE400B355D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A7499261827CDE400B355D7 /* InfoPlist.strings */; };
+		0ADAFAF31854F263001C0287 /* BlockUIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADAFAEB1854F263001C0287 /* BlockUIAlertView.m */; };
+		0ADAFAF41854F263001C0287 /* ToggleBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADAFAEE1854F263001C0287 /* ToggleBase.m */; };
+		0ADAFAF51854F263001C0287 /* ToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADAFAF01854F263001C0287 /* ToggleButton.m */; };
+		0ADAFAF61854F263001C0287 /* ToggleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADAFAF21854F263001C0287 /* ToggleView.m */; };
 		427BEF431806A71F004AFB8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF421806A71F004AFB8C /* Foundation.framework */; };
 		427BEF451806A71F004AFB8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF441806A71F004AFB8C /* CoreGraphics.framework */; };
 		427BEF471806A71F004AFB8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427BEF461806A71F004AFB8C /* UIKit.framework */; };
@@ -201,6 +205,14 @@
 		0A714ABB1828880500A78784 /* 0_23.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0_23.jpg; sourceTree = "<group>"; };
 		0A7499251827CDE400B355D7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		0A7499271827CDF800B355D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0ADAFAEA1854F263001C0287 /* BlockUIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockUIAlertView.h; sourceTree = "<group>"; };
+		0ADAFAEB1854F263001C0287 /* BlockUIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockUIAlertView.m; sourceTree = "<group>"; };
+		0ADAFAED1854F263001C0287 /* ToggleBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleBase.h; sourceTree = "<group>"; };
+		0ADAFAEE1854F263001C0287 /* ToggleBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleBase.m; sourceTree = "<group>"; };
+		0ADAFAEF1854F263001C0287 /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
+		0ADAFAF01854F263001C0287 /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
+		0ADAFAF11854F263001C0287 /* ToggleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleView.h; sourceTree = "<group>"; };
+		0ADAFAF21854F263001C0287 /* ToggleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleView.m; sourceTree = "<group>"; };
 		427BEF3F1806A71F004AFB8C /* Twatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		427BEF421806A71F004AFB8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		427BEF441806A71F004AFB8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -480,6 +492,28 @@
 				0A214093182500D70091C924 /* UMFeedback.h */,
 			);
 			path = UMSDK;
+			sourceTree = "<group>";
+		};
+		0ADAFAE91854F263001C0287 /* BlockUIAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				0ADAFAEA1854F263001C0287 /* BlockUIAlertView.h */,
+				0ADAFAEB1854F263001C0287 /* BlockUIAlertView.m */,
+			);
+			path = BlockUIAlertView;
+			sourceTree = "<group>";
+		};
+		0ADAFAEC1854F263001C0287 /* CustomSwitchView */ = {
+			isa = PBXGroup;
+			children = (
+				0ADAFAED1854F263001C0287 /* ToggleBase.h */,
+				0ADAFAEE1854F263001C0287 /* ToggleBase.m */,
+				0ADAFAEF1854F263001C0287 /* ToggleButton.h */,
+				0ADAFAF01854F263001C0287 /* ToggleButton.m */,
+				0ADAFAF11854F263001C0287 /* ToggleView.h */,
+				0ADAFAF21854F263001C0287 /* ToggleView.m */,
+			);
+			path = CustomSwitchView;
 			sourceTree = "<group>";
 		};
 		427BEF361806A71F004AFB8C = {
@@ -1045,6 +1079,8 @@
 			isa = PBXGroup;
 			children = (
 				42BBD88618079B7B0094E39D /* CommonAppsView.h */,
+				0ADAFAE91854F263001C0287 /* BlockUIAlertView */,
+				0ADAFAEC1854F263001C0287 /* CustomSwitchView */,
 				42BBD88718079B7B0094E39D /* CommonAppsView.m */,
 				42FB2E4E184C2BA00061DAB6 /* HomeButton.h */,
 				42FB2E4F184C2BA00061DAB6 /* HomeButton.m */,
@@ -1228,7 +1264,9 @@
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
 				DD4815CB18537C4D00325B4C /* MovieViewController.m in Sources */,
 				DD4815591853783800325B4C /* RootViewController+BleManager.m in Sources */,
+				0ADAFAF31854F263001C0287 /* BlockUIAlertView.m in Sources */,
 				D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */,
+				0ADAFAF51854F263001C0287 /* ToggleButton.m in Sources */,
 				42F5EE1C184D796100708958 /* DataManager.m in Sources */,
 				DD4815EE18537E8300325B4C /* AppCenterViewController.m in Sources */,
 				DD4815D518537C4D00325B4C /* SignViewController.m in Sources */,
@@ -1246,6 +1284,7 @@
 				DD4815D018537C4D00325B4C /* FeedBackViewController.m in Sources */,
 				DD4815EC18537E8300325B4C /* SettingViewController.m in Sources */,
 				42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */,
+				0ADAFAF41854F263001C0287 /* ToggleBase.m in Sources */,
 				42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */,
 				DD4815C618537C4D00325B4C /* NotificationView.m in Sources */,
 				42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */,
@@ -1262,6 +1301,7 @@
 				DD4815EF18537E8300325B4C /* DownloadManagerViewController.m in Sources */,
 				DD4815F018537E8300325B4C /* ShoppingViewController.m in Sources */,
 				DD4815C218537C4D00325B4C /* SettingView.m in Sources */,
+				0ADAFAF61854F263001C0287 /* ToggleView.m in Sources */,
 				D8C352481825FCE70061081E /* MMHud.m in Sources */,
 				D8C3524D1825FCE70061081E /* MMProgressHUDViewController.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
