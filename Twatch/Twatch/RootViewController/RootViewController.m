@@ -55,9 +55,6 @@
     
     
     _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-    
-#warning TEST
-    [self sendDataToBle:@"advertise from iphone" transerType:kTransferDataType_String];
 }
 
 - (void)prepareDefaultData

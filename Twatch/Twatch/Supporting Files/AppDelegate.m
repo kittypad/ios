@@ -24,8 +24,9 @@
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
     
-    TMNavigationController *rootViewController = [[TMNavigationController alloc] initWithRootViewController:[[RootViewController alloc] initWithNibName:nil bundle:nil]];
+    TMNavigationController *rootViewController = [[TMNavigationController alloc] initWithRootViewController:self.rootViewController];
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     self.haveNewVersion = NO;
