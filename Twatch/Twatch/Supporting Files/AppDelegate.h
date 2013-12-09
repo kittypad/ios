@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class RootViewController;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic)BOOL  haveNewVersion;
+
+@property (strong, nonatomic) RootViewController *rootViewController;
 
 @end

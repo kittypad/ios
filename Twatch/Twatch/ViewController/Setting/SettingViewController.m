@@ -192,6 +192,8 @@
         case 1:
             break;
         case 2:
+            //test
+            [[ViewUtils rootViewController] sendDataToBle:@"hello, this is an iPhone" transerType:kTransferDataType_String];
             break;
             
         default:

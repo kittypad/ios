@@ -7,6 +7,7 @@
 //
 
 #import "ViewUtils.h"
+#import "AppDelegate.h"
 
 CGRect CGRectChangeWidth(CGRect frame, CGFloat width)
 {
@@ -92,6 +93,11 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height)
     label.textColor = normal;
     label.backgroundColor = backColor;
     return label;
+}
+
++ (RootViewController *)rootViewController
+{
+    return ((AppDelegate *)[UIApplication sharedApplication].delegate).rootViewController;
 }
 
 @end
