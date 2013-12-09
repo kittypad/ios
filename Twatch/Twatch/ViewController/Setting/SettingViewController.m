@@ -48,8 +48,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.titleArray = [NSArray arrayWithObjects:@"设置",@"账号绑定", nil];
+    self.titleArray = [NSArray arrayWithObjects:@"设置",@"二维码管理",@"账号绑定", nil];
     self.subviewControllerArray = [NSArray arrayWithObjects:@"MoreSettingViewController",
+                                   @"QRCodeManagerViewController",
                                    @"AGAuthViewController",
                                    nil];
     
@@ -73,7 +74,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 7;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -105,74 +106,66 @@
         {
             cell.textLabel.text = @"时间校对";
             cell.imageView.image = [UIImage imageNamed:@"时间"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             //            UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 50.5, 10)];
             //            switchBtn.tag = SWITCH_TIMEADJUST_TAG;
             //            [switchBtn addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
             //            [cell addSubview:switchBtn];
-            ToggleView *toggleViewBaseChange = [[ToggleView alloc]initWithFrame:CGRectMake(250, 13, 51, 24) toggleViewType:ToggleViewTypeNoLabel toggleBaseType:ToggleBaseTypeChangeImage toggleButtonType:ToggleButtonTypeDefault];
-            toggleViewBaseChange.tag = SWITCH_TIMEADJUST_TAG;
-            toggleViewBaseChange.toggleDelegate = self;
-            [cell addSubview:toggleViewBaseChange];
+//            ToggleView *toggleViewBaseChange = [[ToggleView alloc]initWithFrame:CGRectMake(250, 13, 51, 24) toggleViewType:ToggleViewTypeNoLabel toggleBaseType:ToggleBaseTypeChangeImage toggleButtonType:ToggleButtonTypeDefault];
+//            toggleViewBaseChange.tag = SWITCH_TIMEADJUST_TAG;
+//            toggleViewBaseChange.toggleDelegate = self;
+//            [cell addSubview:toggleViewBaseChange];
             
         }
             break;
         case 1:
         {
-            cell.textLabel.text = @"找手表";
+            cell.textLabel.text = @"查找手表";
             cell.imageView.image = [UIImage imageNamed:@"setting_Watch"];
-            //            UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 50.5, 10)];
-            //            switchBtn.tag = SWITCH_DISCOVERYWATCH_TAG;
-            //            [switchBtn addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
-            //            [cell addSubview:switchBtn];
-            
-            ToggleView *toggleViewBaseChange = [[ToggleView alloc]initWithFrame:CGRectMake(250, 13, 51, 24) toggleViewType:ToggleViewTypeNoLabel toggleBaseType:ToggleBaseTypeChangeImage toggleButtonType:ToggleButtonTypeDefault];
-            toggleViewBaseChange.tag =SWITCH_DISCOVERYWATCH_TAG;
-            toggleViewBaseChange.toggleDelegate = self;
-            [cell addSubview:toggleViewBaseChange];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
         }
             break;
-            //        case 2:
-            //        {
-            //            cell.textLabel.text = @"推送开关";
-            //            cell.imageView.image = [UIImage imageNamed:@"推送"];
-            //            UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 50.5, 10)];
-            //            switchBtn.tag = SWITCH_PUSHSETTING_TAG;
-            //            [switchBtn addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
-            //            [cell addSubview:switchBtn];
-            //        }
-            //            break;
         case 2:
         {
-            cell.textLabel.text = @"测试通信";
-            cell.imageView.image = [UIImage imageNamed:@"通信"];
-            //            UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 50.5, 10)];
-            //            switchBtn.tag = SWITCH_CONNECTTESTING_TAG;
-            //            [switchBtn addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
-            //            [cell addSubview:switchBtn];
+            cell.textLabel.text = @"推送开关";
+            cell.imageView.image = [UIImage imageNamed:@"推送"];
+//            UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 50.5, 10)];
+//            switchBtn.tag = SWITCH_PUSHSETTING_TAG;
+//            [switchBtn addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
+//            [cell addSubview:switchBtn];
+            
             ToggleView *toggleViewBaseChange = [[ToggleView alloc]initWithFrame:CGRectMake(250, 13, 51, 24) toggleViewType:ToggleViewTypeNoLabel toggleBaseType:ToggleBaseTypeChangeImage toggleButtonType:ToggleButtonTypeDefault];
-            toggleViewBaseChange.tag =SWITCH_CONNECTTESTING_TAG;
+            toggleViewBaseChange.tag = SWITCH_PUSHSETTING_TAG;
             toggleViewBaseChange.toggleDelegate = self;
             [cell addSubview:toggleViewBaseChange];
             
         }
             break;
         case 3:
+        {
+            cell.textLabel.text = @"测试通信";
+            cell.imageView.image = [UIImage imageNamed:@"通信"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+        }
+            break;
+        case 4:
             cell.textLabel.text = @"设置";
             cell.imageView.image = [UIImage imageNamed:@"setting_Setting"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
-            //        case 5:
-            //            cell.textLabel.text = @"二维码管理";
-            //            cell.imageView.image = [UIImage imageNamed:@"二维码"];
-            //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            //            break;
-        case 4:
+        case 5:
+            cell.textLabel.text = @"二维码管理";
+            cell.imageView.image = [UIImage imageNamed:@"二维码"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+        case 6:
             cell.textLabel.text = @"账号绑定";
             cell.imageView.image = [UIImage imageNamed:@"账号"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
-            
+
         default:
             break;
     }
@@ -189,19 +182,27 @@
     switch (indexPath.row)
     {
         case 0:
+        {
+            BlockUIAlertView *alertView = [[BlockUIAlertView alloc] initWithTitle:@"" message:@"是否确认进行时间校对?" cancelButtonTitle:@"是"  otherButtonTitles:[NSString stringWithFormat:@"否",nil] buttonBlock:^(NSInteger indexButton){
+                NSLog(@"%d",indexButton);
+            }];
+            [alertView show];
+        }
             break;
         case 1:
             break;
         case 2:
+            break;
+        case 3:
             //test
             [[ViewUtils rootViewController] sendDataToBle:@"hello, this is an iPhone" transerType:kTransferDataType_String];
             break;
             
         default:
         {
-            NSString *className = self.subviewControllerArray[indexPath.row - 3];
+            NSString *className = self.subviewControllerArray[indexPath.row - 4];
             UIViewController *aController = [[NSClassFromString(className) alloc] initWithNibName:nil bundle:nil];
-            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 3];
+            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 4];
             [self.navigationController pushViewController:aController animated:YES];
         }
             break;
@@ -247,6 +248,8 @@
     else if (view.tag == SWITCH_CONNECTTESTING_TAG)
     {
     }
+    else
+    {}
     NSLog(@"RightButton Selected");
 }
 

@@ -57,6 +57,7 @@ static  NSString *cellId = @"connectin cell identifier";
     scanButton.backgroundColor = RGB(116, 198, 250, 1);
     scanButton.frame = CGRectMake(9, CGRectGetMaxY(tableView.frame), CGRectGetWidth(self.view.frame) - 18, 40);
     [scanButton setTitle:@"扫  描" forState:UIControlStateNormal];
+    [scanButton setTitle:@"正  在  扫  描" forState:UIControlStateSelected];
     [scanButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [scanButton addTarget:self action:@selector(startScan:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:scanButton];
@@ -65,7 +66,15 @@ static  NSString *cellId = @"connectin cell identifier";
 - (void)startScan:(UIButton *)btn
 {
     NSLog(@"start scan");
-    [self scan];
+    if (!btn.selected) {
+        btn.backgroundColor = [UIColor grayColor];
+        [self scan];
+    }else{
+        btn.backgroundColor = RGB(116, 198, 250, 1);
+        [self stop];
+    }
+    
+    btn.selected = !btn.selected;
 }
 
 - (CBPeripheral *)discoveredPeripheral
