@@ -44,6 +44,13 @@
     NSLog(@"Scanning started");
 }
 
+- (void)stop
+{
+    [self.centralManager stopScan];
+    NSLog(@"Scanning stop");
+}
+
+
 
 /** This callback comes whenever a peripheral that is advertising the TRANSFER_SERVICE_UUID is discovered.
  *  We check the RSSI, to make sure it's close enough that we're interested in it, and if it is,
