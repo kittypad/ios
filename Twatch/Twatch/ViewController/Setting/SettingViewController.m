@@ -48,9 +48,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.titleArray = [NSArray arrayWithObjects:@"设置",@"二维码管理",@"账号绑定", nil];
+    self.titleArray = [NSArray arrayWithObjects:@"设置",@"账号绑定", nil];
     self.subviewControllerArray = [NSArray arrayWithObjects:@"MoreSettingViewController",
-                                   @"QRCodeManagerViewController",
                                    @"AGAuthViewController",
                                    nil];
     
@@ -74,7 +73,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    return 5;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -126,23 +125,23 @@
             
         }
             break;
+//        case 2:
+//        {
+//            cell.textLabel.text = @"推送开关";
+//            cell.imageView.image = [UIImage imageNamed:@"推送"];
+////            UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 50.5, 10)];
+////            switchBtn.tag = SWITCH_PUSHSETTING_TAG;
+////            [switchBtn addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
+////            [cell addSubview:switchBtn];
+//            
+//            ToggleView *toggleViewBaseChange = [[ToggleView alloc]initWithFrame:CGRectMake(250, 13, 51, 24) toggleViewType:ToggleViewTypeNoLabel toggleBaseType:ToggleBaseTypeChangeImage toggleButtonType:ToggleButtonTypeDefault];
+//            toggleViewBaseChange.tag = SWITCH_PUSHSETTING_TAG;
+//            toggleViewBaseChange.toggleDelegate = self;
+//            [cell addSubview:toggleViewBaseChange];
+//            
+//        }
+//            break;
         case 2:
-        {
-            cell.textLabel.text = @"推送开关";
-            cell.imageView.image = [UIImage imageNamed:@"推送"];
-//            UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 50.5, 10)];
-//            switchBtn.tag = SWITCH_PUSHSETTING_TAG;
-//            [switchBtn addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
-//            [cell addSubview:switchBtn];
-            
-            ToggleView *toggleViewBaseChange = [[ToggleView alloc]initWithFrame:CGRectMake(250, 13, 51, 24) toggleViewType:ToggleViewTypeNoLabel toggleBaseType:ToggleBaseTypeChangeImage toggleButtonType:ToggleButtonTypeDefault];
-            toggleViewBaseChange.tag = SWITCH_PUSHSETTING_TAG;
-            toggleViewBaseChange.toggleDelegate = self;
-            [cell addSubview:toggleViewBaseChange];
-            
-        }
-            break;
-        case 3:
         {
             cell.textLabel.text = @"测试通信";
             cell.imageView.image = [UIImage imageNamed:@"通信"];
@@ -150,17 +149,17 @@
             
         }
             break;
-        case 4:
+        case 3:
             cell.textLabel.text = @"设置";
             cell.imageView.image = [UIImage imageNamed:@"setting_Setting"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
-        case 5:
-            cell.textLabel.text = @"二维码管理";
-            cell.imageView.image = [UIImage imageNamed:@"二维码"];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            break;
-        case 6:
+//        case 4:
+//            cell.textLabel.text = @"二维码管理";
+//            cell.imageView.image = [UIImage imageNamed:@"二维码"];
+//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//            break;
+        case 4:
             cell.textLabel.text = @"账号绑定";
             cell.imageView.image = [UIImage imageNamed:@"账号"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -191,18 +190,18 @@
             break;
         case 1:
             break;
+//        case 2:
+//            break;
         case 2:
-            break;
-        case 3:
             //test
             [[ViewUtils rootViewController] sendDataToBle:@"hello, this is an iPhone" transerType:kTransferDataType_String];
             break;
             
         default:
         {
-            NSString *className = self.subviewControllerArray[indexPath.row - 4];
+            NSString *className = self.subviewControllerArray[indexPath.row - 3];
             UIViewController *aController = [[NSClassFromString(className) alloc] initWithNibName:nil bundle:nil];
-            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 4];
+            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 3];
             [self.navigationController pushViewController:aController animated:YES];
         }
             break;
