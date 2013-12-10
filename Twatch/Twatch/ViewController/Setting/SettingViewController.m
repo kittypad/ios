@@ -195,12 +195,14 @@
             //test
             [[ViewUtils rootViewController] sendDataToBle:@"hello, this is an iPhone" transerType:kTransferDataType_String];
             break;
+        case 3:
+            break;
             
         default:
         {
-            NSString *className = self.subviewControllerArray[indexPath.row - 3];
+            NSString *className = self.subviewControllerArray[indexPath.row - 4];
             UIViewController *aController = [[NSClassFromString(className) alloc] initWithNibName:nil bundle:nil];
-            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 3];
+            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 4];
             [self.navigationController pushViewController:aController animated:YES];
         }
             break;
