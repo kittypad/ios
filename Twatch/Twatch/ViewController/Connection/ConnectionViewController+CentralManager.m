@@ -7,7 +7,7 @@
 //
 
 #import "ConnectionViewController+CentralManager.h"
-
+#import "MBProgressHUD.h"
 @implementation ConnectionViewController (CentralManager)
 
 #pragma mark - Central Methods
@@ -70,7 +70,7 @@
     
     NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
     
-    if (![self.unConnectedDevices containsObject:peripheral] && ![self.connectedDevices containsObject:peripheral]) {
+    if (![self.unConnectedDevices containsObject:peripheral] && self.discoveredPeripheral != peripheral) {
         
         [self.unConnectedDevices addObject:peripheral];
         
@@ -104,17 +104,15 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
     NSLog(@"Peripheral Connected");
-    
-    if (![self.connectedDevices containsObject:peripheral]) {
-        for (CBPeripheral *per in self.connectedDevices) {
-            [self.centralManager cancelPeripheralConnection:per];
-        }
-        
-        [self.connectedDevices removeAllObjects];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 
-        [self.connectedDevices addObject:peripheral];
-        
+    self.discoveredPeripheral = peripheral;
+    
+    if ([self.unConnectedDevices containsObject:peripheral]) {
+        [self.unConnectedDevices removeObject:peripheral];
     }
+    
+    [self.tableView reloadData];
     
     // Stop scanning
     [self.centralManager stopScan];
@@ -187,7 +185,10 @@
     }
     
     NSString *stringFromData = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",characteristic.value);
+
+    
+    NSLog(@"%%@:  %@",stringFromData,characteristic.value);
+    
     // Have we got everything we need?
     if ([stringFromData isEqualToString:@"EOM"]) {
         
@@ -247,12 +248,10 @@
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"Peripheral Disconnected");
-    //self.discoveredPeripheral = nil;
-    if ([self.connectedDevices containsObject:peripheral]) {
-        
-        [self.connectedDevices removeObject:peripheral];
-        
+    if (self.discoveredPeripheral == peripheral) {
+        self.discoveredPeripheral = nil;
     }
+
     // We're disconnected, so start scanning again
     [self scan];
     

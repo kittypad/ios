@@ -24,7 +24,7 @@ UITableViewDelegate
 
 
 @property (nonatomic, strong) UITableView     *tableView;
-@property (nonatomic, strong) NSMutableArray  *connectedDevices;
+
 @property (nonatomic, strong) NSMutableArray  *unConnectedDevices;
 
 @end

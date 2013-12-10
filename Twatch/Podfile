@@ -8,5 +8,7 @@ pod 'GTTableViewController'
 
 pod 'SDWebImage'
 
+pod 'MBProgressHUD', '~> 0.8'
+
 end
 

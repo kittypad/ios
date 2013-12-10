@@ -9,8 +9,10 @@
 #import "ConnectionViewController.h"
 #import "ConnectionCell.h"
 #import "ConnectionViewController+CentralManager.h"
+#import "MBProgressHUD.h"
 
 @interface ConnectionViewController ()
+
 
 
 @end
@@ -24,8 +26,7 @@ static  NSString *cellId = @"connectin cell identifier";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.connectedDevices = [[NSMutableArray alloc] initWithObjects:@"test1" ,nil];
-        self.unConnectedDevices = [[NSMutableArray alloc] initWithObjects:@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test5",@"test6" ,nil];
+        self.unConnectedDevices = [[NSMutableArray alloc] init];
         
         // Start up the CBCentralManager
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
@@ -61,6 +62,7 @@ static  NSString *cellId = @"connectin cell identifier";
     [scanButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [scanButton addTarget:self action:@selector(startScan:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:scanButton];
+    
 }
 
 - (void)startScan:(UIButton *)btn
@@ -75,12 +77,6 @@ static  NSString *cellId = @"connectin cell identifier";
     }
     
     btn.selected = !btn.selected;
-}
-
-- (CBPeripheral *)discoveredPeripheral
-{
-    if (self.connectedDevices.count == 0) return nil;
-    return [self.connectedDevices lastObject];
 }
 
 - (void)didReceiveMemoryWarning
@@ -106,7 +102,7 @@ static  NSString *cellId = @"connectin cell identifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return self.connectedDevices.count;
+        return (NSInteger)(self.discoveredPeripheral != nil);
     }else{
         return self.unConnectedDevices.count;
     }
@@ -117,26 +113,15 @@ static  NSString *cellId = @"connectin cell identifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    NSString *title = nil;
     if (indexPath.section == 0) {
-        
-        NSString *title = nil;
-        id item = self.connectedDevices[indexPath.row];
-        if ([item isKindOfClass:[CBPeripheral class]]) {
-            title = [NSString stringWithFormat:@"%@:%@", [(CBPeripheral *)item  name], [(CBPeripheral *)item  identifier]];
-        }else{
-            title = item;
-        }
+        title = [NSString stringWithFormat:@"设备 %@: RSSI %@", self.discoveredPeripheral.name, self.discoveredPeripheral.RSSI];
 
         [(ConnectionCell *)cell setCellSelected:YES title:title];
     }
     else{
-        NSString *title = nil;
         id item = self.unConnectedDevices[indexPath.row];
-        if ([item isKindOfClass:[CBPeripheral class]]) {
-            title = [NSString stringWithFormat:@"%@:%@", [(CBPeripheral *)item  name], [(CBPeripheral *)item  identifier]];
-        }else{
-            title = item;
-        }
+        title = [NSString stringWithFormat:@"设备 %@: RSSI %@", [(CBPeripheral *)item  name], [(CBPeripheral *)item  RSSI]];
         
         [(ConnectionCell *)cell setCellSelected:NO title:title];
     }
@@ -147,30 +132,13 @@ static  NSString *cellId = @"connectin cell identifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        id item = self.connectedDevices[indexPath.row];
-        if ([item isKindOfClass:[CBPeripheral class]]) {
-            [self.centralManager cancelPeripheralConnection:item];
-        }
-        else{
-            [self.connectedDevices removeObjectAtIndex:indexPath.row];
-            
-            [self.unConnectedDevices insertObject:item atIndex:0];
-        }
+        [self.centralManager cancelPeripheralConnection:self.discoveredPeripheral];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
     else{
         id item = self.unConnectedDevices[indexPath.row];
-        if ([item isKindOfClass:[CBPeripheral class]]) {
-            [self.centralManager connectPeripheral:item options:nil];
-        }else{
-            [self.unConnectedDevices removeObjectAtIndex:indexPath.row];
-            
-            for (NSString *str in self.connectedDevices) {
-                [self.connectedDevices removeObject:str];
-                [self.unConnectedDevices addObject:str];
-            }
-            
-            [self.connectedDevices insertObject:item atIndex:0];
-        }
+        [self.centralManager connectPeripheral:item options:nil];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
     
     [tableView reloadData];
