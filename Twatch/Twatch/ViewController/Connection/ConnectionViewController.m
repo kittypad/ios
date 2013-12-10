@@ -25,7 +25,7 @@ static  NSString *cellId = @"connectin cell identifier";
     if (self) {
         // Custom initialization
         self.connectedDevices = [[NSMutableArray alloc] initWithObjects:@"test1" ,nil];
-        self.unConnectedDevices = [[NSMutableArray alloc] initWithObjects:@"test4",@"test5",@"test6" ,nil];
+        self.unConnectedDevices = [[NSMutableArray alloc] initWithObjects:@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test4",@"test5",@"test6" ,nil];
         
         // Start up the CBCentralManager
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
@@ -43,7 +43,7 @@ static  NSString *cellId = @"connectin cell identifier";
     CGRect frame = CGRectChangeY(self.view.frame, self.yOffset);
     frame = CGRectChangeHeight(frame, self.height);
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset, CGRectGetWidth(self.view.frame), self.height-50) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset, CGRectGetWidth(self.view.frame), IS_IPHONE_5 ? self.height-70-10 : self.height-170) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorColor = [UIColor clearColor];
@@ -55,7 +55,7 @@ static  NSString *cellId = @"connectin cell identifier";
     
     UIButton *scanButton = [UIButton buttonWithType:UIButtonTypeCustom];
     scanButton.backgroundColor = RGB(116, 198, 250, 1);
-    scanButton.frame = CGRectMake(9, CGRectGetMaxY(tableView.frame), CGRectGetWidth(self.view.frame) - 18, 40);
+    scanButton.frame = CGRectMake(9, CGRectGetMaxY(tableView.frame)+20, CGRectGetWidth(self.view.frame) - 18, 40);
     [scanButton setTitle:@"扫  描" forState:UIControlStateNormal];
     [scanButton setTitle:@"正  在  扫  描" forState:UIControlStateSelected];
     [scanButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
