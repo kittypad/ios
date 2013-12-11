@@ -17,6 +17,8 @@
 #define WatchStyleStatus  @"watch style saved in local "
 #define WatchStyleStatusChangeNotification  @"watch style change notification"
 
+#define kDownloadAppNotification @"DownloadAppNotification"
+
 #define Watch_Height     320.0
 #define Watch_Width      240.0
 

@@ -18,6 +18,8 @@
     NSMutableArray *_downloadedArray;
 }
 
+- (void)_downloadApp:(NSNotification *)notification;
+
 @end
 
 @implementation DownloadManagerViewController
@@ -43,12 +45,32 @@
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView setAllowsSelection:NO];
     self.tableView.backgroundColor = [UIColor colorWithHex:@"f4f9ff"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_downloadApp:) name:kDownloadAppNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Private
+
+- (void)_downloadApp:(NSNotification *)notification
+{
+    NSLog(@"notice");
+    NSDictionary *userInfo = notification.userInfo;
+    if ([userInfo[@"name"] isEqualToString:@"download"]) {
+        [_downloadingArray addObject:notification.userInfo[@"obj"]];
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -117,11 +139,16 @@
     
     if (0 == [indexPath section]) {
         static NSString *DefaultCellIdentifier = @"DownloadingCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DefaultCellIdentifier];
+        DownloadObjectCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
+        if (!downloadCell) {
+            downloadCell = [[DownloadObjectCell alloc] initDownlodingWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DefaultCellIdentifier];
         }
         
+        DownloadObject *obj = [_downloadingArray objectAtIndex:[indexPath row]];
+        
+        [downloadCell configCell:obj];
+        
+        cell = downloadCell;
     }
     else if (1 == [indexPath section]) {
         

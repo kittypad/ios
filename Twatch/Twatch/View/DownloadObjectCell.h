@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "DownloadObject.h"
+#import "ProgressBarView.h"
 
 @interface DownloadObjectCell : UITableViewCell
 {
     UIImageView *_stateImgView;
     UILabel *_stateLable;
+    
+    BOOL _isDownloading;
 }
 
 @property (nonatomic, strong) UIControl *stateButton;
@@ -20,6 +23,10 @@
 @property (nonatomic, strong) UIImageView *iconView;
 
 @property (nonatomic, strong) UIView *lineView;
+
+@property (nonatomic, strong) ProgressBarView *progressBar;
+
+- (id)initDownlodingWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
 - (void)configCell:(DownloadObject *)obj lineHidden:(BOOL)hidden;
 

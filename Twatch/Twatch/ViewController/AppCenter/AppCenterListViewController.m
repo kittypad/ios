@@ -79,7 +79,7 @@
         case kNotDownload: {
             obj.state = [NSNumber numberWithInteger:kDownloading];
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-#warning notification
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadAppNotification object:nil userInfo:@{@"name": @"download", @"obj": obj}];
             break;
         }
         case kNotInstall: {

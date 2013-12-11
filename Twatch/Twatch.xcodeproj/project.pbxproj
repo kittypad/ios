@@ -57,6 +57,8 @@
 		42FBA9A81828E6CE0042C3E4 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */; };
 		CCE083E4A9414791949B5F8E /* libPods-Twatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D98DDA7A1B334C188155C672 /* libPods-Twatch.a */; };
 		D655FB6E1828C7F0009DBEA4 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D655FB6D1828C7F0009DBEA4 /* Resource.bundle */; };
+		D82F074D185814940024A259 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D82F074C185814940024A259 /* AFDownloadRequestOperation.m */; };
+		D82F0750185850210024A259 /* ProgressBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D82F074F185850210024A259 /* ProgressBarView.m */; };
 		D8A397561827677F0058221C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A397551827677F0058221C /* OpenGLES.framework */; };
 		D8A8D37C184F1721002FB1D1 /* DownloadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D37B184F1721002FB1D1 /* DownloadObject.m */; };
 		D8A8D37F184F2242002FB1D1 /* DownloadObjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D37E184F2242002FB1D1 /* DownloadObjectCell.m */; };
@@ -239,6 +241,10 @@
 		42FB2E4F184C2BA00061DAB6 /* HomeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeButton.m; sourceTree = "<group>"; };
 		42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		D655FB6D1828C7F0009DBEA4 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
+		D82F074B185814940024A259 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
+		D82F074C185814940024A259 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
+		D82F074E185850210024A259 /* ProgressBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressBarView.h; sourceTree = "<group>"; };
+		D82F074F185850210024A259 /* ProgressBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressBarView.m; sourceTree = "<group>"; };
 		D8A397551827677F0058221C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		D8A3975718276E150058221C /* TMColorMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMColorMatrix.h; sourceTree = "<group>"; };
 		D8A8D37A184F1721002FB1D1 /* DownloadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadObject.h; sourceTree = "<group>"; };
@@ -602,6 +608,16 @@
 			name = CameraImageHelper;
 			sourceTree = "<group>";
 		};
+		D82F074A185814940024A259 /* AFDownloadRequestOperation */ = {
+			isa = PBXGroup;
+			children = (
+				D82F074B185814940024A259 /* AFDownloadRequestOperation.h */,
+				D82F074C185814940024A259 /* AFDownloadRequestOperation.m */,
+			);
+			name = AFDownloadRequestOperation;
+			path = Twatch/AFDownloadRequestOperation;
+			sourceTree = SOURCE_ROOT;
+		};
 		D8C352361825FCE70061081E /* MMProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,6 +657,7 @@
 		DD1BFB9C180AC0FC0001C200 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				D82F074A185814940024A259 /* AFDownloadRequestOperation */,
 				42802A92184348C500B4112A /* FXLabel */,
 				D8C352361825FCE70061081E /* MMProgressHUD */,
 				0A21408D1824FD700091C924 /* UMSDK */,
@@ -1086,6 +1103,8 @@
 				42FB2E4F184C2BA00061DAB6 /* HomeButton.m */,
 				D8A8D37D184F2242002FB1D1 /* DownloadObjectCell.h */,
 				D8A8D37E184F2242002FB1D1 /* DownloadObjectCell.m */,
+				D82F074E185850210024A259 /* ProgressBarView.h */,
+				D82F074F185850210024A259 /* ProgressBarView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1246,6 +1265,7 @@
 				DD4815F718537F3500325B4C /* AllAppsView.m in Sources */,
 				DD4815C818537C4D00325B4C /* WatchVell.m in Sources */,
 				DD1BFBBC180AC0FC0001C200 /* PSTCollectionViewCell.m in Sources */,
+				D82F074D185814940024A259 /* AFDownloadRequestOperation.m in Sources */,
 				DD4815B518537C4D00325B4C /* ConnectionViewController.m in Sources */,
 				DD1BFBBE180AC0FC0001C200 /* PSTCollectionViewData.m in Sources */,
 				DD56A743182287410088AB49 /* FVImageSequence.m in Sources */,
@@ -1284,6 +1304,7 @@
 				DD4815EC18537E8300325B4C /* SettingViewController.m in Sources */,
 				42BBD88818079B7B0094E39D /* CommonAppsView.m in Sources */,
 				0ADAFAF41854F263001C0287 /* ToggleBase.m in Sources */,
+				D82F0750185850210024A259 /* ProgressBarView.m in Sources */,
 				42C676A718237B9600B8474D /* CameraImageHelper.m in Sources */,
 				DD4815C618537C4D00325B4C /* NotificationView.m in Sources */,
 				42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */,

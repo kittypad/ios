@@ -40,6 +40,22 @@
         [_stateButton addSubview:_stateLable];
         
         self.accessoryView = _stateButton;
+        
+        _isDownloading = NO;
+    }
+    return self;
+}
+
+- (id)initDownlodingWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [self initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _isDownloading = YES;
+        
+        _progressBar = [[ProgressBarView alloc] initWithFrame:CGRectMake(0.0, 0.0, 185.0, 8.0)];
+        _progressBar.backgroundColor = [UIColor colorWithHex:@"dcdcdc"];
+        _progressBar.progressBar.backgroundColor = [UIColor colorWithHex:@"0cb62f"];
+        [self addSubview:_progressBar];
     }
     return self;
 }
@@ -49,7 +65,13 @@
     [super layoutSubviews];
     self.iconView.frame = CGRectMake(20.0, 6.0, 33.0, 33.0);
     self.textLabel.frame = CGRectMake(61.0, 5.0, 150.0, 13.0);
-    self.detailTextLabel.frame = CGRectMake(61.0, 30.0, 150.0, 10.0);
+    if (_isDownloading) {
+        self.detailTextLabel.frame = CGRectMake(61.0, 21.0, 150.0, 10.0);
+        _progressBar.frame = CGRectMake(61.0, 33.0, 185.0, 7.0);
+    }
+    else {
+        self.detailTextLabel.frame = CGRectMake(61.0, 30.0, 150.0, 10.0);
+    }
     self.lineView.frame = CGRectMake(0.0, self.frame.size.height - 1.0, self.frame.size.width, 1.0);
 }
 
@@ -61,7 +83,7 @@
     
     CGFloat f = [obj.size floatValue]/1024.0;
     
-    if (f > 1024) {
+    if (f > 1024.0) {
         f /= 1024.0;
         self.detailTextLabel.text = [NSString stringWithFormat:@"%.2fMB", f];
     }
