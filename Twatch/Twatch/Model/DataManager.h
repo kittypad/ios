@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) NSMutableDictionary *downloadSearchDic;
 
-@property (nonatomic, strong) AFDownloadRequestOperation *requestOperation;
+//@property (nonatomic, strong) AFDownloadRequestOperation *requestOperation;
 
 + (DataManager *)sharedManager;
 
@@ -32,7 +32,10 @@
 - (void)addDownloadObject:(DownloadObject *)obj;
 
 //Network
-- (void)startDownloadFile;
+
+- (void)startAllDownloadingFile;
+
+- (void)startDownloadFile:(DownloadObject *)obj;
 
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
                                        page:(NSUInteger)page

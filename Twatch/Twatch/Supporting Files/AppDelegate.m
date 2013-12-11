@@ -13,6 +13,7 @@
 #import "WXApi.h"
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h>
+#import "DataManager.h"
 
 @implementation AppDelegate
 
@@ -32,6 +33,8 @@
     self.haveNewVersion = NO;
     [self checkVersion];
     [self prepareShareData];
+    
+    [[DataManager sharedManager] startAllDownloadingFile];
     
     return YES;
 }

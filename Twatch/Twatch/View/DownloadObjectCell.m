@@ -75,21 +75,34 @@
     self.lineView.frame = CGRectMake(0.0, self.frame.size.height - 1.0, self.frame.size.width, 1.0);
 }
 
+- (NSString *)transformByteToString:(CGFloat)bytes
+{
+    if (bytes<1024.0) {
+        return [NSString stringWithFormat:@"%.0fB", bytes];
+    }
+    
+    bytes /= 1024.0;
+    if (bytes >= 1024.0) {
+        bytes /= 1024.0;
+        return [NSString stringWithFormat:@"%.2fMB", bytes];
+    }
+    else {
+        return [NSString stringWithFormat:@"%.0fKB", bytes];
+    }
+}
+
+- (void)setReadBytes:(CGFloat)readBytes totalBytes:(CGFloat)totalBytes
+{
+    self.detailTextLabel.text = [NSString stringWithFormat:@"%@/%@", [self transformByteToString:readBytes], [self transformByteToString:totalBytes]];
+}
+
 - (void)configCell:(DownloadObject *)obj
 {
     [self.iconView setImageWithURL:[NSURL URLWithString:obj.iconUrl]];
     
     self.textLabel.text = obj.name;
     
-    CGFloat f = [obj.size floatValue]/1024.0;
-    
-    if (f > 1024.0) {
-        f /= 1024.0;
-        self.detailTextLabel.text = [NSString stringWithFormat:@"%.2fMB", f];
-    }
-    else {
-        self.detailTextLabel.text = [NSString stringWithFormat:@"%.2fKB", f];
-    }
+    self.detailTextLabel.text = [self transformByteToString:[obj.size floatValue]];
     
     switch ([obj.state integerValue]) {
         case kNotDownload: {

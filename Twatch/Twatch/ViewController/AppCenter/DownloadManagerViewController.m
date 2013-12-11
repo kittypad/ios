@@ -18,7 +18,13 @@
     NSMutableArray *_downloadedArray;
 }
 
+- (void)_stateButtonPressed:(id)sender;
+
 - (void)_downloadApp:(NSNotification *)notification;
+
+- (void)_downloadingProcessNotification:(NSNotification *)notification;
+
+- (void)_downloadingFinishNotification:(NSNotification *)notification;
 
 @end
 
@@ -46,6 +52,10 @@
     [self.tableView setAllowsSelection:NO];
     self.tableView.backgroundColor = [UIColor colorWithHex:@"f4f9ff"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_downloadingProcessNotification:) name:kDownloadingProcessNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_downloadingFinishNotification:) name:kDownloadFinishedNotification object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_downloadApp:) name:kDownloadAppNotification object:nil];
 }
 
@@ -61,7 +71,44 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma mark - Notification
+
+- (void)_downloadingProcessNotification:(NSNotification *)notification
+{
+    NSDictionary *dic = notification.userInfo;
+    DownloadObject *obj = dic[@"obj"];
+    NSUInteger row = [_downloadingArray indexOfObject:obj];
+    if (row != NSNotFound) {
+        CGFloat readFileBytes = [dic[@"readFileBytes"] floatValue];
+        CGFloat totalFileBytes = [dic[@"totalFileBytes"] floatValue];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        DownloadObjectCell *cell = (DownloadObjectCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        cell.progressBar.progress = readFileBytes/totalFileBytes;
+        [cell setReadBytes:readFileBytes totalBytes:totalFileBytes];
+    }
+}
+
+- (void)_downloadingFinishNotification:(NSNotification *)notification
+{
+    [self.tableView reloadData];
+}
+
 #pragma mark - Private
+
+- (void)_stateButtonPressed:(id)sender
+{
+    int row = [sender tag];
+    DownloadObject *obj = [_downloadedArray objectAtIndex:row];
+    switch ([obj.state integerValue]) {
+        case kNotInstall: {
+            obj.state = [NSNumber numberWithInteger:kInstalled];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
+            break;
+        }
+        default:
+            break;
+    }
+}
 
 - (void)_downloadApp:(NSNotification *)notification
 {
@@ -138,15 +185,19 @@
     UITableViewCell *cell = nil;
     
     if (0 == [indexPath section]) {
+        DownloadObject *obj = [_downloadingArray objectAtIndex:[indexPath row]];
+        
         static NSString *DefaultCellIdentifier = @"DownloadingCell";
         DownloadObjectCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
         if (!downloadCell) {
             downloadCell = [[DownloadObjectCell alloc] initDownlodingWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DefaultCellIdentifier];
         }
         
-        DownloadObject *obj = [_downloadingArray objectAtIndex:[indexPath row]];
-        
         [downloadCell configCell:obj];
+        
+        NSString *fileName = [[NSURL URLWithString:obj.apkUrl] lastPathComponent];
+        NSString *path = [NSString pathWithComponents:[NSArray arrayWithObjects:[AFDownloadRequestOperation cacheFolder], fileName, nil]];
+        [downloadCell setReadBytes:[obj fileSizeAtPath:path] totalBytes:[obj.size floatValue]];
         
         cell = downloadCell;
     }
@@ -156,11 +207,14 @@
         DownloadObjectCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:DownCellIdentifier];
         if (!downloadCell) {
             downloadCell = [[DownloadObjectCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DownCellIdentifier];
+            [downloadCell.stateButton addTarget:self action:@selector(_stateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
         
         DownloadObject *obj = [_downloadedArray objectAtIndex:[indexPath row]];
         
         [downloadCell configCell:obj];
+        
+        downloadCell.stateButton.tag = [indexPath row];
         
         cell = downloadCell;
     }

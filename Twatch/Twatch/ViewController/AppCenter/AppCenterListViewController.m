@@ -27,6 +27,8 @@
 
 - (void)_loadNetworking;
 
+- (void)_downloadingFinishNotification:(NSNotification *)notification;
+
 @end
 
 @implementation AppCenterListViewController
@@ -54,6 +56,14 @@
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView setAllowsSelection:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_downloadingFinishNotification:) name:kDownloadFinishedNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,6 +76,18 @@
 {
     if (_array.count == 0) {
         [self _loadNetworking];
+    }
+}
+
+#pragma mark - Notification
+
+- (void)_downloadingFinishNotification:(NSNotification *)notification
+{
+    DownloadObject *obj = notification.userInfo[@"obj"];
+    NSUInteger row = [_array indexOfObject:obj];
+    if (row != NSNotFound) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
@@ -83,7 +105,8 @@
             break;
         }
         case kNotInstall: {
-            
+            obj.state = [NSNumber numberWithInteger:kInstalled];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
             break;
         }
         default:

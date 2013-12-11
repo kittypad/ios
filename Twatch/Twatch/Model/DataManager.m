@@ -43,6 +43,8 @@
         NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         _downloadFilePath = [Path stringByAppendingPathComponent:@"download.dat"];
         
+        [_manager.operationQueue setMaxConcurrentOperationCount:3];
+        
         _downloadSearchDic = [[NSMutableDictionary alloc] init];
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:_downloadFilePath]) {
@@ -96,75 +98,106 @@
         NSMutableArray *array = _downloadDic[AppDownloadingArray];
         [array addObject:obj];
         [self saveDownloadDic];
-        [self startDownloadFile];
+        [self startDownloadFile:obj];
     }
 }
 
 #pragma mark - Networking
 
-- (void)startDownloadFile
+- (void)startAllDownloadingFile
 {
-    if (_requestOperation) {
+    UIApplication *application = [UIApplication sharedApplication];
+    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+        [_manager.operationQueue.operations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+            AFDownloadRequestOperation *operation = obj;
+            [operation pause];
+        }];
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+    
+    // Start the long-running task and return immediately.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __block NSMutableArray *downloadingArray = _downloadDic[AppDownloadingArray];
+        __block NSMutableArray *downloadedArray = _downloadDic[AppDownloadedArray];
         
-    }
-    else {
-        NSMutableArray *array = _downloadDic[AppDownloadingArray];
-        if (array.count > 0) {
-            UIApplication *application = [UIApplication sharedApplication];
-            __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
-                // Clean up any unfinished task business by marking where you
-                // stopped or ending the task outright.
-                [_requestOperation pause];
-                [application endBackgroundTask:bgTask];
-                bgTask = UIBackgroundTaskInvalid;
+        for (int i = 0; i < downloadingArray.count; i++) {
+            DownloadObject *obj = [downloadingArray objectAtIndex:i];
+            NSURL *url = [NSURL URLWithString:obj.apkUrl];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+            
+            AFDownloadRequestOperation *requestOperation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:[AFDownloadRequestOperation cacheFolder] shouldResume:YES];
+            
+            [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSLog(@"Successfully downloaded file");
+                [downloadingArray removeObject:obj];
+                obj.state = [NSNumber numberWithInt:kNotInstall];
+                [downloadedArray addObject:obj];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
             }];
             
-            // Start the long-running task and return immediately.
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                // Do the work associated with the task, preferably in chunks.
-                // your code
-                DownloadObject *obj = [array objectAtIndex:0];
-                NSURL *url = [NSURL URLWithString:obj.apkUrl];
-                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-                
-                _requestOperation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:[AFDownloadRequestOperation cacheFolder] shouldResume:YES];
-                
-                __block NSMutableArray *downloadingArray = array;
-                __block NSMutableArray *downloadedArray = _downloadDic[AppDownloadedArray];
-                __block DataManager *weakSelf = self;
-                [_requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    NSLog(@"Successfully downloaded file");
-                    [downloadingArray removeObject:obj];
-                    obj.state = [NSNumber numberWithInt:kNotInstall];
-                    [downloadedArray addObject:obj];
-                    weakSelf.requestOperation = nil;
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"Error: %@", error);
-                }];
-                
-                [_requestOperation setProgressiveDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
-                    float percentDone = totalBytesReadForFile/(float)totalBytesExpectedToReadForFile;
-                    
-//                    self.progressView.progress = percentDone;
-//                    self.progressLabel.text = [NSString stringWithFormat:@"%.0f%%",percentDone*100];
-//                    
-//                    self.currentSizeLabel.text = [NSString stringWithFormat:@"CUR : %lli M",totalBytesReadForFile/1024/1024];
-//                    self.totalSizeLabel.text = [NSString stringWithFormat:@"TOTAL : %lli M",totalBytesExpectedToReadForFile/1024/1024];
-                    
-                    NSLog(@"------%f",percentDone);
-                    NSLog(@"Operation%i: bytesRead: %d", 1, bytesRead);
-                    NSLog(@"Operation%i: totalBytesRead: %lld", 1, totalBytesRead);
-                    NSLog(@"Operation%i: totalBytesExpected: %lld", 1, totalBytesExpected);
-                    NSLog(@"Operation%i: totalBytesReadForFile: %lld", 1, totalBytesReadForFile);
-                    NSLog(@"Operation%i: totalBytesExpectedToReadForFile: %lld", 1, totalBytesExpectedToReadForFile);
-                }];
-                [_requestOperation start];
-                
-                NSLog(@" %f",application.backgroundTimeRemaining);
-                [application endBackgroundTask:bgTask];
-                bgTask = UIBackgroundTaskInvalid;  
-            });
+            [requestOperation setProgressiveDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+                NSDictionary *dic = @{@"readFileBytes": [NSNumber numberWithLongLong:totalBytesReadForFile],
+                                      @"totalFileBytes": [NSNumber numberWithLongLong:totalBytesExpectedToReadForFile],
+                                      @"obj": obj};
+                [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadingProcessNotification object:nil userInfo:dic];
+            }];
+            [_manager.operationQueue addOperation:requestOperation];
         }
+        
+        NSLog(@" %f",application.backgroundTimeRemaining);
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    });
+}
+
+- (void)startDownloadFile:(DownloadObject *)obj
+{
+    NSMutableArray *array = _downloadDic[AppDownloadingArray];
+    if (array.count > 0) {
+        __block AFDownloadRequestOperation *requestOperation = nil;
+        UIApplication *application = [UIApplication sharedApplication];
+        __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+            if (requestOperation && ![requestOperation isFinished]) {
+                [requestOperation pause];
+            }
+            [application endBackgroundTask:bgTask];
+            bgTask = UIBackgroundTaskInvalid;
+        }];
+        
+        // Start the long-running task and return immediately.
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSURL *url = [NSURL URLWithString:obj.apkUrl];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+            
+            requestOperation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:[AFDownloadRequestOperation cacheFolder] shouldResume:YES];
+            
+            __block NSMutableArray *downloadingArray = array;
+            __block NSMutableArray *downloadedArray = _downloadDic[AppDownloadedArray];
+            [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSLog(@"Successfully downloaded file");
+                [downloadingArray removeObject:obj];
+                obj.state = [NSNumber numberWithInt:kNotInstall];
+                [downloadedArray addObject:obj];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+            }];
+            
+            [requestOperation setProgressiveDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+                NSDictionary *dic = @{@"readFileBytes": [NSNumber numberWithLongLong:totalBytesReadForFile],
+                                      @"totalFileBytes": [NSNumber numberWithLongLong:totalBytesExpectedToReadForFile],
+                                      @"obj": obj};
+                [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadingProcessNotification object:nil userInfo:dic];
+            }];
+            [_manager.operationQueue addOperation:requestOperation];
+            
+            NSLog(@" %f",application.backgroundTimeRemaining);
+            [application endBackgroundTask:bgTask];
+            bgTask = UIBackgroundTaskInvalid;
+        });
     }
 }
 

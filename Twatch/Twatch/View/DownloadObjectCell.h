@@ -32,4 +32,6 @@
 
 - (void)configCell:(DownloadObject *)obj;
 
+- (void)setReadBytes:(CGFloat)readBytes totalBytes:(CGFloat)totalBytes;
+
 @end

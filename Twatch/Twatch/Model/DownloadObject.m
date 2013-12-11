@@ -49,4 +49,18 @@
     [coder encodeObject:self.state forKey:kState];
 }
 
+- (unsigned long long)fileSizeAtPath:(NSString *)path {
+    signed long long fileSize = 0;
+    NSFileManager *fileManager = [NSFileManager defaultManager]; // not thread safe
+    
+    if ([fileManager fileExistsAtPath:path]) {
+        NSError *error = nil;
+        NSDictionary *fileDict = [fileManager attributesOfItemAtPath:path error:&error];
+        if (!error && fileDict) {
+            fileSize = [fileDict fileSize];
+        }
+    }
+    return fileSize;
+}
+
 @end

@@ -35,4 +35,6 @@
 @property (nonatomic, retain) NSString * ver;
 @property (nonatomic, retain) NSNumber * state;
 
+- (unsigned long long)fileSizeAtPath:(NSString *)path;
+
 @end
