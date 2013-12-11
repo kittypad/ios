@@ -65,7 +65,6 @@
 
 - (void)_downloadApp:(NSNotification *)notification
 {
-    NSLog(@"notice");
     NSDictionary *userInfo = notification.userInfo;
     if ([userInfo[@"name"] isEqualToString:@"download"]) {
         [[DataManager sharedManager] addDownloadObject:notification.userInfo[@"obj"]];
@@ -81,6 +80,7 @@
     UIView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier];
     if (!headerView) {
         headerView = [[UIView alloc] init];
+        headerView.backgroundColor = [UIColor colorWithHex:@"f4f9ff"];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 0.0, 200.0, kHeaderHight)];
         label.textColor = [UIColor colorWithHex:@"8da8bf"];

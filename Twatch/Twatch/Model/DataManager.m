@@ -96,10 +96,77 @@
         NSMutableArray *array = _downloadDic[AppDownloadingArray];
         [array addObject:obj];
         [self saveDownloadDic];
+        [self startDownloadFile];
     }
 }
 
 #pragma mark - Networking
+
+- (void)startDownloadFile
+{
+    if (_requestOperation) {
+        
+    }
+    else {
+        NSMutableArray *array = _downloadDic[AppDownloadingArray];
+        if (array.count > 0) {
+            UIApplication *application = [UIApplication sharedApplication];
+            __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+                // Clean up any unfinished task business by marking where you
+                // stopped or ending the task outright.
+                [_requestOperation pause];
+                [application endBackgroundTask:bgTask];
+                bgTask = UIBackgroundTaskInvalid;
+            }];
+            
+            // Start the long-running task and return immediately.
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                // Do the work associated with the task, preferably in chunks.
+                // your code
+                DownloadObject *obj = [array objectAtIndex:0];
+                NSURL *url = [NSURL URLWithString:obj.apkUrl];
+                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+                
+                _requestOperation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:[AFDownloadRequestOperation cacheFolder] shouldResume:YES];
+                
+                __block NSMutableArray *downloadingArray = array;
+                __block NSMutableArray *downloadedArray = _downloadDic[AppDownloadedArray];
+                __block DataManager *weakSelf = self;
+                [_requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSLog(@"Successfully downloaded file");
+                    [downloadingArray removeObject:obj];
+                    obj.state = [NSNumber numberWithInt:kNotInstall];
+                    [downloadedArray addObject:obj];
+                    weakSelf.requestOperation = nil;
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"Error: %@", error);
+                }];
+                
+                [_requestOperation setProgressiveDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+                    float percentDone = totalBytesReadForFile/(float)totalBytesExpectedToReadForFile;
+                    
+//                    self.progressView.progress = percentDone;
+//                    self.progressLabel.text = [NSString stringWithFormat:@"%.0f%%",percentDone*100];
+//                    
+//                    self.currentSizeLabel.text = [NSString stringWithFormat:@"CUR : %lli M",totalBytesReadForFile/1024/1024];
+//                    self.totalSizeLabel.text = [NSString stringWithFormat:@"TOTAL : %lli M",totalBytesExpectedToReadForFile/1024/1024];
+                    
+                    NSLog(@"------%f",percentDone);
+                    NSLog(@"Operation%i: bytesRead: %d", 1, bytesRead);
+                    NSLog(@"Operation%i: totalBytesRead: %lld", 1, totalBytesRead);
+                    NSLog(@"Operation%i: totalBytesExpected: %lld", 1, totalBytesExpected);
+                    NSLog(@"Operation%i: totalBytesReadForFile: %lld", 1, totalBytesReadForFile);
+                    NSLog(@"Operation%i: totalBytesExpectedToReadForFile: %lld", 1, totalBytesExpectedToReadForFile);
+                }];
+                [_requestOperation start];
+                
+                NSLog(@" %f",application.backgroundTimeRemaining);
+                [application endBackgroundTask:bgTask];
+                bgTask = UIBackgroundTaskInvalid;  
+            });
+        }
+    }
+}
 
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
                                        page:(NSUInteger)page

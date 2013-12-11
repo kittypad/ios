@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DownloadObject.h"
+#import "AFDownloadRequestOperation.h"
 
 #define AppDownloadingArray     @"downloading"
 #define AppDownloadedArray      @"downloaded"
@@ -20,6 +21,7 @@
 
 @property (nonatomic, strong) NSMutableDictionary *downloadSearchDic;
 
+@property (nonatomic, strong) AFDownloadRequestOperation *requestOperation;
 
 + (DataManager *)sharedManager;
 
@@ -30,6 +32,8 @@
 - (void)addDownloadObject:(DownloadObject *)obj;
 
 //Network
+- (void)startDownloadFile;
+
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
                                        page:(NSUInteger)page
                                     success:(void (^)(NSArray *array))success

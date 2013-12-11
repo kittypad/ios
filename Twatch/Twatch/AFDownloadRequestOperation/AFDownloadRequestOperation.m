@@ -71,15 +71,6 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(NSInteger bytes
     return cacheFolder;
 }
 
-// calculates the MD5 hash of a key
-+ (NSString *)md5StringForString:(NSString *)string {
-    const char *str = [string UTF8String];
-    unsigned char r[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(str, strlen(str), r);
-    return [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-            r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
-}
-
 #pragma mark - Private
 
 - (unsigned long long)fileSizeForPath:(NSString *)path {
@@ -168,8 +159,8 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(NSInteger bytes
 - (NSString *)tempPath {
     NSString *tempPath = nil;
     if (self.targetPath) {
-        NSString *md5URLString = [[self class] md5StringForString:self.targetPath];
-        tempPath = [[[self class] cacheFolder] stringByAppendingPathComponent:md5URLString];
+        NSString *fileName = [self.request.URL lastPathComponent];
+        tempPath = [[[self class] cacheFolder] stringByAppendingPathComponent:fileName];
     }
     return tempPath;
 }
@@ -180,47 +171,6 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(NSInteger bytes
 }
 
 #pragma mark - AFURLRequestOperation
-
-//- (void)setCompletionBlockWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-//                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-//{
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Warc-retain-cycles"
-//    self.completionBlock = ^ {
-//        NSError *localError = nil;
-//        if([self isCancelled]) {
-//            // should we clean up? most likely we don't.
-//            if (self.isDeletingTempFileOnCancel) {
-//                [self deleteTempFileWithError:&localError];
-//                if (localError) {
-//                    _fileError = localError;
-//                }
-//            }
-//            return;
-//
-//        // loss of network connections = error set, but not cancel
-//        }else if(!self.error) {
-//            // move file to final position and capture error        
-//            @synchronized(self) {
-//                [[NSFileManager new] moveItemAtPath:[self tempPath] toPath:_targetPath error:&localError];
-//                if (localError) {
-//                    _fileError = localError;
-//                }
-//            }
-//        }
-//        
-//        if (self.error) {
-//            dispatch_async(self.failureCallbackQueue ?: dispatch_get_main_queue(), ^{
-//                failure(self, self.error);
-//            });
-//        } else {
-//            dispatch_async(self.successCallbackQueue ?: dispatch_get_main_queue(), ^{
-//                success(self, _targetPath);
-//            });
-//        }
-//    };
-//#pragma clang diagnostic pop
-//}
 
 - (NSError *)error {
     if (_fileError) {

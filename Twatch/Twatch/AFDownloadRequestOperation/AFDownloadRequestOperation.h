@@ -97,4 +97,6 @@
  */
 - (void)setProgressiveDownloadProgressBlock:(void (^)(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile))block;
 
++ (NSString *)cacheFolder;
+
 @end
