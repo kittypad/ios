@@ -89,6 +89,16 @@
     return [NSKeyedArchiver archiveRootObject:_downloadDic toFile:_downloadFilePath];
 }
 
+- (void)addDownloadObject:(DownloadObject *)obj
+{
+    if (!_downloadSearchDic[obj.apkUrl]) {
+        _downloadSearchDic[obj.apkUrl] = obj;
+        NSMutableArray *array = _downloadDic[AppDownloadingArray];
+        [array addObject:obj];
+        [self saveDownloadDic];
+    }
+}
+
 #pragma mark - Networking
 
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type

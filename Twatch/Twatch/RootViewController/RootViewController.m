@@ -111,9 +111,9 @@
         aController = [[NSClassFromString(className) alloc] init];
     }
     
-    [self.navigationController pushViewController:aController animated:YES];
-
     ((AppCenterViewController *)aController).backName = self.titleSourceArray[indexPath.row];
+    
+    [self.navigationController pushViewController:aController animated:YES];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath

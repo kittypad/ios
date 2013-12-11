@@ -68,7 +68,7 @@
     NSLog(@"notice");
     NSDictionary *userInfo = notification.userInfo;
     if ([userInfo[@"name"] isEqualToString:@"download"]) {
-        [_downloadingArray addObject:notification.userInfo[@"obj"]];
+        [[DataManager sharedManager] addDownloadObject:notification.userInfo[@"obj"]];
     }
     [self.tableView reloadData];
 }

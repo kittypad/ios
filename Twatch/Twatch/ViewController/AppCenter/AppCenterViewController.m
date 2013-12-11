@@ -57,23 +57,16 @@
     
     self.view.backgroundColor = [UIColor colorWithHex:@"eef7fe"];
     
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 60.0)];
-    topView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:topView];
-    
-    HomeButton *homeButton = [[HomeButton alloc] initWithFrame:CGRectMake(22.0, 20.0, 80.0, 40.0)];
-    [homeButton addTarget:self action:@selector(_homeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [topView addSubview:homeButton];
-    
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 59.0, 320.0, 1.0)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0, IS_IOS7 ? 63 :43, 320.0, 1.0)];
     lineView.backgroundColor = [UIColor colorWithHex:@"49acff"];
-    [topView addSubview:lineView];
+    [self.view addSubview:lineView];
     
-    lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 89.0, 320.0, 1.0)];
+    lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0, IS_IOS7 ? 93 :73, 320.0, 1.0)];
     lineView.backgroundColor = [UIColor colorWithHex:@"49acff"];
-    [topView addSubview:lineView];
+    [self.view addSubview:lineView];
     
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 90.0, 321.0, self.view.frame.size.height - 90.0)];
+    CGFloat y = IS_IOS7 ? 94 :74;
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, y, 321.0, self.view.frame.size.height - y)];
     _scrollView.contentSize = CGSizeMake(_scrollView.bounds.size.width*3, _scrollView.bounds.size.height);
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.delegate = self;
@@ -106,7 +99,7 @@
     
     _buttonArray = [[NSMutableArray alloc] initWithCapacity:3];
     
-    frame = CGRectMake(0.0, 60.0, 106.0, 30.0);
+    frame = CGRectMake(0.0, IS_IOS7 ? 64 :44, 106.0, 30.0);
     for (int i = 0; i < 3; i++) {
         UIButton *button = [[UIButton alloc] initWithFrame:frame];
         [button setTitle:titleArray[i] forState:UIControlStateNormal];
@@ -120,7 +113,7 @@
         [_buttonArray addObject:button];
         frame.origin.x += frame.size.width;
         if (i < 2) {
-            CGRect f = CGRectMake(frame.origin.x, 69.0, 1.0, 12.0);
+            CGRect f = CGRectMake(frame.origin.x, IS_IOS7 ? 73 :53, 1.0, 12.0);
             UIView *lineView = [[UIView alloc] initWithFrame:f];
             lineView.backgroundColor = [UIColor colorWithHex:@"b2c9e6"];
             [self.view addSubview:lineView];
