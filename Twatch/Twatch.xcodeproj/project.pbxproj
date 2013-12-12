@@ -55,6 +55,7 @@
 		42F5EE1C184D796100708958 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE1B184D796100708958 /* DataManager.m */; };
 		42FB2E50184C2BA00061DAB6 /* HomeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E4F184C2BA00061DAB6 /* HomeButton.m */; };
 		42FBA9A81828E6CE0042C3E4 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */; };
+		42FD6B481859906F009FAA5A /* BGColorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FD6B471859906F009FAA5A /* BGColorButton.m */; };
 		CCE083E4A9414791949B5F8E /* libPods-Twatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D98DDA7A1B334C188155C672 /* libPods-Twatch.a */; };
 		D655FB6E1828C7F0009DBEA4 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D655FB6D1828C7F0009DBEA4 /* Resource.bundle */; };
 		D82F074D185814940024A259 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D82F074C185814940024A259 /* AFDownloadRequestOperation.m */; };
@@ -240,6 +241,8 @@
 		42FB2E4E184C2BA00061DAB6 /* HomeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeButton.h; sourceTree = "<group>"; };
 		42FB2E4F184C2BA00061DAB6 /* HomeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeButton.m; sourceTree = "<group>"; };
 		42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		42FD6B461859906F009FAA5A /* BGColorButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGColorButton.h; sourceTree = "<group>"; };
+		42FD6B471859906F009FAA5A /* BGColorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGColorButton.m; sourceTree = "<group>"; };
 		D655FB6D1828C7F0009DBEA4 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		D82F074B185814940024A259 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		D82F074C185814940024A259 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
@@ -1105,6 +1108,8 @@
 				D8A8D37E184F2242002FB1D1 /* DownloadObjectCell.m */,
 				D82F074E185850210024A259 /* ProgressBarView.h */,
 				D82F074F185850210024A259 /* ProgressBarView.m */,
+				42FD6B461859906F009FAA5A /* BGColorButton.h */,
+				42FD6B471859906F009FAA5A /* BGColorButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1323,6 +1328,7 @@
 				DD4815C218537C4D00325B4C /* SettingView.m in Sources */,
 				0ADAFAF61854F263001C0287 /* ToggleView.m in Sources */,
 				D8C352481825FCE70061081E /* MMHud.m in Sources */,
+				42FD6B481859906F009FAA5A /* BGColorButton.m in Sources */,
 				D8C3524D1825FCE70061081E /* MMProgressHUDViewController.m in Sources */,
 				DD1BFBBF180AC0FC0001C200 /* PSTCollectionViewFlowLayout.m in Sources */,
 				DD4815CC18537C4D00325B4C /* _360ViewController.m in Sources */,
