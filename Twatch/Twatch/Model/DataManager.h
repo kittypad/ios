@@ -31,6 +31,8 @@
 
 - (void)addDownloadObject:(DownloadObject *)obj;
 
+- (void)removeDownloadObject:(DownloadObject *)obj;
+
 //Network
 
 - (void)startAllDownloadingFile;

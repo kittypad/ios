@@ -100,6 +100,7 @@
     switch ([obj.state integerValue]) {
         case kNotDownload: {
             obj.state = [NSNumber numberWithInteger:kDownloading];
+            [[DataManager sharedManager] removeDownloadObject:obj];
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadAppNotification object:nil userInfo:@{@"name": @"download", @"obj": obj}];
             break;

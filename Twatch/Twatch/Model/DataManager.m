@@ -59,7 +59,9 @@
             array = _downloadDic[AppDownloadedArray];
             [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
                 DownloadObject *object = (DownloadObject *)obj;
-                _downloadSearchDic[object.apkUrl] = object;
+                if (!_downloadSearchDic[object.apkUrl]) {
+                    _downloadSearchDic[object.apkUrl] = object;
+                }
             }];
         }
         else {
@@ -99,6 +101,52 @@
         [array addObject:obj];
         [self saveDownloadDic];
         [self startDownloadFile:obj];
+    }
+}
+
+- (void)removeDownloadObject:(DownloadObject *)obj
+{
+    if (obj) {
+        [_downloadSearchDic removeObjectForKey:obj.apkUrl];
+        
+        for (AFHTTPRequestOperation *operation in _manager.operationQueue.operations) {
+            if ([operation.request.URL.absoluteString isEqualToString:obj.apkUrl]) {
+                AFDownloadRequestOperation *requestOperation = (AFDownloadRequestOperation *)operation;
+                [operation pause];
+                [operation cancel];
+                NSError *error;
+                [requestOperation deleteTempFileWithError:&error];
+                if (error) {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                }
+                break;
+            }
+        }
+        
+        NSMutableArray *downloadingArray =  _downloadDic[AppDownloadingArray];
+        for (DownloadObject *object in downloadingArray) {
+            if ([obj.apkUrl isEqualToString:[(DownloadObject *)object apkUrl]]) {
+                [downloadingArray removeObject:object];
+                return;
+            }
+        }
+        
+        NSMutableArray *downloadedArray =  _downloadDic[AppDownloadedArray];
+        for (DownloadObject *object in downloadedArray) {
+            if ([obj.apkUrl isEqualToString:[(DownloadObject *)object apkUrl]]) {
+                NSString *fileName = [[NSURL URLWithString:obj.apkUrl] lastPathComponent];
+                NSString *path = [NSString pathWithComponents:[NSArray arrayWithObjects:[AFDownloadRequestOperation cacheFolder], fileName, nil]];
+                if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                    NSError *error = nil;
+                    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+                    if (error) {
+                        NSLog(@"Error: %@", error.localizedDescription);
+                    }
+                }
+                [downloadingArray removeObject:object];
+                return;
+            }
+        }
     }
 }
 
