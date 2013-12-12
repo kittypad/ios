@@ -108,10 +108,10 @@
 {
     UIApplication *application = [UIApplication sharedApplication];
     __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
-        [_manager.operationQueue.operations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-            AFDownloadRequestOperation *operation = obj;
-            [operation pause];
-        }];
+//        [_manager.operationQueue.operations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+//            AFDownloadRequestOperation *operation = obj;
+//            [operation pause];
+//        }];
         [application endBackgroundTask:bgTask];
         bgTask = UIBackgroundTaskInvalid;
     }];
@@ -160,9 +160,9 @@
         __block AFDownloadRequestOperation *requestOperation = nil;
         UIApplication *application = [UIApplication sharedApplication];
         __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
-            if (requestOperation && ![requestOperation isFinished]) {
-                [requestOperation pause];
-            }
+//            if (requestOperation && ![requestOperation isFinished]) {
+//                [requestOperation pause];
+//            }
             [application endBackgroundTask:bgTask];
             bgTask = UIBackgroundTaskInvalid;
         }];

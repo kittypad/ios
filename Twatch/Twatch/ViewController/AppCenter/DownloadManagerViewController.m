@@ -50,7 +50,7 @@
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView setAllowsSelection:NO];
-    self.tableView.backgroundColor = [UIColor colorWithHex:@"f4f9ff"];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_downloadingProcessNotification:) name:kDownloadingProcessNotification object:nil];
     
