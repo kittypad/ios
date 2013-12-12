@@ -53,9 +53,10 @@
 		42C780A8182A410600DB47A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C780A6182A410600DB47A5 /* Default-568h@2x.png */; };
 		42C780A9182A410600DB47A5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C780A7182A410600DB47A5 /* Default@2x.png */; };
 		42F5EE1C184D796100708958 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE1B184D796100708958 /* DataManager.m */; };
-		42FB2E50184C2BA00061DAB6 /* HomeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FB2E4F184C2BA00061DAB6 /* HomeButton.m */; };
 		42FBA9A81828E6CE0042C3E4 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */; };
 		42FD6B481859906F009FAA5A /* BGColorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FD6B471859906F009FAA5A /* BGColorButton.m */; };
+		42FD6B4C18599820009FAA5A /* WatchStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FD6B4B18599820009FAA5A /* WatchStyleViewController.m */; };
+		42FD6B4F1859A6DC009FAA5A /* IconButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FD6B4E1859A6DC009FAA5A /* IconButton.m */; };
 		CCE083E4A9414791949B5F8E /* libPods-Twatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D98DDA7A1B334C188155C672 /* libPods-Twatch.a */; };
 		D655FB6E1828C7F0009DBEA4 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D655FB6D1828C7F0009DBEA4 /* Resource.bundle */; };
 		D82F074D185814940024A259 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D82F074C185814940024A259 /* AFDownloadRequestOperation.m */; };
@@ -123,7 +124,6 @@
 		DD4815D618537C4D00325B4C /* TryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815AB18537C4D00325B4C /* TryViewController.m */; };
 		DD4815D718537C4D00325B4C /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815AD18537C4D00325B4C /* ShareViewController.m */; };
 		DD4815D818537C4D00325B4C /* TryAdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815AF18537C4D00325B4C /* TryAdjustViewController.m */; };
-		DD4815D918537C4D00325B4C /* WatchStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815B118537C4D00325B4C /* WatchStyleViewController.m */; };
 		DD4815EA18537E8300325B4C /* HomeSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815DC18537E8300325B4C /* HomeSettingViewController.m */; };
 		DD4815EB18537E8300325B4C /* QRCodeManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815DE18537E8300325B4C /* QRCodeManagerViewController.m */; };
 		DD4815EC18537E8300325B4C /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815E018537E8300325B4C /* SettingViewController.m */; };
@@ -238,11 +238,13 @@
 		42C780A7182A410600DB47A5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		42F5EE1A184D796100708958 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		42F5EE1B184D796100708958 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
-		42FB2E4E184C2BA00061DAB6 /* HomeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeButton.h; sourceTree = "<group>"; };
-		42FB2E4F184C2BA00061DAB6 /* HomeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeButton.m; sourceTree = "<group>"; };
 		42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		42FD6B461859906F009FAA5A /* BGColorButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGColorButton.h; sourceTree = "<group>"; };
 		42FD6B471859906F009FAA5A /* BGColorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGColorButton.m; sourceTree = "<group>"; };
+		42FD6B4A18599820009FAA5A /* WatchStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchStyleViewController.h; sourceTree = "<group>"; };
+		42FD6B4B18599820009FAA5A /* WatchStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchStyleViewController.m; sourceTree = "<group>"; };
+		42FD6B4D1859A6DC009FAA5A /* IconButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconButton.h; sourceTree = "<group>"; };
+		42FD6B4E1859A6DC009FAA5A /* IconButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconButton.m; sourceTree = "<group>"; };
 		D655FB6D1828C7F0009DBEA4 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		D82F074B185814940024A259 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		D82F074C185814940024A259 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
@@ -374,8 +376,6 @@
 		DD4815AD18537C4D00325B4C /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		DD4815AE18537C4D00325B4C /* TryAdjustViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TryAdjustViewController.h; sourceTree = "<group>"; };
 		DD4815AF18537C4D00325B4C /* TryAdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TryAdjustViewController.m; sourceTree = "<group>"; };
-		DD4815B018537C4D00325B4C /* WatchStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchStyleViewController.h; sourceTree = "<group>"; };
-		DD4815B118537C4D00325B4C /* WatchStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchStyleViewController.m; sourceTree = "<group>"; };
 		DD4815DB18537E8300325B4C /* HomeSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSettingViewController.h; sourceTree = "<group>"; };
 		DD4815DC18537E8300325B4C /* HomeSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSettingViewController.m; sourceTree = "<group>"; };
 		DD4815DD18537E8300325B4C /* QRCodeManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeManagerViewController.h; sourceTree = "<group>"; };
@@ -609,6 +609,15 @@
 				42C676A618237B9600B8474D /* CameraImageHelper.m */,
 			);
 			name = CameraImageHelper;
+			sourceTree = "<group>";
+		};
+		42FD6B4918599820009FAA5A /* WatchStyle */ = {
+			isa = PBXGroup;
+			children = (
+				42FD6B4A18599820009FAA5A /* WatchStyleViewController.h */,
+				42FD6B4B18599820009FAA5A /* WatchStyleViewController.m */,
+			);
+			path = WatchStyle;
 			sourceTree = "<group>";
 		};
 		D82F074A185814940024A259 /* AFDownloadRequestOperation */ = {
@@ -1033,12 +1042,11 @@
 		DD56A711182143920088AB49 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				42FD6B4918599820009FAA5A /* WatchStyle */,
 				DD4815DA18537E8300325B4C /* Setting */,
 				DD4815E118537E8300325B4C /* AppCenter */,
 				DD48156018537C4C00325B4C /* Connection */,
 				DD48157618537C4C00325B4C /* Simuloator */,
-				DD4815B018537C4D00325B4C /* WatchStyleViewController.h */,
-				DD4815B118537C4D00325B4C /* WatchStyleViewController.m */,
 				DD4815E818537E8300325B4C /* ShoppingViewController.h */,
 				DD4815E918537E8300325B4C /* ShoppingViewController.m */,
 			);
@@ -1102,14 +1110,14 @@
 				0ADAFAE91854F263001C0287 /* BlockUIAlertView */,
 				0ADAFAEC1854F263001C0287 /* CustomSwitchView */,
 				42BBD88718079B7B0094E39D /* CommonAppsView.m */,
-				42FB2E4E184C2BA00061DAB6 /* HomeButton.h */,
-				42FB2E4F184C2BA00061DAB6 /* HomeButton.m */,
 				D8A8D37D184F2242002FB1D1 /* DownloadObjectCell.h */,
 				D8A8D37E184F2242002FB1D1 /* DownloadObjectCell.m */,
 				D82F074E185850210024A259 /* ProgressBarView.h */,
 				D82F074F185850210024A259 /* ProgressBarView.m */,
 				42FD6B461859906F009FAA5A /* BGColorButton.h */,
 				42FD6B471859906F009FAA5A /* BGColorButton.m */,
+				42FD6B4D1859A6DC009FAA5A /* IconButton.h */,
+				42FD6B4E1859A6DC009FAA5A /* IconButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1299,7 +1307,6 @@
 				42802A95184348C500B4112A /* FXLabel.m in Sources */,
 				DD4815B418537C4D00325B4C /* ConnectionViewController+CentralManager.m in Sources */,
 				D8C3524E1825FCE70061081E /* MMProgressHUDWindow.m in Sources */,
-				42FB2E50184C2BA00061DAB6 /* HomeButton.m in Sources */,
 				DD4815ED18537E8300325B4C /* AppCenterListViewController.m in Sources */,
 				DD56A79518229ADE0088AB49 /* AGShareCell.m in Sources */,
 				DD4815F918537F3500325B4C /* DialView.m in Sources */,
@@ -1315,7 +1322,6 @@
 				42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */,
 				DD4815C318537C4D00325B4C /* UIPlaceHolderTextView.m in Sources */,
 				D8C3524C1825FCE70061081E /* MMProgressHUDOverlayView.m in Sources */,
-				DD4815D918537C4D00325B4C /* WatchStyleViewController.m in Sources */,
 				DD48155A1853783800325B4C /* RootCell.m in Sources */,
 				DD1BFBC1180AC0FC0001C200 /* PSTCollectionViewLayout.m in Sources */,
 				DD4815C418537C4D00325B4C /* ShareCell.m in Sources */,
@@ -1344,7 +1350,9 @@
 				DD56A7281821448E0088AB49 /* TMNavigationController.m in Sources */,
 				DD4815BF18537C4D00325B4C /* SimulatorViewController+SettingView.m in Sources */,
 				DD4815C018537C4D00325B4C /* SimulatorViewController.m in Sources */,
+				42FD6B4C18599820009FAA5A /* WatchStyleViewController.m in Sources */,
 				DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */,
+				42FD6B4F1859A6DC009FAA5A /* IconButton.m in Sources */,
 				DD1BFBC5180AC0FC0001C200 /* PSTGridLayoutRow.m in Sources */,
 				DD247F8118126A8500D9E6D4 /* main.m in Sources */,
 				DD4815C518537C4D00325B4C /* NotificationCell.m in Sources */,
