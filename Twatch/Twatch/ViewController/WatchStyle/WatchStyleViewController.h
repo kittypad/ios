@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "NaviCommonViewController.h"
-@interface WatchStyleViewController : NaviCommonViewController
+@interface WatchStyleViewController : NaviCommonViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end

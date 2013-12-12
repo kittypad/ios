@@ -13,6 +13,9 @@
 #import "IconButton.h"
 
 @interface WatchStyleViewController ()
+{
+    UIImageView *_imageView;
+}
 
 - (void)_handleButtonPressed:(id)sender;
 
@@ -69,6 +72,10 @@
     [handleButton setBackgroundColor:[UIColor colorWithHex:@"1ca1f6"] forState:UIControlStateHighlighted];
     [handleButton addTarget:self action:@selector(_handleButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:handleButton];
+    
+    y = (self.view.frame.size.height + CGRectGetMaxY(cameraButton.frame) - 215.0)/2.0;
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100.0, y, 120.0, 160.0)];
+    [self.view addSubview:_imageView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,12 +93,30 @@
 
 - (void)_albumButtonPressed:(id)sender
 {
-    
+    UIImagePickerControllerSourceType type = UIImagePickerControllerSourceTypePhotoLibrary;
+    if ([UIImagePickerController isSourceTypeAvailable:type]) {
+        UIImagePickerController *vc = [[UIImagePickerController alloc] init];
+        vc.delegate = self;
+        vc.sourceType = type;
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 - (void)_cameraButtonPressed:(id)sender
 {
     
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (image == nil) {
+        image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    }
+    _imageView.image = image;
 }
 
 @end
