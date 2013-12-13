@@ -56,6 +56,7 @@
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView setAllowsSelection:NO];
+    self.view.backgroundColor = [UIColor colorWithHex:@"f2f7fd"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_downloadingFinishNotification:) name:kDownloadFinishedNotification object:nil];
 }
@@ -171,7 +172,7 @@
     if ([indexPath row] == [_array count]) {
         return 30.0;
     }
-    return 45.0;
+    return 51.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -219,12 +220,13 @@
         DownloadObjectCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:DownCellIdentifier];
         if (!downloadCell) {
             downloadCell = [[DownloadObjectCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DownCellIdentifier];
+            downloadCell.type = _type;
             [downloadCell.stateButton addTarget:self action:@selector(_stateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
         
         DownloadObject *obj = [_array objectAtIndex:[indexPath row]];
         
-        [downloadCell configCell:obj lineHidden:([indexPath row] == _array.count-1 && _isPageEnd)];
+        [downloadCell configCell:obj lineHidden:NO];
         
         downloadCell.stateButton.tag = [indexPath row];
         

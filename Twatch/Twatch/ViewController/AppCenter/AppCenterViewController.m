@@ -106,7 +106,7 @@
         [button setTitleColor:[UIColor colorWithHex:@"2197fa"] forState:UIControlStateHighlighted];
         [button setTitleColor:[UIColor colorWithHex:@"2197fa"] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(_selectButton:) forControlEvents:UIControlEventTouchUpInside];
-        button.titleLabel.font = [UIFont systemFontOfSize:12.0];
+        button.titleLabel.font = [UIFont systemFontOfSize:15.0];
         button.tag = i;
         [self.view addSubview:button];
         [_buttonArray addObject:button];

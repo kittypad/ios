@@ -50,7 +50,7 @@
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView setAllowsSelection:NO];
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = [UIColor colorWithHex:@"f2f7fd"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_downloadingProcessNotification:) name:kDownloadingProcessNotification object:nil];
     
@@ -161,7 +161,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45.0;
+    return 51.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -191,6 +191,7 @@
         DownloadObjectCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
         if (!downloadCell) {
             downloadCell = [[DownloadObjectCell alloc] initDownlodingWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DefaultCellIdentifier];
+            downloadCell.detailTextLabel.font = [UIFont systemFontOfSize:8.0];
         }
         
         [downloadCell configCell:obj];
@@ -207,6 +208,7 @@
         DownloadObjectCell *downloadCell = [tableView dequeueReusableCellWithIdentifier:DownCellIdentifier];
         if (!downloadCell) {
             downloadCell = [[DownloadObjectCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DownCellIdentifier];
+            downloadCell.detailTextLabel.font = [UIFont systemFontOfSize:8.0];
             [downloadCell.stateButton addTarget:self action:@selector(_stateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
         

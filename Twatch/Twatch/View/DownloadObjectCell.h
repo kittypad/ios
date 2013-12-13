@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) ProgressBarView *progressBar;
 
+@property (nonatomic, assign) int type;
+
 - (id)initDownlodingWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
 - (void)configCell:(DownloadObject *)obj lineHidden:(BOOL)hidden;

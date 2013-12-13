@@ -16,10 +16,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.textLabel.textColor = [UIColor colorWithHex:@"333333"];
-        self.textLabel.font = [UIFont systemFontOfSize:11.0];
+        self.textLabel.font = [UIFont systemFontOfSize:15.0];
         
         self.detailTextLabel.textColor = [UIColor colorWithHex:@"7e7e7e"];
-        self.detailTextLabel.font = [UIFont systemFontOfSize:8.0];
+        self.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         
         _iconView = [[UIImageView alloc] init];
         [self.contentView addSubview:_iconView];
@@ -28,13 +28,13 @@
         _lineView.backgroundColor = [UIColor colorWithHex:@"cee2f4"];
         [self.contentView addSubview:_lineView];
         
-        _stateButton = [[UIControl alloc] initWithFrame:CGRectMake(0.0, 0.0, 45.0, 45.0)];
+        _stateButton = [[UIControl alloc] initWithFrame:CGRectMake(0.0, 0.0, 51.0, 51.0)];
         
-        _stateImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 4.0, 25.0, 25.0)];
+        _stateImgView = [[UIImageView alloc] initWithFrame:CGRectMake(13.0, 5.0, 25.0, 25.0)];
         [_stateButton addSubview:_stateImgView];
         
-        _stateLable = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 30.0, 45.0, 10.0)];
-        _stateLable.font = [UIFont systemFontOfSize:8.0];
+        _stateLable = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 30.0, 51.0, 14.0)];
+        _stateLable.font = [UIFont systemFontOfSize:12.0];
         _stateLable.textColor = [UIColor colorWithHex:@"7e7e7e"];
         _stateLable.textAlignment = NSTextAlignmentCenter;
         [_stateButton addSubview:_stateLable];
@@ -42,6 +42,7 @@
         self.accessoryView = _stateButton;
         
         _isDownloading = NO;
+        _type = 0;
     }
     return self;
 }
@@ -63,14 +64,24 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.iconView.frame = CGRectMake(20.0, 6.0, 33.0, 33.0);
-    self.textLabel.frame = CGRectMake(61.0, 5.0, 150.0, 13.0);
-    if (_isDownloading) {
-        self.detailTextLabel.frame = CGRectMake(61.0, 21.0, 150.0, 10.0);
-        _progressBar.frame = CGRectMake(61.0, 33.0, 185.0, 7.0);
+    self.iconView.frame = CGRectMake(22.0, 8.0, 35.0, 35.0);
+    if (_type == 1) {
+        self.textLabel.frame = CGRectMake(65.0, 0.0, 150.0, 51.0);
     }
     else {
-        self.detailTextLabel.frame = CGRectMake(61.0, 30.0, 150.0, 10.0);
+        self.textLabel.frame = CGRectMake(65.0, 7.0, 150.0, 17.0);
+    }
+    if (_isDownloading) {
+        self.detailTextLabel.frame = CGRectMake(65.0, 26.0, 150.0, 10.0);
+        _progressBar.frame = CGRectMake(65.0, 36.0, 185.0, 7.0);
+    }
+    else {
+        if (_type == 1) {
+            self.detailTextLabel.frame = CGRectZero;
+        }
+        else {
+            self.detailTextLabel.frame = CGRectMake(65.0, 30.0, 150.0, 14.0);
+        }
     }
     self.lineView.frame = CGRectMake(0.0, self.frame.size.height - 1.0, self.frame.size.width, 1.0);
 }
