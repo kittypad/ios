@@ -20,11 +20,17 @@ UITableViewDelegate
 
 @property (strong, nonatomic) CBCentralManager   *centralManager;
 @property (strong, nonatomic) CBPeripheral       *discoveredPeripheral;
+
 @property (strong, nonatomic) NSMutableData      *data;
 
 
 @property (nonatomic, strong) UITableView     *tableView;
+@property (nonatomic, strong) NSNumber        *RSSI;
 
 @property (nonatomic, strong) NSMutableArray  *unConnectedDevices;
+
+
+//test
+@property (nonatomic, strong) UIImageView *testImageView;
 
 @end

@@ -23,8 +23,10 @@
     if (self.transferDataType == kTransferDataType_String) {
         self.dataToSend = [(NSString *)data dataUsingEncoding:NSUTF8StringEncoding];
     }else{
-    
+        self.dataToSend = UIImageJPEGRepresentation([UIImage imageNamed:@"icon-72.png"], 1.0);
     }
+    
+    [self getFirstTwoBytes];
     
     [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
 }

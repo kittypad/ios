@@ -13,8 +13,6 @@
 
 @interface ConnectionViewController ()
 
-
-
 @end
 
 static  NSString *cellId = @"connectin cell identifier";
@@ -63,6 +61,18 @@ static  NSString *cellId = @"connectin cell identifier";
     [scanButton addTarget:self action:@selector(startScan:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:scanButton];
     
+    //test
+    self.testImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    [self.view addSubview:self.testImageView];
+    self.testImageView.hidden = YES;
+
+    
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(fireRefreshTableTimer) userInfo:nil repeats:YES];
+}
+
+- (void)fireRefreshTableTimer
+{
+    [self.tableView reloadData];
 }
 
 - (void)startScan:(UIButton *)btn
@@ -102,7 +112,7 @@ static  NSString *cellId = @"connectin cell identifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return (NSInteger)(self.discoveredPeripheral != nil);
+        return (NSInteger)(self.discoveredPeripheral != nil && self.discoveredPeripheral.isConnected);
     }else{
         return self.unConnectedDevices.count;
     }
@@ -115,7 +125,7 @@ static  NSString *cellId = @"connectin cell identifier";
     
     NSString *title = nil;
     if (indexPath.section == 0) {
-        title = [NSString stringWithFormat:@"设备 %@: RSSI %@", self.discoveredPeripheral.name, self.discoveredPeripheral.RSSI];
+        title = [NSString stringWithFormat:@"设备 %@: RSSI %@", self.discoveredPeripheral.name, self.RSSI];
 
         [(ConnectionCell *)cell setCellSelected:YES title:title];
     }

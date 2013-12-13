@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSArray *imageSourceArray;
 @property (nonatomic, strong) NSArray *subControllerSourceArray;
 
+
 @end
 
 @implementation RootViewController
@@ -55,6 +56,7 @@
     
     
     _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+    
 }
 
 - (void)prepareDefaultData

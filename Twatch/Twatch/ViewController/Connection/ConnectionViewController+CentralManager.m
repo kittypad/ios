@@ -21,8 +21,8 @@
 {
     if (central.state != CBCentralManagerStatePoweredOn) {
         // In a real app, you'd deal with all the states correctly
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请打来设置中的蓝牙开关" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请打来设置中的蓝牙开关" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        [alert show];
         return;
     }
     
@@ -59,23 +59,22 @@
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     // Reject any where the value is above reasonable range
-    if (RSSI.integerValue > -15) {
-        return;
-    }
+//    if (RSSI.integerValue > -15) {
+//        return;
+//    }
+//    
+//    // Reject if the signal strength is too low to be close enough (Close is around -22dB)
+//    if (RSSI.integerValue < -50) {
+//        return;
+//    }
     
-    // Reject if the signal strength is too low to be close enough (Close is around -22dB)
-    if (RSSI.integerValue < -50) {
-        return;
-    }
     
-    NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
-    
-    if (![self.unConnectedDevices containsObject:peripheral] && self.discoveredPeripheral != peripheral) {
-        
+    if (self.discoveredPeripheral == peripheral) {
+        self.RSSI = RSSI;
+    }else if (![self.unConnectedDevices containsObject:peripheral]){
         [self.unConnectedDevices addObject:peripheral];
-        
-        [self.tableView reloadData];
     }
+    
     /*
     // Ok, it's in range - have we already seen it?
     if (self.discoveredPeripheral != peripheral) {
@@ -184,35 +183,62 @@
         return;
     }
     
-    NSString *stringFromData = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
-
+    NSMutableData *temp = [[NSMutableData alloc] initWithData:characteristic.value];
+    if (temp.length < 1) return;
     
-    NSLog(@"%%@:  %@",stringFromData,characteristic.value);
+    NSData *header = [temp subdataWithRange:NSMakeRange(0, 1)];
+    NSNumber *headerNumer = nil;
+    [header getBytes:&headerNumer length:sizeof(header)];
+    NSLog(@"%@",header);
     
-    // Have we got everything we need?
-    if ([stringFromData isEqualToString:@"EOM"]) {
-        
-//        UIImage *img = [[UIImage alloc] initWithData:self.data];
-//        self.imageView.image = img;
-        
-        // We have, so show the data,
-        //[self.textview setText:[[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding]];
-        
-        // Cancel our subscription to the characteristic
-        [peripheral setNotifyValue:NO forCharacteristic:characteristic];
-        
-        // and disconnect from the peripehral
-        [self.centralManager cancelPeripheralConnection:peripheral];
+    
+    NSData *usableData = [temp subdataWithRange:NSMakeRange(1, temp.length - 1)];
+    switch (headerNumer.integerValue) {
+        case 0:
+            NSLog(@"字符串，状态：全部");
+            break;
+        case 1:
+            NSLog(@"字符串，状态：开始");
+            break;
+        case 2:
+            NSLog(@"字符串，状态：传输中");
+            break;
+        case 3:
+            NSLog(@"字符串，状态：结束");
+            break;
+        case 16:
+        {
+            NSLog(@"文件，状态：全部");
+            [self.data appendData:usableData];
+            UIImage *img = [[UIImage alloc] initWithData:self.data];
+            self.testImageView.image = img;
+            self.testImageView.frame = CGRectMake(0, 0, img.size.width, img.size.height);
+            self.testImageView.center = self.view.center;
+            self.testImageView.hidden = NO;
+            break;
+        }
+        case 17:
+            NSLog(@"文件，状态：开始");
+            [self.data appendData:usableData];
+            break;
+        case 18:
+            NSLog(@"文件，状态：传输中");
+            [self.data appendData:usableData];
+            break;
+        case 19:
+        {
+            NSLog(@"文件，状态：结束");
+            [self.data appendData:usableData];
+            UIImage *img = [[UIImage alloc] initWithData:self.data];
+            self.testImageView.image = img;
+            self.testImageView.frame = CGRectMake(0, 0, img.size.width, img.size.height);
+            self.testImageView.center = self.view.center;
+            self.testImageView.hidden = NO;
+            break;
+        }
+        default:
+            break;
     }
-    
-    [self.data appendData:characteristic.value];
-    
-    // Otherwise, just add the data on to what we already have
-    //[self.data appendData:characteristic.value];
-    
-    // Log it
-    NSLog(@"Received: %@", stringFromData);
-    
 }
 
 
