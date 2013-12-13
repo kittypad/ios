@@ -8,6 +8,8 @@
 
 #import "WatchStyleViewController.h"
 
+#import "WatchStyleEditingViewController.h"
+
 #import "BGColorButton.h"
 
 #import "IconButton.h"
@@ -61,7 +63,7 @@
     [cameraButton setImage:[UIImage imageNamed:@"相机-按下.png"] forState:UIControlStateHighlighted];
     [cameraButton setBackgroundImage:[UIImage imageNamed:@"蓝边圆角按钮.png"] forState:UIControlStateNormal];
     [cameraButton setBackgroundImage:[UIImage imageNamed:@"蓝边圆角按钮.png"] forState:UIControlStateHighlighted];
-    [albumButton addTarget:self action:@selector(_cameraButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [cameraButton addTarget:self action:@selector(_cameraButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cameraButton];
     
     BGColorButton *handleButton = [[BGColorButton alloc] initWithFrame:CGRectMake(22.0, self.view.frame.size.height-55.0, 276.0, 40.0)];
@@ -104,19 +106,27 @@
 
 - (void)_cameraButtonPressed:(id)sender
 {
-    
+    UIImagePickerControllerSourceType type = UIImagePickerControllerSourceTypeCamera;
+    if ([UIImagePickerController isSourceTypeAvailable:type]) {
+        UIImagePickerController *vc = [[UIImagePickerController alloc] init];
+        vc.delegate = self;
+        vc.sourceType = type;
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     if (image == nil) {
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
     }
-    _imageView.image = image;
+    [self dismissViewControllerAnimated:NO completion:^(void){
+        WatchStyleEditingViewController *vc = [[WatchStyleEditingViewController alloc] init];
+        [self presentViewController:vc animated:NO completion:nil];
+    }];
 }
 
 @end

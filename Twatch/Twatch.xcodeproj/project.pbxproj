@@ -52,6 +52,8 @@
 		42C676B7182393DF00B8474D /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C676B6182393DF00B8474D /* UIImage+Tool.m */; };
 		42C780A8182A410600DB47A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C780A6182A410600DB47A5 /* Default-568h@2x.png */; };
 		42C780A9182A410600DB47A5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C780A7182A410600DB47A5 /* Default@2x.png */; };
+		42C94FBE185A9E1F00944253 /* WatchStyleEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C94FBD185A9E1F00944253 /* WatchStyleEditingViewController.m */; };
+		42C94FC1185AA1E600944253 /* WatchStyleHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C94FC0185AA1E600944253 /* WatchStyleHandleViewController.m */; };
 		42F5EE1C184D796100708958 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5EE1B184D796100708958 /* DataManager.m */; };
 		42FBA9A81828E6CE0042C3E4 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */; };
 		42FD6B481859906F009FAA5A /* BGColorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FD6B471859906F009FAA5A /* BGColorButton.m */; };
@@ -236,6 +238,10 @@
 		42C676B6182393DF00B8474D /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
 		42C780A6182A410600DB47A5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		42C780A7182A410600DB47A5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		42C94FBC185A9E1F00944253 /* WatchStyleEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchStyleEditingViewController.h; sourceTree = "<group>"; };
+		42C94FBD185A9E1F00944253 /* WatchStyleEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchStyleEditingViewController.m; sourceTree = "<group>"; };
+		42C94FBF185AA1E600944253 /* WatchStyleHandleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchStyleHandleViewController.h; sourceTree = "<group>"; };
+		42C94FC0185AA1E600944253 /* WatchStyleHandleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchStyleHandleViewController.m; sourceTree = "<group>"; };
 		42F5EE1A184D796100708958 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		42F5EE1B184D796100708958 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		42FBA9A71828E6CE0042C3E4 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
@@ -616,6 +622,10 @@
 			children = (
 				42FD6B4A18599820009FAA5A /* WatchStyleViewController.h */,
 				42FD6B4B18599820009FAA5A /* WatchStyleViewController.m */,
+				42C94FBC185A9E1F00944253 /* WatchStyleEditingViewController.h */,
+				42C94FBD185A9E1F00944253 /* WatchStyleEditingViewController.m */,
+				42C94FBF185AA1E600944253 /* WatchStyleHandleViewController.h */,
+				42C94FC0185AA1E600944253 /* WatchStyleHandleViewController.m */,
 			);
 			path = WatchStyle;
 			sourceTree = "<group>";
@@ -1301,6 +1311,7 @@
 				0ADAFAF51854F263001C0287 /* ToggleButton.m in Sources */,
 				42F5EE1C184D796100708958 /* DataManager.m in Sources */,
 				DD4815EE18537E8300325B4C /* AppCenterViewController.m in Sources */,
+				42C94FBE185A9E1F00944253 /* WatchStyleEditingViewController.m in Sources */,
 				DD4815D518537C4D00325B4C /* SignViewController.m in Sources */,
 				DD1BFBD0180AC7280001C200 /* ViewUtils.m in Sources */,
 				DD4815C718537C4D00325B4C /* SwitchWatchView.m in Sources */,
@@ -1331,6 +1342,7 @@
 				DD17FADB1846343400FF3AA3 /* BTLEPeripheralViewController.m in Sources */,
 				DD4815EF18537E8300325B4C /* DownloadManagerViewController.m in Sources */,
 				DD4815F018537E8300325B4C /* ShoppingViewController.m in Sources */,
+				42C94FC1185AA1E600944253 /* WatchStyleHandleViewController.m in Sources */,
 				DD4815C218537C4D00325B4C /* SettingView.m in Sources */,
 				0ADAFAF61854F263001C0287 /* ToggleView.m in Sources */,
 				D8C352481825FCE70061081E /* MMHud.m in Sources */,
