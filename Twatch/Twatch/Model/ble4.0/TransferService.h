@@ -53,8 +53,8 @@
 #ifndef LE_Transfer_TransferService_h
 #define LE_Transfer_TransferService_h
 
-#define TRANSFER_SERVICE_UUID           @"0000180d-0000-1000-8000-00805f9b34fb"
-#define TRANSFER_CHARACTERISTIC_UUID    @"00002a37-0000-1000-8000-00805f9b34fb"
+#define TRANSFER_SERVICE_UUID           @"87025fc2-ed35-49ec-984f-4fc6a927bd13"//@"0000180d-0000-1000-8000-00805f9b34fb"
+#define TRANSFER_CHARACTERISTIC_UUID    @"265883AA-18C3-7BE4-2E92-1416C18BD01E"//@"00002a37-0000-1000-8000-00805f9b34fb"
 
 
 typedef enum _TransferDataType{

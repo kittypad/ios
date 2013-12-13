@@ -17,6 +17,5 @@ CBPeripheralDelegate
 >
 
 - (void)scan;
-- (void)stop;
 
 @end

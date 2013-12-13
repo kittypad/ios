@@ -55,7 +55,6 @@
     [self.view addSubview:rootView];
     
     
-    _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
     
 }
 
