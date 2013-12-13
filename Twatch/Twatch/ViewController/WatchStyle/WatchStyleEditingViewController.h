@@ -10,8 +10,6 @@
 
 @interface WatchStyleEditingViewController : UIViewController
 
-@property (nonatomic, strong) UIImageView *imageView;
-
 - (void)setImage:(UIImage *)image;
 
 @end

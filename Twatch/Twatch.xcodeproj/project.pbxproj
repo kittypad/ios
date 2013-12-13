@@ -257,7 +257,6 @@
 		D82F074E185850210024A259 /* ProgressBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressBarView.h; sourceTree = "<group>"; };
 		D82F074F185850210024A259 /* ProgressBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressBarView.m; sourceTree = "<group>"; };
 		D8A397551827677F0058221C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		D8A3975718276E150058221C /* TMColorMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMColorMatrix.h; sourceTree = "<group>"; };
 		D8A8D37A184F1721002FB1D1 /* DownloadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadObject.h; sourceTree = "<group>"; };
 		D8A8D37B184F1721002FB1D1 /* DownloadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadObject.m; sourceTree = "<group>"; };
 		D8A8D37D184F2242002FB1D1 /* DownloadObjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadObjectCell.h; sourceTree = "<group>"; };
@@ -1104,7 +1103,6 @@
 				DD1BFBCF180AC7280001C200 /* ViewUtils.m */,
 				42C676B5182393DF00B8474D /* UIImage+Tool.h */,
 				42C676B6182393DF00B8474D /* UIImage+Tool.m */,
-				D8A3975718276E150058221C /* TMColorMatrix.h */,
 				42F5EE1A184D796100708958 /* DataManager.h */,
 				42F5EE1B184D796100708958 /* DataManager.m */,
 				D8A8D37A184F1721002FB1D1 /* DownloadObject.h */,

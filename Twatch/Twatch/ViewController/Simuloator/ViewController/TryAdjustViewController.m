@@ -8,7 +8,6 @@
 
 #import "TryAdjustViewController.h"
 #import "UIImage+Tool.h"
-#import "TMColorMatrix.h"
 
 typedef enum{
     NormalStyle = 0,

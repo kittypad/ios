@@ -14,6 +14,10 @@
 
 #import "IconButton.h"
 
+#import "UIImage+Tool.h"
+
+#import "MMProgressHUD.h"
+
 @interface WatchStyleViewController ()
 {
     UIImageView *_imageView;
@@ -123,12 +127,23 @@
     if (image == nil) {
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
     }
-    [self dismissViewControllerAnimated:NO completion:^(void){
-        WatchStyleEditingViewController *vc = [[WatchStyleEditingViewController alloc] initWithNibName:nil bundle:nil];
-        [self presentViewController:vc animated:NO completion:^(void){
-            [vc setImage:image];
-        }];
-    }];
+    [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
+    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+    [MMProgressHUD showWithTitle:@"" status:NSLocalizedString(@"Processing", nil)];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        UIImage *newImage = [UIImage imageWithImage:[image scaleToSize:image.size]
+                                    withColorMatrix:colormatrix_huaijiu];
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [MMProgressHUD dismissWithSuccess:NSLocalizedString(@"Done", nil)];
+            [self dismissViewControllerAnimated:NO completion:^(void){
+                WatchStyleEditingViewController *vc = [[WatchStyleEditingViewController alloc] initWithNibName:nil bundle:nil];
+                [self presentViewController:vc animated:NO completion:^(void){
+                    [vc setImage:newImage];
+                }];
+            }];
+        });
+    });
 }
 
 @end
