@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -27,7 +27,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor greenColor];
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    _imageView = [[UIImageView alloc] init];
+    [self.view addSubview:_imageView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,6 +54,28 @@
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+#pragma mark - Public
+
+- (void)setImage:(UIImage *)image
+{
+    CGFloat p = image.size.width / image.size.height;
+    CGFloat x = 0.0;
+    CGFloat y = 0.0;
+    CGFloat w = self.view.bounds.size.width;
+    CGFloat h = self.view.bounds.size.height;
+    CGFloat p1 = w / h;
+    if (p >= p1) {
+        h = w / p;
+        y = (self.view.bounds.size.height-h)/2;
+    }
+    else {
+        w = h * p;
+        x = (self.view.bounds.size.width-w)/2;
+    }
+    _imageView.frame = CGRectMake(x, y, w, h);
+    _imageView.image = image;
 }
 
 @end

@@ -124,8 +124,10 @@
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
     }
     [self dismissViewControllerAnimated:NO completion:^(void){
-        WatchStyleEditingViewController *vc = [[WatchStyleEditingViewController alloc] init];
-        [self presentViewController:vc animated:NO completion:nil];
+        WatchStyleEditingViewController *vc = [[WatchStyleEditingViewController alloc] initWithNibName:nil bundle:nil];
+        [self presentViewController:vc animated:NO completion:^(void){
+            [vc setImage:image];
+        }];
     }];
 }
 
