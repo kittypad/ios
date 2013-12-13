@@ -111,7 +111,17 @@
             break;
         }
         case 3: {
+            [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
+            [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+            [MMProgressHUD showWithTitle:@"" status:NSLocalizedString(@"Processing", nil)];
             
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [MMProgressHUD dismissWithSuccess:NSLocalizedString(@"Done", nil)];
+                    
+                });
+            });
             break;
         }
         default:
