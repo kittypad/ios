@@ -15,6 +15,8 @@
     UIImage *_image;
     UIImageView *_imageView;
     
+    UIImageView *_frameView;
+    
     CGFloat _degree;
 }
 
@@ -46,9 +48,15 @@
     _imageView = [[UIImageView alloc] init];
     [self.view addSubview:_imageView];
     
+    _frameView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 120.0, 160.0)];
+    _frameView.center = CGPointMake(self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
+    _frameView.layer.borderWidth = 1.0;
+    _frameView.layer.borderColor = [UIColor colorWithHex:@"00a8ff"].CGColor;
+    [self.view addSubview:_frameView];
+    
     NSArray *array = @[@"删除", @"左转", @"右转", @"保存"];
     
-    CGRect frame = CGRectMake(20.0, self.view.frame.size.height - 45.0, 40.0, 40.0);
+    CGRect frame = CGRectMake(65.0, self.view.frame.size.height - 63.0, 40.0, 40.0);
     for (int i = 0; i < array.count; i++) {
         UIButton *button = [[UIButton alloc] initWithFrame:frame];
         [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", array[i]]]
@@ -58,7 +66,7 @@
         [button addTarget:self action:@selector(_buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = i;
         [self.view addSubview:button];
-        frame.origin.x += 80.0;
+        frame.origin.x += 50.0;
     }
 }
 
@@ -96,34 +104,10 @@
         }
         case 1: {
             [self _rotateImageViewByDegree:-90];
-//            [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
-//            [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
-//            [MMProgressHUD showWithTitle:@"" status:NSLocalizedString(@"Processing", nil)];
-//            
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-//                UIImage *image = [_image imageRotatedByDegrees:270];
-//                dispatch_async(dispatch_get_main_queue(), ^(void){
-//                    [self setImage:image];
-//                    [MMProgressHUD dismissWithSuccess:NSLocalizedString(@"Done", nil)];
-//                });
-//            });
-            
             break;
         }
         case 2: {
             [self _rotateImageViewByDegree:90];
-//            [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
-//            [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
-//            [MMProgressHUD showWithTitle:@"" status:NSLocalizedString(@"Processing", nil)];
-//            
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-//                UIImage *image = [_image imageRotatedByDegrees:90];
-//                dispatch_async(dispatch_get_main_queue(), ^(void){
-//                    [self setImage:image];
-//                    [MMProgressHUD dismissWithSuccess:NSLocalizedString(@"Done", nil)];
-//                });
-//            });
-            
             break;
         }
         case 3: {
