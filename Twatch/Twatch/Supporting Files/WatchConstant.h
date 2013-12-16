@@ -34,7 +34,7 @@
 
 #define IS_IOS7        ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0)
 
-#define GoBackNameSize  15
+#define GoBackNameSize  20.0
 
 #define APPID @"737815068"
 

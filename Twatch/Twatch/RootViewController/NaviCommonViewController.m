@@ -8,6 +8,26 @@
 
 #import "NaviCommonViewController.h"
 
+#define kBackButtonSize  18.0
+
+@interface BackNavigationButton : UIButton
+
+@end
+
+@implementation BackNavigationButton
+
+- (CGRect)titleRectForContentRect:(CGRect)contentRect
+{
+    return CGRectMake(kBackButtonSize+2.0, 0.0, contentRect.size.width-kBackButtonSize-2.0, contentRect.size.height);
+}
+
+- (CGRect)imageRectForContentRect:(CGRect)contentRect
+{
+    return CGRectMake(0.0, (contentRect.size.height-kBackButtonSize)/2, kBackButtonSize, kBackButtonSize);
+}
+
+@end
+
 @interface NaviCommonViewController ()
 
 @property (nonatomic, strong) UIView *line;
@@ -25,16 +45,16 @@
     navigationBar.tag = 1322;
     [self.view addSubview:navigationBar];
     
-    UIButton *goBackButton = [ViewUtils buttonWWithNormalImage:@"back.png" hiliteImage:@"back-push.png" target:self selector:@selector(goBack)];
+    UIFont *font = [UIFont systemFontOfSize:GoBackNameSize];
+    CGSize size = [self.backName sizeWithFont:font];
+    BackNavigationButton *goBackButton = [[BackNavigationButton alloc] initWithFrame:CGRectMake(22.0, IS_IOS7 ? 20.0 : 0.0, size.width+kBackButtonSize+4.0, 44.0)];
+    [goBackButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [goBackButton setImage:[UIImage imageNamed:@"back-push.png"] forState:UIControlStateHighlighted];
+    [goBackButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    goBackButton.titleLabel.font = font;
+    [goBackButton setTitleColor:[UIColor colorWithHex:@"333333"] forState:UIControlStateNormal];
     [goBackButton setTitle:self.backName forState:UIControlStateNormal];
-    [goBackButton setTitleColor:RGB(150, 154, 158, 1) forState:UIControlStateNormal];
-    goBackButton.frame = CGRectChangeOrigin(goBackButton.frame, 0, IS_IOS7 ? 35 : 15);
-    goBackButton.titleLabel.font = [UIFont systemFontOfSize:GoBackNameSize];
-    goBackButton.titleLabel.textColor = [UIColor colorWithHex:@"292929"];
     [navigationBar addSubview:goBackButton];
-    
-    CGSize size = [self.backName sizeWithFont:[UIFont systemFontOfSize:GoBackNameSize]];
-    goBackButton.frame = CGRectChangeWidth(goBackButton.frame, CGRectGetWidth(goBackButton.frame) + size.width+ 20) ;//返回不好点
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(navigationBar.frame)-1, CGRectGetWidth(self.view.frame), 1)];
     line.tag = 1323;
@@ -42,7 +62,7 @@
     [navigationBar addSubview:line];
     self.line = line;
     
-    self.view.backgroundColor = RGB(243, 249, 254, 1);
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.yOffset = CGRectGetMaxY(self.line.frame);
     self.height =  CGRectGetHeight(self.view.frame) - self.yOffset;
