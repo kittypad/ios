@@ -110,6 +110,7 @@
         else {
             NSLog(@"Unzip fail");
         }
+        [zip UnzipCloseFile];
     });
 }
 
