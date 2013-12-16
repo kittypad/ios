@@ -8,6 +8,7 @@
 
 #import "DataManager.h"
 #import <AFNetworking.h>
+#import "ZipArchive.h"
 
 #define kBaseURL [NSURL URLWithString:@"http://r.tomoon.cn"]
 
@@ -17,6 +18,10 @@
     
     NSString *_downloadFilePath;
 }
+
+- (void)_unzipFile:(NSString *)fileName toFile:(NSString *)resultName completion:(void (^)(void))block;
+
+- (void)_finishDownloading:(DownloadObject *)obj;
 
 @end
 
@@ -84,6 +89,36 @@
     }
     
     return self;
+}
+
+#pragma mark - Private
+
+- (void)_unzipFile:(NSString *)fileName toFile:(NSString *)resultName completion:(void (^)(void))block
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        ZipArchive *zip = [[ZipArchive alloc] init];
+        if ([zip UnzipOpenFile:fileName] && [zip UnzipFileTo:resultName overWrite:YES]) {
+            NSLog(@"Unzip success");
+            NSFileManager *fileManager = [[NSFileManager alloc] init];
+            NSError *error;
+            [fileManager removeItemAtPath:fileName error:&error];
+            if (error) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
+            dispatch_async(dispatch_get_main_queue(), block);
+        }
+        else {
+            NSLog(@"Unzip fail");
+        }
+    });
+}
+
+- (void)_finishDownloading:(DownloadObject *)obj
+{
+    [_downloadDic[AppDownloadingArray] removeObject:obj];
+    obj.state = [NSNumber numberWithInt:kNotInstall];
+    [_downloadDic[AppDownloadedArray] addObject:obj];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
 }
 
 #pragma mark - Data
@@ -167,7 +202,6 @@
     // Start the long-running task and return immediately.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         __block NSMutableArray *downloadingArray = _downloadDic[AppDownloadingArray];
-        __block NSMutableArray *downloadedArray = _downloadDic[AppDownloadedArray];
         
         for (int i = 0; i < downloadingArray.count; i++) {
             DownloadObject *obj = [downloadingArray objectAtIndex:i];
@@ -178,10 +212,18 @@
             
             [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSLog(@"Successfully downloaded file");
-                [downloadingArray removeObject:obj];
-                obj.state = [NSNumber numberWithInt:kNotInstall];
-                [downloadedArray addObject:obj];
-                [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
+                if (obj.type.intValue == 1) {
+                    AFDownloadRequestOperation *rOperation = (AFDownloadRequestOperation *)operation;
+                    NSString *filePath = [rOperation.tempPath stringByReplacingOccurrencesOfString:@".zip" withString:@""];
+                    
+                    [self _unzipFile:rOperation.tempPath toFile:filePath completion:^(void){
+                        NSLog(@"Unzip success");
+                        [self _finishDownloading:obj];
+                    }];
+                }
+                else {
+                    [self _finishDownloading:obj];
+                }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NSLog(@"Error: %@", error);
             }];
@@ -222,14 +264,19 @@
             
             requestOperation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:[AFDownloadRequestOperation cacheFolder] shouldResume:YES];
             
-            __block NSMutableArray *downloadingArray = array;
-            __block NSMutableArray *downloadedArray = _downloadDic[AppDownloadedArray];
             [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSLog(@"Successfully downloaded file");
-                [downloadingArray removeObject:obj];
-                obj.state = [NSNumber numberWithInt:kNotInstall];
-                [downloadedArray addObject:obj];
-                [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
+                if (obj.type.intValue == 1) {
+                    AFDownloadRequestOperation *rOperation = (AFDownloadRequestOperation *)operation;
+                    NSString *filePath = [rOperation.tempPath stringByReplacingOccurrencesOfString:@".zip" withString:@""];
+                    
+                    [self _unzipFile:rOperation.tempPath toFile:filePath completion:^(void){
+                        [self _finishDownloading:obj];
+                    }];
+                }
+                else {
+                    [self _finishDownloading:obj];
+                }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NSLog(@"Error: %@", error);
             }];

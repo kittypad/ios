@@ -107,6 +107,7 @@
             break;
         }
         case kNotInstall: {
+#warning 发送至手表
             obj.state = [NSNumber numberWithInteger:kInstalled];
             [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
             break;

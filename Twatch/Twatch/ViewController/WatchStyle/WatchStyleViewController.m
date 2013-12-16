@@ -93,7 +93,7 @@
 
 - (void)_handleButtonPressed:(id)sender
 {
-    
+#warning 发送至手表
 }
 
 - (void)_albumButtonPressed:(id)sender
