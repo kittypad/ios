@@ -41,13 +41,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     UIView *navigationBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  CGRectGetWidth(self.view.frame), IS_IOS7 ? 64 :44)];
-    navigationBar.backgroundColor = RGB(243, 249, 254, 1);
+//    navigationBar.backgroundColor = RGB(243, 249, 254, 1);
+    navigationBar.backgroundColor = [UIColor whiteColor];
     navigationBar.tag = 1322;
     [self.view addSubview:navigationBar];
     
     UIFont *font = [UIFont systemFontOfSize:GoBackNameSize];
     CGSize size = [self.backName sizeWithFont:font];
-    BackNavigationButton *goBackButton = [[BackNavigationButton alloc] initWithFrame:CGRectMake(22.0, IS_IOS7 ? 20.0 : 0.0, size.width+kBackButtonSize+4.0, 44.0)];
+    BackNavigationButton *goBackButton = [[BackNavigationButton alloc] initWithFrame:CGRectMake(22.0, IS_IOS7 ? 20.0 : 0.0, size.width+kBackButtonSize+2.0, 44.0)];
     [goBackButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [goBackButton setImage:[UIImage imageNamed:@"back-push.png"] forState:UIControlStateHighlighted];
     [goBackButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
@@ -62,7 +63,7 @@
     [navigationBar addSubview:line];
     self.line = line;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGB(243, 249, 254, 1);
     
     self.yOffset = CGRectGetMaxY(self.line.frame);
     self.height =  CGRectGetHeight(self.view.frame) - self.yOffset;
