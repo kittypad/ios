@@ -119,6 +119,7 @@
     [_downloadDic[AppDownloadingArray] removeObject:obj];
     obj.state = [NSNumber numberWithInt:kNotInstall];
     [_downloadDic[AppDownloadedArray] addObject:obj];
+    [self saveDownloadDic];
     [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
 }
 
@@ -183,6 +184,7 @@
                 return;
             }
         }
+        [self saveDownloadDic];
     }
 }
 

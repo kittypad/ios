@@ -109,6 +109,7 @@
         case kNotInstall: {
 #warning 发送至手表
             obj.state = [NSNumber numberWithInteger:kInstalled];
+            [[DataManager sharedManager] saveDownloadDic];
             [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
             break;
         }

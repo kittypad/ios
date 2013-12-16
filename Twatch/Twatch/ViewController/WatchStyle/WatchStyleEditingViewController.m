@@ -18,15 +18,18 @@
     UIImageView *_frameView;
     
     CGFloat _degree;
+    CGPoint _lastPoint;
 }
+
+- (void)_panFrameView:(UIPanGestureRecognizer *)gesture;
+
+- (UIImage *)_imageFromEditingImage:(UIImage *)editingImage;
 
 - (void)_buttonPressed:(id)sender;
 
 - (void)_updateImageView;
 
 - (void)_rotateImageViewByDegree:(CGFloat)degree;
-
-- (UIImage *)_imageFromEditingImage:(UIImage *)editingImage;
 
 @end
 
@@ -50,10 +53,14 @@
     _imageView = [[UIImageView alloc] init];
     [self.view addSubview:_imageView];
     
+    UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(_panFrameView:)];
+    
     _frameView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 120.0, 160.0)];
     _frameView.center = CGPointMake(self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
     _frameView.layer.borderWidth = 1.0;
     _frameView.layer.borderColor = [UIColor colorWithHex:@"00a8ff"].CGColor;
+    [_frameView setUserInteractionEnabled:YES];
+    [_frameView addGestureRecognizer:gesture];
     [self.view addSubview:_frameView];
     
     NSArray *array = @[@"删除", @"左转", @"右转", @"保存"];
@@ -97,9 +104,48 @@
 
 #pragma mark - Private
 
+- (void)_panFrameView:(UIPanGestureRecognizer *)gesture
+{
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        _lastPoint = [gesture locationInView:self.view];
+    }
+    else if (gesture.state != UIGestureRecognizerStateEnded && gesture.state != UIGestureRecognizerStateFailed){
+        CGPoint location = [gesture locationInView:self.view];
+        CGRect frame = _frameView.frame;
+        frame.origin.x += location.x - _lastPoint.x;
+        frame.origin.y += location.y - _lastPoint.y;
+        
+        if (frame.origin.x < 0.0) {
+            frame.origin.x = 0.0;
+        }
+        else if (CGRectGetMaxX(frame) > self.view.bounds.size.width) {
+            frame.origin.x = self.view.bounds.size.width - frame.size.width;
+        }
+        
+        if (frame.origin.y < 0.0) {
+            frame.origin.y = 0.0;
+        }
+        else if (CGRectGetMaxY(frame) > self.view.bounds.size.height) {
+            frame.origin.y = self.view.bounds.size.height - frame.size.height;
+        }
+        
+        _frameView.frame = frame;
+        _lastPoint = location;
+    }
+}
+
 - (UIImage *)_imageFromEditingImage:(UIImage *)editingImage
 {
     UIGraphicsBeginImageContext(CGSizeMake(240.0, 320.0));
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    //绘制背景
+    UIColor *bgColor = [UIColor blackColor];
+    CGContextSetStrokeColorWithColor(context, bgColor.CGColor);
+    CGContextSetFillColorWithColor(context, bgColor.CGColor);
+    CGRect bgRect = CGRectMake(0, 0, 240.0, 320.0);
+    CGContextAddRect(context, bgRect);
+    CGContextDrawPath(context, kCGPathFillStroke);
+    
     // 绘制图片
     CGFloat x = 2 * (_imageView.frame.origin.x - _frameView.frame.origin.x);
     CGFloat y = 2 * (_imageView.frame.origin.y - _frameView.frame.origin.y);
