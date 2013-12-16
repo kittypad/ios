@@ -26,6 +26,8 @@
 
 - (void)_rotateImageViewByDegree:(CGFloat)degree;
 
+- (UIImage *)_imageFromEditingImage:(UIImage *)editingImage;
+
 @end
 
 @implementation WatchStyleEditingViewController
@@ -95,6 +97,25 @@
 
 #pragma mark - Private
 
+- (UIImage *)_imageFromEditingImage:(UIImage *)editingImage
+{
+    UIGraphicsBeginImageContext(CGSizeMake(240.0, 320.0));
+    // 绘制图片
+    CGFloat x = 2 * (_imageView.frame.origin.x - _frameView.frame.origin.x);
+    CGFloat y = 2 * (_imageView.frame.origin.y - _frameView.frame.origin.y);
+    CGFloat w = 2 * _imageView.frame.size.width;
+    CGFloat h = 2 * _imageView.frame.size.height;
+    
+    [editingImage drawInRect:CGRectMake(x, y, w, h)];
+    
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    // 返回新的改变大小后的图片
+    return image;
+}
+
 - (void)_buttonPressed:(id)sender
 {
     switch ([sender tag]) {
@@ -116,9 +137,10 @@
             [MMProgressHUD showWithTitle:@"" status:NSLocalizedString(@"Processing", nil)];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-                
+                UIImage *resultImage = [self _imageFromEditingImage:[_image imageRotatedByDegrees:_degree]];
                 dispatch_async(dispatch_get_main_queue(), ^(void){
                     [MMProgressHUD dismissWithSuccess:NSLocalizedString(@"Done", nil)];
+                    [_delegate didEndEditingImage:resultImage];
                     
                 });
             });

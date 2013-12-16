@@ -8,8 +8,6 @@
 
 #import "WatchStyleViewController.h"
 
-#import "WatchStyleEditingViewController.h"
-
 #import "BGColorButton.h"
 
 #import "IconButton.h"
@@ -21,6 +19,7 @@
 @interface WatchStyleViewController ()
 {
     UIImageView *_imageView;
+    UIImage *_image;
 }
 
 - (void)_handleButtonPressed:(id)sender;
@@ -73,7 +72,7 @@
     BGColorButton *handleButton = [[BGColorButton alloc] initWithFrame:CGRectMake(22.0, self.view.frame.size.height-55.0, 276.0, 40.0)];
     handleButton.titleLabel.font = [UIFont systemFontOfSize:20.0];
     handleButton.titleLabel.textColor = [UIColor whiteColor];
-    handleButton.titleLabel.text = NSLocalizedString(@"Handle", nil);
+    handleButton.titleLabel.text = NSLocalizedString(@"SendToWatch", nil);
     [handleButton setBackgroundColor:[UIColor colorWithHex:@"6fc6fc"] forState:UIControlStateNormal];
     [handleButton setBackgroundColor:[UIColor colorWithHex:@"1ca1f6"] forState:UIControlStateHighlighted];
     [handleButton addTarget:self action:@selector(_handleButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -138,12 +137,22 @@
             [MMProgressHUD dismissWithSuccess:NSLocalizedString(@"Done", nil)];
             [self dismissViewControllerAnimated:NO completion:^(void){
                 WatchStyleEditingViewController *vc = [[WatchStyleEditingViewController alloc] initWithNibName:nil bundle:nil];
+                vc.delegate = self;
                 [self presentViewController:vc animated:NO completion:^(void){
                     [vc setImage:newImage];
                 }];
             }];
         });
     });
+}
+
+#pragma mark - WatchStyleEditingViewControllerDelegate
+
+- (void)didEndEditingImage:(UIImage *)image
+{
+    _image = image;
+    _imageView.image = image;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

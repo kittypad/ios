@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WatchStyleEditingViewControllerDelegate <NSObject>
+
+- (void)didEndEditingImage:(UIImage *)image;
+
+@end
+
 @interface WatchStyleEditingViewController : UIViewController
+
+@property (nonatomic, weak) id<WatchStyleEditingViewControllerDelegate> delegate;
 
 - (void)setImage:(UIImage *)image;
 

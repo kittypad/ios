@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "NaviCommonViewController.h"
-@interface WatchStyleViewController : NaviCommonViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+#import "WatchStyleEditingViewController.h"
+
+@interface WatchStyleViewController : NaviCommonViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, WatchStyleEditingViewControllerDelegate>
 
 @end
