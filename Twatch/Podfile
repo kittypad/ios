@@ -8,5 +8,7 @@ pod 'SDWebImage'
 
 pod 'MBProgressHUD', '~> 0.8'
 
+pod 'ZipArchive', '~> 1.2.0'
+
 end
 
