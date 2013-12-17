@@ -10,8 +10,6 @@
 #import "SettingCell.h"
 #import "AppCenterViewController.h"
 
-#import "BTLEPeripheralViewController.h"
-
 #define SWITCH_TIMEADJUST_TAG  1001
 #define SWITCH_DISCOVERYWATCH_TAG  1002
 #define SWITCH_PUSHSETTING_TAG  1003
@@ -198,11 +196,9 @@
         case 2:
         {
             //test
-            //[[ViewUtils rootViewController] sendDataToBle:@"hello, this is an iPhone" transerType:kTransferDataType_String];
+            [[ViewUtils rootViewController] sendDataToBle:@"hello, this is from iPhone" transerType:kTransferDataType_String];
             //[[ViewUtils rootViewController] sendDataToBle:@"hello, this is an iPhone" transerType:kTransferDataType_File];
             
-            BTLEPeripheralViewController *ble =  [[BTLEPeripheralViewController alloc] init];
-            [self.navigationController pushViewController:ble animated:YES];
         }
             break;
             

@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 
-@interface RootViewController (BleManager)<CBPeripheralManagerDelegate>
+@interface RootViewController (BleManager)<CBPeripheralDelegate>
 
 - (void)sendDataToBle:(id)data transerType:(TransferDataType)type;
 

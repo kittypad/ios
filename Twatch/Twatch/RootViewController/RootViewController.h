@@ -16,12 +16,11 @@
 
 
 //for bluetooth transfer data
-@property (nonatomic, strong)      ConnectionViewController  *connectionController;
-@property (nonatomic, strong)      CBPeripheralManager       *peripheralManager;
-@property (nonatomic, strong)      CBMutableCharacteristic   *transferCharacteristic;
+@property (strong, nonatomic)      CBPeripheral              *connectedPeripheral;
+@property (strong, nonatomic)      CBCharacteristic          *curCharacteristic;
 
 @property (nonatomic, strong)      NSData                    *dataToSend;
 @property (nonatomic, readwrite)   NSInteger                 sendDataIndex;
-@property (nonatomic, readwrite)   TransferDataType         transferDataType;
+@property (nonatomic, readwrite)   TransferDataType          transferDataType;
 
 @end

@@ -15,9 +15,18 @@
 
 - (void)sendDataToBle:(id)data transerType:(TransferDataType)type
 {
-    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
-
-    [self.peripheralManager stopAdvertising];
+    self.connectedPeripheral.delegate = self;
+    
+    BOOL connectedADevice = NO;
+#ifdef __IPHONE_7_0
+    connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
+#else
+    connectedADevice = self.connectedPeripheral.isConnected;
+#endif
+    if (!connectedADevice) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"尚未连接到蓝牙设备，请进入同步界面扫描希望连接的设备" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     
     self.transferDataType = type;
     
@@ -30,180 +39,54 @@
         self.dataToSend = UIImageJPEGRepresentation([UIImage imageNamed:@"icon-72.png"], 1.0);
     }
     
-    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]}];
-}
-
-
-#pragma mark - Peripheral Methods
-
-
-
-/** Required protocol method.  A full app should take care of all the possible states,
- *  but we're just waiting for  to know when the CBPeripheralManager is ready
- */
-- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
-{
-    // Opt out from any other state
-    if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
-        return;
+    // Send it
+    self.curCharacteristic = nil;
+    for (CBService *aService in self.connectedPeripheral.services) {
+        for (CBCharacteristic *ca in aService.characteristics) {
+            if ([ca.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
+                self.curCharacteristic = ca;
+            }
+        }
     }
     
-    // We're in CBPeripheralManagerStatePoweredOn state...
-    NSLog(@"self.peripheralManager powered on.");
-    
-    // ... so build our service.
-    
-    // Start with the CBMutableCharacteristic
-    self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]
-                                                                     properties:CBCharacteristicPropertyNotify
-                                                                          value:nil
-                                                                    permissions:CBAttributePermissionsReadable];
-    
-    // Then the service
-    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]
-                                                                       primary:YES];
-    
-    // Add the characteristic to the service
-    transferService.characteristics = @[self.transferCharacteristic];
-    
-    // And add it to the peripheral manager
-    [self.peripheralManager addService:transferService];
+    if (self.curCharacteristic == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已连接的蓝牙设备尚未提供此服务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
-
-
-/** Catch when someone subscribes to our characteristic, then start sending them data
- */
-- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
-{
-    NSLog(@"Central subscribed to characteristic");
-    
-    // Get the data
-    UIImage *img = [UIImage imageNamed:@"Icon-144.png"];
-    self.dataToSend = UIImageJPEGRepresentation(img, 1);//[self.textView.text dataUsingEncoding:NSUTF8StringEncoding];
-    
-    // Reset the index
-    self.sendDataIndex = 0;
-    
-    // Start sending
-    [self sendData];
-}
-
-
-/** Recognise when the central unsubscribes
- */
-- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
-{
-    NSLog(@"Central unsubscribed from characteristic");
-}
-
 
 /** Sends the next amount of data to the connected central
  */
 - (void)sendData
 {
-    // First up, check if we're meant to be sending an EOM
-    static BOOL sendingEOM = NO;
     
-    if (sendingEOM) {
-        
-        // send it
-        BOOL didSend = [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
-        
-        // Did it send?
-        if (didSend) {
-            
-            // It did, so mark it as sent
-            sendingEOM = NO;
-            
-            NSLog(@"Sent: EOM");
-        }
-        
-        // It didn't send, so we'll exit and wait for peripheralManagerIsReadyToUpdateSubscribers to call sendData again
-        return;
-    }
+    if (self.sendDataIndex >= self.dataToSend.length)  return;
     
-    // We're not sending an EOM, so we're sending data
+    // Work out how big it should be
+    NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
     
-    // Is there any left to send?
+    // Can't be longer than 20 bytes
+    if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
     
-    if (self.sendDataIndex >= self.dataToSend.length) {
-        
-        // No data left.  Do nothing
-        return;
-    }
+    // Copy out the data we want
+    NSData *chunk = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
     
-    // There's data left, so send until the callback fails, or we're done.
+    // Send it
+    [self.connectedPeripheral writeValue:chunk
+                       forCharacteristic:self.curCharacteristic type:CBCharacteristicWriteWithResponse];
     
-    BOOL didSend = YES;
-    
-    while (didSend) {
-        
-        // Make the next chunk
-        
-        // Work out how big it should be
-        NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
-        
-        // Can't be longer than 20 bytes
-        if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
-        
-        // Copy out the data we want
-        NSData *chunk = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
-        
-        // Send it
-        didSend = [self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
-        
-        // If it didn't work, drop out and wait for the callback
-        if (!didSend) {
-            return;
-        }
-        
-        NSString *stringFromData = [[NSString alloc] initWithData:chunk encoding:NSUTF8StringEncoding];
-        NSLog(@"Sent: %@", stringFromData);
-        
-        // It did send, so update our index
-        self.sendDataIndex += amountToSend;
-        
-        // Was it the last one?
-        if (self.sendDataIndex >= self.dataToSend.length) {
-            
-            // It was - send an EOM
-            
-            // Set this so if the send fails, we'll send it next time
-            sendingEOM = YES;
-            
-            // Send it
-            BOOL eomSent = [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
-            
-            if (eomSent) {
-                // It sent, we're all done
-                sendingEOM = NO;
-                
-                NSLog(@"Sent: EOM");
-            }
-            
-            return;
-        }
-    }
+    // It did send, so update our index
+    self.sendDataIndex += amountToSend;
 }
 
 
-/** This callback comes in when the PeripheralManager is ready to send the next chunk of data.
- *  This is to ensure that packets will arrive in the order they are sent
- */
-- (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral
-{
-    // Start sending again
-    [self sendData];
-}
-
-
-//- (NSData *)getFirstTwoBytes
+//- (NSData *)getFirstByte
 //{
 //    NSUInteger index = (self.transferDataType == kTransferDataType_String) ? 0 : 16;
 //    if (self.sendDataIndex == 0 && self.dataToSend.length <= NOTIFY_MTU) {//entire
 //        
 //        index += 0;
-//
+//        
 //    }else if (self.sendDataIndex == 0 && self.dataToSend.length > NOTIFY_MTU){//start
 //        index += 1;
 //    }else if (self.sendDataIndex + NOTIFY_MTU >= self.dataToSend.length){//end
@@ -222,121 +105,102 @@
 //    
 //    return bytes;
 //}
-//
-//
-//#pragma mark - Peripheral Methods
-///** Required protocol method.  A full app should take care of all the possible states,
-// *  but we're just waiting for  to know when the CBPeripheralManager is ready
-// */
-//- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
-//{
-//    // Opt out from any other state
-//    if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
-//        return;
-//    }
-//    
-//    // We're in CBPeripheralManagerStatePoweredOn state...
-//    NSLog(@"self.peripheralManager powered on.");
-//    
-//    // ... so build our service.
-//    
-//    // Start with the CBMutableCharacteristic
-//    self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]
-//                                                                     properties:CBCharacteristicPropertyNotify
-//                                                                          value:nil
-//                                                                    permissions:CBAttributePermissionsReadable];
-//    
-//    // Then the service
-//    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]
-//                                                                       primary:YES];
-//    
-//    // Add the characteristic to the service
-//    transferService.characteristics = @[self.transferCharacteristic];
-//    
-//    // And add it to the peripheral manager
-//    [self.peripheralManager addService:transferService];
-//}
-//
-//
-///** Catch when someone subscribes to our characteristic, then start sending them data
-// */
-//- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
-//{
-//    NSLog(@"Central subscribed to characteristic");
-//    
-//    // Start sending
-//    [self sendData];
-//}
-//
-//
-///** Recognise when the central unsubscribes
-// */
-//- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
-//{
-//    NSLog(@"Central unsubscribed from characteristic");
-//}
-//
-//
-///** Sends the next amount of data to the connected central
-// */
-//- (void)sendData
-//{
-//    // Is there any left to send?
-//    
-//    if (self.sendDataIndex >= self.dataToSend.length) {
-//        
-//        // No data left.  Do nothing
-//        return;
-//    }
-//    
-//    // There's data left, so send until the callback fails, or we're done.
-//    
-//    BOOL didSend = YES;
-//    
-//    while (didSend) {
-//        
-//        // Make the next chunk
-//        
-//        // Work out how big it should be
-//        NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
-//        
-//        // Can't be longer than 20 bytes
-//        if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
-//        
-//        // Copy out the data we want
-//        NSData *dataWillSend = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
-//        
-////        NSMutableData *dataWillSend = [[NSMutableData alloc] init];
-////        [dataWillSend appendData:[self getFirstTwoBytes]];
-////        [dataWillSend appendData:chunk];
-//        
-//        // Send it
-//        didSend = [self.peripheralManager updateValue:dataWillSend forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
-//        
-//        // If it didn't work, drop out and wait for the callback
-//        if (!didSend) {
-//            return;
-//        }
-//        
-//        // It did send, so update our index
-//        self.sendDataIndex += amountToSend;
-//        
-//        // Was it the last one?
-//        if (self.sendDataIndex >= self.dataToSend.length) {
-//            
-//            return;
-//        }
-//    }
-//}
-//
-//
-///** This callback comes in when the PeripheralManager is ready to send the next chunk of data.
-// *  This is to ensure that packets will arrive in the order they are sent
-// */
-//- (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral
-//{
-//    // Start sending again
-//    [self sendData];
-//}
 
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error didWriteValueForCharacteristic: %@",  [error localizedDescription]);
+        return;
+    }
+    [self sendData];
+}
+
+- (void)peripheralDidUpdateName:(CBPeripheral *)peripheral //NS_AVAILABLE(NA, 6_0);
+{
+    NSLog(@"peripheralDidUpdateName");
+}
+
+- (void)peripheralDidInvalidateServices:(CBPeripheral *)peripheral// NS_DEPRECATED(NA, NA, 6_0, 7_0);
+{
+    NSLog(@"peripheralDidInvalidateServices");
+
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray *)invalidatedServices //NS_AVAILABLE(NA, 7_0);
+{
+    NSLog(@"didModifyServices");
+}
+
+- (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error peripheralDidUpdateRSSI: %@",  [error localizedDescription]);
+    }
+
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error;
+{
+    if (error) {
+        NSLog(@"Error didDiscoverServices: %@",  [error localizedDescription]);
+    }
+
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error didDiscoverIncludedServicesForService: %@",  [error localizedDescription]);
+    }
+
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error;
+{
+    if (error) {
+        NSLog(@"Error didDiscoverCharacteristicsForService: %@",  [error localizedDescription]);
+    }
+
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error didUpdateValueForCharacteristic: %@",  [error localizedDescription]);
+    }
+
+}
+
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error didUpdateNotificationStateForCharacteristic: %@",  [error localizedDescription]);
+    }
+
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error didDiscoverDescriptorsForCharacteristic: %@",  [error localizedDescription]);
+    }
+
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForDescriptor:(CBDescriptor *)descriptor error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error didUpdateValueForDescriptor: %@",  [error localizedDescription]);
+    }
+
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error didWriteValueForDescriptor: %@",  [error localizedDescription]);
+    }
+
+}
 @end

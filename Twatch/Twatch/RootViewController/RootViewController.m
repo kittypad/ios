@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSArray *imageSourceArray;
 @property (nonatomic, strong) NSArray *subControllerSourceArray;
 
+@property (nonatomic, strong) ConnectionViewController  *connectionController;
 
 @end
 
@@ -53,9 +54,6 @@
     [rootView registerClass:[RootCell class] forCellWithReuseIdentifier:@"RootCell"];
     [rootView registerClass:[RootHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"RootHeaderView"];
     [self.view addSubview:rootView];
-    
-    
-    
 }
 
 - (void)prepareDefaultData
@@ -79,6 +77,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (CBPeripheral *)connectedPeripheral
+{
+    return self.connectionController.connectedPeripheral;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
