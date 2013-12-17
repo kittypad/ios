@@ -47,25 +47,43 @@
     // Do any additional setup after loading the view from its nib.
     
     CGFloat y = IS_IOS7 ? 95.0 : 75.0;
-    IconButton *albumButton = [[IconButton alloc] initWithFrame:CGRectMake(68.0, y, 77.0, 30.0)];
+    
+    UIImage *image = [UIImage imageNamed:@"蓝边圆角按钮.png"];
+    CGFloat p1 = image.size.width/2;
+    CGFloat p2 = image.size.height/2;
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(p2, p1, p2, p1)];
+    
+    NSString *title = NSLocalizedString(@"Album", nil);
+    CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:15.0]];
+    CGFloat w = 77.0;
+    if (size.width > 41.0) {
+        w = size.width + 46.0;
+    }
+    IconButton *albumButton = [[IconButton alloc] initWithFrame:CGRectMake(145.0-w, y, w, 30.0)];
     albumButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
     [albumButton setTitleColor:[UIColor colorWithHex:@"333333"] forState:UIControlStateNormal];
-    [albumButton setTitle:NSLocalizedString(@"Album", nil) forState:UIControlStateNormal];
+    [albumButton setTitle:title forState:UIControlStateNormal];
     [albumButton setImage:[UIImage imageNamed:@"相册.png"] forState:UIControlStateNormal];
     [albumButton setImage:[UIImage imageNamed:@"相册-按下.png"] forState:UIControlStateHighlighted];
-    [albumButton setBackgroundImage:[UIImage imageNamed:@"蓝边圆角按钮.png"] forState:UIControlStateNormal];
-    [albumButton setBackgroundImage:[UIImage imageNamed:@"蓝边圆角按钮.png"] forState:UIControlStateHighlighted];
+    [albumButton setBackgroundImage:image forState:UIControlStateNormal];
+    [albumButton setBackgroundImage:image forState:UIControlStateHighlighted];
     [albumButton addTarget:self action:@selector(_albumButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:albumButton];
     
-    IconButton *cameraButton = [[IconButton alloc] initWithFrame:CGRectMake(175.0, y, 77.0, 30.0)];
+    title = NSLocalizedString(@"Camera", nil);
+    size = [title sizeWithFont:[UIFont systemFontOfSize:15.0]];
+    w = 77.0;
+    if (size.width > 41.0) {
+        w = size.width + 46.0;
+    }
+    IconButton *cameraButton = [[IconButton alloc] initWithFrame:CGRectMake(175.0, y, w, 30.0)];
     cameraButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
     [cameraButton setTitleColor:[UIColor colorWithHex:@"333333"] forState:UIControlStateNormal];
-    [cameraButton setTitle:NSLocalizedString(@"Camera", nil) forState:UIControlStateNormal];
+    [cameraButton setTitle:title forState:UIControlStateNormal];
     [cameraButton setImage:[UIImage imageNamed:@"相机.png"] forState:UIControlStateNormal];
     [cameraButton setImage:[UIImage imageNamed:@"相机-按下.png"] forState:UIControlStateHighlighted];
-    [cameraButton setBackgroundImage:[UIImage imageNamed:@"蓝边圆角按钮.png"] forState:UIControlStateNormal];
-    [cameraButton setBackgroundImage:[UIImage imageNamed:@"蓝边圆角按钮.png"] forState:UIControlStateHighlighted];
+    [cameraButton setBackgroundImage:image forState:UIControlStateNormal];
+    [cameraButton setBackgroundImage:image forState:UIControlStateHighlighted];
     [cameraButton addTarget:self action:@selector(_cameraButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cameraButton];
     

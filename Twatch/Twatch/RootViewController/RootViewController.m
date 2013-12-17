@@ -60,7 +60,12 @@
 
 - (void)prepareDefaultData
 {
-    self.titleSourceArray = [NSArray arrayWithObjects:@"应用中心",@"表盘背景",@"同步连接",@"更多设置",@"手表模拟器",@"土曼商城", nil];
+    self.titleSourceArray = [NSArray arrayWithObjects:NSLocalizedString(@"AppCenter", nil),
+                             NSLocalizedString(@"WatchBackground", nil),
+                             NSLocalizedString(@"SynConnection", nil),
+                             NSLocalizedString(@"more settings", nil),
+                             NSLocalizedString(@"WatchSimulator", nil),
+                             NSLocalizedString(@"Tomoon Mall", nil), nil];
     self.imageSourceArray = [NSArray arrayWithObjects:@"应用.png",@"背景.png",@"同步.png",@"更多.png",@"手表.png",@"土曼.png", nil];
     self.subControllerSourceArray = [NSArray arrayWithObjects:@"AppCenterViewController",
                                      @"WatchStyleViewController",
