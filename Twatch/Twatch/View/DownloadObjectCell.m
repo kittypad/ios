@@ -28,13 +28,13 @@
         _lineView.backgroundColor = [UIColor colorWithHex:@"cee2f4"];
         [self.contentView addSubview:_lineView];
         
-        _stateButton = [[UIControl alloc] initWithFrame:CGRectMake(0.0, 0.0, 51.0, 51.0)];
+        _stateButton = [[UIControl alloc] initWithFrame:CGRectMake(0.0, 0.0, 67.0, 51.0)];
         
-        _stateImgView = [[UIImageView alloc] initWithFrame:CGRectMake(13.0, 5.0, 25.0, 25.0)];
+        _stateImgView = [[UIImageView alloc] initWithFrame:CGRectMake(21.0, 5.0, 25.0, 25.0)];
         [_stateButton addSubview:_stateImgView];
         
-        _stateLable = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 30.0, 51.0, 14.0)];
-        _stateLable.font = [UIFont systemFontOfSize:12.0];
+        _stateLable = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 30.0, 67.0, 14.0)];
+        _stateLable.font = [UIFont systemFontOfSize:10.0];
         _stateLable.textColor = [UIColor colorWithHex:@"7e7e7e"];
         _stateLable.textAlignment = NSTextAlignmentCenter;
         [_stateButton addSubview:_stateLable];
@@ -84,6 +84,9 @@
         }
     }
     self.lineView.frame = CGRectMake(0.0, self.frame.size.height - 1.0, self.frame.size.width, 1.0);
+    if (self.accessoryView) {
+        self.accessoryView.center = CGPointMake(self.frame.size.width - 41.0, self.frame.size.height/2.0);
+    }
 }
 
 - (NSString *)transformByteToString:(CGFloat)bytes
