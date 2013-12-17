@@ -50,7 +50,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.titleArray = [NSArray arrayWithObjects:@"设置",@"账号绑定", nil];
+    self.titleArray = [NSArray arrayWithObjects:NSLocalizedString(@"Settings", nil), NSLocalizedString(@"Account Bound", nil), nil];
     self.subviewControllerArray = [NSArray arrayWithObjects:@"MoreSettingViewController",
                                    @"AGAuthViewController",
                                    nil];
@@ -105,7 +105,7 @@
     {
         case 0:
         {
-            cell.textLabel.text = @"时间校对";
+            cell.textLabel.text = NSLocalizedString(@"Time Proofread", nil);
             cell.imageView.image = [UIImage imageNamed:@"时间"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             //            UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 50.5, 10)];
@@ -121,7 +121,7 @@
             break;
         case 1:
         {
-            cell.textLabel.text = @"查找手表";
+            cell.textLabel.text = NSLocalizedString(@"Search Watch", nil);
             cell.imageView.image = [UIImage imageNamed:@"setting_Watch"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
@@ -145,14 +145,14 @@
 //            break;
         case 2:
         {
-            cell.textLabel.text = @"测试通信";
+            cell.textLabel.text = NSLocalizedString(@"Commucation Test", nil);
             cell.imageView.image = [UIImage imageNamed:@"通信"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
         }
             break;
         case 3:
-            cell.textLabel.text = @"设置";
+            cell.textLabel.text = NSLocalizedString(@"Settings", nil);
             cell.imageView.image = [UIImage imageNamed:@"setting_Setting"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
@@ -162,7 +162,7 @@
 //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //            break;
         case 4:
-            cell.textLabel.text = @"账号绑定";
+            cell.textLabel.text = NSLocalizedString(@"Account Bound", nil);
             cell.imageView.image = [UIImage imageNamed:@"账号"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
@@ -184,7 +184,7 @@
     {
         case 0:
         {
-            BlockUIAlertView *alertView = [[BlockUIAlertView alloc] initWithTitle:@"" message:@"是否确认进行时间校对?" cancelButtonTitle:@"是"  otherButtonTitles:[NSString stringWithFormat:@"否",nil] buttonBlock:^(NSInteger indexButton){
+            BlockUIAlertView *alertView = [[BlockUIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Confirm Time Proofread", nil) cancelButtonTitle:NSLocalizedString(@"OK", nil)  otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"No", nil), nil] buttonBlock:^(NSInteger indexButton){
                 NSLog(@"%d",indexButton);
             }];
             [alertView show];
@@ -240,7 +240,7 @@
     if (view.tag == SWITCH_TIMEADJUST_TAG)
     {
         __weak typeof(ToggleView*) welkView = view;
-        BlockUIAlertView *alertView = [[BlockUIAlertView alloc] initWithTitle:@"" message:@"是否确认进行时间校对?" cancelButtonTitle:@"是"  otherButtonTitles:[NSString stringWithFormat:@"否",nil] buttonBlock:^(NSInteger indexButton){
+        BlockUIAlertView *alertView = [[BlockUIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Confirm Time Proofread", nil) cancelButtonTitle:NSLocalizedString(@"OK", nil)  otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"No", nil), nil] buttonBlock:^(NSInteger indexButton){
             NSLog(@"%d",indexButton);
             if (indexButton == 1)
             {
