@@ -91,6 +91,7 @@
 "Tomoon Mall" = "土曼商城";
 "Account Bound" = "账号绑定";
 "Search Watch" = "查找手表";
-"Confirm Time Proofread" = "是否确认进行时间校对?";
+"Confirm Time Proofread" = "是否确认进行时间校对?\n当前时间:";
+"Time Proofread Succeed" = "已成功进行时间校对";
 "OK" = "是";
 "No" = "否";

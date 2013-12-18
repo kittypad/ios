@@ -53,7 +53,8 @@
     [goBackButton setImage:[UIImage imageNamed:@"back-push.png"] forState:UIControlStateHighlighted];
     [goBackButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     goBackButton.titleLabel.font = font;
-    [goBackButton setTitleColor:[UIColor colorWithHex:@"333333"] forState:UIControlStateNormal];
+//    [goBackButton setTitleColor:[UIColor colorWithHex:@"333333"] forState:UIControlStateNormal];
+    [goBackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [goBackButton setTitle:self.backName forState:UIControlStateNormal];
     [navigationBar addSubview:goBackButton];
     

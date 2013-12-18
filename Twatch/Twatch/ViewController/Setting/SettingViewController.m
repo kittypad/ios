@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "SettingCell.h"
 #import "AppCenterViewController.h"
+#import "MBProgressHUD.h"
 
 #define SWITCH_TIMEADJUST_TAG  1001
 #define SWITCH_DISCOVERYWATCH_TAG  1002
@@ -183,8 +184,24 @@
     {
         case 0:
         {
-            BlockUIAlertView *alertView = [[BlockUIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Confirm Time Proofread", nil) cancelButtonTitle:NSLocalizedString(@"OK", nil)  otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"No", nil), nil] buttonBlock:^(NSInteger indexButton){
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"hh:mm"];
+            NSString *strDate = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"Confirm Time Proofread", nil),[dateFormatter stringFromDate:[NSDate date]]];
+            
+            BlockUIAlertView *alertView = [[BlockUIAlertView alloc] initWithTitle:@"" message:strDate cancelButtonTitle:NSLocalizedString(@"OK", nil)  otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"No", nil), nil] buttonBlock:^(NSInteger indexButton){
                 NSLog(@"%d",indexButton);
+                if (indexButton == 0) {
+#warning 调用时间设置
+                    MBProgressHUD *hudView = [[MBProgressHUD alloc] initWithView:self.view];
+                    [self.view addSubview:hudView];
+                    hudView.labelText = NSLocalizedString(@"Time Proofread Succeed", nil);
+                    hudView.mode = MBProgressHUDModeCustomView;
+                    [hudView showAnimated:YES whileExecutingBlock:^{
+                        sleep(3);
+                    } completionBlock:^{
+                        [hudView removeFromSuperview];
+                    }];
+                }
             }];
             [alertView show];
         }

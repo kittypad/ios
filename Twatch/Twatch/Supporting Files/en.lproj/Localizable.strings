@@ -91,6 +91,7 @@
 "Tomoon Mall" = "Tomoon Mall";
 "Account Bound" = "Account Bound";
 "Search Watch" = "Search Watch";
-"Confirm Time Proofread" = "Are you sure to proofread time?";
+"Confirm Time Proofread" = "Are you sure to proofread time?\nCurrent Time:";
+"Time Proofread Succeed" = "Time Proofread Succeed";
 "OK" = "OK";
 "No" = "No";
