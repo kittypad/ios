@@ -61,12 +61,18 @@
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(navigationBar.frame)-1, CGRectGetWidth(self.view.frame), 1)];
     line.tag = 1323;
     line.backgroundColor = RGB(101, 158, 224, 1);
+    
+    line.layer.shadowColor = [UIColor grayColor].CGColor;
+    line.layer.shadowOffset = CGSizeMake(0, 0.5);
+    line.layer.shadowRadius = 1;
+    line.layer.shadowOpacity = 0.7;
+    
     [navigationBar addSubview:line];
     self.line = line;
     
     self.view.backgroundColor = RGB(243, 249, 254, 1);
     
-    self.yOffset = CGRectGetMaxY(self.line.frame);
+    self.yOffset = CGRectGetMaxY(self.line.frame) + 2;
     self.height =  CGRectGetHeight(self.view.frame) - self.yOffset;
 }
 

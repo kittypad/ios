@@ -54,8 +54,8 @@
                                    @"AGAuthViewController",
                                    nil];
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, IS_IOS7 ? 65 :45
-                                                                           , CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset
+                                                                           , CGRectGetWidth(self.view.frame), self.height) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.rowHeight = 50;

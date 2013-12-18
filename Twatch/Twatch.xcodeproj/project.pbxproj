@@ -10,7 +10,6 @@
 		0A16E8BE18114D6600DAFAE5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16E8BD18114D6600DAFAE5 /* QuartzCore.framework */; };
 		0A214095182500D70091C924 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A214092182500D70091C924 /* umFeedback.bundle */; };
 		0A2140971825012B0091C924 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2140961825012B0091C924 /* libUMFeedback.a */; };
-		0A70DE51182628CA00DC570D /* 土曼百达科技二维码.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0A70DE50182628CA00DC570D /* 土曼百达科技二维码.jpeg */; };
 		0A70DE5B18264C9200DC570D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A70DE5918264C9200DC570D /* Localizable.strings */; };
 		0A714ABC1828880500A78784 /* 0_0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A714AA41828880500A78784 /* 0_0.jpg */; };
 		0A714ABD1828880500A78784 /* 0_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A714AA51828880500A78784 /* 0_1.jpg */; };
@@ -37,6 +36,7 @@
 		0A714AD21828880500A78784 /* 0_22.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A714ABA1828880500A78784 /* 0_22.jpg */; };
 		0A714AD31828880500A78784 /* 0_23.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A714ABB1828880500A78784 /* 0_23.jpg */; };
 		0A7499241827CDE400B355D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A7499261827CDE400B355D7 /* InfoPlist.strings */; };
+		0ABA93B318614A4F008B821A /* 土曼百达科技二维码.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA93B218614A4F008B821A /* 土曼百达科技二维码.jpg */; };
 		0ADAFAF31854F263001C0287 /* BlockUIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADAFAEB1854F263001C0287 /* BlockUIAlertView.m */; };
 		0ADAFAF41854F263001C0287 /* ToggleBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADAFAEE1854F263001C0287 /* ToggleBase.m */; };
 		0ADAFAF51854F263001C0287 /* ToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADAFAF01854F263001C0287 /* ToggleButton.m */; };
@@ -180,7 +180,6 @@
 		0A214092182500D70091C924 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
 		0A214093182500D70091C924 /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
 		0A2140961825012B0091C924 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
-		0A70DE50182628CA00DC570D /* 土曼百达科技二维码.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "土曼百达科技二维码.jpeg"; sourceTree = "<group>"; };
 		0A70DE5A18264C9200DC570D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0A70DE5C18264CA300DC570D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0A714AA41828880500A78784 /* 0_0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0_0.jpg; sourceTree = "<group>"; };
@@ -209,6 +208,7 @@
 		0A714ABB1828880500A78784 /* 0_23.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0_23.jpg; sourceTree = "<group>"; };
 		0A7499251827CDE400B355D7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		0A7499271827CDF800B355D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0ABA93B218614A4F008B821A /* 土曼百达科技二维码.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "土曼百达科技二维码.jpg"; sourceTree = "<group>"; };
 		0ADAFAEA1854F263001C0287 /* BlockUIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockUIAlertView.h; sourceTree = "<group>"; };
 		0ADAFAEB1854F263001C0287 /* BlockUIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockUIAlertView.m; sourceTree = "<group>"; };
 		0ADAFAED1854F263001C0287 /* ToggleBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleBase.h; sourceTree = "<group>"; };
@@ -1060,7 +1060,7 @@
 		DD56A744182287C10088AB49 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				0A70DE50182628CA00DC570D /* 土曼百达科技二维码.jpeg */,
+				0ABA93B218614A4F008B821A /* 土曼百达科技二维码.jpg */,
 				0A714AA41828880500A78784 /* 0_0.jpg */,
 				0A714AA51828880500A78784 /* 0_1.jpg */,
 				0A714AA61828880500A78784 /* 0_2.jpg */,
@@ -1192,7 +1192,6 @@
 				DD56A6E6181EB3B00088AB49 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
 				0A714ACA1828880500A78784 /* 0_14.jpg in Resources */,
 				0A714AC91828880500A78784 /* 0_13.jpg in Resources */,
-				0A70DE51182628CA00DC570D /* 土曼百达科技二维码.jpeg in Resources */,
 				42C780A8182A410600DB47A5 /* Default-568h@2x.png in Resources */,
 				0A714AD11828880500A78784 /* 0_21.jpg in Resources */,
 				0A714AC01828880500A78784 /* 0_4.jpg in Resources */,
@@ -1206,6 +1205,7 @@
 				0A714ACB1828880500A78784 /* 0_15.jpg in Resources */,
 				0A714AC51828880500A78784 /* 0_9.jpg in Resources */,
 				0A714AD01828880500A78784 /* 0_20.jpg in Resources */,
+				0ABA93B318614A4F008B821A /* 土曼百达科技二维码.jpg in Resources */,
 				0A714AC21828880500A78784 /* 0_6.jpg in Resources */,
 				0A714ABE1828880500A78784 /* 0_2.jpg in Resources */,
 				0A714AC31828880500A78784 /* 0_7.jpg in Resources */,

@@ -63,7 +63,7 @@
     [self.view addSubview:label4];
     
     UIImageView *discriminateImage = [[UIImageView alloc] initWithFrame:CGRectMake(( self.view.frame.size.width - 100)/2, 280, 100, 100)];
-    discriminateImage.image = [UIImage imageNamed:@"土曼百达科技二维码.jpeg"];
+    discriminateImage.image = [UIImage imageNamed:@"土曼百达科技二维码.jpg"];
     
     discriminateImage.layer.borderWidth = 1;
     discriminateImage.layer.borderColor = RGB(221, 221, 221, 1).CGColor;
