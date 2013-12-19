@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NaviCommonViewController.h"
 
-@interface SimulatorViewController : NaviCommonViewController
+@interface SimulatorViewController : UIViewController
 
 /// TableView for found peripherals
 @property (strong, nonatomic) IBOutlet UITableView *peripheralsTableView;

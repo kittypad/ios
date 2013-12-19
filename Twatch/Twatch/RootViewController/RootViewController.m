@@ -116,11 +116,15 @@
         }else{
             aController = self.connectionController;
         }
-    }else{
+        ((NaviCommonViewController *)aController).backName = self.titleSourceArray[indexPath.row];
+    }
+    else if ([className isEqualToString:@"SimulatorViewController"]) {
         aController = [[NSClassFromString(className) alloc] init];
     }
-    
-    ((AppCenterViewController *)aController).backName = self.titleSourceArray[indexPath.row];
+    else{
+        aController = [[NSClassFromString(className) alloc] init];
+        ((NaviCommonViewController *)aController).backName = self.titleSourceArray[indexPath.row];
+    }
     
     [self.navigationController pushViewController:aController animated:YES];
 }
