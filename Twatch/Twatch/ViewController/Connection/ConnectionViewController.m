@@ -29,11 +29,6 @@ static  NSString *cellId = @"connectin cell identifier";
         // Start up the CBCentralManager
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
-        // And somewhere to store the incoming data
-        _data = [[NSMutableData alloc] init];
-        
-        _array = [[NSMutableArray alloc] init];
-
     }
     return self;
 }
@@ -50,7 +45,7 @@ static  NSString *cellId = @"connectin cell identifier";
     tableView.dataSource = self;
     tableView.separatorColor = [UIColor clearColor];
     tableView.backgroundColor = [UIColor clearColor];
-    //[tableView registerClass:[ConnectionCell class] forCellReuseIdentifier:cellId];
+    [tableView registerClass:[ConnectionCell class] forCellReuseIdentifier:cellId];
     [self.view addSubview:tableView];
     self.tableView = tableView;
     
@@ -64,11 +59,6 @@ static  NSString *cellId = @"connectin cell identifier";
     [scanButton addTarget:self action:@selector(startScan:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:scanButton];
     
-    //test
-    self.testImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-    [self.view addSubview:self.testImageView];
-    self.testImageView.hidden = YES;
-
     
     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(fireRefreshTableTimer) userInfo:nil repeats:YES];
 }
@@ -77,8 +67,8 @@ static  NSString *cellId = @"connectin cell identifier";
 {
     NSLog(@"central viewWillDisappear");
     [self.centralManager stopScan];
-    [self.array removeAllObjects];
-    self.centralManager = nil;
+//    [self.unConnectedDevices removeAllObjects];
+//    self.centralManager = nil;
     NSLog(@"stopScan");
     [super viewWillDisappear:animated];
 }
@@ -117,42 +107,54 @@ static  NSString *cellId = @"connectin cell identifier";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-////    if (section == 0) {
-////        return @"已绑定";
-////    }else{
-////        return @"可用设备";
-////    }
-//}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return @"已绑定";
+    }else{
+        return @"可用设备";
+    }
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.array count] + 1;
+    if (section == 0) {
+        return (int)(self.connectedPeripheral != nil);
+    }
+    return [self.unConnectedDevices count];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ListCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    ConnectionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"BLE devices";
-    } else {
-        CBPeripheral *p = [self.array objectAtIndex:(indexPath.row - 1)];
-        NSLog(@"isConnected : %d : %@",(int)p.state, p.identifier);
-        NSString *s = p.name;
+    if (indexPath.section == 0) {
+        CBPeripheral *p = self.connectedPeripheral;
         
-        if (self.cur_row != 0 && self.cur_row == indexPath.row) {
-            s = [NSString stringWithFormat:@"%@ %d", s, self.cur_rate];
+        NSString *s = p.name;
+        if (s == nil) s = @"unknown Device";
+
+        if (p.state == CBPeripheralStateConnected) {
+            NSLog(@"%@：CBPeripheralStateConnected。。。。",p.name);
         }
-        cell.textLabel.text = s;
+
+        s = [NSString stringWithFormat:@"%@ %d", s, self.cur_rate];
+        [cell setCellSelected:YES title:s];
+    } else {
+        CBPeripheral *p = self.unConnectedDevices[indexPath.row];
+
+        NSString *s = p.name;
+        if (s == nil) s = @"unknown Device";
+        
+        if (p.state == CBPeripheralStateConnecting) {
+            NSLog(@"%@：CBPeripheralStateConnecting。。。。",p.name);
+        }
+
+        [cell setCellSelected:NO title:s];
     }
     
     return cell;
@@ -161,9 +163,12 @@ static  NSString *cellId = @"connectin cell identifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"central didSelectRowAtIndexPath %ld", (long)indexPath.row);
-    self.cur_row = (int) indexPath.row;
-    CBPeripheral *p = [self.array objectAtIndex:(indexPath.row - 1)];
-    [self.centralManager connectPeripheral:p options:nil];
+    if (indexPath.section == 0) {
+        [self.centralManager cancelPeripheralConnection:self.connectedPeripheral];
+    }else{
+        CBPeripheral *p = self.unConnectedDevices[indexPath.row];
+        [self.centralManager connectPeripheral:p options:nil];
+    }
 }
 
 - (void)dealloc

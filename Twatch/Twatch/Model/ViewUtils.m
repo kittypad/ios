@@ -95,9 +95,10 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height)
     return label;
 }
 
-+ (RootViewController *)rootViewController
++ (ConnectionViewController *)connectionManager
 {
-    return ((AppDelegate *)[UIApplication sharedApplication].delegate).rootViewController;
+    RootViewController *root = ((AppDelegate *)[UIApplication sharedApplication].delegate).rootViewController;
+    return root.connectionController;
 }
 
 @end

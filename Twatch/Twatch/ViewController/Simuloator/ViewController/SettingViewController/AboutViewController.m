@@ -72,7 +72,7 @@
     UILabel *copyrightLab = [ViewUtils labelWithTitle:NSLocalizedString(@"AboutCopyRight", nil) textFont:[UIFont systemFontOfSize:10.0f] normalColor:ABOUTSTRING_TEXTCOLOR backColor:ABOUTSTRING_BACKCOLOR];
     NSLog(@"%f",CGRectGetHeight(self.view.frame));
     copyrightLab.frame = CGRectMake(85, CGRectGetHeight(self.view.frame) - (IS_IOS7? 10:30) , 150, 30);
-    copyrightLab.textAlignment = UITextAlignmentCenter;
+    copyrightLab.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:copyrightLab];
 
     

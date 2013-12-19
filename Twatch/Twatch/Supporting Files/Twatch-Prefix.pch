@@ -15,4 +15,5 @@
     #import <Foundation/Foundation.h>
     #import "WatchConstant.h"
     #import "ViewUtils.h"
+    #import "TransferService.h"
 #endif

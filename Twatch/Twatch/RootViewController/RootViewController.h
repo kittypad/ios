@@ -7,20 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreBluetooth/CoreBluetooth.h>
-#import "TransferService.h"
 
 @class ConnectionViewController;
 
-@interface RootViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface RootViewController : UIViewController
 
-
-//for bluetooth transfer data
-@property (strong, nonatomic)      CBPeripheral              *connectedPeripheral;
-@property (strong, nonatomic)      CBCharacteristic          *curCharacteristic;
-
-@property (nonatomic, strong)      NSData                    *dataToSend;
-@property (nonatomic, readwrite)   NSInteger                 sendDataIndex;
-@property (nonatomic, readwrite)   TransferDataType          transferDataType;
+@property (nonatomic, strong) ConnectionViewController  *connectionController;
 
 @end

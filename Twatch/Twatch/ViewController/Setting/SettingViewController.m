@@ -212,9 +212,8 @@
 //            break;
         case 2:
         {
-            //test
-            [[ViewUtils rootViewController] sendDataToBle:@"hello, this is from iPhone" transerType:kTransferDataType_String];
-            //[[ViewUtils rootViewController] sendDataToBle:@"hello, this is an iPhone" transerType:kTransferDataType_File];
+#warning 测试通信
+            [[ViewUtils connectionManager]  sendDataToBle:@"hello, this is from iPhone" transerType:kTransferDataType_String];
             
         }
             break;

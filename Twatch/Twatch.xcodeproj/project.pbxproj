@@ -93,7 +93,6 @@
 		DD247F7F18126A8500D9E6D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7818126A8500D9E6D4 /* AppDelegate.m */; };
 		DD247F8118126A8500D9E6D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD247F7B18126A8500D9E6D4 /* main.m */; };
 		DD247F8418126A9C00D9E6D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD247F8318126A9C00D9E6D4 /* Images.xcassets */; };
-		DD4815591853783800325B4C /* RootViewController+BleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815531853783800325B4C /* RootViewController+BleManager.m */; };
 		DD48155A1853783800325B4C /* RootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815561853783800325B4C /* RootCell.m */; };
 		DD48155B1853783800325B4C /* RootHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815581853783800325B4C /* RootHeaderView.m */; };
 		DD4815B418537C4D00325B4C /* ConnectionViewController+CentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD48156218537C4C00325B4C /* ConnectionViewController+CentralManager.m */; };
@@ -319,8 +318,6 @@
 		DD247F7D18126A8500D9E6D4 /* Twatch-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Twatch-Prefix.pch"; sourceTree = "<group>"; };
 		DD247F7E18126A8500D9E6D4 /* WatchConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchConstant.h; sourceTree = "<group>"; };
 		DD247F8318126A9C00D9E6D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
-		DD4815521853783800325B4C /* RootViewController+BleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RootViewController+BleManager.h"; sourceTree = "<group>"; };
-		DD4815531853783800325B4C /* RootViewController+BleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RootViewController+BleManager.m"; sourceTree = "<group>"; };
 		DD4815551853783800325B4C /* RootCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootCell.h; sourceTree = "<group>"; };
 		DD4815561853783800325B4C /* RootCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootCell.m; sourceTree = "<group>"; };
 		DD4815571853783800325B4C /* RootHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootHeaderView.h; sourceTree = "<group>"; };
@@ -1039,8 +1036,6 @@
 				DD4815FB18537FBB00325B4C /* NaviCommonViewController.m */,
 				428294221848513D00D24A36 /* RootViewController.h */,
 				428294231848513D00D24A36 /* RootViewController.m */,
-				DD4815521853783800325B4C /* RootViewController+BleManager.h */,
-				DD4815531853783800325B4C /* RootViewController+BleManager.m */,
 			);
 			path = RootViewController;
 			sourceTree = "<group>";
@@ -1298,7 +1293,6 @@
 				D8A8D37F184F2242002FB1D1 /* DownloadObjectCell.m in Sources */,
 				DD1BFBC6180AC0FC0001C200 /* PSTGridLayoutSection.m in Sources */,
 				DD4815CB18537C4D00325B4C /* MovieViewController.m in Sources */,
-				DD4815591853783800325B4C /* RootViewController+BleManager.m in Sources */,
 				0ADAFAF31854F263001C0287 /* BlockUIAlertView.m in Sources */,
 				D8C3524A1825FCE70061081E /* MMProgressHUD+Class.m in Sources */,
 				0ADAFAF51854F263001C0287 /* ToggleButton.m in Sources */,

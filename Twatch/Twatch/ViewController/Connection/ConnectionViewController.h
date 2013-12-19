@@ -18,22 +18,19 @@ UITableViewDataSource,
 UITableViewDelegate
 >
 
+@property (nonatomic, strong) UITableView     *tableView;
+
 @property (strong, nonatomic) CBCentralManager *centralManager;
-@property (nonatomic) NSMutableArray *array;
+@property (nonatomic) NSMutableArray *unConnectedDevices;
 @property (strong, nonatomic) CBPeripheral *connectedPeripheral;
-@property (nonatomic) int cur_row;
 @property (nonatomic) int cur_rate;
 
 
-@property (strong, nonatomic) NSMutableData      *data;
+//write
+@property (nonatomic, strong)      NSData                    *dataToSend;
+@property (nonatomic, readwrite)   NSInteger                 sendDataIndex;
+@property (nonatomic, readwrite)   TransferDataType          transferDataType;
+@property (strong, nonatomic)      CBCharacteristic          *curCharacteristic;
 
-
-@property (nonatomic, strong) UITableView     *tableView;
-@property (nonatomic, strong) NSNumber        *RSSI;
-
-@property (nonatomic, strong) NSMutableArray  *unConnectedDevices;
-
-//test
-@property (nonatomic, strong) UIImageView *testImageView;
 
 @end

@@ -8,8 +8,145 @@
 
 #import "ConnectionViewController+CentralManager.h"
 #import "MBProgressHUD.h"
+
+#define NOTIFY_MTU      (500 - 2)
+
+
 @implementation ConnectionViewController (CentralManager)
 
+//MARK: DATA Transfer
+- (void)sendDataToBle:(id)data transerType:(TransferDataType)type
+{
+    self.connectedPeripheral.delegate = self;
+    
+    BOOL connectedADevice = NO;
+#ifdef __IPHONE_7_0
+    connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
+#else
+    connectedADevice = self.connectedPeripheral.isConnected;
+#endif
+    if (!connectedADevice || self.connectedPeripheral == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"尚未连接到蓝牙设备，请进入同步界面扫描设备"
+                                                       delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
+    self.transferDataType = type;
+    
+    // Reset the index
+    self.sendDataIndex = 0;
+    
+    if (self.transferDataType == kTransferDataType_String) {
+        self.dataToSend = [(NSString *)data dataUsingEncoding:NSUTF8StringEncoding];
+    }else{
+        self.dataToSend = UIImageJPEGRepresentation([UIImage imageNamed:@"icon-72.png"], 1.0);
+    }
+    
+    // Send it
+    self.curCharacteristic = nil;
+    for (CBService *aService in self.connectedPeripheral.services) {
+        for (CBCharacteristic *ca in aService.characteristics) {
+            if ([ca.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
+                self.curCharacteristic = ca;
+            }
+        }
+    }
+    
+    if (self.curCharacteristic == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"已连接的蓝牙设备尚未提供此服务"
+                                                       delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+/** Sends the next amount of data to the connected central
+ */
+- (void)sendData
+{
+    
+    if (self.sendDataIndex >= self.dataToSend.length)  return;
+    
+    // Work out how big it should be
+    NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
+    
+    // Can't be longer than 20 bytes
+    if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
+    
+    // Copy out the data we want
+    NSData *chunk = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
+    
+    NSMutableData *tempData = [[NSMutableData alloc] initWithData:[self getFirstByte]];
+    [tempData appendData:chunk];
+    
+    // Send it
+    [self.connectedPeripheral writeValue:tempData
+                       forCharacteristic:self.curCharacteristic type:CBCharacteristicWriteWithResponse];
+    
+}
+
+
+- (NSData *)getFirstByte
+{
+#warning 添加约定的字节 这个地方不对 但不知道怎么写
+#warning 参考：http://wiki.tomoon.cn/pages/viewpage.action?pageId=7214568  用户名：xiaoluo 密码123
+    
+    char *aCharString = nil;
+    
+    if (self.transferDataType == kTransferDataType_String) {
+        if (self.sendDataIndex == 0 && self.dataToSend.length <= NOTIFY_MTU) {//entire
+            aCharString = "00000000";
+        }else if (self.sendDataIndex == 0 && self.dataToSend.length > NOTIFY_MTU){//start
+            aCharString = "00000001";
+        }else if (self.sendDataIndex + NOTIFY_MTU >= self.dataToSend.length){//end
+            aCharString = "00000011";
+        }else {//continue
+            aCharString = "00000010";
+        }
+    }else if (self.transferDataType == kTransferDataType_File){
+        if (self.sendDataIndex == 0 && self.dataToSend.length <= NOTIFY_MTU) {//entire
+            aCharString = "00100000";
+        }else if (self.sendDataIndex == 0 && self.dataToSend.length > NOTIFY_MTU){//start
+            aCharString = "00100001";
+        }else if (self.sendDataIndex + NOTIFY_MTU >= self.dataToSend.length){//end
+            aCharString = "00100011";
+        }else {//continue
+            aCharString = "00100010";
+        }
+    }
+    
+    NSData *header = [NSData dataWithBytes:aCharString length:sizeof(aCharString)];
+    NSLog(@"after1: %@",header);
+    
+    NSString *string = [[NSString alloc] initWithData:header encoding:NSUTF8StringEncoding];
+    NSLog(@"after2: %@",string);
+    
+    return header;
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error didWriteValueForCharacteristic: %@",  [error localizedDescription]);
+        return;
+    }
+    
+    // Work out how big it should be
+    NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
+    
+    // Can't be longer than 20 bytes
+    if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
+
+    // It did send, so update our index
+    self.sendDataIndex += amountToSend;
+
+    [self sendData];
+}
+
+
+//MARK: Scan watch
 -(void) centralManagerDidUpdateState:(CBCentralManager *)central
 {
     if (central.state != CBCentralManagerStatePoweredOn) {
@@ -32,15 +169,15 @@
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     NSLog(@"didDiscoverPeripheral NAME:%@ RSSI:%@", peripheral.name, RSSI);
-    for (int i = 0; i < self.array.count; i++) {
-        CBPeripheral *p = [self.array objectAtIndex:i];
+    for (int i = 0; i < self.unConnectedDevices.count; i++) {
+        CBPeripheral *p = [self.unConnectedDevices objectAtIndex:i];
         if ([p.name compare:peripheral.name] == NSOrderedSame) {
             NSLog(@"equlas");
             return;
         }
     }
     
-    [self.array addObject:peripheral];
+    [self.unConnectedDevices addObject:peripheral];
     [self.tableView reloadData];
 }
 
@@ -51,6 +188,10 @@
     peripheral.delegate = self;
     //@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]
     [peripheral discoverServices:nil];
+    
+    [self.unConnectedDevices removeObject:peripheral];
+    
+    [self.tableView reloadData];
 }
 
 - (void) centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
@@ -67,7 +208,13 @@
 {
     NSLog(@"didDisconnectPeripheral %@", peripheral.name);
     
-    //    [self scan];
+    if (self.connectedPeripheral == peripheral) {
+        self.connectedPeripheral = nil;
+    }
+    
+    [self scan];
+    
+    [self.tableView reloadData];
 }
 
 //- (void)cleanup
@@ -113,17 +260,6 @@
         //NSLog(@"%@", s.UUID);
         //@[[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]
         [peripheral discoverCharacteristics:nil forService:s];
-        
-        
-
-        for (CBCharacteristic *ca in s.characteristics) {
-            [peripheral writeValue:[@"hello , ble" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:ca type:CBCharacteristicWriteWithResponse];
-            
-            NSData *sendData = [@"hello , ble" dataUsingEncoding:NSUTF8StringEncoding];
-            NSLog(@"send data: %@",sendData);
-
-        }
-
     }
 }
 
@@ -145,18 +281,9 @@
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
             [peripheral readValueForCharacteristic:characteristic];
             peripheral.delegate = self;
-
         }
     }
 }
-
-- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic  error:(NSError *)error {
-    
-    if (error) {
-        NSLog(@"Error writing characteristic value: %@",  [error localizedDescription]);
-    }
-}
-
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {

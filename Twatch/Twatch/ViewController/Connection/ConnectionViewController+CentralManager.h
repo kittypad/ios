@@ -10,12 +10,12 @@
 
 @interface ConnectionViewController (CentralManager)
 <
-
 CBCentralManagerDelegate,
 CBPeripheralDelegate
-
 >
 
 - (void)scan;
+
+- (void)sendDataToBle:(id)data transerType:(TransferDataType)type;
 
 @end

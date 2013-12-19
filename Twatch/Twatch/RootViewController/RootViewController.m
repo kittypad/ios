@@ -7,7 +7,6 @@
 //
 
 #import "RootViewController.h"
-#import "RootViewController+BleManager.h"
 
 #import "AppCenterViewController.h"
 #import "WatchStyleViewController.h"
@@ -19,13 +18,11 @@
 #import "RootCell.h"
 #import "RootHeaderView.h"
 
-@interface RootViewController ()
+@interface RootViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSArray *titleSourceArray;
 @property (nonatomic, strong) NSArray *imageSourceArray;
 @property (nonatomic, strong) NSArray *subControllerSourceArray;
-
-@property (nonatomic, strong) ConnectionViewController  *connectionController;
 
 @end
 

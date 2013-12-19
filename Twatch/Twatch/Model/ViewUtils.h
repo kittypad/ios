@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RootViewController+BleManager.h"
+#import "RootViewController.h"
+#import "ConnectionViewController+CentralManager.h"
 
 //c-style
 CGRect CGRectChangeWidth(CGRect frame, CGFloat width);
@@ -27,7 +28,7 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height);
 
 + (UILabel *)labelWithTitle:(NSString *)title textFont:(UIFont *)font normalColor:(UIColor *)normal backColor:(UIColor *)backColor;
 
-+ (RootViewController *)rootViewController;
++ (ConnectionViewController *)connectionManager;
 
 @end
 
