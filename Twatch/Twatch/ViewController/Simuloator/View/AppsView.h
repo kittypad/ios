@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    SettingAppType = 100,
-    PanoramicAppType,
+//    SettingAppType = 100,
+    PanoramicAppType = 100,
     ExclusuveAppType,
     TryAppType
 }AppsType;

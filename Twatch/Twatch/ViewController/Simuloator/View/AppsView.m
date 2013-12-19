@@ -21,8 +21,6 @@
 
 - (void)playVideo:(id)sender
 {
-    
-    NSLog(@"haha");
     NSString *name = nil;
 ////    NSString *type = nil;
 //    switch ([sender tag]) {

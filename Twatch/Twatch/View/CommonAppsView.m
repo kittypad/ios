@@ -16,27 +16,27 @@
     if (self) {
         CGRect rect = CGRectMake(10.0, 28.0, 105.0, 127.0);
         
-        UIButton *settingButton = [[UIButton alloc] initWithFrame:rect];
-        [settingButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
-        [settingButton setImage:[UIImage imageNamed:@"设置-左滑.png"] forState:UIControlStateNormal];
-        settingButton.tag = SettingAppType;
-        [self addSubview:settingButton];
-        rect.origin.x += rect.size.width+10.0;
+//        UIButton *settingButton = [[UIButton alloc] initWithFrame:rect];
+//        [settingButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+//        [settingButton setImage:[UIImage imageNamed:@"设置-左滑.png"] forState:UIControlStateNormal];
+//        settingButton.tag = SettingAppType;
+//        [self addSubview:settingButton];
+//        rect.origin.x += rect.size.width+10.0;
         
         UIButton *musicButton = [[UIButton alloc] initWithFrame:rect];
         [musicButton setImage:[UIImage imageNamed:@"360度-左滑.png"] forState:UIControlStateNormal];
         [musicButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
         musicButton.tag = PanoramicAppType;
         [self addSubview:musicButton];
-        rect.origin.x = 10.0;
-        rect.origin.y += rect.size.height+12.0;
+        rect.origin.x += rect.size.width+10.0;
         
         UIButton *runningButton = [[UIButton alloc] initWithFrame:rect];
         [runningButton setImage:[UIImage imageNamed:@"刻字-左滑.png"] forState:UIControlStateNormal];
         [runningButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
         runningButton.tag = ExclusuveAppType;
         [self addSubview:runningButton];
-        rect.origin.x += rect.size.width+10.0;
+        rect.origin.x = 10.0;
+        rect.origin.y += rect.size.height+12.0;
         
         UIButton *weatherButton = [[UIButton alloc] initWithFrame:rect];
         [weatherButton setImage:[UIImage imageNamed:@"试戴-左滑.png"] forState:UIControlStateNormal];

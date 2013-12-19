@@ -65,9 +65,9 @@
     
 //    [self prepareBottomNavigationbar];
     
-    [self prepareSettingView];
+//    [self prepareSettingView];
 
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAppsVideo:) name:PlayAppsVideoNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAppsVideo:) name:PlayAppsVideoNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayDidFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     
@@ -82,17 +82,32 @@
 
 - (void)playAppsVideo:(NSNotification *)notice
 {
-//    NSString *name = [notice.userInfo objectForKey:@"name"];
-//    switch ([name integerValue])
-//    {
-//        case SettingAppType:
-//            [[NSNotificationCenter defaultCenter] postNotificationName:SettingviewClickNotification object:nil userInfo:nil];
-//            break;
-//        default:
-//            [[NSNotificationCenter defaultCenter] postNotificationName:AppIconClickNotification object:nil userInfo:notice.userInfo];
-//            
-//            break;
-//    }
+    NSString *name = [notice.userInfo objectForKey:@"name"];
+    NSString *className = nil;
+    NSString *backName = nil;
+    switch ([name integerValue])
+    {
+        case PanoramicAppType: {
+            className = @"_360ViewController";
+            backName = NSLocalizedString(@"Panoramicview", nil);
+            break;
+        }
+        case ExclusuveAppType: {
+            className = @"TryViewController";
+            backName = NSLocalizedString(@"Try", nil);
+            break;
+        }
+        case TryAppType: {
+            className = @"SignViewController";
+            backName = NSLocalizedString(@"Engraving", nil);
+            break;
+        }
+        default:
+            break;
+    }
+    NaviCommonViewController *vc = [[NSClassFromString(className) alloc] init];
+    vc.backName = backName;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)videoPlayDidFinished:(NSNotification *)notice

@@ -229,8 +229,8 @@
 		42B5C91E1808EE7E00D2FB27 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		42B5C91F1808EE7E00D2FB27 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		42B5C9221808F85900D2FB27 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		42BBD88618079B7B0094E39D /* CommonAppsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAppsView.h; sourceTree = "<group>"; };
-		42BBD88718079B7B0094E39D /* CommonAppsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAppsView.m; sourceTree = "<group>"; };
+		42BBD88618079B7B0094E39D /* CommonAppsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonAppsView.h; path = ../../../View/CommonAppsView.h; sourceTree = "<group>"; };
+		42BBD88718079B7B0094E39D /* CommonAppsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonAppsView.m; path = ../../../View/CommonAppsView.m; sourceTree = "<group>"; };
 		42C676A518237B9600B8474D /* CameraImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraImageHelper.h; path = CameraImageHelper/CameraImageHelper.h; sourceTree = "<group>"; };
 		42C676A618237B9600B8474D /* CameraImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraImageHelper.m; path = CameraImageHelper/CameraImageHelper.m; sourceTree = "<group>"; };
 		42C676B5182393DF00B8474D /* UIImage+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tool.h"; sourceTree = "<group>"; };
@@ -796,6 +796,8 @@
 			children = (
 				DD4815F118537F3500325B4C /* AllAppsView.h */,
 				DD4815F218537F3500325B4C /* AllAppsView.m */,
+				42BBD88618079B7B0094E39D /* CommonAppsView.h */,
+				42BBD88718079B7B0094E39D /* CommonAppsView.m */,
 				DD4815F318537F3500325B4C /* AppsView.h */,
 				DD4815F418537F3500325B4C /* AppsView.m */,
 				DD4815F518537F3500325B4C /* DialView.h */,
@@ -1109,10 +1111,8 @@
 		DDEC67D81806F8E600F3DD7A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				42BBD88618079B7B0094E39D /* CommonAppsView.h */,
 				0ADAFAE91854F263001C0287 /* BlockUIAlertView */,
 				0ADAFAEC1854F263001C0287 /* CustomSwitchView */,
-				42BBD88718079B7B0094E39D /* CommonAppsView.m */,
 				D8A8D37D184F2242002FB1D1 /* DownloadObjectCell.h */,
 				D8A8D37E184F2242002FB1D1 /* DownloadObjectCell.m */,
 				D82F074E185850210024A259 /* ProgressBarView.h */,
