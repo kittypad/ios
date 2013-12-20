@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) WatchView *watchView;
 
+- (void)backButtonPressed:(UIButton *)button;
+
 @end
 
 @implementation SimulatorViewController
@@ -41,6 +43,7 @@
     
     UIImage *img = [UIImage imageNamed:@"蓝2.png"];
     UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
+    bgView.userInteractionEnabled = YES;
     NSLog(@"%f", img.size.height);
     bgView.center = self.view.center;
     [self.view addSubview:bgView];
@@ -56,16 +59,35 @@
     }];
     [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
 
-    self.watchView = [[WatchView alloc] initWithFrame:CGRectMake(0, 0, Watch_Width, Watch_Height)];
-    self.watchView.center = self.view.center;
-    self.watchView.frame = CGRectOffset(self.watchView.frame, -2, -2);
+    self.watchView = [[WatchView alloc] initWithFrame:CGRectMake(43.0, 106.5, Watch_Width, Watch_Height)];
     self.watchView.layer.masksToBounds = YES;
-    [self.view addSubview:self.watchView];
-    bgView.center = CGPointMake(self.view.center.x - 2.0, self.view.center.y + 5.0);
+    [bgView addSubview:self.watchView];
     
-//    [self prepareBottomNavigationbar];
+    CGFloat y = IS_IOS7 ? 20.0 : 0.0;
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, y, 53.0, 53.0)];
+    [backButton setImage:[UIImage imageNamed:@"sim-back.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"sim-back-push.png"] forState:UIControlStateHighlighted];
+    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
     
-//    [self prepareSettingView];
+    UIImageView *bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(81.0, self.view.frame.size.height-58.0, 158.0, 58.0)];
+    bottomView.userInteractionEnabled = YES;
+    bottomView.image = [UIImage imageNamed:@"sim-bottom-bg.png"];
+    [self.view addSubview:bottomView];
+    
+    NSArray *colorStrArray = @[@"黑", @"红", @"蓝"];
+    
+    __block CGFloat x = 6.0;
+    __block id weakSelf = self;
+    [colorStrArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, 6.0, 45.0, 45.0)];
+        [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"模拟%@.png", obj]] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"模拟%@-push.png", obj]] forState:UIControlStateHighlighted];
+        [button addTarget:weakSelf action:@selector(colorButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = idx;
+        [bottomView addSubview:button];
+        x += button.frame.size.width + 6.0;
+    }];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAppsVideo:) name:PlayAppsVideoNotification object:nil];
     
@@ -113,6 +135,18 @@
 - (void)videoPlayDidFinished:(NSNotification *)notice
 {
     [self dismissViewControllerAnimated:YES completion:^(void){}];
+}
+
+- (void)backButtonPressed:(UIButton *)button
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)colorButtonPressed:(UIButton *)button
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:button.tag forKey:WatchStyleStatus];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:WatchStyleStatusChangeNotification object:nil];
 }
 
 - (void)settingBUttonClicked:(UIButton *)sender
