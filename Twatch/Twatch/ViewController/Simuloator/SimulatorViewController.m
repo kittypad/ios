@@ -72,7 +72,7 @@
     
     UIImageView *bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(81.0, self.view.frame.size.height-58.0, 158.0, 58.0)];
     bottomView.userInteractionEnabled = YES;
-    bottomView.image = [UIImage imageNamed:@"sim-bottom-bg.png"];
+    bottomView.image = [UIImage imageNamed:@"模拟器换色栏.png"];
     [self.view addSubview:bottomView];
     
     NSArray *colorStrArray = @[@"黑", @"红", @"蓝"];
