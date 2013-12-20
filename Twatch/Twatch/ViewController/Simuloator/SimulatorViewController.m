@@ -80,13 +80,13 @@
     __block CGFloat x = 6.0;
     __block id weakSelf = self;
     [colorStrArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, 6.0, 45.0, 45.0)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, 8.0, 45.0, 45.0)];
         [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"模拟%@.png", obj]] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"模拟%@-push.png", obj]] forState:UIControlStateHighlighted];
         [button addTarget:weakSelf action:@selector(colorButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = idx;
         [bottomView addSubview:button];
-        x += button.frame.size.width + 6.0;
+        x += button.frame.size.width + 5.0;
     }];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAppsVideo:) name:PlayAppsVideoNotification object:nil];
@@ -115,13 +115,13 @@
             break;
         }
         case ExclusuveAppType: {
-            className = @"TryViewController";
-            backName = NSLocalizedString(@"Try", nil);
+            className = @"SignViewController";
+            backName = NSLocalizedString(@"Engraving", nil);
             break;
         }
         case TryAppType: {
-            className = @"SignViewController";
-            backName = NSLocalizedString(@"Engraving", nil);
+            className = @"TryViewController";
+            backName = NSLocalizedString(@"Try", nil);
             break;
         }
         default:
