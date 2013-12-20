@@ -93,35 +93,37 @@
 #warning 添加约定的字节 这个地方不对 但不知道怎么写
 #warning 参考：http://wiki.tomoon.cn/pages/viewpage.action?pageId=7214568  用户名：xiaoluo 密码123
     
-    char *aCharString = nil;
+    Byte byte = {0x00};
     
     if (self.transferDataType == kTransferDataType_String) {
         if (self.sendDataIndex == 0 && self.dataToSend.length <= NOTIFY_MTU) {//entire
-            aCharString = "00000000";
+            byte = 0x00;
         }else if (self.sendDataIndex == 0 && self.dataToSend.length > NOTIFY_MTU){//start
-            aCharString = "00000001";
+            byte = 0x01;
         }else if (self.sendDataIndex + NOTIFY_MTU >= self.dataToSend.length){//end
-            aCharString = "00000011";
+            byte = 0x03;
         }else {//continue
-            aCharString = "00000010";
+            byte = 0x02;
         }
     }else if (self.transferDataType == kTransferDataType_File){
         if (self.sendDataIndex == 0 && self.dataToSend.length <= NOTIFY_MTU) {//entire
-            aCharString = "00100000";
+            byte = 0x20;
         }else if (self.sendDataIndex == 0 && self.dataToSend.length > NOTIFY_MTU){//start
-            aCharString = "00100001";
+            byte = 0x21;
         }else if (self.sendDataIndex + NOTIFY_MTU >= self.dataToSend.length){//end
-            aCharString = "00100011";
+            byte = 0x23;
         }else {//continue
-            aCharString = "00100010";
+            byte = 0x22;
         }
     }
     
-    NSData *header = [NSData dataWithBytes:aCharString length:sizeof(aCharString)];
+    Byte bytes[1] = {byte};
+    
+    NSData *header = [NSData dataWithBytes:bytes length:1];
     NSLog(@"after1: %@",header);
     
-    NSString *string = [[NSString alloc] initWithData:header encoding:NSUTF8StringEncoding];
-    NSLog(@"after2: %@",string);
+//    NSString *string = [[NSString alloc] initWithData:header encoding:NSUTF8StringEncoding];
+//    NSLog(@"after2: %@",string);
     
     return header;
 }
