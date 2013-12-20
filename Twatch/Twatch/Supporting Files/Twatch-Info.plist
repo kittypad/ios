@@ -76,6 +76,8 @@
 		<string>armv7</string>
 		<string>auto-focus-camera</string>
 		<string>still-camera</string>
+		<string>peer-peer</string>
+		<string>bluetooth-le</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
