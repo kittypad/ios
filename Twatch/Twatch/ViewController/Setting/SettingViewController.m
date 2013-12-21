@@ -10,7 +10,6 @@
 #import "SettingCell.h"
 #import "AppCenterViewController.h"
 #import "MBProgressHUD.h"
-#import <SBJson.h>
 
 #define SWITCH_TIMEADJUST_TAG  1001
 #define SWITCH_DISCOVERYWATCH_TAG  1002
