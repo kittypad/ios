@@ -21,6 +21,8 @@
 #define kDownloadingProcessNotification @"DownloadingProcessNotification"
 #define kDownloadFinishedNotification @"DownloadFinishedNotification"
 
+#define kBLEChangedNotification @"BLEChangedNotification"
+
 #define kBLEBindingWatch @"BLEBindingWatch"
 
 #define Watch_Height     320.0

@@ -13,6 +13,8 @@
 
 @interface ConnectionViewController ()
 
+- (void)_didBLEChanged:(NSNotification *)notice;
+
 @end
 
 static  NSString *cellId = @"connectin cell identifier";
@@ -54,8 +56,7 @@ static  NSString *cellId = @"connectin cell identifier";
     [scanButton addTarget:self action:@selector(startScan:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:scanButton];
     
-    
-    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(fireRefreshTableTimer) userInfo:nil repeats:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didBLEChanged:) name:kBLEChangedNotification object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -71,10 +72,11 @@ static  NSString *cellId = @"connectin cell identifier";
     NSLog(@"Scanning stopped");
     [super viewDidDisappear:animated];
     [[BLEManager sharedManager] stopScan];
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)fireRefreshTableTimer
+
+- (void)_didBLEChanged:(NSNotification *)notice
 {
     [self.tableView reloadData];
 }

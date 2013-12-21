@@ -33,7 +33,7 @@
         _unConnectedDevices = [[NSMutableArray alloc] init];
         
         // Start up the CBCentralManager
-        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     }
     return self;
 }
@@ -256,7 +256,8 @@
     }
     
     [self.unConnectedDevices addObject:peripheral];
-#warning tableview
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
 }
 
 -(void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
@@ -267,7 +268,7 @@
     [peripheral discoverServices:nil];
     [self.unConnectedDevices removeObject:peripheral];
     [self saveConnectedWatch:peripheral.identifier];
-#warning tableview
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
 }
 
 - (void) centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
@@ -289,8 +290,8 @@
         [self removeConnectedWatch];
     }
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
     [self scan];
-#warning tableview
 }
 
 //- (void)cleanup
@@ -380,7 +381,7 @@
     // Log it
     NSLog(@"peripheral Received: %lu, i:%d, j:%d", (unsigned long)data.length, i, j);
     //    self.cur_rate = i;
-#warning tableview
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
 }
 
 /** The peripheral letting us know whether our subscribe/unsubscribe happened or not
