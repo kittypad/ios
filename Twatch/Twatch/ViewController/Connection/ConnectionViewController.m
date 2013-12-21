@@ -8,8 +8,8 @@
 
 #import "ConnectionViewController.h"
 #import "ConnectionCell.h"
-#import "ConnectionViewController+CentralManager.h"
 #import "MBProgressHUD.h"
+#import "BLEManager.h"
 
 @interface ConnectionViewController ()
 
@@ -23,11 +23,6 @@ static  NSString *cellId = @"connectin cell identifier";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        self.unConnectedDevices = [[NSMutableArray alloc] init];
-        
-        // Start up the CBCentralManager
-        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
     }
     return self;
@@ -66,18 +61,16 @@ static  NSString *cellId = @"connectin cell identifier";
 -(void)viewWillDisappear:(BOOL)animated
 {
     NSLog(@"central viewWillDisappear");
-    [self.centralManager stopScan];
-//    [self.unConnectedDevices removeAllObjects];
-//    self.centralManager = nil;
-    NSLog(@"stopScan");
     [super viewWillDisappear:animated];
+    [[BLEManager sharedManager] stopScan];
 }
 
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self.centralManager stopScan];
     NSLog(@"Scanning stopped");
+    [super viewDidDisappear:animated];
+    [[BLEManager sharedManager] stopScan];
 
 }
 
@@ -91,7 +84,7 @@ static  NSString *cellId = @"connectin cell identifier";
     NSLog(@"start scan");
     if (!btn.selected) {
         btn.backgroundColor = [UIColor grayColor];
-        [self scan];
+        [[BLEManager sharedManager] scan];
     }else{
         btn.backgroundColor = RGB(116, 198, 250, 1);
     }
@@ -122,9 +115,9 @@ static  NSString *cellId = @"connectin cell identifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return (int)(self.connectedPeripheral != nil);
+        return (int)([BLEManager sharedManager].connectedPeripheral != nil);
     }
-    return [self.unConnectedDevices count];
+    return [[BLEManager sharedManager].unConnectedDevices count];
 }
 
 
@@ -133,7 +126,7 @@ static  NSString *cellId = @"connectin cell identifier";
     ConnectionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (indexPath.section == 0) {
-        CBPeripheral *p = self.connectedPeripheral;
+        CBPeripheral *p = [BLEManager sharedManager].connectedPeripheral;
         
         NSString *s = p.name;
         if (s == nil) s = @"unknown Device";
@@ -142,10 +135,10 @@ static  NSString *cellId = @"connectin cell identifier";
             NSLog(@"%@：CBPeripheralStateConnected。。。。",p.name);
         }
 
-        s = [NSString stringWithFormat:@"%@ %d", s, self.cur_rate];
+        s = [NSString stringWithFormat:@"%@", s];
         [cell setCellSelected:YES title:s];
     } else {
-        CBPeripheral *p = self.unConnectedDevices[indexPath.row];
+        CBPeripheral *p = [BLEManager sharedManager].unConnectedDevices[indexPath.row];
 
         NSString *s = p.name;
         if (s == nil) s = @"unknown Device";
@@ -163,11 +156,17 @@ static  NSString *cellId = @"connectin cell identifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"central didSelectRowAtIndexPath %ld", (long)indexPath.row);
+    BLEManager *manager = [BLEManager sharedManager];
     if (indexPath.section == 0) {
-        [self.centralManager cancelPeripheralConnection:self.connectedPeripheral];
+        [manager removeConnectedWatch];
+        [manager.centralManager cancelPeripheralConnection:manager.connectedPeripheral];
     }else{
-        CBPeripheral *p = self.unConnectedDevices[indexPath.row];
-        [self.centralManager connectPeripheral:p options:nil];
+        if (manager.connectedPeripheral) {
+            [manager removeConnectedWatch];
+            [manager.centralManager cancelPeripheralConnection:manager.connectedPeripheral];
+        }
+        CBPeripheral *p = manager.unConnectedDevices[indexPath.row];
+        [manager.centralManager connectPeripheral:p options:nil];
     }
 }
 
@@ -175,7 +174,6 @@ static  NSString *cellId = @"connectin cell identifier";
 {
     self.tableView.delegate = nil;
     self.tableView.dataSource = nil;
-    _centralManager.delegate = nil;
     NSLog(@"DEALLOC");
 }
 @end

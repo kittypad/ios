@@ -95,12 +95,6 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height)
     return label;
 }
 
-+ (ConnectionViewController *)connectionManager
-{
-    RootViewController *root = ((AppDelegate *)[UIApplication sharedApplication].delegate).rootViewController;
-    return root.connectionController;
-}
-
 @end
 
 @implementation UIColor(extend)

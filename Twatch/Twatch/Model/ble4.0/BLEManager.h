@@ -26,8 +26,16 @@
 
 - (void)scan;
 
+- (void)stopScan;
+
 - (void)sendDataToBle:(id)data transerType:(TransferDataType)type;
 
+- (void)saveConnectedWatch:(NSUUID *)identifier;
+
+- (void)removeConnectedWatch;
+
 //接口
+
+- (void)sendSearchWatchCommand;
 
 @end

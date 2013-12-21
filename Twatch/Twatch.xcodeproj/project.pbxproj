@@ -96,7 +96,6 @@
 		DD247F8418126A9C00D9E6D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD247F8318126A9C00D9E6D4 /* Images.xcassets */; };
 		DD48155A1853783800325B4C /* RootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815561853783800325B4C /* RootCell.m */; };
 		DD48155B1853783800325B4C /* RootHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4815581853783800325B4C /* RootHeaderView.m */; };
-		DD4815B418537C4D00325B4C /* ConnectionViewController+CentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD48156218537C4C00325B4C /* ConnectionViewController+CentralManager.m */; };
 		DD4815B518537C4D00325B4C /* ConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD48156418537C4C00325B4C /* ConnectionViewController.m */; };
 		DD4815B618537C4D00325B4C /* ConnectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD48156518537C4C00325B4C /* ConnectionViewController.xib */; };
 		DD4815B718537C4D00325B4C /* ConnectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD48156918537C4C00325B4C /* ConnectionCell.m */; };
@@ -325,8 +324,6 @@
 		DD4815561853783800325B4C /* RootCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootCell.m; sourceTree = "<group>"; };
 		DD4815571853783800325B4C /* RootHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootHeaderView.h; sourceTree = "<group>"; };
 		DD4815581853783800325B4C /* RootHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootHeaderView.m; sourceTree = "<group>"; };
-		DD48156118537C4C00325B4C /* ConnectionViewController+CentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConnectionViewController+CentralManager.h"; sourceTree = "<group>"; };
-		DD48156218537C4C00325B4C /* ConnectionViewController+CentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ConnectionViewController+CentralManager.m"; sourceTree = "<group>"; };
 		DD48156318537C4C00325B4C /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
 		DD48156418537C4C00325B4C /* ConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
 		DD48156518537C4C00325B4C /* ConnectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectionViewController.xib; sourceTree = "<group>"; };
@@ -753,8 +750,6 @@
 		DD48156018537C4C00325B4C /* Connection */ = {
 			isa = PBXGroup;
 			children = (
-				DD48156118537C4C00325B4C /* ConnectionViewController+CentralManager.h */,
-				DD48156218537C4C00325B4C /* ConnectionViewController+CentralManager.m */,
 				DD48156318537C4C00325B4C /* ConnectionViewController.h */,
 				DD48156418537C4C00325B4C /* ConnectionViewController.m */,
 				DD48156518537C4C00325B4C /* ConnectionViewController.xib */,
@@ -1308,7 +1303,6 @@
 				DD1BFBD0180AC7280001C200 /* ViewUtils.m in Sources */,
 				DD4815C718537C4D00325B4C /* SwitchWatchView.m in Sources */,
 				42802A95184348C500B4112A /* FXLabel.m in Sources */,
-				DD4815B418537C4D00325B4C /* ConnectionViewController+CentralManager.m in Sources */,
 				D8C3524E1825FCE70061081E /* MMProgressHUDWindow.m in Sources */,
 				DD4815ED18537E8300325B4C /* AppCenterListViewController.m in Sources */,
 				DD56A79518229ADE0088AB49 /* AGShareCell.m in Sources */,

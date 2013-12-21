@@ -10,6 +10,7 @@
 #import "SettingCell.h"
 #import "AppCenterViewController.h"
 #import "MBProgressHUD.h"
+#import "BLEManager.h"
 
 #define SWITCH_TIMEADJUST_TAG  1001
 #define SWITCH_DISCOVERYWATCH_TAG  1002
@@ -208,8 +209,7 @@
             break;
         case 1:
         {
-#warning 测试通信
-            [[ViewUtils connectionManager] sendDataToBle:@"{ 'command': 0, 'content': '{}' }" transerType:kTransferDataType_String];
+            [[BLEManager sharedManager] sendDataToBle:@"{ 'command': 0, 'content': '{}' }" transerType:kTransferDataType_String];
             
         }
             break;

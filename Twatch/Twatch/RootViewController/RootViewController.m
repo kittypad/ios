@@ -18,6 +18,8 @@
 #import "RootCell.h"
 #import "RootHeaderView.h"
 
+#import "BLEManager.h"
+
 @interface RootViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSArray *titleSourceArray;
@@ -51,6 +53,10 @@
     [rootView registerClass:[RootCell class] forCellWithReuseIdentifier:@"RootCell"];
     [rootView registerClass:[RootHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"RootHeaderView"];
     [self.view addSubview:rootView];
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kBLEBindingWatch]) {
+        [[BLEManager sharedManager] scan];
+    }
 }
 
 - (void)prepareDefaultData
@@ -74,11 +80,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (CBPeripheral *)connectedPeripheral
-{
-    return self.connectionController.connectedPeripheral;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -106,16 +107,7 @@
     NSString *className = self.subControllerSourceArray[indexPath.row];
     UIViewController *aController = nil;
     
-    if ([className isEqualToString:@"ConnectionViewController"]) {
-        if (self.connectionController == nil) {
-            aController = [[NSClassFromString(className) alloc] init];
-            self.connectionController = (ConnectionViewController *)aController;
-        }else{
-            aController = self.connectionController;
-        }
-        ((NaviCommonViewController *)aController).backName = self.titleSourceArray[indexPath.row];
-    }
-    else if ([className isEqualToString:@"SimulatorViewController"]) {
+    if ([className isEqualToString:@"SimulatorViewController"]) {
         aController = [[NSClassFromString(className) alloc] init];
     }
     else{

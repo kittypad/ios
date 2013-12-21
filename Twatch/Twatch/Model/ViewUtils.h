@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "RootViewController.h"
-#import "ConnectionViewController+CentralManager.h"
 
 //c-style
 CGRect CGRectChangeWidth(CGRect frame, CGFloat width);
@@ -27,8 +26,6 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height);
 + (UIButton *)buttonWWithTitle:(NSString *)title normalColor:(UIColor *)normal hiliteColor:(UIColor *)hilite target:(id)target selector:(SEL)sel;
 
 + (UILabel *)labelWithTitle:(NSString *)title textFont:(UIFont *)font normalColor:(UIColor *)normal backColor:(UIColor *)backColor;
-
-+ (ConnectionViewController *)connectionManager;
 
 @end
 

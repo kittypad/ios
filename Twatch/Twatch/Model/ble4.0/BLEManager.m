@@ -33,10 +33,12 @@
         _unConnectedDevices = [[NSMutableArray alloc] init];
         
         // Start up the CBCentralManager
-        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
     }
     return self;
 }
+
+#pragma mark - Public
 
 - (void)sendDataToBle:(id)data transerType:(TransferDataType)type
 {
@@ -85,6 +87,38 @@
         [alert show];
     }
 }
+
+-(void) scan
+{
+    NSLog(@"scan...");
+    [self.centralManager scanForPeripheralsWithServices:nil
+                                                options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @NO }];
+}
+
+- (void)stopScan
+{
+    [self.centralManager stopScan];
+}
+
+- (void)saveConnectedWatch:(NSUUID *)identifier
+{
+    [[NSUserDefaults standardUserDefaults] setObject:identifier.UUIDString
+                                              forKey:kBLEBindingWatch];
+}
+
+- (void)removeConnectedWatch
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kBLEBindingWatch];
+}
+
+#pragma mark - Command
+
+- (void)sendSearchWatchCommand
+{
+    [self sendDataToBle:@"{ 'command': 0, 'content': '{}' }" transerType:kTransferDataType_String];
+}
+
+#pragma mark - Data
 
 /** Sends the next amount of data to the connected central
  */
@@ -152,6 +186,8 @@
     return header;
 }
 
+#pragma mark - CBCentralManagerDelegate, CBPeripheralDelegate
+
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     if (error) {
@@ -194,13 +230,24 @@
 
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    NSLog(@"didDiscoverPeripheral NAME:%@ RSSI:%@", peripheral.name, RSSI);
+    NSLog(@"didDiscoverPeripheral NAME:%@ RSSI:%@ Id:%@", peripheral.name, RSSI, peripheral.identifier.UUIDString);
     for (int i = 0; i < self.unConnectedDevices.count; i++) {
         CBPeripheral *p = [self.unConnectedDevices objectAtIndex:i];
-        if ([p.name compare:peripheral.name] == NSOrderedSame) {
+        if ([p.identifier.UUIDString isEqualToString:peripheral.identifier.UUIDString]) {
             NSLog(@"equlas");
             return;
         }
+    }
+    
+    NSString *identifier = [[NSUserDefaults standardUserDefaults] objectForKey:kBLEBindingWatch];
+    if (self.connectedPeripheral == nil && identifier &&
+        [identifier isEqualToString:peripheral.identifier.UUIDString]) {
+        NSLog(@"didConnectLastPeripheral %@", peripheral.name);
+        [self.centralManager connectPeripheral:peripheral options:nil];
+    }
+    else if (self.connectedPeripheral && [peripheral.identifier.UUIDString isEqualToString:self.connectedPeripheral.identifier.UUIDString]) {
+        NSLog(@"equlas");
+        return;
     }
     
     [self.unConnectedDevices addObject:peripheral];
@@ -212,11 +259,9 @@
     NSLog(@"didConnectPeripheral %@", peripheral.name);
     self.connectedPeripheral = peripheral;
     peripheral.delegate = self;
-    //@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]
     [peripheral discoverServices:nil];
-    
     [self.unConnectedDevices removeObject:peripheral];
-    
+    [self saveConnectedWatch:peripheral.identifier];
 #warning tableview
 }
 
@@ -236,6 +281,7 @@
     
     if (self.connectedPeripheral == peripheral) {
         self.connectedPeripheral = nil;
+        [self removeConnectedWatch];
     }
     
     [self scan];
@@ -358,12 +404,5 @@
 //        [self.centralManager cancelPeripheralConnection:peripheral];
 //    }
 //}
-
--(void) scan
-{
-    NSLog(@"scan...");
-    [self.centralManager scanForPeripheralsWithServices:nil
-                                                options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
-}
 
 @end

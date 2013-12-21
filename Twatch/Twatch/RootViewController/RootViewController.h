@@ -12,6 +12,4 @@
 
 @interface RootViewController : UIViewController
 
-@property (nonatomic, strong) ConnectionViewController  *connectionController;
-
 @end
