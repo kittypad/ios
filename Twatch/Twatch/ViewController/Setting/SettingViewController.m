@@ -74,7 +74,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 4;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -142,15 +142,15 @@
 //            
 //        }
 //            break;
+//        case 2:
+//        {
+//            cell.textLabel.text = NSLocalizedString(@"Commucation Test", nil);
+//            cell.imageView.image = [UIImage imageNamed:@"通信"];
+//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//            
+//        }
+//            break;
         case 2:
-        {
-            cell.textLabel.text = NSLocalizedString(@"Commucation Test", nil);
-            cell.imageView.image = [UIImage imageNamed:@"通信"];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            
-        }
-            break;
-        case 3:
             cell.textLabel.text = NSLocalizedString(@"Settings", nil);
             cell.imageView.image = [UIImage imageNamed:@"setting_Setting"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -160,7 +160,7 @@
 //            cell.imageView.image = [UIImage imageNamed:@"二维码"];
 //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //            break;
-        case 4:
+        case 3:
             cell.textLabel.text = NSLocalizedString(@"Account Bound", nil);
             cell.imageView.image = [UIImage imageNamed:@"账号"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -207,10 +207,6 @@
         }
             break;
         case 1:
-            break;
-//        case 2:
-//            break;
-        case 2:
         {
 #warning 测试通信
             [[ViewUtils connectionManager] sendDataToBle:@"{ 'command': 0, 'content': '{}' }" transerType:kTransferDataType_String];
