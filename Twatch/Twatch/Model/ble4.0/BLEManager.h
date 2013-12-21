@@ -1,26 +1,20 @@
 //
-//  ConnectionViewController.h
-//  T-Fire2.0
+//  BLEManager.h
+//  Twatch
 //
-//  Created by yixiaoluo on 13-11-28.
-//  Copyright (c) 2013年 tomoon. All rights reserved.
+//  Created by 龚 涛 on 13-12-21.
+//  Copyright (c) 2013年 龚涛. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "NaviCommonViewController.h"
+#import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-
 #import "TransferService.h"
 
-@interface ConnectionViewController : NaviCommonViewController <UITableViewDataSource, UITableViewDelegate>
-
-@property (nonatomic, strong) UITableView     *tableView;
+@interface BLEManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
 @property (nonatomic) NSMutableArray *unConnectedDevices;
 @property (strong, nonatomic) CBPeripheral *connectedPeripheral;
-@property (nonatomic) int cur_rate;
-
 
 //write
 @property (nonatomic, strong)      NSData                    *dataToSend;
@@ -28,5 +22,12 @@
 @property (nonatomic, readwrite)   TransferDataType          transferDataType;
 @property (strong, nonatomic)      CBCharacteristic          *curCharacteristic;
 
++ (BLEManager *)sharedManager;
+
+- (void)scan;
+
+- (void)sendDataToBle:(id)data transerType:(TransferDataType)type;
+
+//接口
 
 @end

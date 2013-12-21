@@ -10,6 +10,7 @@
 #import "SettingCell.h"
 #import "AppCenterViewController.h"
 #import "MBProgressHUD.h"
+#import <SBJson.h>
 
 #define SWITCH_TIMEADJUST_TAG  1001
 #define SWITCH_DISCOVERYWATCH_TAG  1002
@@ -213,7 +214,7 @@
         case 2:
         {
 #warning 测试通信
-            [[ViewUtils connectionManager]  sendDataToBle:@"hello, this is from iPhone" transerType:kTransferDataType_String];
+            [[ViewUtils connectionManager] sendDataToBle:@"{ 'command': 0, 'content': '{}' }" transerType:kTransferDataType_String];
             
         }
             break;

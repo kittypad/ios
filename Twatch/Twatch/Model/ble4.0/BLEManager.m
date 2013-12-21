@@ -1,20 +1,43 @@
 //
-//  ConnectionViewController+CentralManager.m
+//  BLEManager.m
 //  Twatch
 //
-//  Created by yixiaoluo on 13-12-4.
+//  Created by 龚 涛 on 13-12-21.
 //  Copyright (c) 2013年 龚涛. All rights reserved.
 //
 
-#import "ConnectionViewController+CentralManager.h"
-#import "MBProgressHUD.h"
+#import "BLEManager.h"
 
 #define NOTIFY_MTU      (500 - 2)
 
+@implementation BLEManager
 
-@implementation ConnectionViewController (CentralManager)
++ (BLEManager *)sharedManager
+{
+    static BLEManager *sharedManagerInstance = nil;
+    
+    static dispatch_once_t predicate;
+    
+    dispatch_once(&predicate, ^{
+        sharedManagerInstance = [[BLEManager alloc] init];
+    });
+    
+    return sharedManagerInstance;
+}
 
-//MARK: DATA Transfer
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        // Custom initialization
+        _unConnectedDevices = [[NSMutableArray alloc] init];
+        
+        // Start up the CBCentralManager
+        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    }
+    return self;
+}
+
 - (void)sendDataToBle:(id)data transerType:(TransferDataType)type
 {
     self.connectedPeripheral.delegate = self;
@@ -123,8 +146,8 @@
     NSData *header = [NSData dataWithBytes:bytes length:2];
     NSLog(@"after1: %@",header);
     
-//    NSString *string = [[NSString alloc] initWithData:header encoding:NSUTF8StringEncoding];
-//    NSLog(@"after2: %@",string);
+    //    NSString *string = [[NSString alloc] initWithData:header encoding:NSUTF8StringEncoding];
+    //    NSLog(@"after2: %@",string);
     
     return header;
 }
@@ -141,10 +164,10 @@
     
     // Can't be longer than 20 bytes
     if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
-
+    
     // It did send, so update our index
     self.sendDataIndex += amountToSend;
-
+    
     [self sendData];
 }
 
@@ -181,7 +204,7 @@
     }
     
     [self.unConnectedDevices addObject:peripheral];
-    [self.tableView reloadData];
+#warning tableview
 }
 
 -(void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
@@ -194,7 +217,7 @@
     
     [self.unConnectedDevices removeObject:peripheral];
     
-    [self.tableView reloadData];
+#warning tableview
 }
 
 - (void) centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
@@ -216,8 +239,7 @@
     }
     
     [self scan];
-    
-    [self.tableView reloadData];
+#warning tableview
 }
 
 //- (void)cleanup
@@ -306,8 +328,8 @@
     //memcpy(&j, a + 1, 2);
     // Log it
     NSLog(@"peripheral Received: %lu, i:%d, j:%d", (unsigned long)data.length, i, j);
-    self.cur_rate = i;
-    [self.tableView reloadData];
+    //    self.cur_rate = i;
+#warning tableview
 }
 
 /** The peripheral letting us know whether our subscribe/unsubscribe happened or not
