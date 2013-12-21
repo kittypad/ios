@@ -158,10 +158,14 @@ static  NSString *cellId = @"connectin cell identifier";
     NSLog(@"central didSelectRowAtIndexPath %ld", (long)indexPath.row);
     BLEManager *manager = [BLEManager sharedManager];
     if (indexPath.section == 0) {
+        //解除绑定
+        [manager sendUnboundCommand];
         [manager removeConnectedWatch];
         [manager.centralManager cancelPeripheralConnection:manager.connectedPeripheral];
     }else{
         if (manager.connectedPeripheral) {
+            //解除绑定
+            [manager sendUnboundCommand];
             [manager removeConnectedWatch];
             [manager.centralManager cancelPeripheralConnection:manager.connectedPeripheral];
         }

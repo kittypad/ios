@@ -118,6 +118,11 @@
     [self sendDataToBle:@"{ 'command': 0, 'content': '{}' }" transerType:kTransferDataType_String];
 }
 
+- (void)sendUnboundCommand
+{
+    [self sendDataToBle:@"{ 'command': 16, 'content': '{}' }" transerType:kTransferDataType_String];
+}
+
 #pragma mark - Data
 
 /** Sends the next amount of data to the connected central

@@ -38,4 +38,6 @@
 
 - (void)sendSearchWatchCommand;
 
+- (void)sendUnboundCommand;
+
 @end
