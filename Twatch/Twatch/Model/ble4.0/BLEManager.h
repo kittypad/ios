@@ -11,12 +11,13 @@
 #import "TransferService.h"
 
 @interface BLEManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
+{
+    dispatch_queue_t _ble_communication_queue;
+}
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
 @property (nonatomic) NSMutableArray *unConnectedDevices;
 @property (strong, nonatomic) CBPeripheral *connectedPeripheral;
-
-@property (nonatomic, assign) BOOL isSending;
 
 //write
 @property (nonatomic, strong)      NSData                    *dataToSend;
@@ -41,5 +42,7 @@
 - (void)sendSearchWatchCommand;
 
 - (void)sendUnboundCommand;
+
+- (void)sendAppInstallCommand:(NSString *)apkUrl;
 
 @end

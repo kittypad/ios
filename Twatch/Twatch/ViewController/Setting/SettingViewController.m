@@ -209,7 +209,7 @@
             break;
         case 1:
         {
-            [[BLEManager sharedManager] sendDataToBle:@"{ 'command': 0, 'content': '{}' }" transerType:kTransferDataType_String];
+            [[BLEManager sharedManager] sendSearchWatchCommand];
             
         }
             break;

@@ -8,7 +8,17 @@
 
 #import "BLEManager.h"
 
-#define NOTIFY_MTU      (500 - 2)
+#define NOTIFY_MTU      498
+
+//串行队列，同时只执行一个task
+static dispatch_queue_t ble_communication_queue() {
+    static dispatch_queue_t af_ble_communication_queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        af_ble_communication_queue = dispatch_queue_create("com.tfire.ble", DISPATCH_QUEUE_SERIAL);
+    });
+    return af_ble_communication_queue;
+}
 
 @implementation BLEManager
 
@@ -34,8 +44,6 @@
         
         // Start up the CBCentralManager
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-        
-        _isSending = NO;
     }
     return self;
 }
@@ -44,46 +52,52 @@
 
 - (void)sendStrDataToBle:(NSString *)str
 {
-    self.connectedPeripheral.delegate = self;
-    
-    BOOL connectedADevice = NO;
+    dispatch_async(ble_communication_queue(), ^(void){
+        self.connectedPeripheral.delegate = self;
+        
+        BOOL connectedADevice = NO;
 #ifdef __IPHONE_7_0
-    connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
+        connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
 #else
-    connectedADevice = self.connectedPeripheral.isConnected;
+        connectedADevice = self.connectedPeripheral.isConnected;
 #endif
-    if (!connectedADevice || self.connectedPeripheral == nil) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                        message:@"尚未连接到蓝牙设备，请进入同步界面扫描设备"
-                                                       delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-        return;
-    }
-    
-    self.transferDataType = kTransferDataType_String;
-    
-    // Reset the index
-    self.sendDataIndex = 0;
-    
-    self.dataToSend = [str dataUsingEncoding:NSUTF8StringEncoding];
-    
-    // Send it
-    self.curCharacteristic = nil;
-    for (CBService *aService in self.connectedPeripheral.services) {
-        for (CBCharacteristic *ca in aService.characteristics) {
-            if ([ca.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
-                self.curCharacteristic = ca;
-                [self sendData];
+        if (!connectedADevice || self.connectedPeripheral == nil) {
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"尚未连接到蓝牙设备，请进入同步界面扫描设备"
+                                                               delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            });
+            return;
+        }
+        
+        self.transferDataType = kTransferDataType_String;
+        
+        // Reset the index
+        self.sendDataIndex = 0;
+        
+        self.dataToSend = [str dataUsingEncoding:NSUTF8StringEncoding];
+        
+        // Send it
+        self.curCharacteristic = nil;
+        for (CBService *aService in self.connectedPeripheral.services) {
+            for (CBCharacteristic *ca in aService.characteristics) {
+                if ([ca.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
+                    self.curCharacteristic = ca;
+                    [self sendData];
+                }
             }
         }
-    }
-    
-    if (self.curCharacteristic == nil) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                        message:@"已连接的蓝牙设备尚未提供此服务"
-                                                       delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-    }
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            if (self.curCharacteristic == nil) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"已连接的蓝牙设备尚未提供此服务"
+                                                               delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        });
+    });
 }
 
 - (void)scan
@@ -121,6 +135,11 @@
     [self sendStrDataToBle:@"{ 'command': 16, 'content': '{}' }"];
 }
 
+- (void)sendAppInstallCommand:(NSString *)apkUrl
+{
+    [self sendStrDataToBle:[NSString stringWithFormat:@"{ 'command': 3, 'content': '{'App': '%@'}' }", apkUrl]];
+}
+
 #pragma mark - Data
 
 /** Sends the next amount of data to the connected central
@@ -151,9 +170,6 @@
 
 - (NSData *)getFirstByte
 {
-#warning 添加约定的字节 这个地方不对 但不知道怎么写
-#warning 参考：http://wiki.tomoon.cn/pages/viewpage.action?pageId=7214568  用户名：xiaoluo 密码123
-    
     Byte byte = {0x00};
     
     if (self.transferDataType == kTransferDataType_String) {
