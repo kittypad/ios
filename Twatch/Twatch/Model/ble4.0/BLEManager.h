@@ -11,17 +11,18 @@
 #import "TransferService.h"
 
 @interface BLEManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
-{
-    dispatch_queue_t _ble_communication_queue;
-}
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
 @property (nonatomic) NSMutableArray *unConnectedDevices;
 @property (strong, nonatomic) CBPeripheral *connectedPeripheral;
+@property (nonatomic, strong) void (^writeblock)(void);
 
 //write
 @property (nonatomic, strong)      NSData                    *dataToSend;
+@property (nonatomic, strong)      NSInputStream             *inputStream;
+@property (nonatomic, strong)      NSString                  *toFilePath;
 @property (nonatomic, readwrite)   NSInteger                 sendDataIndex;
+@property (nonatomic, readwrite)   NSInteger                 sendDataSize;
 @property (nonatomic, readwrite)   TransferDataType          transferDataType;
 @property (strong, nonatomic)      CBCharacteristic          *curCharacteristic;
 
@@ -30,6 +31,8 @@
 - (void)scan;
 
 - (void)stopScan;
+
+- (void)sendFileDataToBle:(NSString *)path;
 
 - (void)sendStrDataToBle:(NSString *)str;
 
@@ -42,6 +45,8 @@
 - (void)sendSearchWatchCommand;
 
 - (void)sendUnboundCommand;
+
+- (void)sendFolderPathCommand:(NSString *)path;
 
 - (void)sendAppInstallCommand:(NSString *)apkUrl;
 

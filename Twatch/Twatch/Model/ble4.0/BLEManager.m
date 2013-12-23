@@ -8,6 +8,8 @@
 
 #import "BLEManager.h"
 
+#import "AFDownloadRequestOperation.h"
+
 #define NOTIFY_MTU      498
 
 //串行队列，同时只执行一个task
@@ -19,6 +21,16 @@ static dispatch_queue_t ble_communication_queue() {
     });
     return af_ble_communication_queue;
 }
+
+@interface BLEManager ()
+
+- (void)sendData;
+
+- (void)sendFileData;
+
+- (NSData *)getFirstByte;
+
+@end
 
 @implementation BLEManager
 
@@ -50,6 +62,81 @@ static dispatch_queue_t ble_communication_queue() {
 
 #pragma mark - Public
 
+- (void)sendFileDataToBle:(NSString *)path
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+        
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+    
+    // Start the long-running task and return immediately.
+    dispatch_async(ble_communication_queue(), ^(void){
+        self.connectedPeripheral.delegate = self;
+        
+        BOOL connectedADevice = NO;
+#ifdef __IPHONE_7_0
+        connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
+#else
+        connectedADevice = self.connectedPeripheral.isConnected;
+#endif
+        if (!connectedADevice || self.connectedPeripheral == nil) {
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"尚未连接到蓝牙设备，请进入同步界面扫描设备"
+                                                               delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            });
+            return;
+        }
+        
+        NSFileManager *manager = [[NSFileManager alloc] init];
+        if ([manager fileExistsAtPath:path isDirectory:NO]) {
+            NSError *error = nil;
+            unsigned long long size = [[manager attributesOfItemAtPath:path error:&error] fileSize];
+            if (error) {
+                NSLog(@"Error: %@",  [error localizedDescription]);
+                return;
+            }
+            self.sendDataSize = size;
+        }
+        
+        self.transferDataType = kTransferDataType_File;
+        
+        // Reset the index
+        self.sendDataIndex = 0;
+        
+        self.toFilePath = path;
+        
+        // Send it
+        self.curCharacteristic = nil;
+        for (CBService *aService in self.connectedPeripheral.services) {
+            for (CBCharacteristic *ca in aService.characteristics) {
+                if ([ca.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
+                    self.curCharacteristic = ca;
+                    self.inputStream = [[NSInputStream alloc] initWithFileAtPath:path];
+                    [self.inputStream open];
+                    [self sendFileData];
+                }
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            if (self.curCharacteristic == nil) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"已连接的蓝牙设备尚未提供此服务"
+                                                               delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        });
+
+        NSLog(@" %f",application.backgroundTimeRemaining);
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    });
+}
+
 - (void)sendStrDataToBle:(NSString *)str
 {
     dispatch_async(ble_communication_queue(), ^(void){
@@ -77,6 +164,7 @@ static dispatch_queue_t ble_communication_queue() {
         self.sendDataIndex = 0;
         
         self.dataToSend = [str dataUsingEncoding:NSUTF8StringEncoding];
+        self.sendDataSize = self.dataToSend.length;
         
         // Send it
         self.curCharacteristic = nil;
@@ -135,9 +223,35 @@ static dispatch_queue_t ble_communication_queue() {
     [self sendStrDataToBle:@"{ 'command': 16, 'content': '{}' }"];
 }
 
+- (void)sendFolderPathCommand:(NSString *)path
+{
+    [self sendStrDataToBle:[NSString stringWithFormat:@"{ 'command': 9, 'content': '{'to':'%@'}' }", path]];
+}
+
 - (void)sendAppInstallCommand:(NSString *)apkUrl
 {
-    [self sendStrDataToBle:[NSString stringWithFormat:@"{ 'command': 3, 'content': '{'App': '%@'}' }", apkUrl]];
+    __block NSString *fileName = [[NSURL URLWithString:apkUrl] lastPathComponent];
+    NSString *path = [NSString stringWithFormat:@"/sdcard/.tomoon/tmp/%@", fileName];
+    
+    NSLog(@"send folder command: %@", path);
+    
+    __block BLEManager *weakSelf = self;
+    
+    self.writeblock = ^(void){
+        NSLog(@"string write finish");
+        
+//        weakSelf.writeblock = ^(void){
+//            NSLog(@"file write finish");
+//        };
+        
+        [weakSelf sendFileDataToBle:[[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:fileName]];
+    };
+    
+    [self sendFolderPathCommand:path];
+    
+    
+//    [self sendFileDataToBle:[[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:fileName]];
+//    [self sendStrDataToBle:[NSString stringWithFormat:@"{ 'command': 3, 'content': '{'App': '%@'}' }", path]];
 }
 
 #pragma mark - Data
@@ -146,11 +260,10 @@ static dispatch_queue_t ble_communication_queue() {
  */
 - (void)sendData
 {
-    
-    if (self.sendDataIndex >= self.dataToSend.length)  return;
+    if (self.sendDataIndex >= self.sendDataSize)  return;
     
     // Work out how big it should be
-    NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
+    NSInteger amountToSend = self.sendDataSize - self.sendDataIndex;
     
     // Can't be longer than 20 bytes
     if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
@@ -167,6 +280,39 @@ static dispatch_queue_t ble_communication_queue() {
     
 }
 
+- (void)sendFileData
+{
+    if (self.sendDataIndex >= self.sendDataSize)  return;
+    
+    NSMutableData *tempData = nil;
+    if (self.sendDataIndex == 0) {
+        NSData *chunk = [self.toFilePath dataUsingEncoding:NSUTF8StringEncoding];
+        
+        tempData = [[NSMutableData alloc] initWithData:[self getFirstByte]];
+        [tempData appendData:chunk];
+    }
+    else {
+        // Work out how big it should be
+        NSInteger amountToSend = self.sendDataSize - self.sendDataIndex;
+        
+        // Can't be longer than 20 bytes
+        if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
+        
+        Byte data[NOTIFY_MTU] = {0x00};
+        int length = [self.inputStream read:data maxLength:amountToSend];
+        
+        NSLog(@"length : %i, %i", self.sendDataSize, length);
+        // Copy out the data we want
+        NSData *chunk = [NSData dataWithBytes:data length:length];
+        
+        tempData = [[NSMutableData alloc] initWithData:[self getFirstByte]];
+        [tempData appendData:chunk];
+    }
+    
+    // Send it
+    [self.connectedPeripheral writeValue:tempData
+                       forCharacteristic:self.curCharacteristic type:CBCharacteristicWriteWithResponse];
+}
 
 - (NSData *)getFirstByte
 {
@@ -182,12 +328,11 @@ static dispatch_queue_t ble_communication_queue() {
         }else {//continue
             byte = 0x02;
         }
-    }else if (self.transferDataType == kTransferDataType_File){
-        if (self.sendDataIndex == 0 && self.dataToSend.length <= NOTIFY_MTU) {//entire
-            byte = 0x20;
-        }else if (self.sendDataIndex == 0 && self.dataToSend.length > NOTIFY_MTU){//start
+    }
+    else if (self.transferDataType == kTransferDataType_File) {
+        if (self.sendDataIndex == 0 && self.sendDataSize > NOTIFY_MTU){//start
             byte = 0x21;
-        }else if (self.sendDataIndex + NOTIFY_MTU >= self.dataToSend.length){//end
+        }else if (self.sendDataIndex + NOTIFY_MTU >= self.sendDataSize){//end
             byte = 0x23;
         }else {//continue
             byte = 0x22;
@@ -197,10 +342,6 @@ static dispatch_queue_t ble_communication_queue() {
     Byte bytes[2] = {byte, 0x00};
     
     NSData *header = [NSData dataWithBytes:bytes length:2];
-    NSLog(@"after1: %@",header);
-    
-    //    NSString *string = [[NSString alloc] initWithData:header encoding:NSUTF8StringEncoding];
-    //    NSLog(@"after2: %@",string);
     
     return header;
 }
@@ -214,16 +355,42 @@ static dispatch_queue_t ble_communication_queue() {
         return;
     }
     
-    // Work out how big it should be
-    NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
-    
-    // Can't be longer than 20 bytes
-    if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
-    
-    // It did send, so update our index
-    self.sendDataIndex += amountToSend;
-    
-    [self sendData];
+    if (self.transferDataType == kTransferDataType_String) {
+        
+        NSInteger amountToSend = self.sendDataSize - self.sendDataIndex;
+        
+        if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
+        
+        self.sendDataIndex += amountToSend;
+        
+        if (self.sendDataIndex >= self.sendDataSize) {
+            if (self.writeblock) {
+                self.writeblock();
+            }
+            return;
+        }
+        
+        [self sendData];
+    }
+    else {
+        //发送文件
+        NSInteger amountToSend = self.sendDataSize - self.sendDataIndex;
+        
+        if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
+        
+        self.sendDataIndex += amountToSend;
+        
+//        if (self.sendDataIndex >= self.sendDataSize) {
+//            if (self.writeblock) {
+//                self.writeblock();
+//                [self.inputStream close];
+//                self.inputStream = nil;
+//            }
+//            return;
+//        }
+        
+        [self sendFileData];
+    }
 }
 
 
@@ -301,7 +468,6 @@ static dispatch_queue_t ble_communication_queue() {
     
     if (self.connectedPeripheral == peripheral) {
         self.connectedPeripheral = nil;
-        [self removeConnectedWatch];
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];

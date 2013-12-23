@@ -9,6 +9,7 @@
 #import "DownloadManagerViewController.h"
 #import "DataManager.h"
 #import "DownloadObjectCell.h"
+#import "BLEManager.h"
 
 #define kHeaderHight    22.0
 
@@ -101,10 +102,10 @@
     DownloadObject *obj = [_downloadedArray objectAtIndex:row];
     switch ([obj.state integerValue]) {
         case kNotInstall: {
-#warning 发送至手表
-            obj.state = [NSNumber numberWithInteger:kInstalled];
-            [[DataManager sharedManager] saveDownloadDic];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
+            [[BLEManager sharedManager] sendAppInstallCommand:obj.apkUrl];
+//            obj.state = [NSNumber numberWithInteger:kInstalled];
+//            [[DataManager sharedManager] saveDownloadDic];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
             break;
         }
         default:
