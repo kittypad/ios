@@ -34,13 +34,15 @@
         
         // Start up the CBCentralManager
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        
+        _isSending = NO;
     }
     return self;
 }
 
 #pragma mark - Public
 
-- (void)sendDataToBle:(id)data transerType:(TransferDataType)type
+- (void)sendStrDataToBle:(NSString *)str
 {
     self.connectedPeripheral.delegate = self;
     
@@ -58,16 +60,12 @@
         return;
     }
     
-    self.transferDataType = type;
+    self.transferDataType = kTransferDataType_String;
     
     // Reset the index
     self.sendDataIndex = 0;
     
-    if (self.transferDataType == kTransferDataType_String) {
-        self.dataToSend = [(NSString *)data dataUsingEncoding:NSUTF8StringEncoding];
-    }else{
-        self.dataToSend = UIImageJPEGRepresentation([UIImage imageNamed:@"icon-72.png"], 1.0);
-    }
+    self.dataToSend = [str dataUsingEncoding:NSUTF8StringEncoding];
     
     // Send it
     self.curCharacteristic = nil;
@@ -88,7 +86,7 @@
     }
 }
 
--(void) scan
+- (void)scan
 {
     NSLog(@"scan...");
     [self.centralManager scanForPeripheralsWithServices:nil
@@ -115,12 +113,12 @@
 
 - (void)sendSearchWatchCommand
 {
-    [self sendDataToBle:@"{ 'command': 0, 'content': '{}' }" transerType:kTransferDataType_String];
+    [self sendStrDataToBle:@"{ 'command': 0, 'content': '{}' }"];
 }
 
 - (void)sendUnboundCommand
 {
-    [self sendDataToBle:@"{ 'command': 16, 'content': '{}' }" transerType:kTransferDataType_String];
+    [self sendStrDataToBle:@"{ 'command': 16, 'content': '{}' }"];
 }
 
 #pragma mark - Data

@@ -16,6 +16,8 @@
 @property (nonatomic) NSMutableArray *unConnectedDevices;
 @property (strong, nonatomic) CBPeripheral *connectedPeripheral;
 
+@property (nonatomic, assign) BOOL isSending;
+
 //write
 @property (nonatomic, strong)      NSData                    *dataToSend;
 @property (nonatomic, readwrite)   NSInteger                 sendDataIndex;
@@ -28,7 +30,7 @@
 
 - (void)stopScan;
 
-- (void)sendDataToBle:(id)data transerType:(TransferDataType)type;
+- (void)sendStrDataToBle:(NSString *)str;
 
 - (void)saveConnectedWatch:(NSUUID *)identifier;
 
