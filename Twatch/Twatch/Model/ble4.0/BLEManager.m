@@ -64,12 +64,12 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)sendFileDataToBle:(NSString *)path
 {
-    UIApplication *application = [UIApplication sharedApplication];
-    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
-        
-        [application endBackgroundTask:bgTask];
-        bgTask = UIBackgroundTaskInvalid;
-    }];
+//    UIApplication *application = [UIApplication sharedApplication];
+//    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+//        
+//        [application endBackgroundTask:bgTask];
+//        bgTask = UIBackgroundTaskInvalid;
+//    }];
     
     // Start the long-running task and return immediately.
     dispatch_async(ble_communication_queue(), ^(void){
@@ -90,7 +90,7 @@ static dispatch_queue_t ble_communication_queue() {
             });
             return;
         }
-        
+
         NSFileManager *manager = [[NSFileManager alloc] init];
         if ([manager fileExistsAtPath:path isDirectory:NO]) {
             NSError *error = nil;
@@ -105,10 +105,8 @@ static dispatch_queue_t ble_communication_queue() {
         self.transferDataType = kTransferDataType_File;
         
         // Reset the index
-        self.sendDataIndex = 0;
-        
-        self.toFilePath = path;
-        
+        self.sendDataIndex = -1;
+
         // Send it
         self.curCharacteristic = nil;
         for (CBService *aService in self.connectedPeripheral.services) {
@@ -131,9 +129,9 @@ static dispatch_queue_t ble_communication_queue() {
             }
         });
 
-        NSLog(@" %f",application.backgroundTimeRemaining);
-        [application endBackgroundTask:bgTask];
-        bgTask = UIBackgroundTaskInvalid;
+//        NSLog(@" %f",application.backgroundTimeRemaining);
+//        [application endBackgroundTask:bgTask];
+//        bgTask = UIBackgroundTaskInvalid;
     });
 }
 
@@ -190,6 +188,7 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)scan
 {
+    [self.centralManager stopScan];
     NSLog(@"scan...");
     [self.centralManager scanForPeripheralsWithServices:nil
                                                 options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @NO }];
@@ -232,25 +231,26 @@ static dispatch_queue_t ble_communication_queue() {
 {
     __block NSString *fileName = [[NSURL URLWithString:apkUrl] lastPathComponent];
     NSString *path = [NSString stringWithFormat:@"/sdcard/.tomoon/tmp/%@", fileName];
-    
-    NSLog(@"send folder command: %@", path);
-    
-    __block BLEManager *weakSelf = self;
-    
-    self.writeblock = ^(void){
-        NSLog(@"string write finish");
-        
+//
+//    NSLog(@"send folder command: %@", path);
+//    
+//    __block BLEManager *weakSelf = self;
+//    
+//    self.writeblock = ^(void){
+//        NSLog(@"string write finish");
+//        
 //        weakSelf.writeblock = ^(void){
 //            NSLog(@"file write finish");
 //        };
-        
-        [weakSelf sendFileDataToBle:[[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:fileName]];
-    };
+//        
+//        [weakSelf sendFileDataToBle:[[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:fileName]];
+//    };
+//    
+    self.toFilePath = path;
+//    [self sendFolderPathCommand:path];
     
-    [self sendFolderPathCommand:path];
     
-    
-//    [self sendFileDataToBle:[[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:fileName]];
+    [self sendFileDataToBle:[[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:fileName]];
 //    [self sendStrDataToBle:[NSString stringWithFormat:@"{ 'command': 3, 'content': '{'App': '%@'}' }", path]];
 }
 
@@ -274,6 +274,8 @@ static dispatch_queue_t ble_communication_queue() {
     NSMutableData *tempData = [[NSMutableData alloc] initWithData:[self getFirstByte]];
     [tempData appendData:chunk];
     
+    NSLog(@"temp length: %i", tempData.length);
+    
     // Send it
     [self.connectedPeripheral writeValue:tempData
                        forCharacteristic:self.curCharacteristic type:CBCharacteristicWriteWithResponse];
@@ -285,11 +287,14 @@ static dispatch_queue_t ble_communication_queue() {
     if (self.sendDataIndex >= self.sendDataSize)  return;
     
     NSMutableData *tempData = nil;
-    if (self.sendDataIndex == 0) {
-        NSData *chunk = [self.toFilePath dataUsingEncoding:NSUTF8StringEncoding];
+    if (self.sendDataIndex == -1) {
+        NSString *commnad = [NSString stringWithFormat:@"{ 'command': 9, 'content': '{'to':'%@'}' }", self.toFilePath];
+        NSLog(@"commnad:%@", commnad);
+        self.dataToSend = [commnad dataUsingEncoding:NSUTF8StringEncoding];
         
         tempData = [[NSMutableData alloc] initWithData:[self getFirstByte]];
-        [tempData appendData:chunk];
+        [tempData appendData:self.dataToSend];
+        self.sendDataIndex = 0;
     }
     else {
         // Work out how big it should be
@@ -303,11 +308,13 @@ static dispatch_queue_t ble_communication_queue() {
         
         NSLog(@"length : %i, %i", self.sendDataSize, length);
         // Copy out the data we want
-        NSData *chunk = [NSData dataWithBytes:data length:length];
+        self.dataToSend = [NSData dataWithBytes:data length:length];
         
         tempData = [[NSMutableData alloc] initWithData:[self getFirstByte]];
-        [tempData appendData:chunk];
+        [tempData appendData:self.dataToSend];
     }
+    
+    NSLog(@"temp length: %i", tempData.length);
     
     // Send it
     [self.connectedPeripheral writeValue:tempData
@@ -316,7 +323,7 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (NSData *)getFirstByte
 {
-    Byte byte = {0x00};
+    Byte byte = 0x00;
     
     if (self.transferDataType == kTransferDataType_String) {
         if (self.sendDataIndex == 0 && self.dataToSend.length <= NOTIFY_MTU) {//entire
@@ -330,7 +337,7 @@ static dispatch_queue_t ble_communication_queue() {
         }
     }
     else if (self.transferDataType == kTransferDataType_File) {
-        if (self.sendDataIndex == 0 && self.sendDataSize > NOTIFY_MTU){//start
+        if (self.sendDataIndex == -1 && self.sendDataSize > NOTIFY_MTU){//start
             byte = 0x21;
         }else if (self.sendDataIndex + NOTIFY_MTU >= self.sendDataSize){//end
             byte = 0x23;
@@ -380,14 +387,14 @@ static dispatch_queue_t ble_communication_queue() {
         
         self.sendDataIndex += amountToSend;
         
-//        if (self.sendDataIndex >= self.sendDataSize) {
+        if (self.sendDataIndex >= self.sendDataSize) {
 //            if (self.writeblock) {
 //                self.writeblock();
-//                [self.inputStream close];
-//                self.inputStream = nil;
 //            }
-//            return;
-//        }
+            [self.inputStream close];
+            self.inputStream = nil;
+            return;
+        }
         
         [self sendFileData];
     }
