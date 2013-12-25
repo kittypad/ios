@@ -9,6 +9,7 @@
 #import "AppCenterListViewController.h"
 #import "DataManager.h"
 #import "DownloadObjectCell.h"
+#import "BLEManager.h"
 
 #define kPageNum 10
 
@@ -107,10 +108,7 @@
             break;
         }
         case kNotInstall: {
-#warning 发送至手表
-            obj.state = [NSNumber numberWithInteger:kInstalled];
-            [[DataManager sharedManager] saveDownloadDic];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
+            [[BLEManager sharedManager] sendAppInstallCommand:obj.apkUrl];
             break;
         }
         default:
