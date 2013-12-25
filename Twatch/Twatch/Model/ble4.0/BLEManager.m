@@ -10,7 +10,7 @@
 
 #import "AFDownloadRequestOperation.h"
 
-#define NOTIFY_MTU      500
+#define NOTIFY_MTU      100
 
 //串行队列，同时只执行一个task
 static dispatch_queue_t ble_communication_queue() {
@@ -231,27 +231,18 @@ static dispatch_queue_t ble_communication_queue() {
 {
     __block NSString *fileName = [[NSURL URLWithString:apkUrl] lastPathComponent];
     NSString *path = [NSString stringWithFormat:@"/sdcard/.tomoon/tmp/%@", fileName];
-//
-//    NSLog(@"send folder command: %@", path);
-//    
-//    __block BLEManager *weakSelf = self;
-//    
-//    self.writeblock = ^(void){
-//        NSLog(@"string write finish");
-//        
-//        weakSelf.writeblock = ^(void){
-//            NSLog(@"file write finish");
-//        };
-//        
-//        [weakSelf sendFileDataToBle:[[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:fileName]];
-//    };
-//    
-    self.toFilePath = path;
-//    [self sendFolderPathCommand:path];
     
+    __block BLEManager *weakSelf = self;
+    
+    self.writeblock = ^(void){
+        NSLog(@"file write finish");
+        weakSelf.writeblock = nil;
+        [weakSelf sendStrDataToBle:[NSString stringWithFormat:@"{ 'command': 3, 'content': '{'App': '%@'}' }", path]];
+    };
+    
+    self.toFilePath = path;
     
     [self sendFileDataToBle:[[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:fileName]];
-//    [self sendStrDataToBle:[NSString stringWithFormat:@"{ 'command': 3, 'content': '{'App': '%@'}' }", path]];
 }
 
 #pragma mark - Data
@@ -316,7 +307,7 @@ static dispatch_queue_t ble_communication_queue() {
         self.sendDataIndex += length;
     }
     
-    NSLog(@"temp length: %i", tempData.length);
+    NSLog(@"temp index: %i", self.sendDataIndex);
     
     // Send it
     [self.connectedPeripheral writeValue:tempData
@@ -372,12 +363,12 @@ static dispatch_queue_t ble_communication_queue() {
         
         self.sendDataIndex += amountToSend;
         
-        if (self.sendDataIndex >= self.sendDataSize) {
-            if (self.writeblock) {
-                self.writeblock();
-            }
-            return;
-        }
+//        if (self.sendDataIndex >= self.sendDataSize) {
+//            if (self.writeblock) {
+//                self.writeblock();
+//            }
+//            return;
+//        }
         
         [self sendData];
     }
@@ -385,9 +376,9 @@ static dispatch_queue_t ble_communication_queue() {
         //发送文件
         
         if (self.sendDataIndex >= self.sendDataSize) {
-//            if (self.writeblock) {
-//                self.writeblock();
-//            }
+            if (self.writeblock) {
+                self.writeblock();
+            }
             [self.inputStream close];
             self.inputStream = nil;
             return;
