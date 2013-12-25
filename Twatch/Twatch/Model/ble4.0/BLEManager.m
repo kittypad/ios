@@ -16,7 +16,7 @@
 
 #import "ViewUtils.h"
 
-#define NOTIFY_MTU      100
+#define NOTIFY_MTU      116
 
 //串行队列，同时只执行一个task
 static dispatch_queue_t ble_communication_queue() {
