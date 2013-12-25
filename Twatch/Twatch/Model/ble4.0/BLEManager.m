@@ -236,8 +236,10 @@ static dispatch_queue_t ble_communication_queue() {
     
     self.writeblock = ^(void){
         NSLog(@"file write finish");
+        weakSelf.dataToSend = nil;
         weakSelf.writeblock = nil;
         [weakSelf sendStrDataToBle:[NSString stringWithFormat:@"{ 'command': 3, 'content': '{'App': '%@'}' }", path]];
+#warning App安装成功
     };
     
     self.toFilePath = path;
@@ -352,6 +354,12 @@ static dispatch_queue_t ble_communication_queue() {
 {
     if (error) {
         NSLog(@"Error didWriteValueForCharacteristic: %@",  [error localizedDescription]);
+        if (self.inputStream) {
+            [self.inputStream close];
+            self.inputStream = nil;
+        }
+        [self.centralManager cancelPeripheralConnection:peripheral];
+        [self scan];
         return;
     }
     
