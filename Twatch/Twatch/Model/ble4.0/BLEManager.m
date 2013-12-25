@@ -10,7 +10,7 @@
 
 #import "AFDownloadRequestOperation.h"
 
-#define NOTIFY_MTU      498
+#define NOTIFY_MTU      500
 
 //串行队列，同时只执行一个task
 static dispatch_queue_t ble_communication_queue() {
@@ -288,7 +288,7 @@ static dispatch_queue_t ble_communication_queue() {
     
     NSMutableData *tempData = nil;
     if (self.sendDataIndex == -1) {
-        NSString *commnad = [NSString stringWithFormat:@"{ 'command': 9, 'content': '{'to':'%@'}' }", self.toFilePath];
+        NSString *commnad = [NSString stringWithFormat:@"{'to':'%@'}", self.toFilePath];
         NSLog(@"commnad:%@", commnad);
         self.dataToSend = [commnad dataUsingEncoding:NSUTF8StringEncoding];
         
@@ -312,6 +312,8 @@ static dispatch_queue_t ble_communication_queue() {
         
         tempData = [[NSMutableData alloc] initWithData:[self getFirstByte]];
         [tempData appendData:self.dataToSend];
+        
+        self.sendDataIndex += length;
     }
     
     NSLog(@"temp length: %i", tempData.length);
@@ -381,11 +383,6 @@ static dispatch_queue_t ble_communication_queue() {
     }
     else {
         //发送文件
-        NSInteger amountToSend = self.sendDataSize - self.sendDataIndex;
-        
-        if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
-        
-        self.sendDataIndex += amountToSend;
         
         if (self.sendDataIndex >= self.sendDataSize) {
 //            if (self.writeblock) {
