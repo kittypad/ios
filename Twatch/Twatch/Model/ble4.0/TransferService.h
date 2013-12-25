@@ -61,8 +61,6 @@
 typedef enum _TransferDataType{
     kTransferDataType_String,//0000  0x0
     kTransferDataType_File//0010  0x2
-#warning 添加支持的文件类型 kTransferDataType_Zip
-    
 }TransferDataType;
 
 #endif

@@ -10,6 +10,12 @@
 
 #import "AFDownloadRequestOperation.h"
 
+#import <SBJson.h>
+
+#import "DataManager.h"
+
+#import "ViewUtils.h"
+
 #define NOTIFY_MTU      100
 
 //串行队列，同时只执行一个task
@@ -29,6 +35,8 @@ static dispatch_queue_t ble_communication_queue() {
 - (void)sendFileData;
 
 - (NSData *)getFirstByte;
+
+- (BOOL)isSendingData;
 
 @end
 
@@ -56,6 +64,8 @@ static dispatch_queue_t ble_communication_queue() {
         
         // Start up the CBCentralManager
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        
+        _isSending = NO;
     }
     return self;
 }
@@ -64,12 +74,12 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)sendFileDataToBle:(NSString *)path
 {
-//    UIApplication *application = [UIApplication sharedApplication];
-//    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
-//        
-//        [application endBackgroundTask:bgTask];
-//        bgTask = UIBackgroundTaskInvalid;
-//    }];
+    UIApplication *application = [UIApplication sharedApplication];
+    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+        
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
     
     // Start the long-running task and return immediately.
     dispatch_async(ble_communication_queue(), ^(void){
@@ -129,9 +139,9 @@ static dispatch_queue_t ble_communication_queue() {
             }
         });
 
-//        NSLog(@" %f",application.backgroundTimeRemaining);
-//        [application endBackgroundTask:bgTask];
-//        bgTask = UIBackgroundTaskInvalid;
+        NSLog(@" %f",application.backgroundTimeRemaining);
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
     });
 }
 
@@ -214,37 +224,111 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)sendSearchWatchCommand
 {
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
     [self sendStrDataToBle:@"{ 'command': 0, 'content': '{}' }"];
 }
 
 - (void)sendUnboundCommand
 {
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
     [self sendStrDataToBle:@"{ 'command': 16, 'content': '{}' }"];
 }
 
-- (void)sendFolderPathCommand:(NSString *)path
+- (void)sendAppInstallCommand:(DownloadObject *)obj
 {
-    [self sendStrDataToBle:[NSString stringWithFormat:@"{ 'command': 9, 'content': '{'to':'%@'}' }", path]];
-}
-
-- (void)sendAppInstallCommand:(NSString *)apkUrl
-{
-    __block NSString *fileName = [[NSURL URLWithString:apkUrl] lastPathComponent];
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    __block NSString *fileName = [[NSURL URLWithString:obj.apkUrl] lastPathComponent];
     NSString *path = [NSString stringWithFormat:@"/sdcard/.tomoon/tmp/%@", fileName];
     
     __block BLEManager *weakSelf = self;
     
     self.writeblock = ^(void){
         NSLog(@"file write finish");
-        weakSelf.dataToSend = nil;
-        weakSelf.writeblock = nil;
-        [weakSelf sendStrDataToBle:[NSString stringWithFormat:@"{ 'command': 3, 'content': '{'App': '%@'}' }", path]];
-#warning App安装成功
+        
+        SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+        NSDictionary *dic = @{@"command":[NSNumber numberWithInt:3], @"content":@{@"app": path}};
+        [weakSelf sendStrDataToBle:[writer stringWithObject:dic]];
+        
+        weakSelf.writeblock = ^(void){
+            obj.state = [NSNumber numberWithInteger:kInstalled];
+            [[DataManager sharedManager] saveDownloadDic];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
+            [ViewUtils showToast:[NSString stringWithFormat:@"应用“%@”安装成功", obj.name]];
+        };
     };
     
     self.toFilePath = path;
     
     [self sendFileDataToBle:[[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:fileName]];
+}
+
+- (void)sendBackgroundImageCommand:(DownloadObject *)obj
+{
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    __block NSString *folderName = [[[NSURL URLWithString:obj.apkUrl] lastPathComponent] stringByReplacingOccurrencesOfString:@".zip" withString:@""];
+    NSString *path = [NSString stringWithFormat:@"/sdcard/.tomoon/cards/%@.jpg", folderName];
+    
+    __block BLEManager *weakSelf = self;
+    
+    self.writeblock = ^(void){
+        NSLog(@"file write finish");
+        weakSelf.writeblock = nil;
+        weakSelf.isSending = NO;
+        
+        obj.state = [NSNumber numberWithInteger:kInstalled];
+        [[DataManager sharedManager] saveDownloadDic];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
+        [ViewUtils showToast:[NSString stringWithFormat:@"图片“%@”已发送至手表", obj.name]];
+    };
+    
+    self.toFilePath = path;
+    
+    NSString *folderPath = [[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:folderName];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *array = [fileManager contentsOfDirectoryAtPath:folderPath error:nil];
+    if (array.count > 0) {
+        [self sendFileDataToBle:[folderPath stringByAppendingPathComponent:[array lastObject]]];
+    }
+}
+
+- (void)sendBackgroundImageDataCommand:(NSString *)path
+{
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyyMMddHHmmsszzz"];
+    
+    __block NSString *fileName = [dateFormatter stringFromDate:[NSDate date]];
+    NSString *toPath = [NSString stringWithFormat:@"/sdcard/.tomoon/cards/%@", fileName];
+    
+    __block BLEManager *weakSelf = self;
+    
+    self.writeblock = ^(void){
+        NSLog(@"file write finish");
+        weakSelf.writeblock = nil;
+        weakSelf.isSending = NO;
+        [ViewUtils showToast:@"图片已发送至手表"];
+    };
+    
+    self.toFilePath = toPath;
+    
+    [self sendFileDataToBle:path];
 }
 
 #pragma mark - Data
@@ -348,18 +432,30 @@ static dispatch_queue_t ble_communication_queue() {
     return header;
 }
 
+- (BOOL)isSendingData
+{
+    if (self.isSending) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"蓝牙传输" message:@"正在发送其他数据，请稍后尝试。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertView show];
+    }
+    return self.isSending;
+}
+
 #pragma mark - CBCentralManagerDelegate, CBPeripheralDelegate
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     if (error) {
         NSLog(@"Error didWriteValueForCharacteristic: %@",  [error localizedDescription]);
+        [ViewUtils showErrorToast:[NSString stringWithFormat:@"蓝牙发送错误:%@", [error localizedDescription]]];
         if (self.inputStream) {
             [self.inputStream close];
             self.inputStream = nil;
         }
+        self.isSending = NO;
         [self.centralManager cancelPeripheralConnection:peripheral];
         [self scan];
+        self.dataToSend = nil;
         return;
     }
     
@@ -371,12 +467,14 @@ static dispatch_queue_t ble_communication_queue() {
         
         self.sendDataIndex += amountToSend;
         
-//        if (self.sendDataIndex >= self.sendDataSize) {
-//            if (self.writeblock) {
-//                self.writeblock();
-//            }
-//            return;
-//        }
+        if (self.sendDataIndex >= self.sendDataSize) {
+            self.isSending = NO;
+            self.dataToSend = nil;
+            if (self.writeblock) {
+                self.writeblock();
+            }
+            return;
+        }
         
         [self sendData];
     }
@@ -387,6 +485,7 @@ static dispatch_queue_t ble_communication_queue() {
             if (self.writeblock) {
                 self.writeblock();
             }
+            self.dataToSend = nil;
             [self.inputStream close];
             self.inputStream = nil;
             return;
@@ -446,6 +545,7 @@ static dispatch_queue_t ble_communication_queue() {
 
 -(void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
+    self.isSending = NO;
     NSLog(@"didConnectPeripheral %@", peripheral.name);
     self.connectedPeripheral = peripheral;
     peripheral.delegate = self;
@@ -453,6 +553,7 @@ static dispatch_queue_t ble_communication_queue() {
     [self.unConnectedDevices removeObject:peripheral];
     [self saveConnectedWatch:peripheral.identifier];
     [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
+    [ViewUtils showToast:@"已经与手表建立连接"];
 }
 
 - (void) centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
@@ -469,6 +570,10 @@ static dispatch_queue_t ble_communication_queue() {
 {
     NSLog(@"didDisconnectPeripheral %@", peripheral.name);
     
+    [ViewUtils showErrorToast:@"已经与手表断开连接"];
+    
+    self.isSending = NO;
+    self.dataToSend = nil;
     if (self.connectedPeripheral == peripheral) {
         self.connectedPeripheral = nil;
     }

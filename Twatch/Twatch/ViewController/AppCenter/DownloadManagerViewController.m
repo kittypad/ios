@@ -102,10 +102,12 @@
     DownloadObject *obj = [_downloadedArray objectAtIndex:row];
     switch ([obj.state integerValue]) {
         case kNotInstall: {
-            [[BLEManager sharedManager] sendAppInstallCommand:obj.apkUrl];
-//            obj.state = [NSNumber numberWithInteger:kInstalled];
-//            [[DataManager sharedManager] saveDownloadDic];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
+            if (0 == obj.type.integerValue) {
+                [[BLEManager sharedManager] sendAppInstallCommand:obj];
+            }
+            else if (1 == obj.type.integerValue) {
+                [[BLEManager sharedManager] sendBackgroundImageCommand:obj];
+            }
             break;
         }
         default:

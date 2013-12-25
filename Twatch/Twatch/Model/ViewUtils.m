@@ -8,6 +8,7 @@
 
 #import "ViewUtils.h"
 #import "AppDelegate.h"
+#import "MMProgressHUD.h"
 
 CGRect CGRectChangeWidth(CGRect frame, CGFloat width)
 {
@@ -93,6 +94,22 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height)
     label.textColor = normal;
     label.backgroundColor = backColor;
     return label;
+}
+
++ (void)showToast:(NSString *)toast
+{
+    [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
+    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+    [MMProgressHUD showWithTitle:@"" status:@""];
+    [MMProgressHUD dismissWithSuccess:toast title:nil afterDelay:2];
+}
+
++ (void)showErrorToast:(NSString *)toast
+{
+    [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
+    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+    [MMProgressHUD showWithTitle:@"" status:@""];
+    [MMProgressHUD dismissWithError:toast afterDelay:2];
 }
 
 @end

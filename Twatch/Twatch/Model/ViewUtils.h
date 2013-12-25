@@ -27,6 +27,10 @@ CGRect CGRectChangeSize(CGRect frame, CGFloat width, CGFloat height);
 
 + (UILabel *)labelWithTitle:(NSString *)title textFont:(UIFont *)font normalColor:(UIColor *)normal backColor:(UIColor *)backColor;
 
++ (void)showToast:(NSString *)toast;
+
++ (void)showErrorToast:(NSString *)toast;
+
 @end
 
 @interface UIColor(extend)

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "TransferService.h"
+#import "DownloadObject.h"
 
 @interface BLEManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
@@ -16,6 +17,7 @@
 @property (nonatomic) NSMutableArray *unConnectedDevices;
 @property (strong, nonatomic) CBPeripheral *connectedPeripheral;
 @property (nonatomic, strong) void (^writeblock)(void);
+@property (nonatomic, assign) BOOL isSending;
 
 //write
 @property (nonatomic, strong)      NSData                    *dataToSend;
@@ -46,8 +48,10 @@
 
 - (void)sendUnboundCommand;
 
-- (void)sendFolderPathCommand:(NSString *)path;
+- (void)sendAppInstallCommand:(DownloadObject *)obj;
 
-- (void)sendAppInstallCommand:(NSString *)apkUrl;
+- (void)sendBackgroundImageCommand:(DownloadObject *)obj;
+
+- (void)sendBackgroundImageDataCommand:(NSString *)path;
 
 @end

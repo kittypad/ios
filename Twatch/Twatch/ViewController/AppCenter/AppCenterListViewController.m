@@ -108,7 +108,12 @@
             break;
         }
         case kNotInstall: {
-            [[BLEManager sharedManager] sendAppInstallCommand:obj.apkUrl];
+            if (0 == obj.type.integerValue) {
+                [[BLEManager sharedManager] sendAppInstallCommand:obj];
+            }
+            else if (1 == obj.type.integerValue) {
+                [[BLEManager sharedManager] sendBackgroundImageCommand:obj];
+            }
             break;
         }
         default:

@@ -16,6 +16,10 @@
 
 #import "MMProgressHUD.h"
 
+#import "AFDownloadRequestOperation.h"
+
+#import "BLEManager.h"
+
 @interface WatchStyleViewController ()
 {
     UIImageView *_imageView;
@@ -27,6 +31,8 @@
 - (void)_albumButtonPressed:(id)sender;
 
 - (void)_cameraButtonPressed:(id)sender;
+
+- (NSString *)_cacheFilePath;
 
 @end
 
@@ -99,6 +105,11 @@
     y = (self.view.frame.size.height + CGRectGetMaxY(cameraButton.frame) - 215.0)/2.0;
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100.0, y, 120.0, 160.0)];
     [self.view addSubview:_imageView];
+    
+    _image = [UIImage imageWithContentsOfFile:[self _cacheFilePath]];
+    if (_image) {
+        _imageView.image = _image;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,7 +122,7 @@
 
 - (void)_handleButtonPressed:(id)sender
 {
-#warning 发送至手表
+    [[BLEManager sharedManager] sendBackgroundImageDataCommand:[self _cacheFilePath]];
 }
 
 - (void)_albumButtonPressed:(id)sender
@@ -134,6 +145,11 @@
         vc.sourceType = type;
         [self presentViewController:vc animated:YES completion:nil];
     }
+}
+
+- (NSString *)_cacheFilePath
+{
+    return [[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:@"imageData.jpg"];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -170,6 +186,7 @@
 {
     _image = image;
     _imageView.image = image;
+    [UIImageJPEGRepresentation(image, 1.0) writeToFile:[self _cacheFilePath] atomically:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
