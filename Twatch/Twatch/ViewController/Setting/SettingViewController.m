@@ -216,9 +216,9 @@
             
         default:
         {
-            NSString *className = self.subviewControllerArray[indexPath.row - 3];
+            NSString *className = self.subviewControllerArray[indexPath.row - 2];
             UIViewController *aController = [[NSClassFromString(className) alloc] initWithNibName:nil bundle:nil];
-            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 3];
+            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 2];
             [self.navigationController pushViewController:aController animated:YES];
         }
             break;

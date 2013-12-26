@@ -85,10 +85,11 @@ static  NSString *cellId = @"connectin cell identifier";
 {
     NSLog(@"start scan");
     if (!btn.selected) {
-        btn.backgroundColor = [UIColor grayColor];
+        btn.backgroundColor = [UIColor colorWithHex:@"6fc6fc"];
         [[BLEManager sharedManager] scan];
     }else{
-        btn.backgroundColor = RGB(116, 198, 250, 1);
+        btn.backgroundColor = [UIColor colorWithHex:@"1ca1f6"];
+        [[BLEManager sharedManager] stopScan];
     }
     
     btn.selected = !btn.selected;
