@@ -54,6 +54,7 @@ static  NSString *cellId = @"connectin cell identifier";
     [scanButton setTitle:@"正  在  扫  描" forState:UIControlStateSelected];
     [scanButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [scanButton addTarget:self action:@selector(startScan:) forControlEvents:UIControlEventTouchUpInside];
+    scanButton.selected = [[BLEManager sharedManager] isScanning];
     [self.view addSubview:scanButton];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didBLEChanged:) name:kBLEChangedNotification object:nil];
@@ -79,19 +80,19 @@ static  NSString *cellId = @"connectin cell identifier";
 
 - (void)startScan:(UIButton *)btn
 {
-    if (![[BLEManager sharedManager] isBLEPoweredOn]) {
+    BLEManager *manger = [BLEManager sharedManager];
+    if (![manger isBLEPoweredOn]) {
         return;
     }
-    NSLog(@"start scan");
-    if (!btn.selected) {
+    if (!manger.isScanning) {
         btn.backgroundColor = [UIColor colorWithHex:@"6fc6fc"];
-        [[BLEManager sharedManager] scan];
+        [manger scan];
     }else{
         btn.backgroundColor = [UIColor colorWithHex:@"1ca1f6"];
-        [[BLEManager sharedManager] stopScan];
+        [manger stopScan];
     }
     
-    btn.selected = !btn.selected;
+    btn.selected = manger.isScanning;
 }
 
 - (void)didReceiveMemoryWarning
@@ -162,15 +163,7 @@ static  NSString *cellId = @"connectin cell identifier";
     if (indexPath.section == 0) {
         //解除绑定
         [manager sendUnboundCommand];
-        [manager removeConnectedWatch];
-        [manager.centralManager cancelPeripheralConnection:manager.connectedPeripheral];
     }else{
-        if (manager.connectedPeripheral) {
-            //解除绑定
-            [manager sendUnboundCommand];
-            [manager removeConnectedWatch];
-            [manager.centralManager cancelPeripheralConnection:manager.connectedPeripheral];
-        }
         CBPeripheral *p = manager.unConnectedDevices[indexPath.row];
         [manager.centralManager connectPeripheral:p options:nil];
     }

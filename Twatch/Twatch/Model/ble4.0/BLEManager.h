@@ -18,6 +18,7 @@
 @property (strong, nonatomic) CBPeripheral *connectedPeripheral;
 @property (nonatomic, strong) void (^writeblock)(void);
 @property (nonatomic, assign) BOOL isSending;
+@property (nonatomic, assign) BOOL isScanning;
 
 //write
 @property (nonatomic, strong)      NSData                    *dataToSend;
@@ -40,11 +41,15 @@
 
 - (BOOL)isBLEPoweredOn;
 
+- (BOOL)isBLEConnected;
+
 //接口
 
 - (void)sendSearchWatchCommand;
 
 - (void)sendUnboundCommand;
+
+- (void)sendTimeCommand:(NSDate *)date finish:(void (^)(void))block;
 
 - (void)sendAppInstallCommand:(DownloadObject *)obj;
 

@@ -75,7 +75,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 5;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -150,8 +150,12 @@
 //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //            
 //        }
-//            break;
+            //            break;
         case 2:
+#warning 解除绑定
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+        case 3:
             cell.textLabel.text = NSLocalizedString(@"Settings", nil);
             cell.imageView.image = [UIImage imageNamed:@"setting_Setting"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -161,7 +165,7 @@
 //            cell.imageView.image = [UIImage imageNamed:@"二维码"];
 //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //            break;
-        case 3:
+        case 4:
             cell.textLabel.text = NSLocalizedString(@"Account Bound", nil);
             cell.imageView.image = [UIImage imageNamed:@"账号"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -185,22 +189,22 @@
     {
         case 0:
         {
+            if (![[BLEManager sharedManager] isBLEPoweredOn]) {
+                return;
+            }
+            if (![[BLEManager sharedManager] isBLEConnected]) {
+                return;
+            }
+            NSDate *date = [NSDate date];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"hh:mm"];
-            NSString *strDate = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"Confirm Time Proofread", nil),[dateFormatter stringFromDate:[NSDate date]]];
+            NSString *strDate = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"Confirm Time Proofread", nil),[dateFormatter stringFromDate:date]];
             
             BlockUIAlertView *alertView = [[BlockUIAlertView alloc] initWithTitle:@"" message:strDate cancelButtonTitle:NSLocalizedString(@"OK", nil)  otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"No", nil), nil] buttonBlock:^(NSInteger indexButton){
                 NSLog(@"%d",indexButton);
                 if (indexButton == 0) {
-#warning 调用时间设置
-                    MBProgressHUD *hudView = [[MBProgressHUD alloc] initWithView:self.view];
-                    [self.view addSubview:hudView];
-                    hudView.labelText = NSLocalizedString(@"Time Proofread Succeed", nil);
-                    hudView.mode = MBProgressHUDModeCustomView;
-                    [hudView showAnimated:YES whileExecutingBlock:^{
-                        sleep(3);
-                    } completionBlock:^{
-                        [hudView removeFromSuperview];
+                    [[BLEManager sharedManager] sendTimeCommand:date finish:^(void){
+                        [ViewUtils showToast:@"时间校对成功"];
                     }];
                 }
             }];
@@ -213,12 +217,16 @@
             
         }
             break;
-            
+        case 2:
+        {
+            [[BLEManager sharedManager] sendUnboundCommand];
+            break;
+        }
         default:
         {
-            NSString *className = self.subviewControllerArray[indexPath.row - 2];
+            NSString *className = self.subviewControllerArray[indexPath.row - 3];
             UIViewController *aController = [[NSClassFromString(className) alloc] initWithNibName:nil bundle:nil];
-            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 2];
+            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 3];
             [self.navigationController pushViewController:aController animated:YES];
         }
             break;

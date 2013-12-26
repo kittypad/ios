@@ -41,9 +41,6 @@ static dispatch_queue_t ble_communication_queue() {
 - (NSData *)getFirstByte;
 
 - (BOOL)isSendingData;
-
-- (BOOL)isBLEConnected;
-
 @end
 
 @implementation BLEManager
@@ -72,6 +69,7 @@ static dispatch_queue_t ble_communication_queue() {
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
         _isSending = NO;
+        _isScanning = NO;
     }
     return self;
 }
@@ -172,10 +170,7 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)scan
 {
-    if (![self isBLEPoweredOn]) {
-        return;
-    }
-    [self.centralManager stopScan];
+    self.isScanning = YES;
     NSLog(@"scan...");
     [self.centralManager scanForPeripheralsWithServices:nil
                                                 options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @NO }];
@@ -183,9 +178,7 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)stopScan
 {
-    if (![self isBLEPoweredOn]) {
-        return;
-    }
+    self.isScanning = NO;
     [self.centralManager stopScan];
 }
 
@@ -207,6 +200,28 @@ static dispatch_queue_t ble_communication_queue() {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"尚未开启蓝牙，请进入设置界面开启蓝牙"
                                                            delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        });
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)isBLEConnected
+{
+    BOOL connectedADevice = NO;
+#ifdef __IPHONE_7_0
+    connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
+#else
+    connectedADevice = self.connectedPeripheral.isConnected;
+#endif
+    if (!connectedADevice || self.connectedPeripheral == nil) {
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"尚未连接到蓝牙设备，是否进入同步界面扫描设备？"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:@"取消", nil];
             [alert show];
         });
         return NO;
@@ -237,7 +252,30 @@ static dispatch_queue_t ble_communication_queue() {
         return;
     }
     self.isSending = YES;
+    __block BLEManager *weakSelf = self;
+    self.writeblock = ^(void){
+        [weakSelf.centralManager cancelPeripheralConnection:weakSelf.connectedPeripheral];
+        [weakSelf removeConnectedWatch];
+        weakSelf.writeblock = nil;
+        weakSelf = nil;
+    };
     [self sendStrDataToBle:@"{ 'command': 16, 'content': '{}' }"];
+}
+
+- (void)sendTimeCommand:(NSDate *)date finish:(void (^)(void))block
+{
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:11],
+                          @"content":@{@"time": [NSNumber numberWithLongLong:[date timeIntervalSince1970]*1000]}};
+    if (block) {
+        __block BLEManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf = nil;
+        };
+    }
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
 }
 
 - (void)sendAppInstallCommand:(DownloadObject *)obj
@@ -267,6 +305,7 @@ static dispatch_queue_t ble_communication_queue() {
             [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadFinishedNotification object:nil userInfo:@{@"obj": obj}];
             [ViewUtils showToast:[NSString stringWithFormat:@"应用“%@”安装成功", obj.name]];
         };
+        weakSelf = nil;
     };
     
     self.toFilePath = path;
@@ -292,6 +331,7 @@ static dispatch_queue_t ble_communication_queue() {
         NSLog(@"file write finish");
         weakSelf.writeblock = nil;
         weakSelf.isSending = NO;
+        weakSelf = nil;
         
         obj.state = [NSNumber numberWithInteger:kInstalled];
         [[DataManager sharedManager] saveDownloadDic];
@@ -332,6 +372,7 @@ static dispatch_queue_t ble_communication_queue() {
         NSLog(@"file write finish");
         weakSelf.writeblock = nil;
         weakSelf.isSending = NO;
+        weakSelf = nil;
         [ViewUtils showToast:@"图片已发送至手表"];
     };
     
@@ -450,28 +491,6 @@ static dispatch_queue_t ble_communication_queue() {
     return self.isSending;
 }
 
-- (BOOL)isBLEConnected
-{
-    BOOL connectedADevice = NO;
-#ifdef __IPHONE_7_0
-    connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
-#else
-    connectedADevice = self.connectedPeripheral.isConnected;
-#endif
-    if (!connectedADevice || self.connectedPeripheral == nil) {
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"尚未连接到蓝牙设备，是否进入同步界面扫描设备？"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"确定"
-                                                  otherButtonTitles:@"取消", nil];
-            [alert show];
-        });
-        return NO;
-    }
-    return YES;
-}
-
 #pragma mark - CBCentralManagerDelegate, CBPeripheralDelegate
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
@@ -532,6 +551,7 @@ static dispatch_queue_t ble_communication_queue() {
 {
     if (central.state != CBCentralManagerStatePoweredOn) {
         NSLog(@"non PoweredOn state");
+        self.isScanning = NO;
         return;
     }
     [self scan];
