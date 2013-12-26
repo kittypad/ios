@@ -47,8 +47,9 @@
     layout.sectionInset = UIEdgeInsetsMake(0, 25, 0, 25);
     layout.headerReferenceSize = CGSizeMake(CGRectGetWidth(self.view.frame), IS_IPHONE_5 ? 70 : 50);
     
+    CGRect frame = self.view.frame; frame.origin= CGPointZero;
     
-    UICollectionView *rootView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:layout];
+    UICollectionView *rootView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
     rootView.delegate = self;
     rootView.dataSource = self;
     rootView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"rooView_bg.png"]];

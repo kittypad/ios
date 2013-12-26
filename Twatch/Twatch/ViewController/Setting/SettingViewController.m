@@ -32,6 +32,7 @@
 @interface SettingViewController ()
 @property(nonatomic,strong)NSArray *subviewControllerArray;
 @property(nonatomic,strong)NSArray *titleArray;
+@property(nonatomic,strong)id      anObserver;
 @end
 
 @implementation SettingViewController
@@ -65,12 +66,21 @@
     tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:tableView];
     
+    self.anObserver =[[NSNotificationCenter defaultCenter] addObserverForName:kBLEChangedNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.anObserver];
+    self.anObserver = nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -87,6 +97,7 @@
 {
     return 50;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = @"SettingCell";
@@ -103,7 +114,7 @@
     
     switch (indexPath.row)
     {
-        case 0:
+        case 1:
         {
             cell.textLabel.text = NSLocalizedString(@"Time Proofread", nil);
             cell.imageView.image = [UIImage imageNamed:@"时间"];
@@ -119,7 +130,7 @@
             
         }
             break;
-        case 1:
+        case 2:
         {
             cell.textLabel.text = NSLocalizedString(@"Search Watch", nil);
             cell.imageView.image = [UIImage imageNamed:@"setting_Watch"];
@@ -151,9 +162,14 @@
 //            
 //        }
             //            break;
-        case 2:
-#warning 解除绑定
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        case 0:
+            if ([[BLEManager sharedManager] isBLEConnected]) {
+                cell.textLabel.text = NSLocalizedString(@"Unbound Watch", @"解除绑定");
+                cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"勾选.png"]];
+            }else{
+                cell.textLabel.text = NSLocalizedString(@"Bound Watch", @"绑定手表");
+                cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"勾选-空.png"]];
+            }
             break;
         case 3:
             cell.textLabel.text = NSLocalizedString(@"Settings", nil);
@@ -187,7 +203,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row)
     {
-        case 0:
+        case 1:
         {
             if (![[BLEManager sharedManager] isBLEPoweredOn]) {
                 return;
@@ -211,15 +227,17 @@
             [alertView show];
         }
             break;
-        case 1:
+        case 2:
         {
             [[BLEManager sharedManager] sendSearchWatchCommand];
             
         }
             break;
-        case 2:
+        case 0:
         {
-            [[BLEManager sharedManager] sendUnboundCommand];
+            if ([[BLEManager sharedManager] isBLEConnected]) {
+                [[BLEManager sharedManager] sendUnboundCommand];
+            }
             break;
         }
         default:
