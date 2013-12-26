@@ -59,19 +59,15 @@ static  NSString *cellId = @"connectin cell identifier";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didBLEChanged:) name:kBLEChangedNotification object:nil];
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    NSLog(@"central viewWillDisappear");
-    [super viewWillDisappear:animated];
-    [[BLEManager sharedManager] stopScan];
-}
-
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     NSLog(@"Scanning stopped");
     [super viewDidDisappear:animated];
-    [[BLEManager sharedManager] stopScan];
+    BLEManager *manager = [BLEManager sharedManager];
+    if (manager.centralManager.state == CBCentralManagerStatePoweredOn) {
+        [[BLEManager sharedManager] stopScan];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -83,6 +79,9 @@ static  NSString *cellId = @"connectin cell identifier";
 
 - (void)startScan:(UIButton *)btn
 {
+    if (![[BLEManager sharedManager] isBLEPoweredOn]) {
+        return;
+    }
     NSLog(@"start scan");
     if (!btn.selected) {
         btn.backgroundColor = [UIColor colorWithHex:@"6fc6fc"];

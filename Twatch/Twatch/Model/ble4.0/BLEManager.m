@@ -30,6 +30,10 @@ static dispatch_queue_t ble_communication_queue() {
 
 @interface BLEManager ()
 
+- (void)sendFileDataToBle:(NSString *)path;
+
+- (void)sendStrDataToBle:(NSString *)str;
+
 - (void)sendData;
 
 - (void)sendFileData;
@@ -37,6 +41,8 @@ static dispatch_queue_t ble_communication_queue() {
 - (NSData *)getFirstByte;
 
 - (BOOL)isSendingData;
+
+- (BOOL)isBLEConnected;
 
 @end
 
@@ -84,22 +90,6 @@ static dispatch_queue_t ble_communication_queue() {
     // Start the long-running task and return immediately.
     dispatch_async(ble_communication_queue(), ^(void){
         self.connectedPeripheral.delegate = self;
-        
-        BOOL connectedADevice = NO;
-#ifdef __IPHONE_7_0
-        connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
-#else
-        connectedADevice = self.connectedPeripheral.isConnected;
-#endif
-        if (!connectedADevice || self.connectedPeripheral == nil) {
-            dispatch_async(dispatch_get_main_queue(), ^(void){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                message:@"尚未连接到蓝牙设备，请进入同步界面扫描设备"
-                                                               delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
-            });
-            return;
-        }
 
         NSFileManager *manager = [[NSFileManager alloc] init];
         if ([manager fileExistsAtPath:path isDirectory:NO]) {
@@ -150,22 +140,6 @@ static dispatch_queue_t ble_communication_queue() {
     dispatch_async(ble_communication_queue(), ^(void){
         self.connectedPeripheral.delegate = self;
         
-        BOOL connectedADevice = NO;
-#ifdef __IPHONE_7_0
-        connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
-#else
-        connectedADevice = self.connectedPeripheral.isConnected;
-#endif
-        if (!connectedADevice || self.connectedPeripheral == nil) {
-            dispatch_async(dispatch_get_main_queue(), ^(void){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                message:@"尚未连接到蓝牙设备，请进入同步界面扫描设备"
-                                                               delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
-            });
-            return;
-        }
-        
         self.transferDataType = kTransferDataType_String;
         
         // Reset the index
@@ -198,6 +172,9 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)scan
 {
+    if (![self isBLEPoweredOn]) {
+        return;
+    }
     [self.centralManager stopScan];
     NSLog(@"scan...");
     [self.centralManager scanForPeripheralsWithServices:nil
@@ -206,6 +183,9 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)stopScan
 {
+    if (![self isBLEPoweredOn]) {
+        return;
+    }
     [self.centralManager stopScan];
 }
 
@@ -220,10 +200,27 @@ static dispatch_queue_t ble_communication_queue() {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kBLEBindingWatch];
 }
 
+- (BOOL)isBLEPoweredOn
+{
+    if (self.centralManager.state != CBCentralManagerStatePoweredOn) {
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"尚未开启蓝牙，请进入设置界面开启蓝牙"
+                                                           delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        });
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - Command
 
 - (void)sendSearchWatchCommand
 {
+    if (![self isBLEConnected]) {
+        return;
+    }
     if ([self isSendingData]) {
         return;
     }
@@ -233,6 +230,9 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)sendUnboundCommand
 {
+    if (![self isBLEConnected]) {
+        return;
+    }
     if ([self isSendingData]) {
         return;
     }
@@ -242,6 +242,9 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)sendAppInstallCommand:(DownloadObject *)obj
 {
+    if (![self isBLEConnected]) {
+        return;
+    }
     if ([self isSendingData]) {
         return;
     }
@@ -273,6 +276,9 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)sendBackgroundImageCommand:(DownloadObject *)obj
 {
+    if (![self isBLEConnected]) {
+        return;
+    }
     if ([self isSendingData]) {
         return;
     }
@@ -306,6 +312,9 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)sendBackgroundImageDataCommand:(NSString *)path
 {
+    if (![self isBLEConnected]) {
+        return;
+    }
     if ([self isSendingData]) {
         return;
     }
@@ -439,6 +448,28 @@ static dispatch_queue_t ble_communication_queue() {
         [alertView show];
     }
     return self.isSending;
+}
+
+- (BOOL)isBLEConnected
+{
+    BOOL connectedADevice = NO;
+#ifdef __IPHONE_7_0
+    connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
+#else
+    connectedADevice = self.connectedPeripheral.isConnected;
+#endif
+    if (!connectedADevice || self.connectedPeripheral == nil) {
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"尚未连接到蓝牙设备，是否进入同步界面扫描设备？"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:@"取消", nil];
+            [alert show];
+        });
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - CBCentralManagerDelegate, CBPeripheralDelegate
@@ -698,5 +729,15 @@ static dispatch_queue_t ble_communication_queue() {
 //        [self.centralManager cancelPeripheralConnection:peripheral];
 //    }
 //}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:@"确定"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kBLEConnectionNotification object:nil];
+    }
+}
 
 @end

@@ -26,6 +26,8 @@
 @property (nonatomic, strong) NSArray *imageSourceArray;
 @property (nonatomic, strong) NSArray *subControllerSourceArray;
 
+- (void)enterConnectionViewController:(id)sender;
+
 @end
 
 @implementation RootViewController
@@ -57,6 +59,16 @@
     if ([[NSUserDefaults standardUserDefaults] objectForKey:kBLEBindingWatch]) {
         [[BLEManager sharedManager] scan];
     }
+    else {
+        [self enterConnectionViewController:nil];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterConnectionViewController:) name:kBLEConnectionNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)prepareDefaultData
@@ -80,6 +92,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)enterConnectionViewController:(id)sender
+{
+    ConnectionViewController *aController = [[ConnectionViewController alloc] init];
+    aController.backName = self.titleSourceArray[2];
+    [self.navigationController pushViewController:aController animated:YES];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

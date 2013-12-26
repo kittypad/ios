@@ -22,6 +22,7 @@
 #define kDownloadFinishedNotification @"DownloadFinishedNotification"
 
 #define kBLEChangedNotification @"BLEChangedNotification"
+#define kBLEConnectionNotification @"BLEConnectionNotification"
 
 #define kBLEBindingWatch @"BLEBindingWatch"
 

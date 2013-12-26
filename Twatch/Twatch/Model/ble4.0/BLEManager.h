@@ -11,7 +11,7 @@
 #import "TransferService.h"
 #import "DownloadObject.h"
 
-@interface BLEManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
+@interface BLEManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
 @property (nonatomic) NSMutableArray *unConnectedDevices;
@@ -34,13 +34,11 @@
 
 - (void)stopScan;
 
-- (void)sendFileDataToBle:(NSString *)path;
-
-- (void)sendStrDataToBle:(NSString *)str;
-
 - (void)saveConnectedWatch:(NSUUID *)identifier;
 
 - (void)removeConnectedWatch;
+
+- (BOOL)isBLEPoweredOn;
 
 //接口
 
