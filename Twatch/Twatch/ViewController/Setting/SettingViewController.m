@@ -32,7 +32,8 @@
 @interface SettingViewController ()
 @property(nonatomic,strong)NSArray *subviewControllerArray;
 @property(nonatomic,strong)NSArray *titleArray;
-@property(nonatomic,strong)id      anObserver;
+
+@property(nonatomic,strong)id         anObserver;
 @end
 
 @implementation SettingViewController
@@ -62,13 +63,48 @@
     tableView.dataSource = self;
     tableView.rowHeight = 50;
     tableView.scrollEnabled = NO;
+    tableView.tableHeaderView = [self tableHeaderView];
     tableView.backgroundColor = [UIColor colorWithHex:@"F2F7FD"];
     tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:tableView];
+}
+
+- (UIView *)tableHeaderView
+{
+    UIControl *headerView = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 50)];
+    [headerView addTarget:self action:@selector(boundButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectOffset(headerView.frame, 20, 0)];
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textColor = [UIColor blackColor];
+    [headerView addSubview:titleLabel];
+    
+    UIImageView *statusImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"勾选.png"]];
+    statusImageView.center = CGPointMake(CGRectGetWidth(headerView.frame) - CGRectGetWidth(statusImageView.frame) - 5, CGRectGetHeight(headerView.frame)/2);
+    [headerView addSubview:statusImageView];
     
     self.anObserver =[[NSNotificationCenter defaultCenter] addObserverForName:kBLEChangedNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-        [tableView reloadData];
+        if ([[BLEManager sharedManager] isBLEConnected]) {
+            titleLabel.text = NSLocalizedString(@"Unbound Watch", @"解除绑定");
+            statusImageView.image = [UIImage imageNamed:@"勾选.png"];
+        }else{
+            titleLabel.text = NSLocalizedString(@"Bound Watch", @"绑定手表");
+            statusImageView.image = [UIImage imageNamed:@"勾选-空.png"];
+        }
     }];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
+    
+    return headerView;
+}
+
+
+- (void)boundButtonClicked:(id)sender
+{
+    if ([[BLEManager sharedManager] isBLEConnected]) {
+        [[BLEManager sharedManager] sendUnboundCommand];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,7 +121,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 4;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -114,7 +150,7 @@
     
     switch (indexPath.row)
     {
-        case 1:
+        case 0:
         {
             cell.textLabel.text = NSLocalizedString(@"Time Proofread", nil);
             cell.imageView.image = [UIImage imageNamed:@"时间"];
@@ -130,7 +166,7 @@
             
         }
             break;
-        case 2:
+        case 1:
         {
             cell.textLabel.text = NSLocalizedString(@"Search Watch", nil);
             cell.imageView.image = [UIImage imageNamed:@"setting_Watch"];
@@ -162,16 +198,7 @@
 //            
 //        }
             //            break;
-        case 0:
-            if ([[BLEManager sharedManager] isBLEConnected]) {
-                cell.textLabel.text = NSLocalizedString(@"Unbound Watch", @"解除绑定");
-                cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"勾选.png"]];
-            }else{
-                cell.textLabel.text = NSLocalizedString(@"Bound Watch", @"绑定手表");
-                cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"勾选-空.png"]];
-            }
-            break;
-        case 3:
+        case 2:
             cell.textLabel.text = NSLocalizedString(@"Settings", nil);
             cell.imageView.image = [UIImage imageNamed:@"setting_Setting"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -181,7 +208,7 @@
 //            cell.imageView.image = [UIImage imageNamed:@"二维码"];
 //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //            break;
-        case 4:
+        case 3:
             cell.textLabel.text = NSLocalizedString(@"Account Bound", nil);
             cell.imageView.image = [UIImage imageNamed:@"账号"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -203,7 +230,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row)
     {
-        case 1:
+        case 0:
         {
             if (![[BLEManager sharedManager] isBLEPoweredOn]) {
                 return;
@@ -227,24 +254,17 @@
             [alertView show];
         }
             break;
-        case 2:
+        case 1:
         {
             [[BLEManager sharedManager] sendSearchWatchCommand];
             
         }
             break;
-        case 0:
-        {
-            if ([[BLEManager sharedManager] isBLEConnected]) {
-                [[BLEManager sharedManager] sendUnboundCommand];
-            }
-            break;
-        }
         default:
         {
-            NSString *className = self.subviewControllerArray[indexPath.row - 3];
+            NSString *className = self.subviewControllerArray[indexPath.row - 2];
             UIViewController *aController = [[NSClassFromString(className) alloc] initWithNibName:nil bundle:nil];
-            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 3];
+            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 2];
             [self.navigationController pushViewController:aController animated:YES];
         }
             break;
