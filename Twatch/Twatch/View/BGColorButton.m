@@ -25,6 +25,7 @@
         
         _titleLabel = [[UILabel alloc] initWithFrame:self.bounds];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_titleLabel];
     }
     return self;
