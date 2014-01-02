@@ -48,7 +48,6 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     _lastButton = nil;
     
@@ -121,6 +120,8 @@
     }
     
     [self _selectButton:_buttonArray[0]];
+    
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning

@@ -364,7 +364,7 @@ static dispatch_queue_t ble_communication_queue() {
     [dateFormatter setDateFormat:@"yyyyMMddHHmmsszzz"];
     
     __block NSString *fileName = [dateFormatter stringFromDate:[NSDate date]];
-    NSString *toPath = [NSString stringWithFormat:@"/sdcard/.tomoon/cards/%@", fileName];
+    NSString *toPath = [NSString stringWithFormat:@"/sdcard/.tomoon/cards/%@.jpg", fileName];
     
     __block BLEManager *weakSelf = self;
     
