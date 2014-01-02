@@ -30,6 +30,8 @@ static dispatch_queue_t ble_communication_queue() {
 
 @interface BLEManager ()
 
+@property (nonatomic, assign) NSUInteger remainCount;
+
 - (void)sendFileDataToBle:(NSString *)path;
 
 - (void)sendStrDataToBle:(NSString *)str;
@@ -41,6 +43,7 @@ static dispatch_queue_t ble_communication_queue() {
 - (NSData *)getFirstByte;
 
 - (BOOL)isSendingData;
+
 @end
 
 @implementation BLEManager
@@ -70,6 +73,8 @@ static dispatch_queue_t ble_communication_queue() {
         
         _isSending = NO;
         _isScanning = NO;
+        
+        _remainCount = 3;
     }
     return self;
 }
@@ -254,8 +259,8 @@ static dispatch_queue_t ble_communication_queue() {
     self.isSending = YES;
     __block BLEManager *weakSelf = self;
     self.writeblock = ^(void){
-        [weakSelf.centralManager cancelPeripheralConnection:weakSelf.connectedPeripheral];
         [weakSelf removeConnectedWatch];
+        [weakSelf.centralManager cancelPeripheralConnection:weakSelf.connectedPeripheral];
         weakSelf.writeblock = nil;
         weakSelf = nil;
     };
@@ -560,6 +565,11 @@ static dispatch_queue_t ble_communication_queue() {
 - (void) centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"centrel didFailToConnectPeripheral error:%@", error);
+    NSString *identifier = [[NSUserDefaults standardUserDefaults] objectForKey:kBLEBindingWatch];
+    if (identifier && [peripheral.identifier.UUIDString isEqualToString:identifier] && _remainCount>0) {
+        [central connectPeripheral:peripheral options:nil];
+        _remainCount--;
+    }
 }
 
 -(void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals
@@ -605,6 +615,7 @@ static dispatch_queue_t ble_communication_queue() {
     [self saveConnectedWatch:peripheral.identifier];
     [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
     [ViewUtils showToast:@"已经与手表建立连接"];
+    _remainCount = 3;
 }
 
 - (void) centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
@@ -621,15 +632,21 @@ static dispatch_queue_t ble_communication_queue() {
 {
     NSLog(@"didDisconnectPeripheral %@", peripheral.name);
     
-    [ViewUtils showErrorToast:@"已经与手表断开连接"];
+//    [ViewUtils showErrorToast:@"已经与手表断开连接"];
     
     self.isSending = NO;
     self.dataToSend = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
+    
+    NSString *identifier = [[NSUserDefaults standardUserDefaults] objectForKey:kBLEBindingWatch];
+    if (identifier && self.connectedPeripheral) {
+        [central connectPeripheral:self.connectedPeripheral options:nil];
+        return;
+    }
+    
     if (self.connectedPeripheral == peripheral) {
         self.connectedPeripheral = nil;
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
     [self scan];
 }
 
