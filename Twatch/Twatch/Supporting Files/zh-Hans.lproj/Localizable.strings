@@ -66,7 +66,7 @@
 "豆瓣社区" = "豆瓣社区";
 "腾讯微博" = "腾讯微博";
 "新浪微博" = "新浪微博";
-"more settings" = "更多设置";
+"more settings" = "更多功能";
 "QR Code" = "二维码管理";
 "Time Proofread" = "时间校对";
 "Watch Search" = "找手表";
@@ -87,8 +87,8 @@
 "Camera" = "相机";
 "Done" = "完成";
 "AppCenter" = "应用中心";
-"WatchBackground" = "表盘背景";
-"SynConnection" = "同步连接";
+"WatchBackground" = "图片推送";
+"SynConnection" = "绑定手表";
 "WatchSimulator" = "手表模拟器";
 "Tomoon Mall" = "土曼商城";
 "Account Bound" = "账号绑定";
