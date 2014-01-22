@@ -18,6 +18,8 @@
 
 #define NOTIFY_MTU      116
 
+#define UUID_KEY @"MobileUUID"
+
 //串行队列，同时只执行一个task
 static dispatch_queue_t ble_communication_queue() {
     static dispatch_queue_t af_ble_communication_queue;
@@ -75,8 +77,30 @@ static dispatch_queue_t ble_communication_queue() {
         _isScanning = NO;
         
         _remainCount = 3;
+        
+        [self _initUUID];
     }
     return self;
+}
+
+- (void)_initUUID
+{
+    NSString *uuidString = [[NSUserDefaults standardUserDefaults] objectForKey:UUID_KEY];
+    
+    if(!uuidString || [uuidString length] == 0)
+    {
+        CFUUIDRef uuidRef = CFUUIDCreate(nil);
+        CFStringRef stringRef = CFUUIDCreateString(nil, uuidRef);
+        uuidString = (NSString *)CFBridgingRelease(CFStringCreateCopy(nil, stringRef));
+        CFRelease(uuidRef);
+        CFRelease(stringRef);
+        
+        [[NSUserDefaults standardUserDefaults] setObject:uuidString forKey:UUID_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    _mobileBLEName = [NSString stringWithFormat:@"ios-%@", uuidString];
+    NSLog(@"UUID:%@", uuidString);
 }
 
 #pragma mark - Public
@@ -246,6 +270,14 @@ static dispatch_queue_t ble_communication_queue() {
     }
     self.isSending = YES;
     [self sendStrDataToBle:@"{ 'command': 0, 'content': '{}' }"];
+}
+
+- (void)sendBoundCommand
+{
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"name":_mobileBLEName,
+                          @"command":[NSNumber numberWithInt:9876543]};
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
 }
 
 - (void)sendUnboundCommand
@@ -712,7 +744,6 @@ static dispatch_queue_t ble_communication_queue() {
             NSLog(@"bingo..");
             // If it is, subscribe to it
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
-            [peripheral readValueForCharacteristic:characteristic];
             peripheral.delegate = self;
         }
     }

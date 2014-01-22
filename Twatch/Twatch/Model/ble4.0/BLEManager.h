@@ -29,6 +29,8 @@
 @property (nonatomic, readwrite)   TransferDataType          transferDataType;
 @property (strong, nonatomic)      CBCharacteristic          *curCharacteristic;
 
+@property (nonatomic, strong) NSString *mobileBLEName;
+
 + (BLEManager *)sharedManager;
 
 - (void)scan;
@@ -46,6 +48,8 @@
 //接口
 
 - (void)sendSearchWatchCommand;
+
+- (void)sendBoundCommand;
 
 - (void)sendUnboundCommand;
 

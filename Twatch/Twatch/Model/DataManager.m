@@ -44,7 +44,6 @@
     self = [super init];
     
     if (self) {
-        
         NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         _downloadFilePath = [Path stringByAppendingPathComponent:@"download.dat"];
         
