@@ -107,13 +107,6 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (void)sendFileDataToBle:(NSString *)path
 {
-    UIApplication *application = [UIApplication sharedApplication];
-    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
-        
-        [application endBackgroundTask:bgTask];
-        bgTask = UIBackgroundTaskInvalid;
-    }];
-    
     // Start the long-running task and return immediately.
     dispatch_async(ble_communication_queue(), ^(void){
         self.connectedPeripheral.delegate = self;
@@ -155,10 +148,6 @@ static dispatch_queue_t ble_communication_queue() {
                 [alert show];
             }
         });
-
-        NSLog(@" %f",application.backgroundTimeRemaining);
-        [application endBackgroundTask:bgTask];
-        bgTask = UIBackgroundTaskInvalid;
     });
 }
 
