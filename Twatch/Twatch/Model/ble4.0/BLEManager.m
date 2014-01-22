@@ -227,13 +227,7 @@ static dispatch_queue_t ble_communication_queue() {
 
 - (BOOL)isBLEConnected
 {
-    BOOL connectedADevice = NO;
-#ifdef __IPHONE_7_0
-    connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
-#else
-    connectedADevice = self.connectedPeripheral.isConnected;
-#endif
-    if (!connectedADevice || self.connectedPeripheral == nil) {
+    if (![self isBLEConnectedWithoutAlert]) {
         dispatch_async(dispatch_get_main_queue(), ^(void){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"尚未连接到蓝牙设备，是否进入同步界面扫描设备？"
@@ -242,6 +236,21 @@ static dispatch_queue_t ble_communication_queue() {
                                                   otherButtonTitles:@"取消", nil];
             [alert show];
         });
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)isBLEConnectedWithoutAlert
+{
+    
+    BOOL connectedADevice = NO;
+#ifdef __IPHONE_7_0
+    connectedADevice = self.connectedPeripheral.state == CBPeripheralStateConnected;
+#else
+    connectedADevice = self.connectedPeripheral.isConnected;
+#endif
+    if (!connectedADevice || self.connectedPeripheral == nil) {
         return NO;
     }
     return YES;
@@ -280,6 +289,7 @@ static dispatch_queue_t ble_communication_queue() {
     self.isSending = YES;
     __block BLEManager *weakSelf = self;
     self.writeblock = ^(void){
+        NSLog(@"send finish");
         [weakSelf removeConnectedWatch];
         [weakSelf.centralManager cancelPeripheralConnection:weakSelf.connectedPeripheral];
         weakSelf.writeblock = nil;
@@ -552,6 +562,7 @@ static dispatch_queue_t ble_communication_queue() {
             return;
         }
         
+        NSLog(@"send");
         [self sendData];
     }
     else {
@@ -734,6 +745,7 @@ static dispatch_queue_t ble_communication_queue() {
             // If it is, subscribe to it
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
             peripheral.delegate = self;
+            [self sendBoundCommand];
         }
     }
 }

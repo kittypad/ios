@@ -45,6 +45,8 @@
 
 - (BOOL)isBLEConnected;
 
+- (BOOL)isBLEConnectedWithoutAlert;
+
 //接口
 
 - (void)sendSearchWatchCommand;

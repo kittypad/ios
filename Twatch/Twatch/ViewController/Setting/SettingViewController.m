@@ -85,7 +85,7 @@
     [headerView addSubview:statusImageView];
     
     self.anObserver =[[NSNotificationCenter defaultCenter] addObserverForName:kBLEChangedNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-        if ([[BLEManager sharedManager] isBLEConnected]) {
+        if ([[BLEManager sharedManager] isBLEConnectedWithoutAlert]) {
             titleLabel.text = NSLocalizedString(@"Unbound Watch", @"解除绑定");
             statusImageView.image = [UIImage imageNamed:@"勾选.png"];
         }else{
@@ -102,9 +102,7 @@
 
 - (void)boundButtonClicked:(id)sender
 {
-    if ([[BLEManager sharedManager] isBLEConnected]) {
-        [[BLEManager sharedManager] sendUnboundCommand];
-    }
+    [[BLEManager sharedManager] sendUnboundCommand];
 }
 
 - (void)didReceiveMemoryWarning
