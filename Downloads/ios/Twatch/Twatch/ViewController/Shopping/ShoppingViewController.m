@@ -23,9 +23,9 @@
     if (self) {
         // Custom initialization
         //glc 2014-5-22 添加tabbar
-        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:@"商城" image:[UIImage imageNamed:@"tabshopping"] tag:1];
+        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:NSLocalizedString(@"Mall", @"商城") image:[UIImage imageNamed:@"tabshopping"] tag:1];
         self.tabBarItem = item;
-        self.backName = @"土曼商城";
+        self.backName = NSLocalizedString(@"Tomoon Mall", @"土曼商城");
     }
     return self;
 }
@@ -42,9 +42,7 @@
     backBtn.titleLabel.font = [UIFont systemFontOfSize:15.0];
     [self.view addSubview:backBtn];
     
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(shopinit:) name:@"shopdetail" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shopinit:) name:@"shopdetail" object:nil];
     
 	// Do any additional setup after loading the view.
     CGRect frame = CGRectChangeY(self.view.frame, self.yOffset);
@@ -52,9 +50,9 @@
     UIWebView *webview = [[UIWebView alloc] initWithFrame:frame];
     webview.delegate = self;
     webview.scalesPageToFit = YES;
-    [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.tomoon.cn/"]]];
+    //[webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.tomoon.cn/"]]];
     self.webview = webview;
-    [self.view addSubview:webview];
+    [self.view addSubview:self.webview];
     
     self.activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.activity.frame = CGRectMake(0, 0, 60, 60);
@@ -69,7 +67,7 @@
     
     NSString* shopURL = [getData objectForKey:@"url"];
     
-    NSString* shopName = [getData objectForKey:@"name"];
+    //NSString* shopName = [getData objectForKey:@"name"];
     [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:shopURL]]];
     
 }
@@ -87,6 +85,11 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self.activity stopAnimating];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

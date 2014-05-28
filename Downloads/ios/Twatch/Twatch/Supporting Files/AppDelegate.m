@@ -20,6 +20,7 @@
 #import "SettingViewController.h"
 #import "MyCenterViewController.h"
 #import "ShoppingTableViewController.h"
+#import "SettingsViewController.h"
 
 @implementation AppDelegate
 
@@ -40,7 +41,7 @@
     [items addObject:shoppingController];
     MyCenterViewController* myCenterController = [[MyCenterViewController alloc] init];
     [items addObject:myCenterController];
-    SettingViewController* settingViewController = [[SettingViewController alloc] init];
+    SettingsViewController* settingViewController = [[SettingsViewController alloc] init];
     [items addObject:settingViewController];
     // items是数组，每个成员都是UIViewController
     CommonTabBarViewController* tabBar = [[CommonTabBarViewController alloc] init];

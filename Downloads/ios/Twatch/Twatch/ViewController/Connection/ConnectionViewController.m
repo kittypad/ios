@@ -36,6 +36,15 @@ static  NSString *cellId = @"connectin cell identifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.backBtn setHidden:YES];
+    
+    UIButton* backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, IS_IOS7?25:5, 30, 30)];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(backClicked) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.titleLabel.font = [UIFont systemFontOfSize:15.0];
+    [self.view addSubview:backBtn];
+    
     // Do any additional setup after loading the view from its nib.
     CGRect frame = CGRectChangeY(self.view.frame, self.yOffset);
     frame = CGRectChangeHeight(frame, self.height);
@@ -64,6 +73,10 @@ static  NSString *cellId = @"connectin cell identifier";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_didBLEChanged:) name:kBLEChangedNotification object:nil];
 }
 
+- (void)backClicked
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)viewDidDisappear:(BOOL)animated
 {

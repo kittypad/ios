@@ -23,9 +23,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:@"我的" image:[UIImage imageNamed:@"tabmycenter"] tag:2];
+        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:NSLocalizedString(@"My", @"我的") image:[UIImage imageNamed:@"tabmycenter"] tag:2];
         self.tabBarItem = item;
-        self.backName = @"个人中心";
+        self.backName = NSLocalizedString(@"My Center", @"个人中心");
     }
     return self;
 }
@@ -38,6 +38,7 @@
     self.phoneNum = [[UITextField alloc] initWithFrame:CGRectMake(10, IS_IOS7?74:54, 300, 40)];
     [self.phoneNum setBackgroundColor:[UIColor whiteColor]];
     [self.phoneNum setPlaceholder:@"填入手机号"];
+    self.phoneNum.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.phoneNum.keyboardType = UIKeyboardTypeNumberPad;
     self.phoneNum.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:self.phoneNum];
@@ -46,9 +47,10 @@
     [self.password setBackgroundColor:[UIColor whiteColor]];
     self.password.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.password setPlaceholder:@"密码，不能少于4位"];
+    self.password.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.view addSubview:self.password];
     
-    UIButton* loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, IS_IOS7?174:134, 300, 40)];
+    UIButton* loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, IS_IOS7?174:154, 300, 40)];
     [loginBtn setBackgroundImage:[UIImage imageNamed:@"loginbtn"] forState:UIControlStateNormal];
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(loginClicked) forControlEvents:UIControlEventTouchUpInside];

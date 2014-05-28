@@ -43,6 +43,7 @@
     self.phoneNum = [[UITextField alloc] initWithFrame:CGRectMake(10, IS_IOS7?74:54, 300, 40)];
     [self.phoneNum setBackgroundColor:[UIColor whiteColor]];
     [self.phoneNum setPlaceholder:@"填入手机号"];
+    self.phoneNum.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.phoneNum.keyboardType = UIKeyboardTypeNumberPad;
     self.phoneNum.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:self.phoneNum];
@@ -51,11 +52,13 @@
     [self.password setBackgroundColor:[UIColor whiteColor]];
     self.password.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.password setPlaceholder:@"密码，不能少于4位"];
+    self.password.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.view addSubview:self.password];
     
     self.passwordagain = [[UITextField alloc] initWithFrame:CGRectMake(10, IS_IOS7?174:154, 300, 40)];
     [self.passwordagain setBackgroundColor:[UIColor whiteColor]];
     [self.passwordagain setPlaceholder:@"确认密码"];
+    self.passwordagain.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.passwordagain.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:self.passwordagain];
     
@@ -63,6 +66,7 @@
     [self.captcha setBackgroundColor:[UIColor whiteColor]];
     self.captcha.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.captcha setPlaceholder:@"验证码"];
+    self.captcha.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.view addSubview:self.captcha];
     
     UIButton* loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(160, IS_IOS7?224:204, 150, 40)];
