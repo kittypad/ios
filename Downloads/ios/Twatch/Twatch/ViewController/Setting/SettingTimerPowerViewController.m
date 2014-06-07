@@ -7,6 +7,7 @@
 //
 
 #import "SettingTimerPowerViewController.h"
+<<<<<<< HEAD
 #import "BlEServerManager.h"
 
 #define DATEPICKER_POWERON_TAG 2001
@@ -20,6 +21,18 @@
 @property (nonatomic,strong)UILabel* powerofftext;
 
 @property (nonatomic)BOOL autoPower;
+=======
+
+#define SWITCH_ISAUTOPOWER_TAG 1007
+#define SWITCH_POWERON_TAG 1008
+#define SWITCH_POWEROFF_TAG 1009
+
+@interface SettingTimerPowerViewController ()
+
+//@property (nonatomic,strong)UIDatePicker* powerOnPicker;
+//
+//@property (nonatomic,strong)UIDatePicker* powerOffPicker;
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 
 @end
 
@@ -39,11 +52,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+<<<<<<< HEAD
+=======
+    [self.backBtn setHidden:YES];
+    UIButton* backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, IS_IOS7?25:5, 30, 30)];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(backClicked) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.titleLabel.font = [UIFont systemFontOfSize:15.0];
+    [self.view addSubview:backBtn];
+    
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
     UILabel* openpPowerlabel = [[UILabel alloc] initWithFrame:CGRectMake(10, IS_IOS7?65:45, 250, 30)];
     openpPowerlabel.backgroundColor = [UIColor clearColor];
     [openpPowerlabel setText:@"开启自动开关机"];
     [self.view addSubview:openpPowerlabel];
     UISwitch *openpPowerSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(250, IS_IOS7?65:45, 50, 30)];
+<<<<<<< HEAD
+=======
+    openpPowerSwitch.tag = SWITCH_ISAUTOPOWER_TAG;
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
     [openpPowerSwitch addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:openpPowerSwitch];
     
@@ -52,6 +79,7 @@
     PowerOnlabel.backgroundColor = [UIColor clearColor];
     [PowerOnlabel setText:@"开机时间"];
     [self.view addSubview:PowerOnlabel];
+<<<<<<< HEAD
     UILabel *poweronText = [[UILabel alloc] initWithFrame:CGRectMake(250, IS_IOS7?105:85, 50, 30)];
     poweronText.text = @"7:00";
     poweronText.textColor = [UIColor blueColor];
@@ -84,11 +112,34 @@
     powerofftext.backgroundColor = [UIColor clearColor];
     self.powerofftext = powerofftext;
     [self.view addSubview:self.powerofftext];
+=======
+    UISwitch *poweronswitch = [[UISwitch alloc] initWithFrame:CGRectMake(250, IS_IOS7?100:80, 50, 30)];
+    poweronswitch.tag = SWITCH_POWERON_TAG;
+    [poweronswitch addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:poweronswitch];
+    UIDatePicker* powerOnPicker = [[UIDatePicker alloc] init];
+    powerOnPicker.backgroundColor = [UIColor greenColor];
+    powerOnPicker.datePickerMode = UIDatePickerModeTime;
+    powerOnPicker.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    [powerOnPicker setFrame:CGRectMake(10, IS_IOS7?135:115, 300, 80)];
+    [self.view addSubview:powerOnPicker];
+    
+    //关机时间
+    UILabel* OpenPowerSwitch = [[UILabel alloc] initWithFrame:CGRectMake(10, IS_IOS7?290:270, 300, 30)];
+    OpenPowerSwitch.backgroundColor = [UIColor clearColor];
+    [OpenPowerSwitch setText:@"关机时间"];
+    [self.view addSubview:OpenPowerSwitch];
+    UISwitch *poweroffswitch = [[UISwitch alloc] initWithFrame:CGRectMake(250, IS_IOS7?290:270, 50, 30)];
+    poweroffswitch.tag = SWITCH_POWEROFF_TAG;
+    [poweroffswitch addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:poweroffswitch];
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
     
     UIDatePicker* powerOffPicker = [[UIDatePicker alloc] init];
      powerOnPicker.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
         powerOffPicker.frame = CGRectMake(10, IS_IOS7?325:305, 300, 20);
     powerOffPicker.datePickerMode = UIDatePickerModeTime;
+<<<<<<< HEAD
     powerOffPicker.tag =  DATEPICKER_POWEROFF_TAG;
     NSDateFormatter *offdateFormatter = [[NSDateFormatter alloc] init];
     [offdateFormatter setDateFormat: @"HH:mm"];
@@ -96,24 +147,34 @@
     [powerOffPicker setDate:offDate];
     [powerOffPicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     //powerOffPicker.backgroundColor = [UIColor redColor];
+=======
+    powerOffPicker.backgroundColor = [UIColor redColor];
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
     [self.view addSubview:powerOffPicker];
     
     UIButton* cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, IS_IOS7?490:470, 140, 30)];
     [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
     [cancelBtn setBackgroundColor:[UIColor grayColor]];
+<<<<<<< HEAD
     [cancelBtn setBackgroundImage:[UIImage imageNamed:@"cancelsetbtn"] forState:UIControlStateNormal];
+=======
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
     [cancelBtn addTarget:self action:@selector(cancelClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelBtn];
     
     UIButton* settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(160, IS_IOS7?490:470, 140, 30)];
     [settingBtn setTitle:@"设置" forState:UIControlStateNormal];
     [settingBtn setBackgroundColor:[UIColor grayColor]];
+<<<<<<< HEAD
     [settingBtn setBackgroundImage:[UIImage imageNamed:@"setbtn"] forState:UIControlStateNormal];
+=======
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
     [settingBtn addTarget:self action:@selector(settingClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:settingBtn];
     
 }
 
+<<<<<<< HEAD
 -(void)dateChanged:(id)sender
 {
     UIDatePicker* powerPicker = (UIDatePicker*)sender;
@@ -136,15 +197,38 @@
 {
     UISwitch* switchview = (UISwitch*)sender;
     self.autoPower = [switchview isOn];
+=======
+-(void)switchClick: (id)sender
+{
+    UISwitch *switchBtn = (UISwitch *)sender;
+    if (switchBtn.tag == SWITCH_ISAUTOPOWER_TAG)
+    {
+    }
+    else if (switchBtn.tag == SWITCH_POWERON_TAG)
+    {
+    }
+    else if (switchBtn.tag == SWITCH_POWEROFF_TAG)
+    {
+    }
+}
+
+- (void)backClicked
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 }
 
 -(void)cancelClicked
 {
+<<<<<<< HEAD
     [self goBack];
+=======
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 }
 
 -(void)settingClicked
 {
+<<<<<<< HEAD
     if (![[BLEServerManager sharedManager] isBLEPoweredOn]) {
         return;
     }
@@ -176,6 +260,8 @@
     [[BLEServerManager sharedManager] sendPowerOffWatch:powerOffHour minute:powerOffMinute enabled:enabled finish:^(void){
         NSLog(@"自动关机时间设置成功");
     }];
+=======
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 }
 
 - (void)didReceiveMemoryWarning

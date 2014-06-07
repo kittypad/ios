@@ -1445,6 +1445,7 @@ static dispatch_queue_t ble_communication_queue() {
     [self sendStrDataToBle:[writer stringWithObject:dic]];
 }
 
+<<<<<<< HEAD
 - (void)sendWatchSleepTime
 {
     if (![self isBLEConnected]) {
@@ -1463,6 +1464,10 @@ static dispatch_queue_t ble_communication_queue() {
 
 //手表时间
 - (void)sendWatchTime:(NSString*) autoTime date:(NSDate *) date timeZome:(NSString*) timeZone istwentyfour:(NSString*)istwentyfour dateformat:(NSString*)dateformat finish:(void (^)(void))block
+=======
+//手表时间
+- (void)sendWatchTime:(NSDate *) date finish:(void (^)(void))block
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 {
     if (![self isBLEConnected]) {
         return;
@@ -1472,6 +1477,7 @@ static dispatch_queue_t ble_communication_queue() {
     }
     self.isSending = YES;
     
+<<<<<<< HEAD
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
     NSDictionary *dic = @{@"command":[NSNumber numberWithInt:21],
                        @"content":@{@"value":@{@"autotime": autoTime,@"time": date,@"tomezone": timeZone,@"24hour": istwentyfour,@"dateformat" :dateformat}}};
@@ -1484,6 +1490,24 @@ static dispatch_queue_t ble_communication_queue() {
         };
     }
     [self sendStrDataToBle:[writer stringWithObject:dic]];
+=======
+//    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+////    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:21],
+////                          @"content":@{@"value":@{@"autotime":,@"time":,
+////                              @"tomezone" :,
+////                              @"24hour" : ,
+////                              @"dateformat" :
+////                          }}};
+//    if (block) {
+//        __block BLEServerManager *weakSelf = self;
+//        self.writeblock = ^(void){
+//            block();
+//            weakSelf.writeblock = nil;
+//            weakSelf = nil;
+//        };
+//    }
+//    [self sendStrDataToBle:[writer stringWithObject:dic]];
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 }
 
 //手表自动开机

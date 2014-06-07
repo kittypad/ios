@@ -7,6 +7,7 @@
 //
 
 #import "SettingWatchTimeViewController.h"
+<<<<<<< HEAD
 #import "SettingTimeZoneViewController.h"
 #import "BLEServerManager.h"
 #import "BlockUIAlertView.h"
@@ -23,6 +24,10 @@
 }
 
 @property (nonatomic ,strong)NSArray* datesetList;
+=======
+
+@interface SettingWatchTimeViewController ()
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 
 @end
 
@@ -41,6 +46,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+<<<<<<< HEAD
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset
                                                                            , CGRectGetWidth(self.view.frame), self.height-50) style:UITableViewStyleGrouped];
     tableView.delegate = self;
@@ -56,6 +62,8 @@
                                    @"设置日期格式",
                                    nil];
 
+=======
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,6 +72,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+<<<<<<< HEAD
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
@@ -280,6 +289,8 @@
     [self dismissSemiModalView];
 }
 
+=======
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 /*
 #pragma mark - Navigation
 

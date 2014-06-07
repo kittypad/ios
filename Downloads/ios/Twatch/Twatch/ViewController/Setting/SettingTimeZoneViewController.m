@@ -10,8 +10,11 @@
 
 @interface SettingTimeZoneViewController ()
 
+<<<<<<< HEAD
 @property (nonatomic ,strong)NSArray* timeZoneList;
 
+=======
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 @end
 
 @implementation SettingTimeZoneViewController
@@ -29,6 +32,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+<<<<<<< HEAD
     
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset
                                                                            , CGRectGetWidth(self.view.frame), self.height-50) style:UITableViewStyleGrouped];
@@ -78,6 +82,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+=======
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 }
 
 - (void)didReceiveMemoryWarning

@@ -111,10 +111,15 @@
 //手表休眠时间
 - (void)sendWatchSleepTime:(NSString *)sleepTime finish:(void(^)(void))block;
 
+<<<<<<< HEAD
 - (void)sendWatchSleepTime;
 
 //手表时间
 - (void)sendWatchTime:(NSString*) autoTime date:(NSDate *) date timeZome:(NSString*) timeZone istwentyfour:(NSString*)istwentyfour dateformat:(NSString*)dateformat finish:(void (^)(void))block;
+=======
+//手表时间
+- (void)sendWatchTime:(NSDate *) date finish:(void (^)(void))block;
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 
 //手表自动开机
 - (void)sendPowerOnWatch:(NSString *) hour minute:(NSString *) minute enabled:(NSString*)enabled finish:(void (^)(void))block;

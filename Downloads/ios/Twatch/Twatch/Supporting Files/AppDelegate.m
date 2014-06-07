@@ -46,10 +46,14 @@
     [items addObject:shoppingController];
     
     MyCenterViewController* myCenterController = [[MyCenterViewController alloc] init];
+<<<<<<< HEAD
     TMNavigationController* myCenterNaviContronller = [[TMNavigationController alloc] initWithRootViewController:myCenterController];
     [myCenterController.navigationController setNavigationBarHidden:YES];
     [items addObject:myCenterNaviContronller];
     
+=======
+    [items addObject:myCenterController];
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
     SettingsViewController* settingViewController = [[SettingsViewController alloc] init];
     [items addObject:settingViewController];
     // items是数组，每个成员都是UIViewController

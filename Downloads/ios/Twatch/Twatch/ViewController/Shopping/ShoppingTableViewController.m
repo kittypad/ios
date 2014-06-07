@@ -105,8 +105,13 @@
     ShoppingViewController* shopDetail = [[ShoppingViewController alloc] init];
 
     
+<<<<<<< HEAD
     [self.navigationController pushViewController:shopDetail animated:YES];
      //[self presentViewController:shopDetail animated:YES completion:nil];
+=======
+    //[self.navigationController pushViewController:shopDetail animated:YES];
+     [self presentViewController:shopDetail animated:YES completion:nil];
+>>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shopdetail" object:dicShop];
 }
