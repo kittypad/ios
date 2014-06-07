@@ -12,7 +12,7 @@
 
 //static BOOL isWatchConnected;
 
-@interface BLEServerManager : NSObject <CBPeripheralManagerDelegate, UIAlertViewDelegate>
+@interface BLEServerManager : NSObject <CBPeripheralManagerDelegate, UIAlertViewDelegate,CLLocationManagerDelegate>
 
 //经纬度
 @property (nonatomic)CLLocationManager *locationManager;
@@ -107,5 +107,36 @@
 
 - (void) sendWatchVersion:(NSString *)fileName;
 
+//增加新接口  glc 2014-5-28
+//手表休眠时间
+- (void)sendWatchSleepTime:(NSString *)sleepTime finish:(void(^)(void))block;
 
+- (void)sendWatchSleepTime;
+
+//手表时间
+- (void)sendWatchTime:(NSString*) autoTime date:(NSDate *) date timeZome:(NSString*) timeZone istwentyfour:(NSString*)istwentyfour dateformat:(NSString*)dateformat finish:(void (^)(void))block;
+
+//手表自动开机
+- (void)sendPowerOnWatch:(NSString *) hour minute:(NSString *) minute enabled:(NSString*)enabled finish:(void (^)(void))block;
+
+//手表自动关机
+- (void)sendPowerOffWatch:(NSString *) hour minute:(NSString *) minute enabled:(NSString*)enabled finish:(void (^)(void))block;
+
+//手表语言
+- (void)sendWatchLanguage:(NSString *) language finish:(void (^)(void))block;
+
+//手表是否休眠
+- (void)sendWatchSleepSet:(NSString*) set finish:(void (^)(void))block;
+
+//启动app
+- (void)sendLaunchApp:(NSString *) launchapp finish:(void (^)(void))block;
+
+//是否震动
+- (void)sendVibrateSetting:(NSString*) vibrate finish:(void (^)(void))block;
+
+//是否反色
+- (void)sendInverseColor:(NSString*) inverse finish:(void (^)(void))block;
+
+//是否音频即时通信
+- (void)sendAudioRealTimeCommunication :(NSString*) communcation finish:(void (^)(void))block;
 @end

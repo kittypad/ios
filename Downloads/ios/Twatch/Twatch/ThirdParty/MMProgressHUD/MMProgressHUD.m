@@ -21,7 +21,8 @@
 #error MMProgressHUD uses APIs only available in iOS 5.0+
 #endif
 
-static const BOOL kMMProgressHUDDebugMode = NO;
+//定义了没有使用
+//static const BOOL kMMProgressHUDDebugMode = NO;
 
 NSString * const MMProgressHUDDefaultConfirmationMessage = @"Cancel?";
 NSString * const MMProgressHUDAnimationShow = @"mm-progress-hud-present-animation";

@@ -23,9 +23,26 @@
     if (self) {
         // Custom initialization
         //glc 2014-5-22 添加tabbar
-        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:@"商城" image:[UIImage imageNamed:@"tabshopping"] tag:1];
+        //self.navigationController.navigationBarHidden = YES;
+        [self.navigationController.navigationBar setHidden:YES];
+        
+        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:NSLocalizedString(@"Mall", @"商城") image:[UIImage imageNamed:@"tabshopping"] tag:1];
         self.tabBarItem = item;
-        self.backName = @"土曼商城";
+        self.backName = NSLocalizedString(@"Tomoon Mall", @"土曼商城");
+        CGRect frame = CGRectChangeY(self.view.frame, self.yOffset);
+        frame = CGRectChangeHeight(frame, self.height);
+        UIWebView *webview = [[UIWebView alloc] initWithFrame:frame];
+        webview.delegate = self;
+        webview.scalesPageToFit = YES;
+        self.webview = webview;
+        [self.view addSubview:self.webview];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shopinit:) name:@"shopdetail" object:nil];
+        
+        self.activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        self.activity.frame = CGRectMake(0, 0, 60, 60);
+        self.activity.center = self.view.center;
+        self.activity.hidesWhenStopped = YES;
+        [self.view addSubview:self.activity];
     }
     return self;
 }
@@ -34,33 +51,7 @@
 {
     [super viewDidLoad];
     
-    //添加返回按钮 glc 2014-5-26
-    [self.backBtn setHidden:YES];
-    UIButton* backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, IS_IOS7?25:5, 30, 30)];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(backClicked) forControlEvents:UIControlEventTouchUpInside];
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:15.0];
-    [self.view addSubview:backBtn];
-    
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(shopinit:) name:@"shopdetail" object:nil];
-    
 	// Do any additional setup after loading the view.
-    CGRect frame = CGRectChangeY(self.view.frame, self.yOffset);
-    frame = CGRectChangeHeight(frame, self.height);
-    UIWebView *webview = [[UIWebView alloc] initWithFrame:frame];
-    webview.delegate = self;
-    webview.scalesPageToFit = YES;
-    [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.tomoon.cn/"]]];
-    self.webview = webview;
-    [self.view addSubview:webview];
-    
-    self.activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.activity.frame = CGRectMake(0, 0, 60, 60);
-    self.activity.center = self.view.center;
-    self.activity.hidesWhenStopped = YES;
-    [self.view addSubview:self.activity];
 }
 
 -(void)shopinit:(NSNotification *)notification
@@ -69,14 +60,9 @@
     
     NSString* shopURL = [getData objectForKey:@"url"];
     
-    NSString* shopName = [getData objectForKey:@"name"];
+    //NSString* shopName = [getData objectForKey:@"name"];
     [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:shopURL]]];
     
-}
-
-- (void)backClicked
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -87,6 +73,11 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self.activity stopAnimating];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

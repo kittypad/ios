@@ -24,6 +24,7 @@
 "About" = "关于我们";
 "CurrentVersion" = "升级更新";
 "FeedBack" = "意见反馈";
+
 "TomoonWeibo" = "土曼微博";
 "Unbound Watch" = "解除绑定";
 "Bound Watch" = "绑定手表";
@@ -66,7 +67,7 @@
 "豆瓣社区" = "豆瓣社区";
 "腾讯微博" = "腾讯微博";
 "新浪微博" = "新浪微博";
-"more settings" = "更多功能";
+"more settings" = "更多设置";
 "QR Code" = "二维码管理";
 "Time Proofread" = "时间校对";
 "Watch Search" = "找手表";
@@ -114,3 +115,16 @@
 "Bluetooth is advertisting" = "手表绑定";
 "paired watch" = "已配对手表";
 "click to update" = "点击升级";
+"Mall" = "商城";
+"My" = "我的";
+"My Center" = "个人中心";
+"App" = "应用";
+"Call Watch" = "呼叫手表";
+"Open Shock" = "开启震动";
+"Sleep Time" = "休眠时间";
+"InVerse Color" = "黑白反色";
+"Lock Screen" = "锁屏设置";
+"Date Time" = "时间日期";
+"Timer Switch" = "定时开关";
+"Update Watch" = "固件升级";
+"One Set" = "一键优化设置";

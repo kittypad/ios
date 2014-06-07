@@ -1,0 +1,40 @@
+//
+//  UIGridViewCell.m
+//  foodling2
+//
+//  Created by Tanin Na Nakorn on 3/6/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "UIGridViewCell.h"
+
+
+@implementation UIGridViewCell
+
+@synthesize rowIndex;
+@synthesize colIndex;
+@synthesize view;
+
+- (void) addSubview:(UIView *)v
+{
+	[super addSubview:v];
+	v.exclusiveTouch = NO;
+	v.userInteractionEnabled = NO;
+}
+
+- (id)init {
+	
+    if (self = [super init]) {
+		
+        self.frame = CGRectMake(0, 0, 160, 80);
+		//self.backgroundColor = [UIColor redColor];
+        UIView *imgview = [[UIView alloc]init];
+        view =imgview;
+        [self addSubview:view];
+		
+	}
+	
+    return self;
+	
+}
+@end

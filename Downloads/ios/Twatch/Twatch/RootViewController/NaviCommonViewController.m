@@ -56,8 +56,9 @@
 //    [goBackButton setTitleColor:[UIColor colorWithHex:@"333333"] forState:UIControlStateNormal];
     [goBackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [goBackButton setTitle:self.backName forState:UIControlStateNormal];
-    [navigationBar addSubview:goBackButton];
     self.backBtn = goBackButton;
+    [navigationBar addSubview:self.backBtn];
+
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(navigationBar.frame)-1, CGRectGetWidth(self.view.frame), 1)];
     line.tag = 1323;

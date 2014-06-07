@@ -28,9 +28,9 @@
     if (self) {
         // Custom initialization
         //glc 2014-5-22 添加tabbar
-        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:@"商城" image:[UIImage imageNamed:@"tabshopping"] tag:1];
+        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:NSLocalizedString(@"Mall", @"商城") image:[UIImage imageNamed:@"tabshopping"] tag:1];
         self.tabBarItem = item;
-        self.backName = @"土曼商城";
+        self.backName = NSLocalizedString(@"Tomoon Mall", @"土曼商城");
     }
     return self;
 }
@@ -68,14 +68,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return [_shoppingArray count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [_shoppingArray count];
 }
@@ -94,7 +92,6 @@
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
     UIImageView* shopImage = [[UIImageView alloc] initWithImage:image];
     [shopImage setFrame:CGRectMake(5,5 , 310, 180)];
-    [cell.textLabel setText:@"sdgsdgsdhg"];
     [cell.contentView addSubview:shopImage];
     [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     
@@ -107,10 +104,11 @@
     NSMutableDictionary* dicShop = [_shoppingArray objectAtIndex:indexPath.row];
     ShoppingViewController* shopDetail = [[ShoppingViewController alloc] init];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"shopdetail" object:dicShop];
     
-    //[self.navigationController pushViewController:shopDetail animated:YES];
-     [self presentViewController:shopDetail animated:YES completion:nil];
+    [self.navigationController pushViewController:shopDetail animated:YES];
+     //[self presentViewController:shopDetail animated:YES completion:nil];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shopdetail" object:dicShop];
 }
 
 /*

@@ -20,6 +20,7 @@
 #import "SettingViewController.h"
 #import "MyCenterViewController.h"
 #import "ShoppingTableViewController.h"
+#import "SettingsViewController.h"
 
 @implementation AppDelegate
 
@@ -34,13 +35,22 @@
     self.rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
     
     NSMutableArray* items = [[NSMutableArray alloc] init];
+    
+    
     AppCenterViewController* appCenterList = [[AppCenterViewController alloc] init];
     [items addObject:appCenterList];
+    
     ShoppingTableViewController* shoppingController = [[ShoppingTableViewController alloc] init];
+//    //[shoppingController.navigationController setNavigationBarHidden:YES];
+//    TMNavigationController* shopNaviContronller = [[TMNavigationController alloc] initWithRootViewController:shoppingController];
     [items addObject:shoppingController];
+    
     MyCenterViewController* myCenterController = [[MyCenterViewController alloc] init];
-    [items addObject:myCenterController];
-    SettingViewController* settingViewController = [[SettingViewController alloc] init];
+    TMNavigationController* myCenterNaviContronller = [[TMNavigationController alloc] initWithRootViewController:myCenterController];
+    [myCenterController.navigationController setNavigationBarHidden:YES];
+    [items addObject:myCenterNaviContronller];
+    
+    SettingsViewController* settingViewController = [[SettingsViewController alloc] init];
     [items addObject:settingViewController];
     // items是数组，每个成员都是UIViewController
     CommonTabBarViewController* tabBar = [[CommonTabBarViewController alloc] init];
@@ -48,7 +58,9 @@
     tabBar.tabBar.selectedImageTintColor = [UIColor colorWithHex:@"FF6600"];
     [tabBar setViewControllers:items];
     
-    self.window.rootViewController = tabBar;
+    TMNavigationController* tabBarNaviContronller = [[TMNavigationController alloc] initWithRootViewController:tabBar];
+    [tabBar.navigationController setNavigationBarHidden:YES];
+    self.window.rootViewController = tabBarNaviContronller;
     
     //TMNavigationController *rootViewController = [[TMNavigationController alloc] initWithRootViewController:self.rootViewController];
     //self.window.rootViewController = rootViewController;

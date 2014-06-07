@@ -119,7 +119,10 @@ static dispatch_queue_t ble_communication_queue() {
                 NSLog(@"Error: %@",  [error localizedDescription]);
                 return;
             }
-            self.sendDataSize = size;
+            
+            //self.sendDataSize = size;
+            //去掉警告 
+            self.sendDataSize = [NSNumber numberWithLongLong:size].unsignedIntValue;
         }
         
         self.transferDataType = kTransferDataType_File;

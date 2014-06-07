@@ -37,7 +37,7 @@ NSString * const MMProgressHUDFontNameNormal = @"HelveticaNeue-Light";
     #ifdef MM_HUD_FRAME_DEBUG
         static const BOOL MMProgressHUDFrameDebugModeEnabled = YES;
     #else
-        static const BOOL MMProgressHUDFrameDebugModeEnabled = NO;
+        //static const BOOL MMProgressHUDFrameDebugModeEnabled = NO;
     #endif
 #else
     static const BOOL MMProgressHUDFrameDebugModeEnabled = NO;

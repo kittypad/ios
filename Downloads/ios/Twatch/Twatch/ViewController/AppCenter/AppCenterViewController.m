@@ -47,7 +47,7 @@
     if (self) {
         // Custom initialization
        //glc 2014-5-22 添加tabbar
-        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:@"应用" image:[UIImage imageNamed:@"tabapp"] tag:4];
+        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:NSLocalizedString(@"App", @"应用") image:[UIImage imageNamed:@"tabapp"] tag:4];
         self.tabBarItem = item;
         self.backName = @"应用市场";
     }
@@ -116,7 +116,8 @@
 //    [self.view addSubview:lineView];
     
     CGFloat y = IS_IOS7 ? 182 :172;
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, y, 321.0, self.view.frame.size.height - y)];
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, y, 321.0, self.view.frame.size.height - y-50
+                                                                 )];
     _scrollView.contentSize = CGSizeMake(_scrollView.bounds.size.width*3, _scrollView.bounds.size.height);
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.delegate = self;

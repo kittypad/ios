@@ -886,7 +886,9 @@ static dispatch_queue_t ble_communication_queue() {
                 self.isSending = NO;
                 return;
             }
-            self.sendDataSize = size;
+            //self.sendDataSize = size;
+            //去掉警告
+            self.sendDataSize = [NSNumber numberWithLongLong:size].unsignedIntValue;
         }
         
         self.transferDataType = kTransferDataType_File;
@@ -929,7 +931,9 @@ static dispatch_queue_t ble_communication_queue() {
                 self.isSending = NO;
                 return;
             }
-            self.sendDataSize = size;
+            //self.sendDataSize = size;
+            //去掉警告
+            self.sendDataSize = [NSNumber numberWithLongLong:size].unsignedIntValue;
         }
         
         self.transferDataType = kTransferDataType_version;
@@ -1417,5 +1421,276 @@ static dispatch_queue_t ble_communication_queue() {
     }
 }
 
+- (void)sendWatchSleepTime:(NSString *)sleepTime finish:(void(^)(void))block
+{
+    if (![self isBLEConnected]) {
+        return;
+    }
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:20],
+                          @"content":@{@"value": sleepTime}};
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf = nil;
+        };
+    }
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+- (void)sendWatchSleepTime
+{
+    if (![self isBLEConnected]) {
+        return;
+    }
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:20],
+                          @"content":@{}};
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+//手表时间
+- (void)sendWatchTime:(NSString*) autoTime date:(NSDate *) date timeZome:(NSString*) timeZone istwentyfour:(NSString*)istwentyfour dateformat:(NSString*)dateformat finish:(void (^)(void))block
+{
+    if (![self isBLEConnected]) {
+        return;
+    }
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:21],
+                       @"content":@{@"value":@{@"autotime": autoTime,@"time": date,@"tomezone": timeZone,@"24hour": istwentyfour,@"dateformat" :dateformat}}};
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf = nil;
+        };
+    }
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+//手表自动开机
+- (void)sendPowerOnWatch:(NSString *) hour minute:(NSString *) minute enabled:(NSString*)enabled finish:(void (^)(void))block
+{
+    if (![self isBLEConnected]) {
+        return;
+    }
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:22],
+                          @"content":@{@"value":@{
+                              @"enabled":enabled,
+                              @"hour":hour,
+                              @"minute" :minute
+                          }}};
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf = nil;
+        };
+    }
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+//手表自动关机
+- (void)sendPowerOffWatch:(NSString *) hour minute:(NSString *) minute enabled:(NSString*)enabled finish:(void (^)(void))block
+{
+    if (![self isBLEConnected]) {
+        return;
+    }
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:23],
+                          @"content":@{@"value":@{
+                              @"enabled":enabled,
+                              @"hour":hour,
+                              @"minute" :minute
+                          }}};
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf = nil;
+        };
+    }
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+//手表语言
+- (void)sendWatchLanguage:(NSString *) language finish:(void (^)(void))block
+{
+    if (![self isBLEConnected]) {
+        return;
+    }
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:24],
+                          @"content":@{@"value": language}};
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf = nil;
+        };
+    }
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+//手表是否休眠
+- (void)sendWatchSleepSet:(NSString*) set finish:(void (^)(void))block
+{
+    if (![self isBLEConnected]) {
+        return;
+    }
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:26],
+                          @"content":@{@"value": set}};
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf = nil;
+        };
+    }
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+//启动app
+- (void)sendLaunchApp:(NSString *) launchapp finish:(void (^)(void))block
+{
+    if (![self isBLEConnected]) {
+        return;
+    }
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:25],
+                          @"content":@{@"pkgname": launchapp}};
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf = nil;
+        };
+    }
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+//是否震动
+- (void)sendVibrateSetting:(NSString*) vibrate finish:(void (^)(void))block
+{
+    if (![self isBLEConnected]) {
+        return;
+    }
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:27],
+                          @"content":@{@"value":@{@"enabled":vibrate}}};
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf = nil;
+        };
+    }
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+//是否反色
+- (void)sendInverseColor:(NSString*) inverse finish:(void (^)(void))block
+{
+    if (![self isBLEConnected]) {
+        return;
+    }
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:28],@"content":@{@"value":@{@"enabled":inverse}}};
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf = nil;
+        };
+    }
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+//是否音频即时通信
+- (void)sendAudioRealTimeCommunication :(NSString*) communcation finish:(void (^)(void))block
+{
+    if (![self isBLEConnected]) {
+        return;
+    }
+    if ([self isSendingData]) {
+        return;
+    }
+    self.isSending = YES;
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:29],
+                          @"content":@{@"value":@{@"enabled":communcation}}};
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf = nil;
+        };
+    }
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
 
 @end

@@ -47,9 +47,9 @@
     if (self) {
         // Custom initialization
         //glc 2014-5-22 添加tabbar
-        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:@"设置" image:[UIImage imageNamed:@"tabsetting"] tag:3];
+        UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:NSLocalizedString(@"Settings", @"设置") image:[UIImage imageNamed:@"tabsetting"] tag:3];
         self.tabBarItem = item;
-        self.backName = @"设置";
+        self.backName = NSLocalizedString(@"Settings", @"设置");
     }
     return self;
 }
@@ -172,6 +172,7 @@
     {
         case 0:
         {
+            //cell.textLabel.text = NSLocalizedString(@"Time Proofread", nil);
             cell.textLabel.text = NSLocalizedString(@"Time Proofread", nil);
             cell.imageView.image = [UIImage imageNamed:@"时间"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
