@@ -16,4 +16,5 @@
     #import "WatchConstant.h"
     #import "ViewUtils.h"
     #import "TransferService.h"
+    #import "MBProgressHUD.h"
 #endif

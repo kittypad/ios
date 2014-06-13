@@ -8,6 +8,6 @@
 
 #import "NaviCommonViewController.h"
 
-@interface SoundRecordViewController : NaviCommonViewController
+@interface SoundRecordViewController : NaviCommonViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end

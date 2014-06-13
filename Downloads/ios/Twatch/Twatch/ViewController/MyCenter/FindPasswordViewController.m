@@ -1,19 +1,19 @@
 //
-//  LoginViewController.m
+//  FindPasswordViewController.m
 //  Twatch
 //
-//  Created by yugong on 14-5-23.
+//  Created by yugong on 14-6-13.
 //  Copyright (c) 2014年 龚涛. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "FindPasswordViewController.h"
 #import "DataManager.h"
 #import <SBJson.h>
 
-@interface LoginViewController ()
+@interface FindPasswordViewController ()
 {
-    NSURLConnection *sendIdetifyconnection;
-    NSURLConnection *rigisterconnection;
+    NSURLConnection *sendfindcodeconnection;
+    NSURLConnection *findpasswordconnection;
 }
 
 @property (nonatomic) UITextField* phoneNum;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation LoginViewController
+@implementation FindPasswordViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,12 +78,12 @@
     captchaBtn.titleLabel.font = [UIFont systemFontOfSize:15.0];
     [self.view addSubview:captchaBtn];
     
-     UIButton* rigisterBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, IS_IOS7?274:254, 300, 40)];
-     [rigisterBtn setBackgroundImage:[UIImage imageNamed:@"loginbtn"] forState:UIControlStateNormal];
-     [rigisterBtn setTitle:@"注册" forState:UIControlStateNormal];
-     [rigisterBtn addTarget:self action:@selector(loginClicked) forControlEvents:UIControlEventTouchUpInside];
-     [self.view addSubview:rigisterBtn];
-     
+    UIButton* rigisterBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, IS_IOS7?274:254, 300, 40)];
+    [rigisterBtn setBackgroundImage:[UIImage imageNamed:@"loginbtn"] forState:UIControlStateNormal];
+    [rigisterBtn setTitle:@"找回密码" forState:UIControlStateNormal];
+    [rigisterBtn addTarget:self action:@selector(getPasswordClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:rigisterBtn];
+    
     //处理虚拟键盘
     UITapGestureRecognizer *tap =
     [[UITapGestureRecognizer alloc]  initWithTarget:self action:@selector(dismissKeyboard)];
@@ -112,10 +112,10 @@
         [alert show];
         return;
     }
-    sendIdetifyconnection = [self sendSMS:HTTPBASE_URL user:self.phoneNum.text];
+    sendfindcodeconnection = [self sendSMS:HTTPBASE_URL user:self.phoneNum.text];
 }
 
--(void)loginClicked
+-(void)getPasswordClicked
 {
     NSString* user = self.phoneNum.text;
     NSString* password = self.password.text;
@@ -162,7 +162,7 @@
         return;
     }
     
-    rigisterconnection =  [self rigister:HTTPBASE_URL user:user password:password identifycode:captchatext];
+    findpasswordconnection =  [self GetBackePassword:HTTPBASE_URL user:user password:password identifycode:captchatext];
 }
 
 -(void)dismissKeyboard {
@@ -177,21 +177,21 @@
     }
 }
 
-//注册
--(NSURLConnection*)rigister:(NSString*)url user:(NSString*) user password:(NSString*)password identifycode:(NSString*)identifycode
+//找回密码
+-(NSURLConnection*)GetBackePassword:(NSString*)url user:(NSString*) user password:(NSString*)password identifycode:(NSString*)identifycode
 {
     NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request1 setHTTPMethod:@"POST"];
     
     NSString *uuid1 =[[NSUUID UUID] UUIDString];
     [request1 setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
-    [request1 setValue:@"createAccount" forHTTPHeaderField:@"ACTION"];
+    [request1 setValue:@"forgetPassword" forHTTPHeaderField:@"ACTION"];
     [request1 setValue:@"1.0" forHTTPHeaderField:@"APIVersion"];
     [request1 setValue:uuid1 forHTTPHeaderField:@"UUID"];
     [request1 setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
     [request1 setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:user,@"userName",[[DataManager sharedManager] md5:password],@"userPass",identifycode, @"userCode", nil];
+    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:user,@"userName",[[DataManager sharedManager] md5:password],@"userPassNew",identifycode, @"userCode", nil];
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
     
@@ -218,7 +218,7 @@
     [request1 setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
     [request1 setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:user,@"phoneNum", nil];
+    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:user,@"phoneNum",@"1",@"forgetPassword", nil];
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
     
@@ -235,27 +235,16 @@
 {
     NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
     NSLog(@"%@",[res allHeaderFields]);
-    NSDictionary* allHeaderFields = [res allHeaderFields];
-    NSString* resultcode = [allHeaderFields objectForKey:@"Result-Code"];
-    
-    if (![resultcode isEqualToString:@"0"]) {
-        MBProgressHUD *hud= [[MBProgressHUD alloc] initWithView:self.view];
-        hud.labelText = [[DataManager sharedManager] alertMessage:resultcode];
-        hud.mode = MBProgressHUDModeText;
-        [self.view addSubview:hud];
-        [hud show:YES];
-        [hud hide:YES afterDelay:2];
-    }
 }
 
 //接收到服务器传输数据的时候调用，此方法根据数据大小执行若干次
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    if (sendIdetifyconnection == connection) {
+    if (connection == sendfindcodeconnection) {
         NSString *result = [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
         NSLog(@"data:%@",result);
     }
-    else if(connection == rigisterconnection)
+    else if(connection == findpasswordconnection)
     {
         NSString *result = [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
         NSLog(@"data:%@",result);

@@ -8,6 +8,6 @@
 
 #import "NaviCommonViewController.h"
 
-@interface LoginViewController : NaviCommonViewController
+@interface LoginViewController : NaviCommonViewController<UITextFieldDelegate,NSURLConnectionDelegate>
 
 @end

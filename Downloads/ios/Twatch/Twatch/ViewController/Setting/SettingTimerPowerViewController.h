@@ -8,6 +8,6 @@
 
 #import "NaviCommonViewController.h"
 
-@interface SettingTimerPowerViewController : NaviCommonViewController
+@interface SettingTimerPowerViewController : NaviCommonViewController<UIScrollViewDelegate>
 
 @end

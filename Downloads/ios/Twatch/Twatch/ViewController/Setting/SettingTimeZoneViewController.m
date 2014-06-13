@@ -8,13 +8,12 @@
 
 #import "SettingTimeZoneViewController.h"
 
+#import "UIViewController+KNSemiModal.h"
+
 @interface SettingTimeZoneViewController ()
 
-<<<<<<< HEAD
 @property (nonatomic ,strong)NSArray* timeZoneList;
 
-=======
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 @end
 
 @implementation SettingTimeZoneViewController
@@ -32,10 +31,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-<<<<<<< HEAD
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset
-                                                                           , CGRectGetWidth(self.view.frame), self.height-50) style:UITableViewStyleGrouped];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, IS_IOS7?65:45, 320, 460) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.rowHeight = 50;
@@ -82,8 +79,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-=======
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
+    NSString* timezone = [self.timeZoneList objectAtIndex:indexPath.row];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"settimezone" object:timezone];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

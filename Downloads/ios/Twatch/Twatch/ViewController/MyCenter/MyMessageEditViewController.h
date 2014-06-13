@@ -8,6 +8,8 @@
 
 #import "NaviCommonViewController.h"
 
-@interface MyMessageEditViewController : NaviCommonViewController
+@interface MyMessageEditViewController : NaviCommonViewController<UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic, strong)NSDictionary* myMessageDic;
 
 @end

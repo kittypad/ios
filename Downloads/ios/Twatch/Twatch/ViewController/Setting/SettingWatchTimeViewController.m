@@ -7,12 +7,15 @@
 //
 
 #import "SettingWatchTimeViewController.h"
-<<<<<<< HEAD
 #import "SettingTimeZoneViewController.h"
 #import "BLEServerManager.h"
 #import "BlockUIAlertView.h"
 
 #import "UIViewController+KNSemiModal.h"
+#import "SettingTimeFormatViewController.h"
+
+#define SWITCH_TIME24_TAG 1010
+#define SWITCH_AUTOTIMEZONE_TAG 1011
 
 @interface SettingWatchTimeViewController ()
 {
@@ -20,17 +23,13 @@
     NSDate* date;
     NSString* timeZome;
     NSString* isTwentyfour;
-    NSString* dateformat;
+    SettingTimeFormatViewController* timeFormatController;
+    SettingTimeZoneViewController* timeZoneController;
 }
 
 @property (nonatomic ,strong)NSArray* datesetList;
-=======
-
-@interface SettingWatchTimeViewController ()
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 
 @end
-
 @implementation SettingWatchTimeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,7 +45,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-<<<<<<< HEAD
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset
                                                                            , CGRectGetWidth(self.view.frame), self.height-50) style:UITableViewStyleGrouped];
     tableView.delegate = self;
@@ -62,8 +60,11 @@
                                    @"设置日期格式",
                                    nil];
 
-=======
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setTimeFormat:) name:@"settimeformat" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setTimeZone:) name:@"settimezone" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setCancel) name:@"setcancel" object:nil];
+    
+    timeFormatController = [[SettingTimeFormatViewController alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +73,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-<<<<<<< HEAD
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
@@ -126,12 +126,22 @@
         }
         case 1:
         {
+            if (row == 2) {
+                UISwitch* autoTime24 = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 51, 31)];
+                autoTime24.tag = SWITCH_TIME24_TAG;
+                [autoTime24 addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
+                [cell addSubview:autoTime24];
+            }
             cell.textLabel.text = [self.datesetList objectAtIndex:row];
             break;
         }
         case 2:
         {
             if (row == 0) {
+                UISwitch* autoTimeZone = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 51, 31)];
+                autoTimeZone.tag = SWITCH_AUTOTIMEZONE_TAG;
+                [autoTimeZone addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
+                [cell addSubview:autoTimeZone];
                 cell.textLabel.text = @"自动时区\n使用网络提供的时区信息";
             }
             else if(row == 1)
@@ -169,10 +179,10 @@
             if (![[BLEServerManager sharedManager] isBLEConnected]) {
                 return;
             }
-            NSDate *date = [NSDate date];
+            NSDate *timedate = [NSDate date];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"hh:mm"];
-            NSString *strDate = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"Confirm Time Proofread", nil),[dateFormatter stringFromDate:date]];
+            NSString *strDate = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"Confirm Time Proofread", nil),[dateFormatter stringFromDate:timedate]];
             
             BlockUIAlertView *alertView = [[BlockUIAlertView alloc] initWithTitle:@"" message:strDate cancelButtonTitle:NSLocalizedString(@"OK", nil)  otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"No", nil), nil] buttonBlock:^(NSInteger indexButton){
                 NSLog(@"%d",indexButton);
@@ -189,9 +199,12 @@
         {
             if (row == 0)
             {
+                UIView* timeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+                timeView.backgroundColor = [UIColor grayColor];
+                
                 UIDatePicker* timePicker = [[UIDatePicker alloc] init];
                 timePicker.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-                //timePicker.frame = CGRectMake(10, 0, 300, 100);
+                timePicker.frame = CGRectMake(0, 0, 320, 170);
                 timePicker.datePickerMode = UIDatePickerModeTime;
                 NSDateFormatter *offdateFormatter = [[NSDateFormatter alloc] init];
                 [offdateFormatter setDateFormat: @"HH:mm"];
@@ -199,57 +212,63 @@
                 [timePicker setDate:time];
                 //[timePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
                 timePicker.backgroundColor = [UIColor grayColor];
+                [timeView addSubview:timePicker];
                 
-                UIButton* cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, timePicker.frame.size.height-40, 140, 30)];
+                UIButton* cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, timePicker.frame.size.height+5, 140, 30)];
                 [cancelBtn setBackgroundImage:[UIImage imageNamed:@"cancelsetbtn"] forState:UIControlStateNormal];
                 [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
                 [cancelBtn setBackgroundColor:[UIColor redColor]];
                 [cancelBtn addTarget:self action:@selector(cancelClicked) forControlEvents:UIControlEventTouchUpInside];
-                [timePicker addSubview:cancelBtn];
+                [timeView addSubview:cancelBtn];
                 
-                UIButton* setTimeBtn = [[UIButton alloc] initWithFrame:CGRectMake(170, timePicker.frame.size.height-40, 140, 30)];
+                UIButton* setTimeBtn = [[UIButton alloc] initWithFrame:CGRectMake(170, timePicker.frame.size.height+5, 140, 30)];
                 [setTimeBtn setBackgroundImage:[UIImage imageNamed:@"setbtn"] forState:UIControlStateNormal];
                 [setTimeBtn setBackgroundColor:[UIColor redColor]];
                 [setTimeBtn setTitle:@"设置" forState:UIControlStateNormal];
                 [setTimeBtn addTarget:self action:@selector(setTimeClicked) forControlEvents:UIControlEventTouchUpInside];
-                [timePicker addSubview:setTimeBtn];
+                [timeView addSubview:setTimeBtn];
                 
-                [self presentSemiView:timePicker];
+                [self presentSemiView:timeView];
             }
             else if (row == 1)
             {
+                UIView* dateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+                dateView.backgroundColor = [UIColor grayColor];
+                
                 UIDatePicker* datePicker = [[UIDatePicker alloc] init];
                 datePicker.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-                //datePicker.frame = CGRectMake(10, 0, 300, 100);
+                datePicker.frame = CGRectMake(10, 0, 320, 100);
                 datePicker.datePickerMode = UIDatePickerModeDate;
                 NSDateFormatter *offdateFormatter = [[NSDateFormatter alloc] init];
                 [offdateFormatter setDateFormat: @"yyyy-MM-dd"];
-                NSDate *date= [offdateFormatter dateFromString:@"2014-06-04"];
-                [datePicker setDate:date];
+                NSDate *currentdate= [offdateFormatter dateFromString:@"2014-06-04"];
+                [datePicker setDate:currentdate];
                 //[datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
                 datePicker.backgroundColor = [UIColor grayColor];
+                [dateView addSubview:datePicker];
                 
-                UIButton* cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, datePicker.frame.size.height-40, 140, 30)];
+                UIButton* cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, datePicker.frame.size.height+5, 140, 30)];
                 [cancelBtn setBackgroundImage:[UIImage imageNamed:@"cancelsetbtn"] forState:UIControlStateNormal];
                 [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
                 [cancelBtn setBackgroundColor:[UIColor redColor]];
                 [cancelBtn addTarget:self action:@selector(cancelClicked) forControlEvents:UIControlEventTouchUpInside];
-                [datePicker addSubview:cancelBtn];
+                [dateView addSubview:cancelBtn];
                 
-                UIButton* setDateBtn = [[UIButton alloc] initWithFrame:CGRectMake(170, datePicker.frame.size.height-40, 140, 30)];
+                UIButton* setDateBtn = [[UIButton alloc] initWithFrame:CGRectMake(170, datePicker.frame.size.height+5, 140, 30)];
                 [setDateBtn setBackgroundImage:[UIImage imageNamed:@"setbtn"] forState:UIControlStateNormal];
                 [setDateBtn setBackgroundColor:[UIColor redColor]];
                 [setDateBtn setTitle:@"设置" forState:UIControlStateNormal];
                 [setDateBtn addTarget:self action:@selector(setDateClicked) forControlEvents:UIControlEventTouchUpInside];
-                [datePicker addSubview:setDateBtn];
+                [dateView addSubview:setDateBtn];
                 
-                [self presentSemiView:datePicker];
+                [self presentSemiView:dateView];
             }
             else if (row == 2)
             {
             }
             else
             {
+                [self presentSemiViewController:timeFormatController];
             }
             break;
         }
@@ -257,10 +276,13 @@
         {
             if (row == 1)
             {
-                SettingTimeZoneViewController* setWatchTimeController = [[SettingTimeZoneViewController alloc] init];
-                setWatchTimeController.backName = @"选择时区";
-                [self.navigationController pushViewController:setWatchTimeController animated:YES];
+                timeZoneController = [[SettingTimeZoneViewController alloc] init];
+                timeZoneController.backName = @"时区设置";
+                [self.navigationController pushViewController:timeZoneController animated:YES];
                 //[self presentViewController:setWatchTimeController animated:YES completion:nil];
+            }
+            else if(row == 0)
+            {
             }
             break;
         }
@@ -270,6 +292,32 @@
 
 }
 
+-(void)switchClick: (id)sender
+{
+    UISwitch* switchview = (UISwitch*)sender;
+    BOOL bswitch = [switchview isOn];
+    NSString* strSwitch;
+    if (bswitch) {
+        strSwitch = @"true";
+    }
+    else
+    {
+        strSwitch = @"false";
+    }
+    UISwitch *switchBtn = (UISwitch *)sender;
+    if (switchBtn.tag == SWITCH_TIME24_TAG)
+    {
+        isTwentyfour = strSwitch;
+        [self setSwitchTime];
+    }
+    else if (switchBtn.tag == SWITCH_AUTOTIMEZONE_TAG)
+    {
+    }
+    else
+    {
+    }
+}
+
 -(void)cancelClicked
 {
     [self dismissSemiModalView];
@@ -277,20 +325,46 @@
 
 -(void)setTimeClicked
 {
-    [[BLEServerManager sharedManager] sendWatchTime:autotime date:date timeZome:timeZome istwentyfour:isTwentyfour dateformat:dateformat finish:^(void){
-    }];
+    [self setSwitchTime];
     [self dismissSemiModalView];
 }
 
 -(void)setDateClicked
 {
-    [[BLEServerManager sharedManager] sendWatchTime:autotime date:date timeZome:timeZome istwentyfour:isTwentyfour dateformat:dateformat finish:^(void){
-    }];
+    [self setSwitchTime];
     [self dismissSemiModalView];
 }
 
-=======
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
+-(void)setCancel
+{
+    [self dismissSemiModalView];
+}
+
+-(void)setSwitchTime
+{
+    if (![[BLEServerManager sharedManager] isBLEPoweredOn]) {
+        return;
+    }
+    if (![[BLEServerManager sharedManager] isBLEConnected]) {
+        return;
+    }
+    
+    [[BLEServerManager sharedManager] sendWatchTime:autotime date:date timeZome:timeZome istwentyfour:isTwentyfour dateformat:self.dateFormat finish:^(void){
+    }];
+}
+
+-(void)setTimeFormat:(NSNotification *)notification
+{
+    self.dateFormat = notification.object;
+    [self setSwitchTime];
+    [self dismissSemiModalView];
+}
+
+-(void)setTimeZone:(NSNotification *)notification
+{
+    timeZome = notification.object;
+    [self setSwitchTime];
+}
 /*
 #pragma mark - Navigation
 

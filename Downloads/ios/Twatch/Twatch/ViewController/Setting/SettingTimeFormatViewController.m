@@ -1,20 +1,21 @@
 //
-//  SoundRecordViewController.m
+//  SettingTimeFormatViewController.m
 //  Twatch
 //
-//  Created by yugong on 14-6-7.
+//  Created by yugong on 14-6-9.
 //  Copyright (c) 2014年 龚涛. All rights reserved.
 //
 
-#import "SoundRecordViewController.h"
+#import "SettingTimeFormatViewController.h"
 
-@interface SoundRecordViewController ()
+@interface SettingTimeFormatViewController ()
 
-@property (nonatomic, strong)NSMutableArray* soundRecordList;
+@property (nonatomic)NSString* currentDateFormat;
+@property (nonatomic, strong)NSArray* timeFormatList;
 
 @end
 
-@implementation SoundRecordViewController
+@implementation SettingTimeFormatViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,29 +31,36 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.soundRecordList = [[NSMutableArray alloc] init];
+    //写死的休眠时间，需要给改为获取或者。。。
+    self.timeFormatList = [NSArray arrayWithObjects:@"dd-MM-yyyy", @"MM-dd-yyyy" , @"yyyy-MM-dd",nil];
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset
-                                                                           , CGRectGetWidth(self.view.frame), self.height-50)];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, 320, 200)];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.rowHeight = 30;
     //tableView.scrollEnabled = YES;
+    //tableView.tableHeaderView = [self tableHeaderView];
     tableView.backgroundColor = [UIColor colorWithHex:@"F2F7FD"];
     tableView.separatorColor = [UIColor clearColor];
     
     [self.view addSubview:tableView];
+    
+    UIButton* cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 300, 320, 30)];
+    [cancelBtn setBackgroundImage:[UIImage imageNamed:@"cancelsetbtn"] forState:UIControlStateNormal];
+    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelBtn setBackgroundColor:[UIColor redColor]];
+    [cancelBtn addTarget:self action:@selector(cancelClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:cancelBtn];
+}
+
+-(void)cancelClicked
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"setcancel" object:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([self.soundRecordList count]>0) {
-        return [self.soundRecordList count];
-    }
-    else
-    {
-        return 1;
-    }
+    return [self.timeFormatList count]+1;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -60,9 +68,14 @@
     return 1;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"设置日期格式";
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    return 30;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -75,22 +88,26 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     //选中后的字体颜色设置
-    //cell.textLabel.highlightedTextColor = [UIColor redColor];
-    if ([self.soundRecordList count]<=0 ||self.soundRecordList == nil) {
-        cell.textLabel.text = @"您还没有录音记录";
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.highlightedTextColor = [UIColor redColor];
+    
+    if (indexPath.row == 0) {
+        
     }
     else
     {
-        cell.textLabel.text = [self.soundRecordList objectAtIndex:indexPath.row];
+        cell.textLabel.text = [self.timeFormatList objectAtIndex:indexPath.row-1];
     }
+    
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    if (indexPath.row > 0) {
+        NSString* selectTimeFormat = [self.timeFormatList objectAtIndex:indexPath.row-1];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"settimeformat" object:selectTimeFormat];
+    }
 }
 
 

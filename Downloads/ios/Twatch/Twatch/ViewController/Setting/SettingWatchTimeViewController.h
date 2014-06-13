@@ -8,10 +8,8 @@
 
 #import "NaviCommonViewController.h"
 
-<<<<<<< HEAD
 @interface SettingWatchTimeViewController : NaviCommonViewController<UITableViewDelegate,UITableViewDataSource>
-=======
-@interface SettingWatchTimeViewController : NaviCommonViewController
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
+
+@property (nonatomic,strong) NSString* dateFormat;
 
 @end

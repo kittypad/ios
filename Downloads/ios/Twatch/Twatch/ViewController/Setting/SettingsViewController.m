@@ -10,10 +10,7 @@
 #import "SettingCell.h"
 #import "AppCenterViewController.h"
 #import "MBProgressHUD.h"
-<<<<<<< HEAD
-=======
-//#import "BLEManager.h"
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
+
 #import "UpdateWatchControllerViewController.h"
 #import "ViewUtils.h"
 #import "BLEServerManager.h"
@@ -21,14 +18,13 @@
 #import "ConnectionViewController.h"
 #import "MoreSettingViewController.h"
 #import "SettingTimerPowerViewController.h"
-<<<<<<< HEAD
+
 #import "SettingWatchTimeViewController.h"
 #import "SettingMoreViewController.h"
 #import "TMNavigationController.h"
 
 #import "UIViewController+KNSemiModal.h"
-=======
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
+
 
 #define SWITCH_TIMEADJUST_TAG  1001
 #define SWITCH_DISCOVERYWATCH_TAG  1002
@@ -51,26 +47,19 @@
 @end
 
 @interface SettingsViewController ()
+{
+    UILabel* sleepLabel;    //休眠时间
+    UILabel* powerTimeLabel;    //定时开关机
+}
 @property(nonatomic,strong)NSArray *subviewControllerArray;
 @property(nonatomic,strong)NSArray *titleArray;
 
 @property(nonatomic,strong)NSMutableArray* settingList;
 
-@property(nonatomic,strong)id         anObserver;
-<<<<<<< HEAD
-
 @end
 
 @implementation SettingsViewController
-{
-    UILabel* sleepLabel;    //休眠时间
-    UILabel* powerTimeLabel;    //定时开关机
-}
-=======
-@end
 
-@implementation SettingsViewController
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -90,25 +79,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-<<<<<<< HEAD
     self.titleArray = [NSArray arrayWithObjects: NSLocalizedString(@"Date Time", @"时间日期"),
                        NSLocalizedString(@"Timer Switch", @"定时开关"),
                        NSLocalizedString(@"Update Watch", @"固件升级"), nil];
     self.subviewControllerArray = [NSArray arrayWithObjects:@"SettingWatchTimeViewController",
                                    @"SettingTimerPowerViewController",
-                                   @"UpdateWatchController",
-=======
-    self.titleArray = [NSArray arrayWithObjects: NSLocalizedString(@"Watch Version", nil),
-                       NSLocalizedString(@"Account Bound", nil),
-                       NSLocalizedString(@"Settings", nil), nil];
-    self.subviewControllerArray = [NSArray arrayWithObjects:@"UpdateWatchController",
-                                   @"AGAuthViewController",
-                                   @"MoreSettingViewController",
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
-                                   nil];
+                                   @"UpdateWatchController",nil];
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset
+    UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset
                                                                            , CGRectGetWidth(self.view.frame), self.height-50) style:UITableViewStyleGrouped];
+        
+                                   
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.rowHeight = 50;
@@ -120,7 +101,6 @@
     self.settingList = [NSMutableArray arrayWithObjects:NSLocalizedString(@"Bound Watch", @"绑定手表"),NSLocalizedString(@"Call Watch", @"呼叫手表"), NSLocalizedString(@"Open Shock", @"开启震动"), NSLocalizedString(@"Sleep Time", @"休眠时间"), NSLocalizedString(@"InVerse Color", @"黑白反色"),
                                    NSLocalizedString(@"Lock Screen", @"锁屏设置"), NSLocalizedString(@"Date Time", @"时间日期"),NSLocalizedString(@"Timer Switch", @"定时开关"),NSLocalizedString(@"Update Watch", @"固件升级"),NSLocalizedString(@"One Set", @"一键优化设置"),NSLocalizedString(@"more settings", @"更多设置"),nil];
     
-<<<<<<< HEAD
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setSleepTime:) name:@"setsleeptime" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setCancel) name:@"setcancel" object:nil];
 
@@ -148,38 +128,6 @@
         [ViewUtils showToast:@"设置休眠时间成功"];
     }];
     [self dismissSemiModalView];
-=======
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
-}
-
-- (UIView *)tableHeaderView
-{
-    UIControl *headerView = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 50)];
-    [headerView addTarget:self action:@selector(boundButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectOffset(headerView.frame, 20, 0)];
-    titleLabel.textAlignment = NSTextAlignmentLeft;
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.textColor = [UIColor blackColor];
-    [headerView addSubview:titleLabel];
-    
-    UIImageView *statusImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"单选"]];
-    statusImageView.center = CGPointMake(CGRectGetWidth(headerView.frame) - CGRectGetWidth(statusImageView.frame) - 5, CGRectGetHeight(headerView.frame)/2);
-    [headerView addSubview:statusImageView];
-    
-    self.anObserver =[[NSNotificationCenter defaultCenter] addObserverForName:kBLEChangedNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-        if ([[BLEServerManager sharedManager] isBLEConnectedWithoutAlert]) {
-            titleLabel.text = NSLocalizedString(@"Unbound Watch", @"绑定手表");
-            statusImageView.image = [UIImage imageNamed:@"单选-选中"];
-        }else{
-            titleLabel.text = NSLocalizedString(@"Bound Watch", @"绑定手表");
-            statusImageView.image = [UIImage imageNamed:@"单选"];
-        }
-    }];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
-    
-    return headerView;
 }
 
 - (void)boundButtonClicked:(id)sender
@@ -202,12 +150,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self.anObserver];
-    self.anObserver = nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -251,8 +193,6 @@
 {
     NSString *cellIdentifier = @"SettingCell";
     MoreSettingsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell != nil) {
-    }
     if (!cell)
     {
         cell = [[MoreSettingsCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
@@ -260,7 +200,6 @@
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.textLabel.textColor = [UIColor colorWithHex:@"333333"];
-<<<<<<< HEAD
     
 //    BOOL bConnection = [[BLEServerManager sharedManager] isWatchConnected];
 //
@@ -268,8 +207,6 @@
 //    cell.textLabel.enabled = bConnection;
 //    cell.detailTextLabel.enabled = bConnection;
     
-=======
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
     int section = indexPath.section;
     int row = indexPath.row;
     switch (section) {
@@ -277,21 +214,18 @@
         {
             cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-<<<<<<< HEAD
             if (row==0) {
                 cell.userInteractionEnabled = YES;
                 cell.textLabel.enabled = YES;
                 cell.detailTextLabel.enabled = YES;
-=======
+            }
             if (row==1) {
                 [cell setEditing:NO];
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
             }
             break;
         }
         case 1:
         {
-<<<<<<< HEAD
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+2];
             if (row == 0) {
@@ -325,35 +259,17 @@
                 switchInverse.tag = SWITCH_INVERSE_TAG;
                 [switchInverse addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
                 [cell addSubview:switchInverse];
-=======
+            }
             cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+2];
-            if (row == 0) {
-                UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 50.5, 10)];
-                switchBtn.tag = SWITCH_VIBRATE_TAG;
-                [switchBtn addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
-                [cell addSubview:switchBtn];
-            }
-            else if(row == 2)
-            {
-                UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(250, 10, 50.5, 10)];
-                switchBtn.tag = SWITCH_INVERSE_TAG;
-                [switchBtn addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
-                [cell addSubview:switchBtn];
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
-            }
             break;
         }
         case 2:
         {
-<<<<<<< HEAD
             [cell setHighlighted:NO];
-=======
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
             cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+6];
             if (row == 0) {
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
-<<<<<<< HEAD
             else if(row == 1)
             {
                 powerTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(190, 10, 111, 31)];
@@ -362,30 +278,19 @@
                 powerTimeLabel.font = [UIFont systemFontOfSize:10.0];
                 [cell addSubview:powerTimeLabel];
             }
-=======
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
             break;
         }
         case 3:
         {
-<<<<<<< HEAD
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+9];
             cell.textLabel.textColor = [UIColor colorWithHex:@"B800F5"];
-=======
-            cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+9];
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
              break;
         }
         case 4:
         {
-<<<<<<< HEAD
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+10];
-=======
-            cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+10];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
             break;
         }
         default:
@@ -395,38 +300,33 @@
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.rowHeight - .5, CGRectGetWidth(tableView.frame) , .5)];
     line.backgroundColor = [UIColor colorWithHex:@"cfe1f5"];
     [cell addSubview:line];
-    
-    return cell;
-}
+            return cell;
+    }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     int section = indexPath.section;
     int row = indexPath.row;
-    switch (section) {
+    switch (section)
+    {
         case 0:
         {
-            if (row == 0) {
+            if (row == 0)
+            {
                 ConnectionViewController *aController = [[ConnectionViewController alloc] init];
                 aController.backName = NSLocalizedString(@"SynConnection", nil);
-                //[self.navigationController pushViewController:aController animated:YES];
-                [self presentViewController:aController animated:YES completion:nil];
+                [self.navigationController pushViewController:aController animated:YES];
             }
             else
             {
-<<<<<<< HEAD
                  [[BLEServerManager sharedManager] sendSearchWatchCommand];
-=======
-                
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
             }
 
             break;
         }
         case 1:
         {
-<<<<<<< HEAD
             if (row == 1) {
                 [self presentSemiViewController:sleepTimeController];
             }
@@ -436,78 +336,44 @@
                     [ViewUtils showToast:@"设置为简洁锁屏成功"];
                 }];
             }
-=======
             if (row == 0) {
 
             }
-            
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
             break;
         }
         case 2:
         {
-<<<<<<< HEAD
             NSString *className = self.subviewControllerArray[row];
             UIViewController *aController = [[NSClassFromString(className) alloc] initWithNibName:nil bundle:nil];
             ((NaviCommonViewController*)aController).backName = self.titleArray[row];
             [self.navigationController pushViewController:aController animated:YES];
-=======
             if (row == 0)
             {
             }
             else if(row == 1)
             {
                 SettingTimerPowerViewController* powerController = [[SettingTimerPowerViewController alloc] init];
-                [self presentViewController:powerController animated:YES completion:nil];
+                powerController.backName = @"开关机设置";
+                [self.navigationController pushViewController:powerController animated:YES];
             }
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
             break;
         }
         case 3:
         {
-<<<<<<< HEAD
             [self settingAll];
-=======
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
             break;
         }
         case 4:
         {
-<<<<<<< HEAD
             SettingMoreViewController* setMoreController = [[SettingMoreViewController alloc] init];
             setMoreController.backName = NSLocalizedString(@"more settings", @"更多设置");
             [self.navigationController pushViewController:setMoreController animated:YES];
-=======
-//            NSString *className =（NSString*)self.subviewControllerArray[2];
-//            UIViewController *aController = [[NSClassFromString(className) alloc] initWithNibName:nil bundle:nil];
-//            
-//            ((NaviCommonViewController*)aController).backName = self.titleArray[indexPath.row - 2];
-//            [self.navigationController pushViewController:aController animated:YES];
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
             break;
         }
         default:
             break;
     }
 }
-
-#pragma mark - ToggleViewDelegate
-
-<<<<<<< HEAD
-//- (void)selectLeftButton :(id)sender
-//{
-//    UIView *view = (UIView *)sender;
-//    if (view.tag == SWITCH_TIMEADJUST_TAG)
-//    {
-//    }
-//    else if(view.tag == SWITCH_DISCOVERYWATCH_TAG)
-//    {
-//    }
-//    else if (view.tag == SWITCH_CONNECTTESTING_TAG)
-//    {
-//    }
-//    NSLog(@"LeftButton Selected");
-//}
 
 -(void)switchClick: (id)sender
 {
@@ -525,30 +391,6 @@
         if([[BLEServerManager sharedManager] isBLEConnected])
         {
             [[BLEServerManager sharedManager] sendInverseColor:set finish:^(void){
-=======
-- (void)selectLeftButton :(id)sender
-{
-    UIView *view = (UIView *)sender;
-    if (view.tag == SWITCH_TIMEADJUST_TAG)
-    {
-    }
-    else if(view.tag == SWITCH_DISCOVERYWATCH_TAG)
-    {
-    }
-    else if (view.tag == SWITCH_CONNECTTESTING_TAG)
-    {
-    }
-    NSLog(@"LeftButton Selected");
-}
-
--(void)switchClick: (id)sender
-{
-    UISwitch *switchBtn = (UISwitch *)sender;
-    if (switchBtn.tag == SWITCH_INVERSE_TAG) {
-        if([[BLEServerManager sharedManager] isBLEConnected])
-        {
-            [[BLEServerManager sharedManager] sendInverseColor:@"true" finish:^(void){
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
                 [ViewUtils showToast:@"设置反转成功"];
             }];
         }
@@ -565,13 +407,8 @@
     {
         if([[BLEServerManager sharedManager] isBLEConnected])
         {
-<<<<<<< HEAD
             [[BLEServerManager sharedManager] sendVibrateSetting:set finish:^(void){
                 [ViewUtils showToast:@"设置震动成功"];
-=======
-            [[BLEServerManager sharedManager] sendVibrateSetting:@"true" finish:^(void){
-                [ViewUtils showToast:@"设置反转成功"];
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
             }];
         }
         else
@@ -583,9 +420,11 @@
             
         }
     }
+    else
+    {
+    }
 }
 
-<<<<<<< HEAD
 /*
  * 一键优化设置
  */
@@ -635,7 +474,5 @@
     
     [ViewUtils showToast:@"设置语言成功"];
 }
-
-=======
->>>>>>> 2a3c53f1caca6d3a32ec8e4e28b41b03dd897cf8
+            
 @end

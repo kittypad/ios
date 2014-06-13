@@ -55,4 +55,33 @@
 //服务器获取商品列表
 - (NSMutableArray*)getShoppingList:(NSString *)shopurl;
 
+//登录
+-(AFHTTPRequestOperation *)login:(NSString*)url user:(NSString*) user password:(NSString*)password success:(void (^)(id response))success;
+
+//注册
+-(AFHTTPRequestOperation *)rigister:(NSString*)url user:(NSString*) user password:(NSString*)password identifycode:(NSString*)identifycode success:(void (^)(id response))success;
+
+//发送短信
+-(AFHTTPRequestOperation *)sendSMS:(NSString*)url user:(NSString*)user success :(void (^)(id response))success;
+
+//修改个人信息
+-(AFHTTPRequestOperation *)editMyMessage:(NSString*)url para:(NSDictionary*) para success:(void (^)(id response))success;
+
+//修改密码
+-(AFHTTPRequestOperation *)changePassword:(NSString*)url username:(NSString*) username passwordold:(NSString*) passwordold passwordnew:(NSString*) passwordmew success:(void (^)(id response))success;
+
+-(NSURLConnection*)changePassword:(NSString*)url username:(NSString*) username passwordold:(NSString*) passwordold passwordnew:(NSString*) passwordmew;
+
+//忘记密码
+-(AFHTTPRequestOperation *)forgetPassword:(NSString*)url username:(NSString*) username usercode:(NSString*) usercode passwordnew:(NSString*) passwordmew success:(void (^)(id response))success;
+
+-(NSURLConnection *)forgetPassword:(NSString*)url username:(NSString*) username usercode:(NSString*) usercode passwordnew:(NSString*) passwordmew;
+
+//获取用户信息
+-(AFHTTPRequestOperation *)getUserProfile:(NSString*)url username:(NSString*) username success:(void (^)(id response))success;
+
+- (NSString *)md5:(NSString *)str;
+
+//网络请求返回提示
+-(NSString*)alertMessage:(NSString*)code;
 @end

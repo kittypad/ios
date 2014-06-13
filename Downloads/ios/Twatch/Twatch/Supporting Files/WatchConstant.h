@@ -59,6 +59,9 @@
 
 #define APPID @"737815068"
 
+//请求基础URL
+#define HTTPBASE_URL @"http://192.168.1.114/DigitalFrame"
+
 typedef enum _WatchStyle{
     wBlack = 0,
     wRed,

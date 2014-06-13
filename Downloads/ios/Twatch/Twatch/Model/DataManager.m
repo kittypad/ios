@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 龚涛. All rights reserved.
 //
 
+#import <CommonCrypto/CommonDigest.h>
+
 #import "DataManager.h"
 #import <AFNetworking.h>
 #import "ZipArchive.h"
@@ -83,6 +85,7 @@
         _manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:kBaseURL];
         
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        //[_manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/json"]];
         
         NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:8 * 1024 * 1024
                                                              diskCapacity:40 * 1024 * 1024
@@ -632,6 +635,352 @@
     {
         return 0;
     }
+}
+
+//登录
+-(AFHTTPRequestOperation *)login:(NSString*)url user:(NSString*) user password:(NSString*)password success:(void (^)(id response))success
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(success)
+        {
+            success(responseObject);
+            NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            
+            NSLog(@"Request Successful, response '%@'", responseStr);
+        }
+        
+    };
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error)  {
+        NSLog(@"Error: %@", error);
+    };
+    
+    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:user,@"userName", password, @"userPass", nil];
+    NSMutableURLRequest *request = [_manager.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:url relativeToURL:_manager.baseURL] absoluteString] parameters:parameters error:nil];
+    [request setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
+    [request setValue:@"login" forHTTPHeaderField:@"ACTION"];
+    AFHTTPRequestOperation *operation = [_manager HTTPRequestOperationWithRequest:request success:requestSuccess failure:requestFailure];
+    [_manager.operationQueue addOperation:operation];
+    
+    return operation;
+}
+
+//注册
+-(AFHTTPRequestOperation *)rigister:(NSString*)url user:(NSString*) user password:(NSString*)password identifycode:(NSString*)identifycode success:(void (^)(id response))success
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(success)
+        {
+            success(responseObject);
+        }
+        
+    };
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error)  {
+        NSLog(@"Error: %@", error);
+    };
+    
+    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:user,@"userName", password, @"userPass", identifycode, @"userCode", nil];
+    
+//    NSError* jsonerror;
+//    NSData* jsondata = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&jsonerror];
+//    NSLog(@"Error: %@", jsondata);
+//    NSLog(@"Error: %@", jsonerror);
+    
+    NSMutableURLRequest *request = [_manager.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:url relativeToURL:_manager.baseURL] absoluteString] parameters:parameters error:nil];
+    [request setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
+    [request setValue:@"createAccount" forHTTPHeaderField:@"ACTION"];
+    AFHTTPRequestOperation *operation = [_manager HTTPRequestOperationWithRequest:request success:requestSuccess failure:requestFailure];
+    [_manager.operationQueue addOperation:operation];
+    
+    return operation;
+}
+
+//发送短信
+-(AFHTTPRequestOperation *)sendSMS:(NSString*)url user:(NSString*)user success :(void (^)(id response))success
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(success)
+        {
+            success(responseObject);
+        }
+        
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error)  {
+        NSLog ( @"error description:%@" ,[error description ]);
+    };
+    
+    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:user,@"phoneNum", @"1", @"forgetPassword", nil];
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    
+    NSString *jsonString=nil;
+    jsonString=[writer stringWithObject:parameters];
+    NSLog(@"%@",jsonString);
+    
+    //_manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
+    //_manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSString *uuid =[[NSUUID UUID] UUIDString];
+    NSLog(@"%@",uuid);
+    
+    [_manager.requestSerializer setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
+    [_manager.requestSerializer setValue:@"getValidateCode" forHTTPHeaderField:@"ACTION"];
+    [_manager.requestSerializer setValue:@"1.0" forHTTPHeaderField:@"APIVersion"];
+    [_manager.requestSerializer setValue:uuid forHTTPHeaderField:@"UUID"];
+    [_manager.requestSerializer setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
+    [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [_manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    
+    NSMutableURLRequest *request = [_manager.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:url relativeToURL:_manager.baseURL] absoluteString] parameters:parameters error:nil];
+    
+    NSLog ( @"URL: %@" , [[NSURL URLWithString:url relativeToURL:_manager.baseURL] absoluteString] );
+    NSLog(@"header:%@", [request allHTTPHeaderFields]);
+
+    AFHTTPRequestOperation *operation = [_manager HTTPRequestOperationWithRequest:request success:requestSuccess failure:requestFailure];
+    [_manager.operationQueue addOperation:operation];
+    
+     NSLog ( @"operation: %@" , operation.responseString );
+    
+    return operation;
+}
+
+//修改个人信息
+-(AFHTTPRequestOperation *)editMyMessage:(NSString*)url para:(NSDictionary*) para success:(void (^)(id response))success
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(success)
+        {
+            success(responseObject);
+        }
+        
+    };
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error)  {
+        NSLog(@"Error: %@", error);
+    };
+
+    NSMutableURLRequest *request = [_manager.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:url relativeToURL:_manager.baseURL] absoluteString] parameters:para error:nil];
+    [request setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
+    [request setValue:@"changeUserProfile" forHTTPHeaderField:@"ACTION"];
+    AFHTTPRequestOperation *operation = [_manager HTTPRequestOperationWithRequest:request success:requestSuccess failure:requestFailure];
+    [_manager.operationQueue addOperation:operation];
+    
+    NSLog ( @"operation: %@" , operation.responseString );
+    
+    return operation;
+}
+
+//修改密码
+-(AFHTTPRequestOperation *)changePassword:(NSString*)url username:(NSString*) username passwordold:(NSString*) passwordold passwordnew:(NSString*) passwordmew success:(void (^)(id response))success
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(success)
+        {
+            success(responseObject);
+        }
+        
+    };
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error)  {
+        NSLog(@"Error: %@", error);
+    };
+    
+    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:username,@"userName", passwordold, @"userPassOld", passwordmew, @"userPassNew", nil];
+    NSMutableURLRequest *request = [_manager.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:url relativeToURL:_manager.baseURL] absoluteString] parameters:parameters error:nil];
+    [request setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
+    [request setValue:@"changePassword" forHTTPHeaderField:@"ACTION"];
+    AFHTTPRequestOperation *operation = [_manager HTTPRequestOperationWithRequest:request success:requestSuccess failure:requestFailure];
+    [_manager.operationQueue addOperation:operation];
+    
+    return operation;
+}
+
+//忘记密码
+-(AFHTTPRequestOperation *)forgetPassword:(NSString*)url username:(NSString*) username usercode:(NSString*) usercode passwordnew:(NSString*) passwordmew success:(void (^)(id response))success
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(success)
+        {
+            success(responseObject);
+        }
+        
+    };
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error)  {
+        NSLog(@"Error: %@", error);
+    };
+    
+    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:username,@"userName", usercode, @"userCode", passwordmew, @"userCode", nil];
+    NSMutableURLRequest *request = [_manager.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:url relativeToURL:_manager.baseURL] absoluteString] parameters:parameters error:nil];
+    [request setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
+    [request setValue:@"forgetPassword" forHTTPHeaderField:@"ACTION"];
+    AFHTTPRequestOperation *operation = [_manager HTTPRequestOperationWithRequest:request success:requestSuccess failure:requestFailure];
+    [_manager.operationQueue addOperation:operation];
+    
+    return operation;
+}
+
+//获取用户信息
+-(AFHTTPRequestOperation *)getUserProfile:(NSString*)url username:(NSString*) username success:(void (^)(id response))success
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(success)
+        {
+            success(responseObject);
+        }
+        
+    };
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error)  {
+        NSLog(@"Error: %@", error);
+    };
+    
+    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:username,@"userName", nil];
+    NSMutableURLRequest *request = [_manager.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:url relativeToURL:_manager.baseURL] absoluteString] parameters:parameters error:nil];
+    [request setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
+    [request setValue:@"getUserProfile" forHTTPHeaderField:@"ACTION"];
+    AFHTTPRequestOperation *operation = [_manager HTTPRequestOperationWithRequest:request success:requestSuccess failure:requestFailure];
+    [_manager.operationQueue addOperation:operation];
+    
+    return operation;
+}
+
+
+-(NSURLConnection*)login:(NSString*)url user:(NSString*) user password:(NSString*)password
+{
+    NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc]initWithURL:_manager.baseURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request1 setHTTPMethod:@"POST"];
+    
+    NSString *uuid1 =[[NSUUID UUID] UUIDString];
+    [request1 setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
+    [request1 setValue:@"createAccount" forHTTPHeaderField:@"ACTION"];
+    [request1 setValue:@"1.0" forHTTPHeaderField:@"APIVersion"];
+    [request1 setValue:uuid1 forHTTPHeaderField:@"UUID"];
+    [request1 setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
+    [request1 setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:user,@"userName",[self md5:password],@"userPass", nil];
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    
+    NSString *jsonString=nil;
+    jsonString=[writer stringWithObject:parameters];
+    [request1 setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request1 delegate:self];
+    
+    return connection;
+}
+
+//使用apple自身网络请求
+
+//修改密码
+-(NSURLConnection*)changePassword:(NSString*)url username:(NSString*) username passwordold:(NSString*) passwordold passwordnew:(NSString*) passwordmew
+{
+    NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc]initWithURL:_manager.baseURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request1 setHTTPMethod:@"POST"];
+    
+    NSString *uuid1 =[[NSUUID UUID] UUIDString];
+    [request1 setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
+    [request1 setValue:@"changePassword" forHTTPHeaderField:@"ACTION"];
+    [request1 setValue:@"1.0" forHTTPHeaderField:@"APIVersion"];
+    [request1 setValue:uuid1 forHTTPHeaderField:@"UUID"];
+    [request1 setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
+    [request1 setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:username,@"phoneNum",[self md5:passwordold],@"userPassOld",[self md5:passwordmew],@"userPassNew", nil];
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    
+    NSString *jsonString=nil;
+    jsonString=[writer stringWithObject:parameters];
+    [request1 setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request1 delegate:self];
+    
+    return connection;
+}
+
+//忘记密码
+-(NSURLConnection *)forgetPassword:(NSString*)url username:(NSString*) username usercode:(NSString*) usercode passwordnew:(NSString*) passwordmew
+{
+    NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc]initWithURL:_manager.baseURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request1 setHTTPMethod:@"POST"];
+    
+    NSString *uuid1 =[[NSUUID UUID] UUIDString];
+    [request1 setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
+    [request1 setValue:@"forgetPassword" forHTTPHeaderField:@"ACTION"];
+    [request1 setValue:@"1.0" forHTTPHeaderField:@"APIVersion"];
+    [request1 setValue:uuid1 forHTTPHeaderField:@"UUID"];
+    [request1 setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
+    [request1 setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:username,@"phoneNum",usercode,@"userCode",[self md5:passwordmew],@"userPassNew", nil];
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    
+    NSString *jsonString=nil;
+    jsonString=[writer stringWithObject:parameters];
+    [request1 setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request1 delegate:self];
+    
+    return connection;
+}
+
+- (NSString *)md5:(NSString *)str
+{
+    const char *cStr = [str UTF8String];
+    unsigned char result[32];
+    CC_MD5(cStr, strlen(cStr), result); // This is the md5 call
+    NSString *strMD5 = [NSString stringWithFormat:
+                        @"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+                        result[0], result[1], result[2], result[3],
+                        result[4], result[5], result[6], result[7],
+                        result[8], result[9], result[10], result[11],
+                        result[12], result[13], result[14], result[15],
+                        result[16], result[17],result[18], result[19],
+                        result[20], result[21],result[22], result[23],
+                        result[24], result[25],result[26], result[27],
+                        result[28], result[29],result[30], result[31]
+                        ];
+    return [strMD5 substringWithRange:NSMakeRange(0, 32)];
+}
+
+-(NSString*)alertMessage:(NSString*)code
+{
+    int icode = [code intValue];
+    NSString* strmessage;
+    switch (icode) {
+        case 0:
+            strmessage = @"成功";
+            break;
+        case 1001:
+            strmessage = @"用户/手机号已被注册";
+            break;
+        case 2002:
+            strmessage = @"用户/手机号未注册";
+            break;
+        case 9990:
+            strmessage = @"发送短信失败";
+            break;
+        case 9999:
+            strmessage = @"系统错误";
+            break;
+        case 9991:
+            strmessage = @"短信验证码错误";
+            break;
+        case 2001:
+            strmessage = @"用户/手机号、密码不正确";
+            break;
+        case 2003:
+            strmessage = @"手机验证码不正确";
+            break;
+        case 3001:
+            strmessage = @"头像文件不存在";
+            break;
+        default:
+            break;
+    }
+    
+    return strmessage;
 }
 
 @end
