@@ -10,6 +10,6 @@
 
 @interface MyMessageEditViewController : NaviCommonViewController<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong)NSDictionary* myMessageDic;
+@property (nonatomic, strong)NSMutableDictionary* myMessageDic;
 
 @end

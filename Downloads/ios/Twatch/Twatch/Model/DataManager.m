@@ -1,4 +1,5 @@
 //
+
 //  NetworkManager.m
 //  Twatch
 //
@@ -925,6 +926,8 @@
     return connection;
 }
 
+//获取好友列表
+
 - (NSString *)md5:(NSString *)str
 {
     const char *cStr = [str UTF8String];
@@ -954,6 +957,8 @@
             break;
         case 1001:
             strmessage = @"用户/手机号已被注册";
+        case 1004:
+            strmessage = @"密码错误,请您重新输入";
             break;
         case 2002:
             strmessage = @"用户/手机号未注册";

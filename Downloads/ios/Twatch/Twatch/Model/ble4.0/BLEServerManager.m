@@ -1,4 +1,4 @@
-//
+ //
 //  BLEServerManager.m
 //  Twatch
 //
@@ -62,10 +62,37 @@ static dispatch_queue_t ble_communication_queue() {
         
         // Start up the CBPeripheralManager
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+         //[self performSelector:@selector(startAdvertising) withObject:nil afterDelay:1];
+//        _peripheralManager =
+//        [[CBPeripheralManager alloc] initWithDelegate:self queue:nil
+//                                           options:@{ CBPeripheralManagerOptionRestoreIdentifierKey:
+//                                                          @"com.tfire.ble" }];
+        _peripheralManager.delegate = self;
+        
+//        int lsAuth = (int)[CBPeripheralManager authorizationStatus];
+//        NSString* autjorizestatus;
+//        switch (lsAuth) {
+//            case 0:
+//                autjorizestatus = @"授权状态不确定";
+//                break;
+//            case 1:
+//                autjorizestatus = @"授权状态是受限制的";
+//                break;
+//            case 2:
+//                autjorizestatus = @"授权状态是拒绝的 （未授权）";
+//                break;
+//            case 3:
+//                autjorizestatus = @"授权状态是已授权";
+//                break;
+//            default:
+//                break;
+//        }
+//        NSLog(@"%@",autjorizestatus);
         
         _isSending = NO;
         
         _isWatchConnected = NO;
+         //_isWatchConnected = [[NSUserDefaults standardUserDefaults] boolForKey:@"isWatchConnected"];
         
         _isNotifyCharacter = NO;
         
@@ -74,6 +101,7 @@ static dispatch_queue_t ble_communication_queue() {
         _transferCharacteristic = nil;
         self.isSendFileName = NO;
         self.isResendFile = NO;
+        self.isResendCommand = NO;
         _retryCount = 0;
         
         //从服务器获得天气信息后的通知
@@ -90,12 +118,8 @@ static dispatch_queue_t ble_communication_queue() {
             self.locationManager.delegate = self;
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
             self.locationManager.distanceFilter = 5.0;
-
-            }
-        
-        
-
-
+            
+        }
     }
     return self;
 }
@@ -153,6 +177,7 @@ static dispatch_queue_t ble_communication_queue() {
     {
         _longitude = (int)newLocation.coordinate.longitude;
         _latitude  = (int)newLocation.coordinate.latitude;
+        
        [self sendLocationCommand:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude];
     }
 }
@@ -203,6 +228,7 @@ static dispatch_queue_t ble_communication_queue() {
 {
     
     [self.peripheralManager stopAdvertising];
+    NSLog(@"advertising  stop");
 }
 
 - (void)saveConnectedWatch:(NSDictionary *)responseDic
@@ -217,19 +243,27 @@ static dispatch_queue_t ble_communication_queue() {
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kBLEBindingWatch];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"watch version"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
     
+    //
+    [[NSUserDefaults standardUserDefaults] setBool:_isWatchConnected forKey:@"isWatchConnected"];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
 }
 
 - (BOOL)isBLEConnected
 {
     if (![self isBLEConnectedWithoutAlert]) {
         dispatch_async(dispatch_get_main_queue(), ^(void){
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                            message:@"尚未连接到T-Fire设备，是否进入同步界面连接设备？"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"确定"
+//                                                  otherButtonTitles:@"取消", nil];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"尚未连接到T-Fire设备，是否进入同步界面连接设备？"
+                                                            message:@"尚未连接到T-Fire设备，继续尝试连接设备"
                                                            delegate:self
                                                   cancelButtonTitle:@"确定"
-                                                  otherButtonTitles:@"取消", nil];
+                                                  otherButtonTitles:nil, nil];
             [alert show];
         });
         return NO;
@@ -310,12 +344,15 @@ static dispatch_queue_t ble_communication_queue() {
 }
 
 -(void)isSendBoundleCommand
+
 {
     //如果绑定，也就是收到bound watch response，则停定时器
     if(_isWatchConnected)
     {
         NSLog(@"timer stop");
         [_timer invalidate];
+        
+        //[self sendFileReceive];
         
         return;
     }
@@ -330,12 +367,22 @@ static dispatch_queue_t ble_communication_queue() {
 {
     _isWatchConnected = YES;
     [self saveConnectedWatch:responseDic];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
-    [self stopAdvertising];
+    
+    //存储绑定状态
+    [[NSUserDefaults standardUserDefaults] setBool:_isWatchConnected forKey:@"isWatchConnected"];
     
     //停止重绑定时器
-    //[_timer invalidate];
+    [_timer invalidate];
+
+    [self stopAdvertising];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
+    
+//    //停止重绑定时器
+//    [_timer invalidate];
        [ViewUtils showToast:@"已经与手表建立连接"];
+    
+    
     
     //蓝牙绑定成功后开始定时器来获取当前的经纬度
     [_locationManager startUpdatingLocation];
@@ -347,6 +394,13 @@ static dispatch_queue_t ble_communication_queue() {
                                                       userInfo:nil
                                                        repeats:YES];
     }
+}
+
+-(void)UnBoundWatchRespnse:(NSDictionary *)responseDic
+{
+    //存储绑定状态
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isWatchConnected"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBLEChangedNotification object:nil];
 }
 
 - (void)sendUnboundCommand
@@ -362,13 +416,16 @@ static dispatch_queue_t ble_communication_queue() {
     self.writeblock = ^(void){
         NSLog(@"send finish");
         
-        [weakSelf removeConnectedWatch];
+        //[weakSelf removeConnectedWatch];
         weakSelf.isWatchConnected = NO;
 //        [weakSelf.centralManager cancelPeripheralConnection:weakSelf.connectedPeripheral];
         weakSelf.writeblock = nil;
         weakSelf = nil;
     };
-    [self sendStrDataToBle:@"{ 'command': 16, 'content': '{}' }"];
+    //[self sendStrDataToBle:@"{ 'command': 16, 'content': '{}' }"];
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:16],@"command",@"{}",@"content", nil];
+     [self sendStrDataToBle:[writer stringWithObject:dic]];
     
     //停止定位经纬度，停止定时器
     [_locationTimer invalidate];
@@ -602,18 +659,13 @@ static dispatch_queue_t ble_communication_queue() {
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
     
-    [self sendStrDataToBle:[writer stringWithObject:responseDic]];
+     [self sendStrDataToBle:[writer stringWithObject:responseDic]];
     
     
 }
 
 
-
-
-
-
 #pragma mark - Peripheral Methods
-
 
 
 /** Required protocol method.  A full app should take care of all the possible states,
@@ -626,8 +678,22 @@ static dispatch_queue_t ble_communication_queue() {
         return;
     }
     
-    // We're in CBPeripheralManagerStatePoweredOn state...
-    NSLog(@"self.peripheralManager powered on.");
+    NSString *state = nil;
+    switch (peripheral.state) {
+        case CBPeripheralManagerStateResetting:
+            state = @"resetting"; break;
+        case CBPeripheralManagerStateUnsupported:
+            state = @"unsupported"; break;
+        case CBPeripheralManagerStateUnauthorized:
+            state = @"unauthorized"; break;
+        case CBPeripheralManagerStatePoweredOff:
+            state = @"off"; break;
+        case CBPeripheralManagerStatePoweredOn:
+            state = @"on"; break;
+        default:
+            state = @"unknown"; break;
+    }
+    NSLog(@"peripheralManagerDidUpdateState:%@ to %@ (%d)", peripheral, state, peripheral.state);
     
     // ... so build our service.
     
@@ -684,6 +750,10 @@ static dispatch_queue_t ble_communication_queue() {
     if(error==nil){
         NSLog(@">>>发送advertising成功");
     }
+    else
+    {
+        NSLog(@">>>发送失败：%@",error);
+    }
 }
 
 /** Catch when someone subscribes to our characteristic, then start sending them data
@@ -697,6 +767,11 @@ static dispatch_queue_t ble_communication_queue() {
     else
     {
         NSLog(@"OK");
+    }
+    
+    if (characteristic.value.length>central.maximumUpdateValueLength) {
+        NSLog(@"发送数据超出了蓝牙中心传输长度");
+        return;
     }
     
     NSLog(@"Central subscribed to characteristic: %@",characteristic.UUID);
@@ -737,6 +812,7 @@ static dispatch_queue_t ble_communication_queue() {
 
     [self removeConnectedWatch];
     
+    
     //断开连接后，停止获取当前经纬度，停止定时器
     [_locationTimer invalidate];
 
@@ -763,6 +839,9 @@ static dispatch_queue_t ble_communication_queue() {
         request.value = [self.notifyCharacteristic.value
                          subdataWithRange:NSMakeRange(request.offset,
                                                       self.notifyCharacteristic.value.length - request.offset)];
+        
+//        request.value = self.notifyCharacteristic.value;
+        
         [self.peripheralManager respondToRequest:request withResult:CBATTErrorSuccess];
         
     }
@@ -782,30 +861,37 @@ static dispatch_queue_t ble_communication_queue() {
         if([request.characteristic.UUID isEqual:self.notifyCharacteristic.UUID])
         {
             [receivedata appendData: request.value];
-//            NSLog(@"receive data is %@", receivedata);
-//            NSLog(@"receive value is %@", request.value);
+            NSLog(@"receive data is %@", receivedata);
+            NSLog(@"receive value is %@", request.value);
         }
     }
     //int buf[[receivedata length]];
     void *buf = (void*)[receivedata bytes];
+    
+    NSLog(@"%p", buf);
+    
+
+    
     int len = [receivedata length];
     NSString *strForIsOk = [[NSString alloc] initWithBytes:buf length:1 encoding:NSUTF8StringEncoding];
-    if([strForIsOk intValue] == 0)
-    {
-        [receivedata getBytes:buf range:NSMakeRange(2, len - 2)];
-        NSString * response = [[NSString alloc] initWithBytes:buf length:len - 2 encoding:NSUTF8StringEncoding];
-//        NSLog(@"the response is %@",response);
-        NSError *error = nil;
-       NSDictionary *responseDic = [NSJSONSerialization  JSONObjectWithData:[response dataUsingEncoding:NSUTF8StringEncoding]  options:NSJSONReadingMutableLeaves  error:&error];
-//        NSLog(@"the dictionary is %@",responseDic);
-//        NSDictionary *responseDic = [response JSONValue];
+    [receivedata getBytes:buf range:NSMakeRange(2, len - 2)];
+    NSString * response = [[NSString alloc] initWithBytes:buf length:len - 2 encoding:NSUTF8StringEncoding];
+    //        NSLog(@"the response is %@",response);
+    NSError *error = nil;
+    NSDictionary *responseDic = [NSJSONSerialization  JSONObjectWithData:[response dataUsingEncoding:NSUTF8StringEncoding]  options:NSJSONReadingMutableLeaves  error:&error];
+    NSLog(@"the dictionary is %@",responseDic);
+    
+    if (self.transferDataType == kTransferDataType_String) {
+        NSLog(@"string");
+        
+        //        NSDictionary *responseDic = [response JSONValue];
         NSString *receiveCMD = [NSString stringWithFormat:@"%@",[responseDic objectForKey:@"command" ]] ;
-//        NSLog(@"the command is is is %@", receiveCMD);
+        NSLog(@"the command is is is %@", receiveCMD);
         NSString *receiveType = [NSString stringWithFormat:@"%@",[responseDic objectForKey:@"type" ]];
         if ( ![receiveCMD isEqualToString:@"(null)" ]    )
         {
             NSLog(@"the command is %@",receiveCMD);
-
+            
             if([receiveCMD isEqualToString:@"9876543"])
             {
                 [self boundWatchResponse:responseDic];
@@ -814,7 +900,34 @@ static dispatch_queue_t ble_communication_queue() {
             {
                 [self findMobilePhone:responseDic];
             }
-            
+            else if([receiveCMD isEqualToString:@"27"])
+            {
+                [self dealVibrate:responseDic];
+            }
+            else if ([receiveCMD isEqualToString:@"28"])
+            {
+                [self dealInverseColor:responseDic];
+            }
+            else if([receiveCMD isEqualToString:@"20"])
+            {
+                [self setWatchSleepTime:responseDic];
+            }
+            else if([receiveCMD isEqualToString:@"22"])
+            {
+                [self setPowerOnWatch:responseDic];
+            }
+            else if([receiveCMD isEqualToString:@"23"])
+            {
+                [self setPowerOffWatch:responseDic];
+            }
+            else if([receiveCMD isEqualToString:@"21"])
+            {
+                [self sendWatchTime:responseDic];
+            }
+            else if ([receiveCMD isEqualToString:@"24"])
+            {
+                [self setWatchLanguage:responseDic];
+            }
             else
             {
                 NSLog(@"unrespected commond from watch");
@@ -824,7 +937,7 @@ static dispatch_queue_t ble_communication_queue() {
         if ( ![receiveType isEqualToString:@"(null)" ]  )
         {
             NSLog(@"the type is %@",receiveType);
-
+            
             if ([ receiveType isEqualToString:@"5"])
             {
                 [self getWheatherInfo:responseDic];
@@ -835,6 +948,19 @@ static dispatch_queue_t ble_communication_queue() {
             }
         }
     }
+    else if(self.transferDataType == kTransferDataType_File)
+    {
+        NSLog(@"file");
+        [self ReceiveFiledata:responseDic];
+    }
+    else if (self.transferDataType == kTransferDataType_version)
+    {
+        
+    }
+//    if([strForIsOk intValue] == 0)
+//    {
+//        
+//    }
 
 }
 
@@ -867,6 +993,15 @@ static dispatch_queue_t ble_communication_queue() {
         [self sendfileName];
     }
 }
+
+//实现恢复状态
+- (void)peripheralManager:(CBPeripheralManager *)peripheral willRestoreState:(NSDictionary *)dict
+{
+    NSArray *peripherals =
+    dict[CBCentralManagerRestoredStatePeripheralsKey];
+    NSLog(@"Sent: %@",peripherals);
+}
+
 
 
 #pragma Mark send data through peripheral
@@ -972,7 +1107,9 @@ static dispatch_queue_t ble_communication_queue() {
         // Reset the index
         self.sendDataIndex = 0;
         
+        //初始化发送数据
         self.dataToSend = [str dataUsingEncoding:NSUTF8StringEncoding];
+        
         self.sendDataSize = self.dataToSend.length;
         
         // Send it
@@ -990,38 +1127,123 @@ static dispatch_queue_t ble_communication_queue() {
     });
 }
 
+//- (void)sendData
+//{
+//    if (self.sendDataIndex >= self.sendDataSize)  return;
+//    BOOL didSend = YES;
+//    
+//    if (self.sendDataIndex >= self.sendDataSize && self.isResendCommand == NO)
+//    {
+//        self.isSending = NO;
+//        didSend = NO;
+//        return;
+//    }
+//    
+//    while (didSend) {
+//        
+//        // Make the next chunk
+//        
+//        // Work out how big it should be
+//        NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
+//        
+//        // Can't be longer than 20 bytes
+//        if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
+//        
+//        // Copy out the data we want
+//        NSData *chunk = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
+//        
+//        NSString *result = [[NSString alloc] initWithData:chunk  encoding:NSUTF8StringEncoding];
+//        NSLog(@"data:%@", result);
+//        
+//        NSMutableData *tempData = [[NSMutableData alloc] initWithData:[self getFirstByte]];
+//        [tempData appendData:chunk];
+//        
+//        // Send it
+//        didSend = [self.peripheralManager updateValue:tempData forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
+//        
+//        // If it didn't work, drop out and wait for the callback
+//        if (!didSend) {
+//            return;
+//        }
+//        
+//        // It did send, so update our index
+//        self.sendDataIndex += amountToSend;
+//        
+//        // Was it the last one?
+//        if (self.sendDataIndex >= self.dataToSend.length) {
+//            
+//            // It was
+//            didSend = NO;
+//            self.isSending = NO;
+//            self.dataToSend = nil;
+//            
+//            NSLog(@"send command success");
+//            
+//            
+//            if (self.writeblock) {
+//                self.writeblock();
+//            }
+//            
+//            return;
+//        }
+//    }
+//}
+
 - (void)sendData
 {
-    if (self.sendDataIndex >= self.sendDataSize)  return;
+    if (self.sendDataIndex >= self.sendDataSize && self.isSending == NO)  return;
     BOOL didSend = YES;
+    
+    if (self.sendDataIndex >= self.sendDataSize && self.isResendCommand == NO)
+    {
+        self.isSending = NO;
+        didSend = NO;
+        return;
+    }
+    
+    NSMutableData *tempData = nil;//为了防止发送失败，保存上次发送的包
     while (didSend) {
         
         // Make the next chunk
+
         
-        // Work out how big it should be
-        NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
-        
-        // Can't be longer than 20 bytes
-        if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
-        
-        // Copy out the data we want
-        NSData *chunk = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
-        NSMutableData *tempData = [[NSMutableData alloc] initWithData:[self getFirstByte]];
-        [tempData appendData:chunk];
-        
+        //如果是重发，则不需要读文件，直接从上次发送失败保存的self.storeData中获取数据重新发送
+        if (self.isResendCommand == NO )
+        {
+
+            // Work out how big it should be
+            NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
+            
+            // Can't be longer than 20 bytes
+            if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
+            // Copy out the data we want
+            NSData *chunk = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
+            
+            NSString *result = [[NSString alloc] initWithData:chunk  encoding:NSUTF8StringEncoding];
+            NSLog(@"data:%@", result);
+            
+            tempData = [[NSMutableData alloc] initWithData:[self getFirstByte]];
+            [tempData appendData:chunk];
+            
+            // It did send, so update our index
+            self.sendDataIndex += amountToSend;
+        }
+        else
+        {
+            tempData = self.storeData;
+        }
         
         // Send it
         didSend = [self.peripheralManager updateValue:tempData forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
         
         // If it didn't work, drop out and wait for the callback
         if (!didSend) {
+            
+            //设置重发标记，记录要重发的包
+            self.isResendCommand = YES;
+            self.storeData = [[NSMutableData alloc] initWithData:tempData];
             return;
         }
-        
-        
-        
-        // It did send, so update our index
-        self.sendDataIndex += amountToSend;
         
         // Was it the last one?
         if (self.sendDataIndex >= self.dataToSend.length) {
@@ -1029,20 +1251,19 @@ static dispatch_queue_t ble_communication_queue() {
             // It was
             didSend = NO;
             self.isSending = NO;
-            self.dataToSend = nil;
-            NSLog(@"send command success");
-            
+            self.storeData = nil;
             
             if (self.writeblock) {
                 self.writeblock();
             }
-            
+            self.dataToSend = nil;
+            self.isResendCommand = NO;
             return;
         }
+        self.isResendCommand = NO;
     }
-    
-    
 }
+
 - (void)sendfileName
 {
     NSLog(@"come to send fileName");
@@ -1119,7 +1340,7 @@ static dispatch_queue_t ble_communication_queue() {
     }
     self.fileNameIndex = 0;
     
-    
+    NSLog(@"发送文件。。。");
     
     NSMutableData *tempData = nil;//为了防止发送失败，保存上次发送的包
     while (didSend) {
@@ -1338,6 +1559,49 @@ static dispatch_queue_t ble_communication_queue() {
 }
 
 
+- (void)sendFileReceive
+{
+    [self sendFileData];
+}
+
+-(void)ReceiveFiledata:(NSDictionary*) dic
+{
+    //获取程序的Home目录
+    NSString *homeDirectory = NSHomeDirectory();
+    NSLog(@"Home path:%@", homeDirectory);
+   
+    //获取document目录
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [paths objectAtIndex:0];
+    NSLog(@"document path:%@", path);
+    
+    //获取Cache目录
+    NSArray *cachepaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachepath = [cachepaths objectAtIndex:0];
+    NSLog(@"Cache path:%@", cachepath);
+    
+    //获取Liabaray目录
+    NSArray *librarypaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *libararypath = [librarypaths objectAtIndex:0];
+    NSLog(@"libarary path:%@", libararypath);
+    
+    //写入文件
+    NSArray *writepaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [writepaths objectAtIndex:0];
+    if (!docDir) {
+        NSLog(@"Documents 目录未找到");
+    }
+    NSArray *array = [[NSArray alloc] initWithObjects:@"内容",@"content",nil];
+    NSString *filePath = [docDir stringByAppendingPathComponent:@"testFile.txt"];
+    [array writeToFile:filePath atomically:YES];
+    
+    //读取文件
+    NSArray *readpaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *textDir = [readpaths objectAtIndex:0];
+    NSString *readfilePath = [textDir stringByAppendingPathComponent:@"testFile.txt"];
+    NSArray *readarray = [[NSArray alloc]initWithContentsOfFile:readfilePath];
+    NSLog(@"%@", readarray);
+}
 
 
 - (NSData *)getFirstByte
@@ -1439,30 +1703,22 @@ static dispatch_queue_t ble_communication_queue() {
         self.writeblock = ^(void){
             block();
             weakSelf.writeblock = nil;
+            weakSelf.isSending = NO;
             weakSelf = nil;
         };
     }
     [self sendStrDataToBle:[writer stringWithObject:dic]];
 }
 
-- (void)sendWatchSleepTime
+- (void)setWatchSleepTime:(NSDictionary*)dic
 {
-    if (![self isBLEConnected]) {
-        return;
-    }
-    if ([self isSendingData]) {
-        return;
-    }
-    self.isSending = YES;
+    NSString* sleepTime = [dic objectForKey:@"value"];
     
-    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:20],
-                          @"content":@{}};
-    [self sendStrDataToBle:[writer stringWithObject:dic]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"setsleeptime" object:sleepTime];
 }
 
 //手表时间
-- (void)sendWatchTime:(NSString*) autoTime date:(NSDate *) date timeZome:(NSString*) timeZone istwentyfour:(NSString*)istwentyfour dateformat:(NSString*)dateformat finish:(void (^)(void))block
+- (void)sendWatchTime:(NSString*) autoTime date:(NSString *) date timeZome:(NSString*) timeZone istwentyfour:(NSString*)istwentyfour dateformat:(NSString*)dateformat finish:(void (^)(void))block
 {
     if (![self isBLEConnected]) {
         return;
@@ -1473,17 +1729,27 @@ static dispatch_queue_t ble_communication_queue() {
     self.isSending = YES;
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:21],
-                       @"content":@{@"value":@{@"autotime": autoTime,@"time": date,@"tomezone": timeZone,@"24hour": istwentyfour,@"dateformat" :dateformat}}};
+    NSDictionary* propertydic =  [NSDictionary dictionaryWithObjectsAndKeys:autoTime,@"autotime",date,@"time",timeZone,@"tomezone",istwentyfour,@"24hour",dateformat,@"dateformat", nil];
+    
+    NSDictionary* valuedic = [NSDictionary dictionaryWithObjectsAndKeys:propertydic,@"value", nil];
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:21],@"command",
+                         valuedic,@"content", nil];
     if (block) {
         __block BLEServerManager *weakSelf = self;
         self.writeblock = ^(void){
             block();
             weakSelf.writeblock = nil;
+            weakSelf.isSending = NO;
             weakSelf = nil;
         };
     }
     [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+-(void)sendWatchTime:(NSDictionary*)dic
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"setwatchtime" object:dic];
 }
 
 //手表自动开机
@@ -1498,21 +1764,33 @@ static dispatch_queue_t ble_communication_queue() {
     self.isSending = YES;
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:22],
-                          @"content":@{@"value":@{
-                              @"enabled":enabled,
-                              @"hour":hour,
-                              @"minute" :minute
-                          }}};
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:22],@"command",[NSDictionary dictionaryWithObjectsAndKeys:[NSDictionary dictionaryWithObjectsAndKeys:enabled,@"enabled",hour,@"hour",minute,@"minute", nil],@"value", nil],@"content", nil];
+    
     if (block) {
         __block BLEServerManager *weakSelf = self;
         self.writeblock = ^(void){
             block();
             weakSelf.writeblock = nil;
+            weakSelf.isSending = NO;
             weakSelf = nil;
         };
     }
     [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+-(void)getPowerOnWatch
+{
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:22],
+                          @"content":@{@"value": @""}};
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+-(void)setPowerOnWatch:(NSDictionary*)dic
+{
+    NSDictionary* dicValue = [dic objectForKey:@"value"];
+    //NSString* strVirbrate = [dicValue objectForKey:@"enabled"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PowerOnWatch" object:dicValue];
 }
 
 //手表自动关机
@@ -1527,12 +1805,7 @@ static dispatch_queue_t ble_communication_queue() {
     self.isSending = YES;
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:23],
-                          @"content":@{@"value":@{
-                              @"enabled":enabled,
-                              @"hour":hour,
-                              @"minute" :minute
-                          }}};
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:23],@"command",[NSDictionary dictionaryWithObjectsAndKeys:[NSDictionary dictionaryWithObjectsAndKeys:enabled,@"enabled",hour,@"hour",minute,@"minute", nil],@"value", nil],@"content", nil];
     if (block) {
         __block BLEServerManager *weakSelf = self;
         self.writeblock = ^(void){
@@ -1542,6 +1815,21 @@ static dispatch_queue_t ble_communication_queue() {
         };
     }
     [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+-(void)getPowerOffWatch
+{
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:23],
+                          @"content":@{@"value": @""}};
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+-(void)setPowerOffWatch:(NSDictionary*)dic
+{
+    NSDictionary* dicValue = [dic objectForKey:@"value"];
+    //NSString* strVirbrate = [dicValue objectForKey:@"enabled"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PowerOffWatch" object:dicValue];
 }
 
 //手表语言
@@ -1563,10 +1851,29 @@ static dispatch_queue_t ble_communication_queue() {
         self.writeblock = ^(void){
             block();
             weakSelf.writeblock = nil;
+            weakSelf.isSending = NO;
             weakSelf = nil;
         };
     }
     [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+-(void)setWatchLanguage:(NSDictionary*) dic
+{
+    NSString* language = [dic objectForKey:@"value"];
+    if ([language isEqualToString:@"zh_CN"]) {
+        language = @"中文简体";
+    }
+    else if([language isEqualToString:@"en_US"])
+    {
+        language = @"英文";
+    }
+    else if([language isEqualToString:@"cn_TW"])
+    {
+        language = @"中文繁体";
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"watchlanguage" object:language];
 }
 
 //手表是否休眠
@@ -1588,11 +1895,13 @@ static dispatch_queue_t ble_communication_queue() {
         self.writeblock = ^(void){
             block();
             weakSelf.writeblock = nil;
+            weakSelf.isSending = NO;
             weakSelf = nil;
         };
     }
     [self sendStrDataToBle:[writer stringWithObject:dic]];
 }
+
 
 //启动app
 - (void)sendLaunchApp:(NSString *) launchapp finish:(void (^)(void))block
@@ -1613,6 +1922,7 @@ static dispatch_queue_t ble_communication_queue() {
         self.writeblock = ^(void){
             block();
             weakSelf.writeblock = nil;
+            weakSelf.isSending = NO;
             weakSelf = nil;
         };
     }
@@ -1630,18 +1940,52 @@ static dispatch_queue_t ble_communication_queue() {
     }
     self.isSending = YES;
     
+//    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+//    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:27],
+//                          @"content":@{@"value":@{@"enabled":vibrate}}};
+    
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:27],
-                          @"content":@{@"value":@{@"enabled":vibrate}}};
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:23],@"command",[NSDictionary dictionaryWithObjectsAndKeys:[NSDictionary dictionaryWithObjectsAndKeys:vibrate,@"enabled", nil],@"value", nil],@"content", nil];
     if (block) {
         __block BLEServerManager *weakSelf = self;
         self.writeblock = ^(void){
             block();
             weakSelf.writeblock = nil;
+            weakSelf.isSending = NO;
             weakSelf = nil;
         };
     }
     [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+-(void)getIsVibrate:(void (^)(void))block;
+{
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+//    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:27],
+//                          @"content":@{@"value": @""}};
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:27],@"command",[NSDictionary dictionaryWithObjectsAndKeys:@"{}",@"value", nil],@"content", nil];
+    
+    self.isSending = YES;
+     [self sendStrDataToBle:[writer stringWithObject:dic]];
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf.isSending = NO;
+            weakSelf = nil;
+        };
+    }
+    
+   
+    
+}
+
+-(void)dealVibrate:(NSDictionary*)dic
+{
+    NSDictionary* dicValue = [dic objectForKey:@"value"];
+    //NSString* strVirbrate = [dicValue objectForKey:@"enabled"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"watchisvibrate" object:dicValue];
 }
 
 //是否反色
@@ -1656,16 +2000,44 @@ static dispatch_queue_t ble_communication_queue() {
     self.isSending = YES;
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:28],@"content":@{@"value":@{@"enabled":inverse}}};
+    //NSDictionary *dic = @{@"command":[NSNumber numberWithInt:28],@"content":@{@"value":@{@"enabled":inverse}}};
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:23],@"command",[NSDictionary dictionaryWithObjectsAndKeys:[NSDictionary dictionaryWithObjectsAndKeys:inverse,@"enabled", nil],@"value", nil],@"content", nil];
     if (block) {
         __block BLEServerManager *weakSelf = self;
         self.writeblock = ^(void){
             block();
             weakSelf.writeblock = nil;
+            weakSelf.isSending = NO;
             weakSelf = nil;
         };
     }
     [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+-(void)getInverseColor:(void (^)(void))block;
+{
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+//    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:28],
+//                          @"content":@{@"value": @""}};
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:28],@"command",[NSDictionary dictionaryWithObjectsAndKeys:@"{}",@"value", nil],@"content", nil];
+    self.isSending = YES;
+    if (block) {
+        __block BLEServerManager *weakSelf = self;
+        self.writeblock = ^(void){
+            block();
+            weakSelf.writeblock = nil;
+            weakSelf.isSending = NO;
+            weakSelf = nil;
+        };
+    }
+    
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+}
+
+-(void)dealInverseColor:(NSDictionary*)dic
+{
+    NSDictionary* dicValue = [dic objectForKey:@"value"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"watchisinversecolor" object:dicValue];
 }
 
 //是否音频即时通信
@@ -1687,6 +2059,7 @@ static dispatch_queue_t ble_communication_queue() {
         self.writeblock = ^(void){
             block();
             weakSelf.writeblock = nil;
+            weakSelf.isSending = NO;
             weakSelf = nil;
         };
     }
@@ -1703,17 +2076,11 @@ static dispatch_queue_t ble_communication_queue() {
         return;
     }
     self.isSending = YES;
-    __block BLEServerManager *weakSelf = self;
-    self.writeblock = ^(void){
-        NSLog(@"send finish");
-        
-        [weakSelf removeConnectedWatch];
-        weakSelf.isWatchConnected = NO;
-        //        [weakSelf.centralManager cancelPeripheralConnection:weakSelf.connectedPeripheral];
-        weakSelf.writeblock = nil;
-        weakSelf = nil;
-    };
-    [self sendStrDataToBle:@"{ 'command': 31, 'content': '{value:""}' }"];
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSDictionary *dic = @{@"command":[NSNumber numberWithInt:31],
+                          @"content":@{@"value": @""}};
+    [self sendStrDataToBle:[writer stringWithObject:dic]];
+    self.isSending = NO;
 }
 
 @end

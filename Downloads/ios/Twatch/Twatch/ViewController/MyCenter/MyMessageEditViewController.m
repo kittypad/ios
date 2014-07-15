@@ -12,6 +12,9 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "DataManager.h"
 #import <SBJson.h>
+#import "AFHTTPRequestOperationManager.h"
+#import "NetDatamanager.h"
+#import <AFNetworking.h>
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 
@@ -34,6 +37,9 @@
     UILabel* sexLabel;
     BOOL currentEdit;
     int ieditCount;
+    NSString* imageName;
+    
+    NSURLConnection* updateConnection;
 }
 
 @property (nonatomic, strong) UIImageView *portraitImageView;
@@ -70,10 +76,11 @@
         NSURL *portraitUrl = [NSURL URLWithString:@"http://photo.l99.com/bigger/31/1363231021567_5zu910.jpg"];
         UIImage *protraitImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:portraitUrl]];
         [photo setImage:protraitImg];
+        
     }
     else
     {
-        [photo setImage:[UIImage imageNamed:[self.myMessageDic objectForKey:@"iamge"]]];
+        [photo setImage:photoimage];
     }
     
     [photo.layer setCornerRadius:(_portraitImageView.frame.size.height/2)];
@@ -120,6 +127,8 @@
 -(void)setUserInformation:(NSNotification*) notification
 {
     self.myMessageDic = notification.object;
+    imageName = [self.myMessageDic objectForKey:@"Avatar"];
+    photoimage = [UIImage imageWithData:[self.myMessageDic objectForKey:@"avatarData"]];
 }
 
 -(void)dismissKeyboard {
@@ -168,17 +177,18 @@
         if (ieditCount>0) {
             ieditCount++;
             
-            if ([self.myMessageDic objectForKey:@"Avatar"]==nil||[[self.myMessageDic objectForKey:@"Avatar"] isEqualToString:@""]) {
-                [self.myMessageDic setValue:@"http://photo.l99.com/bigger/31/1363231021567_5zu910.jpg" forKey:@"Avatar"];
-            }
-            
+            [self.myMessageDic setValue:imageName forKey:@"Avatar"];
             [self.myMessageDic setValue:nickname.text forKey:@"Nickname"];
             [self.myMessageDic setValue:hobby.text forKey:@"Hobbies"];
             [self.myMessageDic setValue:email.text forKey:@"Email"];
             [self.myMessageDic setValue:declaration.text forKey:@"Signature"];
             [self.myMessageDic setValue:age.text forKey:@"Age"];
             [self.myMessageDic setValue:sex forKey:@"Gender"];
-            [self editMyMessage:HTTPBASE_URL para:self.myMessageDic];
+            
+            [[NetDatamanager sharedManager] editMyMessage:self.myMessageDic success:^(id response, NSString* str){
+                
+            } failure:^(NSError* error){
+            }];
         }
         
         [editBtn setTitle:nil forState:UIControlStateNormal];
@@ -284,16 +294,25 @@
         {
             nickname = [[UITextField alloc] initWithFrame:CGRectMake(60, 0, 260, 40)];
             nickname.enabled = NO;
-            nickname.text = [self.myMessageDic objectForKey:@"Nickname"];
+            NSString* strNickName = [self.myMessageDic objectForKey:@"Nickname"];
+            if (strNickName==nil || [strNickName isEqualToString:@""]) {
+                nickname.placeholder = @"您还没有昵称";
+            }
+            else
+            {
+                nickname.text = strNickName;
+            }
             [cell addSubview:nickname];
             cell.textLabel.text = @"昵称";
             break;
         }
         case 2:
         {
-            age = [[UITextField alloc] initWithFrame:CGRectMake(60, 0, 260, 40)];\
+            age = [[UITextField alloc] initWithFrame:CGRectMake(60, 0, 260, 40)];
             age.enabled = NO;
-            age.text = [self.myMessageDic objectForKey:@"Age"];
+            NSInteger iage = [[self.myMessageDic objectForKey:@"Age"] integerValue];
+            age.text = [NSString stringWithFormat:@"%d",iage];
+            age.keyboardType = UIKeyboardTypeNumberPad;
             [cell addSubview:age];
             cell.textLabel.text = @"年龄";
             break;
@@ -301,7 +320,14 @@
         case 3:
         {
             hobby = [[UITextField alloc] initWithFrame:CGRectMake(60, 0, 200, 40)];
-            hobby.text = [self.myMessageDic objectForKey:@"Hobbies"];
+            NSString* strhobby = [self.myMessageDic objectForKey:@"Hobbies"];
+            if ([strhobby isEqualToString:@""] || strhobby==nil) {
+                hobby.placeholder = @"您还没有爱好";
+            }
+            else
+            {
+                hobby.text = strhobby;
+            }
             hobby.enabled = NO;
             [cell addSubview:hobby];
             cell.textLabel.text = @"爱好";
@@ -320,7 +346,14 @@
         {
             email = [[UITextField alloc] initWithFrame:CGRectMake(60, 0, 260, 40)];
             email.enabled = NO;
-            email.text = [self.myMessageDic objectForKey:@"Email"];
+            NSString* stremail = [self.myMessageDic objectForKey:@"Email"];
+            if ([stremail isEqualToString:@""] || stremail==nil) {
+                email.placeholder =@"您还没有邮箱";
+            }
+            else
+            {
+                email.text = stremail;
+            }
             email.keyboardType = UIKeyboardTypeEmailAddress;
             [cell addSubview:email];
             cell.textLabel.text = @"邮箱";
@@ -330,7 +363,14 @@
         {
             declaration = [[UITextField alloc] initWithFrame:CGRectMake(60, 0, 260, 40)];
             declaration.enabled = NO;
-            declaration.text = [self.myMessageDic objectForKey:@"Signature"];
+            NSString* strDeclaration = [self.myMessageDic objectForKey:@"Signature"];
+            if ([strDeclaration isEqualToString:@""] || strDeclaration==nil) {
+                declaration.placeholder =@"您还没有宣言";
+            }
+            else
+            {
+                declaration.text = strDeclaration;
+            }
             [cell addSubview:declaration];
             cell.textLabel.text = @"宣言";
             break;
@@ -390,6 +430,59 @@
     self.portraitImageView.image = editedImage;
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
         // TO DO
+        //[self LoadPhoto:@"http://www.yugong-tech.com/up_avatar.php" photo:editedImage];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // 设置时间格式
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        
+        NSString *fileName = [NSString stringWithFormat:@"%@%@.jpg",[self.myMessageDic objectForKey:@"userName"], str];
+        [[NetDatamanager sharedManager] uploadPhoto:[self.myMessageDic objectForKey:@"userName"] iamge:editedImage filename:fileName success:^(id response){
+            NSLog(@"response:%@", response);
+        } failure:^(NSError* error){
+        
+        }];
+        
+        NSData* imageData = UIImageJPEGRepresentation(editedImage, 1);
+        [self.myMessageDic setValue:fileName forKey:@"Avatar"];
+        [self.myMessageDic setObject:imageData forKey:@"avatarData"];
+        
+        NSMutableDictionary* editdic = [[NSMutableDictionary alloc] initWithDictionary:self.myMessageDic];
+        [editdic removeObjectForKey:@"avatarData"];
+        
+        [[NetDatamanager sharedManager] editMyMessage:editdic success:^(id response, NSString* str){
+        
+        } failure:^(NSError* error){
+        }];
+
+        
+//        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//        manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+//        
+//        [manager.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
+//        [manager.requestSerializer setValue:@"Accept" forHTTPHeaderField:@"application/json"];
+//        NSData* imageData = UIImageJPEGRepresentation(editedImage, 1);
+//        [manager.requestSerializer setValue:[self.myMessageDic objectForKey:@"userName"] forHTTPHeaderField:@"userName"];
+//        
+//        [manager POST:@"http://www.yugong-tech.com/up_avatar.php" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//            
+//            [formData appendPartWithFileData:imageData
+//                                        name:@"uploadedfile"
+//                                    fileName:fileName mimeType:@"image/jpeg"];
+//            
+//            // etc.
+//        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            NSLog(@"Response: %@", responseObject);
+//            NSLog(@"Response: %@", operation.response.allHeaderFields);
+//            [self.myMessageDic setValue:fileName forKey:@"Avatar"];
+//            [self.myMessageDic setObject:imageData forKey:@"avatarData"];
+//            [self editMyMessage:HTTPBASE_URL para:self.myMessageDic];
+//            
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            NSLog(@"Error: %@", error);
+//        }];
     }];
 }
 
@@ -581,75 +674,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//修改个人信息
--(NSURLConnection*)editMyMessage:(NSString*)url para:(NSDictionary*) para
-{
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    [request setHTTPMethod:@"POST"];
-    
-    NSString *uuid =[[NSUUID UUID] UUIDString];
-    [request setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
-    [request setValue:@"changeUserProfile" forHTTPHeaderField:@"ACTION"];
-    [request setValue:@"1.0" forHTTPHeaderField:@"APIVersion"];
-    [request setValue:uuid forHTTPHeaderField:@"UUID"];
-    [request setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    
-    NSString *jsonString=nil;
-    jsonString=[writer stringWithObject:para];
-    [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    
-    return connection;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
-    NSLog(@"%@",[res allHeaderFields]);
-    NSDictionary* allHeaderFields = [res allHeaderFields];
-    NSString* resultcode = [allHeaderFields objectForKey:@"Result-Code"];
-    
-    if (![resultcode isEqualToString:@"0"]) {
-        MBProgressHUD *hud= [[MBProgressHUD alloc] initWithView:self.view];
-        hud.labelText = [[DataManager sharedManager] alertMessage:resultcode];
-        hud.mode = MBProgressHUDModeText;
-        [self.view addSubview:hud];
-        [hud show:YES];
-        [hud hide:YES afterDelay:2];
-    }
-}
-
-//接收到服务器传输数据的时候调用，此方法根据数据大小执行若干次
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSString *result = [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
-    NSLog(@"data:%@",result);
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"gobacktologin" object:self.myMessageDic];
-}
-
-//数据传完之后调用此方法
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-}
-//网络请求过程中，出现任何错误（断网，连接超时等）会进入此方法
--(void)connection:(NSURLConnection *)connection
- didFailWithError:(NSError *)error
-{
-    MBProgressHUD *hud= [[MBProgressHUD alloc] initWithView:self.view];
-    hud.labelText = [error localizedDescription];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    [self.view addSubview:hud];
-    [hud show:YES];
-    [hud hide:YES afterDelay:2];
-    NSLog(@"%@",[error localizedDescription]);
-}
-
 
 /*
 #pragma mark - Navigation

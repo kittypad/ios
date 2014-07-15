@@ -10,7 +10,7 @@
 
 @interface MyCenterManagerViewController : NaviCommonViewController<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong)NSDictionary* myMessageDic;
+@property (nonatomic, strong)NSMutableDictionary* myMessageDic;
 @property (nonatomic) NSString* userNametext;
 
 @end

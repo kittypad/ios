@@ -50,11 +50,20 @@
 {
     UILabel* sleepLabel;    //休眠时间
     UILabel* powerTimeLabel;    //定时开关机
+    BOOL bBound;
+    NSString* PowerOntext;
+    NSString* PowerOfftext;
+    
+    UITableView* tableView;
+    
+    SettingTimerPowerViewController* powerController;
 }
 @property(nonatomic,strong)NSArray *subviewControllerArray;
 @property(nonatomic,strong)NSArray *titleArray;
 
 @property(nonatomic,strong)NSMutableArray* settingList;
+
+@property(nonatomic,strong)id         anObserver;
 
 @end
 
@@ -86,25 +95,83 @@
                                    @"SettingTimerPowerViewController",
                                    @"UpdateWatchController",nil];
     
-    UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset
+    tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.yOffset
                                                                            , CGRectGetWidth(self.view.frame), self.height-50) style:UITableViewStyleGrouped];
         
                                    
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.rowHeight = 50;
+    [tableView setEditing:NO];
     //tableView.scrollEnabled = NO;
     //tableView.tableHeaderView = [self tableHeaderView];
     tableView.backgroundColor = [UIColor colorWithHex:@"F2F7FD"];
     tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:tableView];
     self.settingList = [NSMutableArray arrayWithObjects:NSLocalizedString(@"Bound Watch", @"绑定手表"),NSLocalizedString(@"Call Watch", @"呼叫手表"), NSLocalizedString(@"Open Shock", @"开启震动"), NSLocalizedString(@"Sleep Time", @"休眠时间"), NSLocalizedString(@"InVerse Color", @"黑白反色"),
-                                   NSLocalizedString(@"Lock Screen", @"锁屏设置"), NSLocalizedString(@"Date Time", @"时间日期"),NSLocalizedString(@"Timer Switch", @"定时开关"),NSLocalizedString(@"Update Watch", @"固件升级"),NSLocalizedString(@"One Set", @"一键优化设置"),NSLocalizedString(@"more settings", @"更多设置"),nil];
+                                   /*NSLocalizedString(@"Lock Screen", @"锁屏设置"),*/ NSLocalizedString(@"Date Time", @"时间日期"),NSLocalizedString(@"Timer Switch", @"定时开关"),NSLocalizedString(@"Update Watch", @"固件升级"),NSLocalizedString(@"One Set", @"一键优化设置"),NSLocalizedString(@"more settings", @"更多设置"),nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setSleepTime:) name:@"setsleeptime" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setCancel) name:@"setcancel" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setVibrate:) name:@"watchisvibrate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setInversecolor:) name:@"watchisinversecolor" object:nil];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPowerOn:) name:@"PowerOnWatch" object:nil];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPowerOff:) name:@"PowerOffWatch" object:nil];
+
+    bBound = [[NSUserDefaults standardUserDefaults] boolForKey:@"isWatchConnected"];
+//    if (bBound) {
+//         [self getWatchSet];
+//    }
 
     sleepTimeController = [[SettingSleepTimeViewController alloc] init];
+//    self.anObserver =[[NSNotificationCenter defaultCenter] addObserverForName:kBLEChangedNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+//        if ([[BLEServerManager sharedManager] isBLEConnectedWithoutAlert]) {
+//            bBound = YES;
+//            
+//            [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction:) userInfo:nil repeats:NO];
+//            
+//
+////
+////            [[BLEServerManager sharedManager] getInverseColor];
+//            
+//        }else{
+//            bBound = NO;
+//        }
+//    }];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeWatchConnected:) name:kBLEChangedNotification object:nil];
+}
+
+-(void)changeWatchConnected:(NSNotification *)notification
+{
+     bBound = [[NSUserDefaults standardUserDefaults] boolForKey:@"isWatchConnected"];
+    if (bBound) {
+        [self getWatchSet];
+    }
+}
+
+-(void)getWatchSet
+{
+    [[BLEServerManager sharedManager] getIsVibrate:^(void){
+        [[BLEServerManager sharedManager] getInverseColor:^(void){
+        }];
+    }];
+
+//    [[BLEServerManager sharedManager] sendWatchLanguage:@"" finish:^(void){
+//    }];
+//    sleep(2);
+//    [[BLEServerManager sharedManager] sendWatchSleepTime:@"" finish:^(void){
+//    }];
+//    sleep(2);
+//    [[BLEServerManager sharedManager] getIsVibrate];
+//    if (![[BLEServerManager sharedManager] isSending]) {
+//        [[BLEServerManager sharedManager] getInverseColor];
+//    }
+    
+//    sleep(2);
+//    [[BLEServerManager sharedManager] getPowerOnWatch];
+//    sleep(2);
+//    [[BLEServerManager sharedManager] getPowerOffWatch];
 }
 
 -(void)setCancel
@@ -115,20 +182,59 @@
 -(void)setSleepTime:(NSNotification *)notification
 {
     NSString* sleepTime = notification.object;
-    [[BLEServerManager sharedManager] sendWatchSleepTime:sleepTime finish:^(void){
-        int isleepTime = [sleepTime intValue]/1000;
-        if (isleepTime>59) {
-            isleepTime = isleepTime/60;
-            sleepLabel.text = [NSString stringWithFormat:@"%d分钟", isleepTime];
-        }
-        else
-        {
-            sleepLabel.text = [NSString stringWithFormat:@"%d秒", isleepTime];
-        }
-        [ViewUtils showToast:@"设置休眠时间成功"];
-    }];
-    [self dismissSemiModalView];
+    int isleepTime = [sleepTime intValue]/1000;
+    if (isleepTime>59)
+    {
+        isleepTime = isleepTime/60;
+        [sleepLabel setText:[NSString stringWithFormat:@"%d分钟", isleepTime]];
+    }
+    else
+    {
+        [sleepLabel setText:[NSString stringWithFormat:@"%d秒", isleepTime]];
+    }
+    [ViewUtils showToast:@"设置休眠时间成功"];
+    
+    [tableView reloadData];
 }
+
+-(void)setVibrate:(NSNotification *)notification
+{
+    BOOL bVibrate = [[notification.object objectForKey:@"enabled"] boolValue];
+    if (bVibrate)
+    {
+        [switchVibrate setOn:YES];
+    }
+    else
+    {
+        [switchVibrate setOn:NO];
+    }
+}
+
+-(void)setInversecolor:(NSNotification *)notification
+{
+    BOOL bInversecolor = [[notification.object objectForKey:@"enabled"] boolValue];
+    if (bInversecolor)
+    {
+        [switchInverse setOn:YES];
+    }
+    else
+    {
+        [switchInverse setOn:NO];
+    }
+}
+
+-(void)setPowerOn:(NSNotification *)notification
+{
+    NSDictionary* dicValue = [notification.object objectForKey:@"value"];
+    PowerOntext = [NSString stringWithFormat:@"%d:%d", [dicValue objectForKey:@"hour"],[dicValue objectForKey:@"minute"]];
+}
+
+-(void)setPowerOff:(NSNotification *)notification
+{
+    NSDictionary* dicValue = [notification.object objectForKey:@"value"];
+    PowerOfftext = [NSString stringWithFormat:@"%d:%d", [dicValue objectForKey:@"hour"],[dicValue objectForKey:@"minute"]];
+}
+
 
 - (void)boundButtonClicked:(id)sender
 {
@@ -159,7 +265,7 @@
     }
     else if (section == 1)
     {
-        return 4;
+        return 3;
     }
     else if (section == 2)
     {
@@ -188,26 +294,47 @@
 {
     return 50;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 20;
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIdentifier = @"SettingCell";
-    MoreSettingsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell)
-    {
-        cell = [[MoreSettingsCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+//    NSString *cellIdentifier = @"MoreSettingsCell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    if (!cell)
+//    {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+//    }
+//    else
+//    {
+//        while ([cell.contentView.subviews lastObject] != nil) {
+//            [(UIView *)[cell.contentView.subviews lastObject] removeFromSuperview];
+//        }
+//    }
+    
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d", [indexPath section], [indexPath row]];//以indexPath来唯一确定cell
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.textLabel.textColor = [UIColor colorWithHex:@"333333"];
     
-//    BOOL bConnection = [[BLEServerManager sharedManager] isWatchConnected];
-//
-//    cell.userInteractionEnabled = bConnection;
-//    cell.textLabel.enabled = bConnection;
-//    cell.detailTextLabel.enabled = bConnection;
+    cell.userInteractionEnabled = bBound;
+    cell.textLabel.enabled = bBound;
+    cell.detailTextLabel.enabled = bBound;
     
     int section = indexPath.section;
+    NSLog(@"%d",section);
     int row = indexPath.row;
     switch (section) {
         case 0:
@@ -238,11 +365,13 @@
                 switchVibrate.tag = SWITCH_VIBRATE_TAG;
                 [switchVibrate addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
                 [cell addSubview:switchVibrate];
-                
-                [[BLEServerManager sharedManager] sendLaunchApp:@"" finish:nil];;
             }
             else if(row == 1)
             {
+                if (!sleepLabel) {
+                    [sleepLabel removeFromSuperview];
+                    sleepLabel = nil;
+                }
                 sleepLabel = [[UILabel alloc] initWithFrame:CGRectMake(230, 10, 71, 31)];
                 sleepLabel.text = [NSString stringWithFormat:@"%@秒", @"15"];
                 sleepLabel.textColor = [UIColor blueColor];
@@ -266,14 +395,18 @@
         case 2:
         {
             [cell setHighlighted:NO];
-            cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+6];
+            cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+5];
             if (row == 0) {
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
             else if(row == 1)
             {
+                if (!powerTimeLabel) {
+                    [powerTimeLabel removeFromSuperview];
+                    powerTimeLabel = nil;
+                }
                 powerTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(190, 10, 111, 31)];
-                powerTimeLabel.text = [NSString stringWithFormat:@"%@开机  %@关机", @"7:00", @"22:00"];
+                powerTimeLabel.text = [NSString stringWithFormat:@"%@开机  %@关机", PowerOntext, PowerOfftext];
                 powerTimeLabel.textColor = [UIColor blueColor];
                 powerTimeLabel.font = [UIFont systemFontOfSize:10.0];
                 [cell addSubview:powerTimeLabel];
@@ -283,14 +416,14 @@
         case 3:
         {
             cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+9];
+            cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+8];
             cell.textLabel.textColor = [UIColor colorWithHex:@"B800F5"];
-             break;
+            break;
         }
         case 4:
         {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+10];
+            cell.textLabel.text = [self.settingList objectAtIndex:indexPath.row+9];
             break;
         }
         default:
@@ -300,8 +433,8 @@
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.rowHeight - .5, CGRectGetWidth(tableView.frame) , .5)];
     line.backgroundColor = [UIColor colorWithHex:@"cfe1f5"];
     [cell addSubview:line];
-            return cell;
-    }
+    return cell;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -336,9 +469,7 @@
                     [ViewUtils showToast:@"设置为简洁锁屏成功"];
                 }];
             }
-            if (row == 0) {
 
-            }
             break;
         }
         case 2:
@@ -346,16 +477,15 @@
             NSString *className = self.subviewControllerArray[row];
             UIViewController *aController = [[NSClassFromString(className) alloc] initWithNibName:nil bundle:nil];
             ((NaviCommonViewController*)aController).backName = self.titleArray[row];
-            [self.navigationController pushViewController:aController animated:YES];
             if (row == 0)
             {
             }
             else if(row == 1)
             {
-                SettingTimerPowerViewController* powerController = [[SettingTimerPowerViewController alloc] init];
-                powerController.backName = @"开关机设置";
-                [self.navigationController pushViewController:powerController animated:YES];
+                ((NaviCommonViewController*)aController).backName = @"开关机设置";
             }
+            [self.navigationController pushViewController:aController animated:YES];
+
             break;
         }
         case 3:
@@ -451,10 +581,10 @@
 
     }];
     
-    //打开锁屏时钟
-    [[BLEServerManager sharedManager] sendWatchSleepSet:@"true" finish:^(void){
-        
-    }];
+//    //打开锁屏时钟
+//    [[BLEServerManager sharedManager] sendWatchSleepSet:@"true" finish:^(void){
+//        
+//    }];
     
     //同步手机的时间和日期，打开24小时制
     

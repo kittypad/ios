@@ -44,7 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     UIScrollView* scrollerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, IS_IOS7?65:45, 320 , IS_IOS7?548:460)];
-    scrollerView.contentSize = CGSizeMake(320, IS_IOS7?620:600);
+    scrollerView.contentSize = CGSizeMake(320, IS_IOS7?720:700);
     scrollerView.scrollEnabled = YES;
     scrollerView.delegate = self;
     scrollerView.bounces = NO;

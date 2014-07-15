@@ -20,9 +20,10 @@
 @interface SettingWatchTimeViewController ()
 {
     NSString* autotime;
-    NSDate* date;
+    NSString* date;
     NSString* timeZome;
     NSString* isTwentyfour;
+    NSString* timeformat;
     SettingTimeFormatViewController* timeFormatController;
     SettingTimeZoneViewController* timeZoneController;
 }
@@ -187,7 +188,7 @@
             BlockUIAlertView *alertView = [[BlockUIAlertView alloc] initWithTitle:@"" message:strDate cancelButtonTitle:NSLocalizedString(@"OK", nil)  otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"No", nil), nil] buttonBlock:^(NSInteger indexButton){
                 NSLog(@"%d",indexButton);
                 if (indexButton == 0) {
-                    [[BLEServerManager sharedManager] sendTimeCommand:date finish:^(void){
+                    [[BLEServerManager sharedManager] sendTimeCommand:timedate finish:^(void){
                         [ViewUtils showToast:@"时间校对成功"];
                     }];
                 }
@@ -208,7 +209,7 @@
                 timePicker.datePickerMode = UIDatePickerModeTime;
                 NSDateFormatter *offdateFormatter = [[NSDateFormatter alloc] init];
                 [offdateFormatter setDateFormat: @"HH:mm"];
-                NSDate *time= [offdateFormatter dateFromString:@"08:00"];
+                NSDate *time= [NSDate date];
                 [timePicker setDate:time];
                 //[timePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
                 timePicker.backgroundColor = [UIColor grayColor];
@@ -241,7 +242,7 @@
                 datePicker.datePickerMode = UIDatePickerModeDate;
                 NSDateFormatter *offdateFormatter = [[NSDateFormatter alloc] init];
                 [offdateFormatter setDateFormat: @"yyyy-MM-dd"];
-                NSDate *currentdate= [offdateFormatter dateFromString:@"2014-06-04"];
+                NSDate *currentdate= [NSDate date];
                 [datePicker setDate:currentdate];
                 //[datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
                 datePicker.backgroundColor = [UIColor grayColor];
@@ -342,14 +343,11 @@
 
 -(void)setSwitchTime
 {
-    if (![[BLEServerManager sharedManager] isBLEPoweredOn]) {
-        return;
-    }
-    if (![[BLEServerManager sharedManager] isBLEConnected]) {
-        return;
-    }
-    
-    [[BLEServerManager sharedManager] sendWatchTime:autotime date:date timeZome:timeZome istwentyfour:isTwentyfour dateformat:self.dateFormat finish:^(void){
+    autotime = @"true";
+    date = @"1000";
+    isTwentyfour = @"true";
+    timeformat = @"MM-dd-yyyy";
+    [[BLEServerManager sharedManager] sendWatchTime:autotime date:date timeZome:timeZome istwentyfour:isTwentyfour dateformat:timeformat finish:^(void){
     }];
 }
 

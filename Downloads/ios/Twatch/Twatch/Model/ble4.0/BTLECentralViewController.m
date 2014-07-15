@@ -78,7 +78,11 @@
     [super viewDidLoad];
     
     // Start up the CBCentralManager
-    _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    //_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    _centralManager =
+    [[CBCentralManager alloc] initWithDelegate:self queue:nil
+                                       options:@{ CBCentralManagerOptionRestoreIdentifierKey:
+                                                      @"myCentralManagerIdentifier" }];
     
     // And somewhere to store the incoming data
     _data = [[NSMutableData alloc] init];
@@ -115,7 +119,7 @@
     }
     
     // The state must be CBCentralManagerStatePoweredOn...
-
+    
     // ... so start scanning
     [self scan];
     
@@ -351,5 +355,12 @@
     [self.centralManager cancelPeripheralConnection:self.discoveredPeripheral];
 }
 
+//恢复连接状态
+- (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary *)dict
+{
+    NSArray *peripherals =
+    dict[CBCentralManagerRestoredStatePeripheralsKey];
+    NSLog(@"%@", peripherals);
+}
 
 @end

@@ -73,7 +73,10 @@
 
 -(void)setClicked
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"setsleeptime" object:self.sleepTime];
+    [[BLEServerManager sharedManager] sendWatchSleepTime:self.sleepTime finish:^(void){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"setsleeptime" object:self.sleepTime];
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

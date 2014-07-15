@@ -90,21 +90,21 @@
     firstdate.backgroundColor = [UIColor clearColor];
     NSDate* currentDay = [[NSDate alloc] init];
     firstdate.text = [dateFormatter stringFromDate:currentDay];
-    firstdate.textColor = [UIColor redColor];
+    firstdate.textColor = [UIColor colorWithHex:@"E55100"];
     firstdate.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:firstdate];
     
     firstdaystep =[[UILabel alloc] initWithFrame:CGRectMake(160, self.view.frame.size.height/2-170, 60, 40)];
     firstdaystep.backgroundColor = [UIColor clearColor];
     firstdaystep.text = @"0步";
-    firstdaystep.textColor = [UIColor redColor];
+    firstdaystep.textColor = [UIColor colorWithHex:@"E55100"];
     firstdaystep.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:firstdaystep];
     
     firstdayheat = [[UILabel alloc] initWithFrame:CGRectMake(160, self.view.frame.size.height/2-130, 60, 40)];
     firstdayheat.backgroundColor = [UIColor clearColor];
     firstdayheat.text = @"0卡路里";
-    firstdayheat.textColor = [UIColor redColor];
+    firstdayheat.textColor = [UIColor colorWithHex:@"E55100"];
     firstdayheat.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:firstdayheat];
     
@@ -112,43 +112,43 @@
     seconddate.backgroundColor = [UIColor clearColor];
     NSDate *yesterday = [[NSDate alloc] initWithTimeIntervalSinceNow:-24*3600];
     seconddate.text = [dateFormatter stringFromDate:yesterday];
-    seconddate.textColor = [UIColor greenColor];
+    seconddate.textColor = [UIColor colorWithHex:@"FF8400"];
     seconddate.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:seconddate];
     
     seconddaystep =[[UILabel alloc] initWithFrame:CGRectMake(50, self.view.frame.size.height/2+90, 60, 40)];
     seconddaystep.backgroundColor = [UIColor clearColor];
     seconddaystep.text = @"0步";
-    seconddaystep.textColor = [UIColor greenColor];
+    seconddaystep.textColor = [UIColor colorWithHex:@"FF8400"];
     seconddaystep.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:seconddaystep];
     
     seconddayheat = [[UILabel alloc] initWithFrame:CGRectMake(50, self.view.frame.size.height/2+130, 60, 40)];
     seconddayheat.backgroundColor = [UIColor clearColor];
     seconddayheat.text = @"0卡路里";
-    seconddayheat.textColor = [UIColor greenColor];
+    seconddayheat.textColor = [UIColor colorWithHex:@"FF8400"];
     seconddayheat.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:seconddayheat];
     
     threedate = [[UILabel alloc] initWithFrame:CGRectMake(190, self.view.frame.size.height/2+110, 60, 40)];
     threedate.backgroundColor = [UIColor clearColor];
-    NSDate *preday = [[NSDate alloc] initWithTimeIntervalSinceNow:-24*3600];
+    NSDate *preday = [[NSDate alloc] initWithTimeIntervalSinceNow:-2*24*3600];
     threedate.text = [dateFormatter stringFromDate:preday];
-    threedate.textColor = [UIColor yellowColor];
+    threedate.textColor = [UIColor colorWithHex:@"FFC000"];
     threedate.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:threedate];
     
     threedaystep =[[UILabel alloc] initWithFrame:CGRectMake(240, self.view.frame.size.height/2+90, 60, 40)];
     threedaystep.backgroundColor = [UIColor clearColor];
     threedaystep.text = @"0步";
-    threedaystep.textColor = [UIColor yellowColor];
+    threedaystep.textColor = [UIColor colorWithHex:@"FFC000"];
     threedaystep.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:threedaystep];
     
     threedayheat = [[UILabel alloc] initWithFrame:CGRectMake(240, self.view.frame.size.height/2+130, 60, 40)];
     threedayheat.backgroundColor = [UIColor clearColor];
     threedayheat.text = @"0卡路里";
-    threedayheat.textColor = [UIColor yellowColor];
+    threedayheat.textColor = [UIColor colorWithHex:@"FFC000"];
     threedayheat.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:threedayheat];
 }

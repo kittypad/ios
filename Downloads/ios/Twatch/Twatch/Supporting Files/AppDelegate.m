@@ -22,6 +22,8 @@
 #import "ShoppingTableViewController.h"
 #import "SettingsViewController.h"
 
+#import "BLEServerManager.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -31,11 +33,24 @@
         [application setStatusBarStyle:UIStatusBarStyleBlackTranslucent];
     }
     
+    BLEServerManager *manger = [BLEServerManager sharedManager];
+    
+    if (manger.peripheralManager.state != CBPeripheralManagerStatePoweredOn) {
+        //[manger startAdvertising];
+//        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isWatchConnected"]) {
+//            [self getWatchSet];
+//        }
+    }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
     
     NSMutableArray* items = [[NSMutableArray alloc] init];
     
+    MyCenterViewController* myCenterController = [[MyCenterViewController alloc] init];
+    TMNavigationController* myCenterNaviContronller = [[TMNavigationController alloc] initWithRootViewController:myCenterController];
+    [myCenterController.navigationController setNavigationBarHidden:YES];
+    [items addObject:myCenterNaviContronller];
     
     AppCenterViewController* appCenterList = [[AppCenterViewController alloc] init];
     [items addObject:appCenterList];
@@ -45,11 +60,6 @@
 //    TMNavigationController* shopNaviContronller = [[TMNavigationController alloc] initWithRootViewController:shoppingController];
     [items addObject:shoppingController];
     
-    MyCenterViewController* myCenterController = [[MyCenterViewController alloc] init];
-    TMNavigationController* myCenterNaviContronller = [[TMNavigationController alloc] initWithRootViewController:myCenterController];
-    [myCenterController.navigationController setNavigationBarHidden:YES];
-    [items addObject:myCenterNaviContronller];
-    
     SettingsViewController* settingViewController = [[SettingsViewController alloc] init];
     TMNavigationController* settingNaviContronller = [[TMNavigationController alloc] initWithRootViewController:settingViewController];
     [settingViewController.navigationController setNavigationBarHidden:YES];
@@ -58,7 +68,9 @@
     // items是数组，每个成员都是UIViewController
     CommonTabBarViewController* tabBar = [[CommonTabBarViewController alloc] init];
     //[tabBar setTitle:@"TabBarController"];
-    tabBar.tabBar.selectedImageTintColor = [UIColor colorWithHex:@"FF6600"];
+    tabBar.tabBar.backgroundImage = [UIImage imageNamed:@"tabbg"];
+    tabBar.tabBar.selectedImageTintColor = [UIColor colorWithHex:@"FF6223"];
+    //tabBar.tabBar.selectionIndicatorImage = [UIImage imageNamed:@"<#string#>"];
     [tabBar setViewControllers:items];
     
     TMNavigationController* tabBarNaviContronller = [[TMNavigationController alloc] initWithRootViewController:tabBar];
@@ -74,8 +86,37 @@
     
     [[DataManager sharedManager] startAllDownloadingFile];
     
+    
+//    [BLEServerManager sharedManager].peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil options:@{CBPeripheralManagerOptionRestoreIdentifierKey:(launchOptions[UIApplicationLaunchOptionsBluetoothCentralsKey] ?: [[NSUUID UUID] UUIDString])}];
+//    
+//    //记录蓝牙连接标识
+//    NSArray *centralManagerIdentifiers = launchOptions[UIApplicationLaunchOptionsBluetoothPeripheralsKey];
+//    for (NSString* identifier in centralManagerIdentifiers) {
+//        if ([identifier isEqualToString:@"com.tfire.ble"]) {
+//            //get your manager
+//        }
+//    }
+//    
+    
     return YES;
 }
+
+//-(void)getWatchSet
+//{
+//    [[BLEServerManager sharedManager] sendWatchLanguage:@"" finish:^(void){
+//    }];
+//    sleep(10);
+//    [[BLEServerManager sharedManager] sendWatchSleepTime:@"" finish:^(void){
+//    }];
+//    sleep(10);
+//    [[BLEServerManager sharedManager] getIsVibrate];
+//    sleep(10);
+//    [[BLEServerManager sharedManager] getInverseColor];
+//    sleep(10);
+//    [[BLEServerManager sharedManager] getPowerOnWatch];
+//    sleep(10);
+//    [[BLEServerManager sharedManager] getPowerOffWatch];
+//}
 
 -(void)checkVersion
 {
@@ -174,6 +215,34 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    BLEServerManager *manger = [BLEServerManager sharedManager];
+
+    if (manger.peripheralManager.state != CBPeripheralManagerStatePoweredOn) {
+        //[manger startAdvertising];
+        manger.peripheralManager.delegate = self;
+    }
+    
+    //[NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
+    
+}
+
+//实现恢复状态
+- (void)peripheralManager:(CBPeripheralManager *)peripheral willRestoreState:(NSDictionary *)dict
+{
+    NSArray *peripherals =
+    dict[CBCentralManagerRestoredStatePeripheralsKey];
+    NSLog(@"Sent: %@",peripherals);
+}
+
+-(void)timerAction:(NSTimer*)time
+{
+    //    [[BLEServerManager sharedManager] sendWatchLanguage:@"" finish:^(void){
+    //    }];
+    
+    if (![BLEServerManager sharedManager].isWatchConnected) {
+        [[BLEServerManager sharedManager] sendBoundCommand];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

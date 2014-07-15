@@ -60,7 +60,10 @@
 #define APPID @"737815068"
 
 //请求基础URL
-#define HTTPBASE_URL @"http://192.168.1.114/DigitalFrame"
+//#define HTTPBASE_URL @"http://192.168.1.80/DigitalFrame"
+
+#define HTTPBASE_URL @"http://www.yugong-tech.com/DigitalFrame"
+
 
 typedef enum _WatchStyle{
     wBlack = 0,

@@ -259,8 +259,6 @@
     [self sendData];
 }
 
-
-
 #pragma mark - TextView Methods
 
 

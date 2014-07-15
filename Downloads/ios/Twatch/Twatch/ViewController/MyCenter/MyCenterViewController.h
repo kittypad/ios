@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "NaviCommonViewController.h"
 
-@interface MyCenterViewController : NaviCommonViewController<UITextFieldDelegate,NSURLConnectionDelegate>
+@interface MyCenterViewController : NaviCommonViewController<UITextFieldDelegate>
 
 @end

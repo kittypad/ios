@@ -49,7 +49,7 @@
        //glc 2014-5-22 添加tabbar
         UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:NSLocalizedString(@"App", @"应用") image:[UIImage imageNamed:@"tabapp"] tag:4];
         self.tabBarItem = item;
-        self.backName = @"应用市场";
+        self.backName = NSLocalizedString(@"App Center", @"应用市场");
     }
     return self;
 }

@@ -14,7 +14,9 @@
 #import "ViewUtils.h"
 
 @interface ConnectionViewController ()
-
+{
+    MBProgressHUD *hudmessage;
+}
 - (void)_didBLEChanged:(NSNotification *)notice;
 
 @end
@@ -37,13 +39,13 @@ static  NSString *cellId = @"connectin cell identifier";
 {
     [super viewDidLoad];
     
-    [self.backBtn setHidden:YES];
-    
-    UIButton* backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, IS_IOS7?25:5, 30, 30)];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(backClicked) forControlEvents:UIControlEventTouchUpInside];
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:15.0];
-    [self.view addSubview:backBtn];
+//    [self.backBtn setHidden:YES];
+//    
+//    UIButton* backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, IS_IOS7?25:5, 30, 30)];
+//    [backBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+//    [backBtn addTarget:self action:@selector(backClicked) forControlEvents:UIControlEventTouchUpInside];
+//    backBtn.titleLabel.font = [UIFont systemFontOfSize:15.0];
+//    [self.view addSubview:backBtn];
     
     // Do any additional setup after loading the view from its nib.
     CGRect frame = CGRectChangeY(self.view.frame, self.yOffset);
@@ -62,7 +64,7 @@ static  NSString *cellId = @"connectin cell identifier";
     UIButton *scanButton = [UIButton buttonWithType:UIButtonTypeCustom];
     //scanButton.backgroundColor = RGB(116, 198, 250, 1);
     scanButton.backgroundColor = [UIColor colorWithHex:@"1ca1f6"];
-    scanButton.frame = CGRectMake(9, CGRectGetMaxY(tableView.frame)+20, CGRectGetWidth(self.view.frame) - 18, 40);
+    scanButton.frame = CGRectMake(9, CGRectGetMaxY(tableView.frame)-20, CGRectGetWidth(self.view.frame) - 18, 40);
     [scanButton setTitle:NSLocalizedString(@"start bluetooth advertisting",nil) forState:UIControlStateNormal];
 //    [scanButton setTitle:@"正 在 蓝 牙 广 播" forState:UIControlStateSelected];
     [scanButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -75,24 +77,30 @@ static  NSString *cellId = @"connectin cell identifier";
 
 - (void)backClicked
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     
     [super viewDidDisappear:animated];
-//    BLEServerManager *manager = [BLEServerManager sharedManager];
-//    if (manager.peripheralManager.isAdvertising) {
-//        [manager stopAdvertising];
-//    }
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    BLEServerManager *manager = [BLEServerManager sharedManager];
+    if (manager.peripheralManager.isAdvertising) {
+        [manager stopAdvertising];
+    }
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
 - (void)_didBLEChanged:(NSNotification *)notice
 {
     [self.tableView reloadData];
+    if (hudmessage) {
+        hudmessage.labelText = @"完成绑定";
+        [hudmessage hide:YES afterDelay:1];
+    }
+
 }
 
 - (void)startScan:(UIButton *)btn
@@ -102,6 +110,12 @@ static  NSString *cellId = @"connectin cell identifier";
         return;
     }
     if (!manger.peripheralManager.isAdvertising ) {
+        hudmessage = [[MBProgressHUD alloc] init];
+        hudmessage.labelText = @"正在绑定中。。。";
+        hudmessage.mode = MBProgressHUDModeIndeterminate;
+        [self.view addSubview:hudmessage];
+        [hudmessage show:YES];
+        
         btn.backgroundColor = [UIColor colorWithHex:@"6fc6fc"];
         [btn setTitle:NSLocalizedString(@"Bluetooth is advertisting",nil) forState:UIControlStateNormal];
         
@@ -113,6 +127,11 @@ static  NSString *cellId = @"connectin cell identifier";
     }
     
     btn.selected = manger.peripheralManager.isAdvertising ;
+}
+
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [hud hide:YES];
 }
 
 - (void)didReceiveMemoryWarning

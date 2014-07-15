@@ -41,7 +41,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     UIView *navigationBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  CGRectGetWidth(self.view.frame), IS_IOS7 ? 64 :44)];
-    navigationBar.backgroundColor = RGB(255, 102, 0, 1);
+    navigationBar.backgroundColor = RGB(29, 25, 25, 1);
     //navigationBar.backgroundColor = [UIColor whiteColor];
     navigationBar.tag = 1322;
     [self.view addSubview:navigationBar];
@@ -54,7 +54,7 @@
     [goBackButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     goBackButton.titleLabel.font = font;
 //    [goBackButton setTitleColor:[UIColor colorWithHex:@"333333"] forState:UIControlStateNormal];
-    [goBackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [goBackButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [goBackButton setTitle:self.backName forState:UIControlStateNormal];
     self.backBtn = goBackButton;
     [navigationBar addSubview:self.backBtn];

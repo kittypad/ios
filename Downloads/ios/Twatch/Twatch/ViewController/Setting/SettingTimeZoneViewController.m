@@ -80,7 +80,9 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString* timezone = [self.timeZoneList objectAtIndex:indexPath.row];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"settimezone" object:timezone];
+    NSInteger integerzone = [[NSTimeZone timeZoneWithName:timezone] secondsFromGMT];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"settimezone" object:[NSString stringWithFormat:@"%d",integerzone]];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

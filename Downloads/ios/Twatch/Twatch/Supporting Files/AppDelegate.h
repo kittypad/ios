@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreBluetooth/CoreBluetooth.h>
+#import <CoreLocation/CoreLocation.h>
 
 @class RootViewController;
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,CBPeripheralManagerDelegate,CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic)BOOL  haveNewVersion;
 
 @property (strong, nonatomic) RootViewController *rootViewController;
+
+@property (readwrite, nonatomic, strong) CBPeripheralManager *peripheralManager;
 
 @end

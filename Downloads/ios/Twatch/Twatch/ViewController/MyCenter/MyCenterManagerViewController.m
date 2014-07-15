@@ -15,6 +15,10 @@
 #import <SBJson.h>
 
 #import "UIImageView+AFNetworking.h"
+#import "MyAttentionListViewController.h"
+#import "MyfastTalkViewController.h"
+#import "WatchStyleViewController.h"
+#import "NetDatamanager.h"
 
 @interface MyCenterManagerViewController ()
 {
@@ -22,6 +26,11 @@
     UIImageView* photo;
     UILabel* username;
     UILabel* declaration;
+    NSMutableArray* friendlist;
+    NSURLConnection* userConnection;
+    NSURLConnection* friendListConnection;
+    
+    NSMutableDictionary *addNewMessagesdic;
 }
 
 @end
@@ -57,12 +66,121 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gobackToLogin:) name:@"gobacktologin" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformation:) name:@"updateInformation" object:nil];
+    
+    addNewMessagesdic = nil;
+    addNewMessagesdic = [[NSMutableDictionary alloc] init];
+    //获取消息
+    [self getMessage:self.userNametext];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteMessageUpdate:) name:@"deleteMessageUpdate" object:nil];
+}
+
+-(void)getMessage:(NSString*)userName
+{
+
+    [[NetDatamanager sharedManager] getMessage:userName success:^(id response){
+        //        NSMutableDictionary* allmessagedic = response;
+        NSMutableDictionary* messagesDic = [[NSMutableDictionary alloc] initWithDictionary:response];
+        if ([messagesDic objectForKey:@"count"] != nil && [messagesDic objectForKey:@"count"] !=0) {
+            NSMutableArray* messageArray = [messagesDic objectForKey:@"messages"];
+            
+            for (int i=0; i<[messageArray count]; i++)
+            {
+                NSMutableDictionary* messageDic = [messageArray objectAtIndex:i];
+                
+                NSString* msgType = [messageDic objectForKey:@"msgType"];
+                if ([msgType isEqualToString:@"user"]) {
+                    NSMutableArray* frommessageArray = [addNewMessagesdic objectForKey:[messageDic objectForKey:@"fromUser"]];
+                    if ([frommessageArray count]>0 ) {
+                        [frommessageArray addObject:messageDic];
+                    }
+                    else
+                    {   frommessageArray = [[NSMutableArray alloc] init];
+                        [frommessageArray addObject:messageDic];
+                        [addNewMessagesdic setObject:frommessageArray forKey:[messageDic objectForKey:@"fromUser"]];
+                    }
+                    [addNewMessagesdic setValue:frommessageArray forKey:[messageDic objectForKey:@"fromUser"]];
+                }
+                else if([msgType isEqualToString:@"sys_focus"])
+                {
+                }
+                else if([msgType isEqualToString:@"group"])
+                {
+                }
+                else if([msgType isEqualToString:@"sys_feedback"])
+                {
+                }
+                else if([msgType isEqualToString:@"sys_connect"])
+                {
+                }
+            }
+            
+            if ([messageArray count]>0) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"updateMessagelist" object:addNewMessagesdic];
+            }
+            
+        }
+        
+        [self getMessage:userName];
+        
+    }];
+}
+
+-(void)deleteMessageUpdate:(NSNotification*)notification
+{
+    NSString* deleteUserName = notification.object;
+    [addNewMessagesdic removeObjectForKey:[addNewMessagesdic objectForKey:deleteUserName]];
 }
 
 -(void)loginToMyCenter:(NSNotification*) notification
 {
     self.userNametext = notification.object;
-    [self getUserProfile:HTTPBASE_URL username:self.userNametext];
+    
+    [[NetDatamanager sharedManager] getUserProfile:self.userNametext success:^(id response, NSString* str){
+        
+        NSMutableDictionary *testUserPrDict = [[NSMutableDictionary alloc] initWithDictionary:response];
+        if ([str isEqualToString:@"0"])
+        {
+            [testUserPrDict setObject:self.userNametext forKey:@"userName"];
+            
+            username.text = self.userNametext;
+            declaration.text = [NSString stringWithFormat:@"%@:%@",@"宣言", [testUserPrDict objectForKey:@"Signature"]];
+            
+            NSURL *portraitUrl = [NSURL URLWithString:@"http://photo.l99.com/bigger/31/1363231021567_5zu910.jpg"];
+            UIImage *protraitImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:portraitUrl]];
+            
+            [photo setImage:protraitImg];
+            
+            self.myMessageDic = testUserPrDict;
+            //下载头像
+            NSString* avatar = [self.myMessageDic objectForKey:@"Avatar"];
+            if (avatar != nil && ![avatar isEqualToString:@""]) {
+                [self downloadPhoto:[NSString stringWithFormat:@"http://www.yugong-tech.com/down_avatar.php?avatar=%@",
+                                     avatar]];
+            }
+
+        }
+        else if([str isEqualToString:@"1003"])
+        {
+            
+        }
+        
+    }failure:^(NSError* error){
+        
+    }];
+    
+    [[NetDatamanager sharedManager] getMyFocusList:self.userNametext focustype:@"all" success:^(id response, NSString* str){
+    
+        NSMutableDictionary *testDict = response;
+        if ([str isEqualToString:@"0"]) {
+            NSMutableArray* friendcallList = [[NSMutableArray alloc] init];
+            friendlist = [testDict objectForKey:@"focusList"];
+        }
+        else
+        {
+            
+        }
+    } failure:^(NSError* error){
+    }];
 }
 
 -(void)gobackToLogin:(NSNotification*)notification
@@ -73,14 +191,18 @@
 
 -(void)updateInformation:(NSNotification*)notification
 {
-    NSDictionary* informationDic = notification.object;
+    NSMutableDictionary* informationDic = notification.object;
     username.text = self.userNametext;
     declaration.text = [NSString stringWithFormat:@"%@:%@",@"宣言", [informationDic objectForKey:@"Signature"]];
     
     NSURL *portraitUrl = [NSURL URLWithString:@"http://photo.l99.com/bigger/31/1363231021567_5zu910.jpg"];
     UIImage *protraitImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:portraitUrl]];
     [photo setImage:protraitImg];
-    [photo setImageWithURL:[informationDic objectForKey:@"Avatar"] placeholderImage:protraitImg];
+    
+    self.myMessageDic = informationDic;
+
+    
+    [photo setImage:[UIImage imageWithData:[self.myMessageDic objectForKey:@"avatarData"]]];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -91,11 +213,11 @@
     }
     else if(section == 1)
     {
-        return 2;
+        return 3;
     }
     else if(section == 2)
     {
-        return 2;
+        return 1;
     }
     else
     {
@@ -105,7 +227,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,7 +237,7 @@
     }
     else
     {
-        return 30;
+        return 40;
     }
     
 }
@@ -175,26 +297,27 @@
                 [cell addSubview:soundCount];
                 cell.textLabel.text = @"录音记录";
             }
-            else
+            else if(row == 1)
             {
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.textLabel.text = @"运动信息";
             }
+            else if(row == 2)
+            {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.textLabel.text = @"好友列表";
+            }
+            
             break;
         }
-//        case 2:
-//        {
-//            if (row == 0) {
-//                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//                cell.textLabel.text = @"快捷对讲";
-//            }
-//            else
-//            {
-//                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//                cell.textLabel.text = @"关注列表";
-//            }
-//            break;
-//        }
+        case 2:
+        {
+            if (row == 0) {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.textLabel.text = @"图片推送";
+            }
+            break;
+        }
         default:
             break;
     }
@@ -205,109 +328,91 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    
-    if (indexPath.section==0) {
-        myMessageEditController = [[MyMessageEditViewController alloc] init];
-        myMessageEditController.backName = @"个人资料";
-        [self.navigationController pushViewController:myMessageEditController animated:YES];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"sendUserInformation" object:self.myMessageDic];
-    }
-    else if(indexPath.section == 1)
-    {
-        if (indexPath .row == 0) {
-            SoundRecordViewController *soundRecordController = [[SoundRecordViewController alloc] init];
-            soundRecordController.backName = @"录音记录";
-            [self.navigationController pushViewController:soundRecordController animated:YES];
-        }
-        else if(indexPath.row == 1)
+    int isection = indexPath.section;
+    switch (isection) {
+        case 0:
         {
-            SportMessageViewController *sportMessageController = [[SportMessageViewController alloc] init];
-            sportMessageController.backName = @"运动信息";
-            [self.navigationController pushViewController:sportMessageController animated:YES];
+            myMessageEditController = [[MyMessageEditViewController alloc] init];
+            myMessageEditController.backName = @"个人资料";
+            [self.navigationController pushViewController:myMessageEditController animated:YES];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"sendUserInformation" object:self.myMessageDic];
+            break;
         }
+        case 1:
+        {
+            if (indexPath .row == 0) {
+                SoundRecordViewController *soundRecordController = [[SoundRecordViewController alloc] init];
+                soundRecordController.backName = @"录音记录";
+                [self.navigationController pushViewController:soundRecordController animated:YES];
+            }
+            else if(indexPath.row == 1)
+            {
+                SportMessageViewController *sportMessageController = [[SportMessageViewController alloc] init];
+                sportMessageController.backName = @"运动信息";
+                [self.navigationController pushViewController:sportMessageController animated:YES];
+            }
+            else if(indexPath.row == 2)
+            {
+                MyAttentionListViewController *attentionlistController = [[MyAttentionListViewController alloc] init];
+                attentionlistController.backName = @"好友列表";
+                attentionlistController.friendarray = friendlist;
+                attentionlistController.myDic = self.myMessageDic;
+                [self.navigationController pushViewController:attentionlistController animated:YES];
+                
+            }
+            break;
+        }
+        case 2:
+        {
+            if(indexPath.row == 0)
+            {
+                WatchStyleViewController *watchStyleViewController = [[WatchStyleViewController alloc] init];
+                watchStyleViewController.backName = @"图片推送";
+                [self.navigationController pushViewController:watchStyleViewController animated:YES];
+            }
+
+            break;
+        }
+        default:
+            break;
     }
 }
 
-//获取用户信息
--(NSURLConnection *)getUserProfile:(NSString*)url username:(NSString*) username
+-(void)downloadPhoto:(NSString*)url
 {
-    NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    [request1 setHTTPMethod:@"POST"];
-    
-    NSString *uuid1 =[[NSUUID UUID] UUIDString];
-    [request1 setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
-    [request1 setValue:@"getUserProfile" forHTTPHeaderField:@"ACTION"];
-    [request1 setValue:@"1.0" forHTTPHeaderField:@"APIVersion"];
-    [request1 setValue:uuid1 forHTTPHeaderField:@"UUID"];
-    [request1 setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
-    [request1 setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:self.userNametext,@"userName", nil];
-    
-    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    
-    NSString *jsonString=nil;
-    jsonString=[writer stringWithObject:parameters];
-    [request1 setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request1 delegate:self];
-    
-    return connection;
-}
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+    [request setHTTPMethod:@"GET"];
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
-    NSLog(@"%@",[res allHeaderFields]);
-    NSDictionary* allHeaderFields = [res allHeaderFields];
-    NSString* resultcode = [allHeaderFields objectForKey:@"Result-Code"];
+    //[request setValue:[self.myMessageDic objectForKey:@"Avatar"] forKey:@"avatar"];
     
-    if (![resultcode isEqualToString:@"0"]) {
-        MBProgressHUD *hud= [[MBProgressHUD alloc] initWithView:self.view];
-        hud.labelText = [[DataManager sharedManager] alertMessage:resultcode];
-        hud.mode = MBProgressHUDModeText;
-        [self.view addSubview:hud];
-        [hud show:YES];
-        [hud hide:YES afterDelay:2];
+    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *result = [NSURLConnection sendSynchronousRequest:request
+                                           returningResponse:&response error:&error];
+    
+    [self.myMessageDic setObject:result forKey:@"avatarData"];
+    
+    UIImage *resultImage = [UIImage imageWithData:(NSData *)result];
+    [photo setImage:resultImage];
+    
+    //NSString* imagepath = NSHomeDirectory();
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    //取得第一个Documents文件夹的路径
+    NSString *imagepath = [path objectAtIndex:0];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *testPath = [imagepath stringByAppendingPathComponent:[self.myMessageDic objectForKey:@"Avatar"]];
+    BOOL res=[fileManager createFileAtPath:testPath contents:nil attributes:nil];
+    if (res)
+    {
+        [result writeToFile:[self.myMessageDic objectForKey:@"Avatar"] atomically:YES];
+        NSLog(@"文件创建成功: %@" ,testPath);
     }
+    else
+        NSLog(@"文件创建失败");
 }
-
-//接收到服务器传输数据的时候调用，此方法根据数据大小执行若干次
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSDictionary *testDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    [testDict setValue:self.userNametext forKey:@"userName"];
-    
-    username.text = self.userNametext;
-    declaration.text = [NSString stringWithFormat:@"%@:%@",@"宣言", [testDict objectForKey:@"Signature"]];
-    
-    NSURL *portraitUrl = [NSURL URLWithString:@"http://photo.l99.com/bigger/31/1363231021567_5zu910.jpg"];
-    UIImage *protraitImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:portraitUrl]];
-    [photo setImage:protraitImg];
-    [photo setImageWithURL:[testDict objectForKey:@"Avatar"] placeholderImage:protraitImg];
-    
-    self.myMessageDic = testDict;
-    
-    NSLog(@"data:%@",testDict);
-}
-//数据传完之后调用此方法
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-}
-//网络请求过程中，出现任何错误（断网，连接超时等）会进入此方法
--(void)connection:(NSURLConnection *)connection
- didFailWithError:(NSError *)error
-{
-    MBProgressHUD *hud= [[MBProgressHUD alloc] initWithView:self.view];
-    hud.labelText = [error localizedDescription];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    [self.view addSubview:hud];
-    [hud show:YES];
-    [hud hide:YES afterDelay:2];
-    NSLog(@"%@",[error localizedDescription]);
-}
-
 
 - (void)didReceiveMemoryWarning
 {

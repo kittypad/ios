@@ -17,4 +17,5 @@
     #import "ViewUtils.h"
     #import "TransferService.h"
     #import "MBProgressHUD.h"
+    #import <SBJson.h>
 #endif

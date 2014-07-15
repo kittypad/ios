@@ -80,6 +80,8 @@
 //获取用户信息
 -(AFHTTPRequestOperation *)getUserProfile:(NSString*)url username:(NSString*) username success:(void (^)(id response))success;
 
+//获取联系人列表
+
 - (NSString *)md5:(NSString *)str;
 
 //网络请求返回提示

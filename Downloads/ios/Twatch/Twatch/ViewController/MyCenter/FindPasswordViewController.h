@@ -8,6 +8,6 @@
 
 #import "NaviCommonViewController.h"
 
-@interface FindPasswordViewController : NaviCommonViewController<UITextFieldDelegate,NSURLConnectionDelegate>
+@interface FindPasswordViewController : NaviCommonViewController<UITextFieldDelegate>
 
 @end

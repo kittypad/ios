@@ -9,11 +9,10 @@
 #import "LoginViewController.h"
 #import "DataManager.h"
 #import <SBJson.h>
+#import "NetDatamanager.h"
 
 @interface LoginViewController ()
 {
-    NSURLConnection *sendIdetifyconnection;
-    NSURLConnection *rigisterconnection;
 }
 
 @property (nonatomic) UITextField* phoneNum;
@@ -112,7 +111,30 @@
         [alert show];
         return;
     }
-    sendIdetifyconnection = [self sendSMS:HTTPBASE_URL user:self.phoneNum.text];
+    
+    MBProgressHUD *hud= [[MBProgressHUD alloc] initWithView:self.view];
+    hud.labelText = @"获取验证码";
+    hud.mode = MBProgressHUDModeIndeterminate;
+    [self.view addSubview:hud];
+    [hud show:YES];
+    
+    [[NetDatamanager sharedManager] sendSMS:self.phoneNum.text forgetPassword:@"0" success:^(id response,NSString* str){
+        hud.mode = MBProgressHUDModeText;
+        [hud hide:YES afterDelay:2];
+        if (![str isEqualToString:@"0"])
+        {
+            hud.labelText = [[NetDatamanager sharedManager] alertMessage:str];
+        }
+        else
+        {
+            hud.labelText = @"获取成功，请查收短信";
+        }
+        [hud hide:YES afterDelay:2];
+    } failure:^(NSError* error){
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = [error localizedDescription];
+        [hud hide:YES afterDelay:2];
+    }];
 }
 
 -(void)loginClicked
@@ -162,7 +184,30 @@
         return;
     }
     
-    rigisterconnection =  [self rigister:HTTPBASE_URL user:user password:password identifycode:captchatext];
+    MBProgressHUD *hud= [[MBProgressHUD alloc] initWithView:self.view];
+    hud.labelText = @"注册中";
+    hud.mode = MBProgressHUDModeIndeterminate;
+    [self.view addSubview:hud];
+    [hud show:YES];
+    
+    [[NetDatamanager sharedManager] rigister:user password:password identifycode:captchatext success:^(id response,NSString* str){
+        hud.mode = MBProgressHUDModeText;
+        [hud hide:YES afterDelay:2];
+        if (![str isEqualToString:@"0"])
+        {
+            hud.labelText = [[NetDatamanager sharedManager] alertMessage:str];
+        }
+        else
+        {
+            hud.labelText = @"注册成功！";
+        }
+        [hud hide:YES afterDelay:2];
+        
+    } failure:^(NSError* error){
+        hud.labelText = [error localizedDescription];
+        hud.mode = MBProgressHUDModeText;
+        [hud hide:YES afterDelay:2];
+    }];
 }
 
 -(void)dismissKeyboard {
@@ -175,107 +220,6 @@
             }
         }
     }
-}
-
-//注册
--(NSURLConnection*)rigister:(NSString*)url user:(NSString*) user password:(NSString*)password identifycode:(NSString*)identifycode
-{
-    NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    [request1 setHTTPMethod:@"POST"];
-    
-    NSString *uuid1 =[[NSUUID UUID] UUIDString];
-    [request1 setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
-    [request1 setValue:@"createAccount" forHTTPHeaderField:@"ACTION"];
-    [request1 setValue:@"1.0" forHTTPHeaderField:@"APIVersion"];
-    [request1 setValue:uuid1 forHTTPHeaderField:@"UUID"];
-    [request1 setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
-    [request1 setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:user,@"userName",[[DataManager sharedManager] md5:password],@"userPass",identifycode, @"userCode", nil];
-    
-    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    
-    NSString *jsonString=nil;
-    jsonString=[writer stringWithObject:parameters];
-    [request1 setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request1 delegate:self];
-    
-    return connection;
-}
-
-//发送短信
--(NSURLConnection*)sendSMS:(NSString*)url user:(NSString*)user
-{
-    NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    [request1 setHTTPMethod:@"POST"];
-    
-    NSString *uuid1 =[[NSUUID UUID] UUIDString];
-    [request1 setValue:@"MP" forHTTPHeaderField:@"DEVICE_TYPE"];
-    [request1 setValue:@"getValidateCode" forHTTPHeaderField:@"ACTION"];
-    [request1 setValue:@"1.0" forHTTPHeaderField:@"APIVersion"];
-    [request1 setValue:uuid1 forHTTPHeaderField:@"UUID"];
-    [request1 setValue:@"UTF-8" forHTTPHeaderField:@"Charset"];
-    [request1 setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    NSDictionary *parameters = [[NSDictionary alloc]initWithObjectsAndKeys:user,@"phoneNum", nil];
-    
-    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
-    
-    NSString *jsonString=nil;
-    jsonString=[writer stringWithObject:parameters];
-    [request1 setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request1 delegate:self];
-    
-    return connection;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
-    NSLog(@"%@",[res allHeaderFields]);
-    NSDictionary* allHeaderFields = [res allHeaderFields];
-    NSString* resultcode = [allHeaderFields objectForKey:@"Result-Code"];
-    
-    if (![resultcode isEqualToString:@"0"]) {
-        MBProgressHUD *hud= [[MBProgressHUD alloc] initWithView:self.view];
-        hud.labelText = [[DataManager sharedManager] alertMessage:resultcode];
-        hud.mode = MBProgressHUDModeText;
-        [self.view addSubview:hud];
-        [hud show:YES];
-        [hud hide:YES afterDelay:2];
-    }
-}
-
-//接收到服务器传输数据的时候调用，此方法根据数据大小执行若干次
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    if (sendIdetifyconnection == connection) {
-        NSString *result = [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
-        NSLog(@"data:%@",result);
-    }
-    else if(connection == rigisterconnection)
-    {
-        NSString *result = [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
-        NSLog(@"data:%@",result);
-    }
-}
-//数据传完之后调用此方法
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-}
-//网络请求过程中，出现任何错误（断网，连接超时等）会进入此方法
--(void)connection:(NSURLConnection *)connection
- didFailWithError:(NSError *)error
-{
-    MBProgressHUD *hud= [[MBProgressHUD alloc] initWithView:self.view];
-    hud.labelText = [error localizedDescription];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    [self.view addSubview:hud];
-    [hud show:YES];
-    [hud hide:YES afterDelay:2];
-    NSLog(@"%@",[error localizedDescription]);
 }
 
 - (void)didReceiveMemoryWarning

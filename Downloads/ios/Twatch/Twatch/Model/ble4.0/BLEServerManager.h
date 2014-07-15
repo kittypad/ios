@@ -33,8 +33,8 @@
 @property (nonatomic, strong)      NSData                    *dataToSend;
 @property (nonatomic, strong)      NSInputStream             *inputStream;
 @property (nonatomic, strong)      NSString                  *toFilePath;
-@property (nonatomic, readwrite)   NSInteger                 sendDataIndex;
-@property (nonatomic, readwrite)   NSInteger                 sendDataSize;
+@property (nonatomic, readwrite)   NSInteger                 sendDataIndex; //发送数据编号
+@property (nonatomic, readwrite)   NSInteger                 sendDataSize;  //发送数据大小
 @property (nonatomic, readwrite)   TransferDataType          transferDataType;
 //@property (strong, nonatomic)      CBCharacteristic          *curCharacteristic;
 @property (strong, nonatomic) CBMutableCharacteristic   *transferCharacteristic;
@@ -58,6 +58,8 @@
 @property (nonatomic,strong )NSTimer *timer;//定时任务，判断是否和手表绑定
 
 @property (nonatomic, strong) NSString *weatherInfo;//天气信息
+
+@property (nonatomic, assign) BOOL isResendCommand;//表示发送文件过程中出错，需要重发
 
 + (BLEServerManager *)sharedManager;
 /**
@@ -107,18 +109,24 @@
 
 - (void) sendWatchVersion:(NSString *)fileName;
 
+- (void)sendFileReceive;
+
 //增加新接口  glc 2014-5-28
 //手表休眠时间
 - (void)sendWatchSleepTime:(NSString *)sleepTime finish:(void(^)(void))block;
 
 //手表时间
-- (void)sendWatchTime:(NSString*) autoTime date:(NSDate *) date timeZome:(NSString*) timeZone istwentyfour:(NSString*)istwentyfour dateformat:(NSString*)dateformat finish:(void (^)(void))block;
+- (void)sendWatchTime:(NSString*) autoTime date:(NSString *) date timeZome:(NSString*) timeZone istwentyfour:(NSString*)istwentyfour dateformat:(NSString*)dateformat finish:(void (^)(void))block;
 
 //手表自动开机
 - (void)sendPowerOnWatch:(NSString *) hour minute:(NSString *) minute enabled:(NSString*)enabled finish:(void (^)(void))block;
 
+-(void)getPowerOnWatch;
+
 //手表自动关机
 - (void)sendPowerOffWatch:(NSString *) hour minute:(NSString *) minute enabled:(NSString*)enabled finish:(void (^)(void))block;
+
+-(void)getPowerOffWatch;
 
 //手表语言
 - (void)sendWatchLanguage:(NSString *) language finish:(void (^)(void))block;
@@ -132,8 +140,12 @@
 //是否震动
 - (void)sendVibrateSetting:(NSString*) vibrate finish:(void (^)(void))block;
 
+-(void)getIsVibrate:(void (^)(void))block;
+
 //是否反色
 - (void)sendInverseColor:(NSString*) inverse finish:(void (^)(void))block;
+
+-(void)getInverseColor:(void (^)(void))block;;
 
 //是否音频即时通信
 - (void)sendAudioRealTimeCommunication :(NSString*) communcation finish:(void (^)(void))block;

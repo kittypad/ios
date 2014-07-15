@@ -93,7 +93,7 @@
     [cameraButton addTarget:self action:@selector(_cameraButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cameraButton];
     
-    BGColorButton *handleButton = [[BGColorButton alloc] initWithFrame:CGRectMake(22.0, self.view.frame.size.height-55.0, 276.0, 40.0)];
+    BGColorButton *handleButton = [[BGColorButton alloc] initWithFrame:CGRectMake(22.0, self.view.frame.size.height-105.0, 276.0, 40.0)];
     handleButton.titleLabel.font = [UIFont systemFontOfSize:20.0];
     handleButton.titleLabel.textColor = [UIColor whiteColor];
     handleButton.titleLabel.text = NSLocalizedString(@"SendToWatch", nil);
